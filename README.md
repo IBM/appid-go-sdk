@@ -20,7 +20,7 @@ Changes might occur which impact applications that use this SDK.
 
 <!-- toc -->
 
-- [IBM Cloud App ID Management Services Go SDK Version 0.0.1](#ibm-cloud-github.com/IBM/appid-go-sdk.git-go-sdk-version-001)
+- [IBM Cloud App ID Management Go SDK 0.0.1](#ibm-cloud-app-id-management-go-sdk-001)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Prerequisites](#prerequisites)
@@ -42,7 +42,7 @@ The IBM Cloud App ID Management Services Go SDK allows developers to programmati
 
 Service Name | Package name 
 --- | --- 
-<!-- [Example Service](https://cloud.ibm.com/apidocs/example-service) | exampleservicev1 -->
+<!-- [App ID Management Service](https://cloud.ibm.com/apidocs/app-id/management) | appidmanagementv4 -->
 
 ## Prerequisites
 
