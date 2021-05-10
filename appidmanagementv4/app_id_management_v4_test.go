@@ -413,8 +413,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
-				registerApplicationOptionsModel.Name = core.StringPtr("testString")
-				registerApplicationOptionsModel.Type = core.StringPtr("testString")
+				registerApplicationOptionsModel.Name = core.StringPtr("App1")
+				registerApplicationOptionsModel.Type = core.StringPtr("regularwebapp")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.RegisterApplication(registerApplicationOptionsModel)
@@ -483,8 +483,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
-				registerApplicationOptionsModel.Name = core.StringPtr("testString")
-				registerApplicationOptionsModel.Type = core.StringPtr("testString")
+				registerApplicationOptionsModel.Name = core.StringPtr("App1")
+				registerApplicationOptionsModel.Type = core.StringPtr("regularwebapp")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -560,8 +560,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
-				registerApplicationOptionsModel.Name = core.StringPtr("testString")
-				registerApplicationOptionsModel.Type = core.StringPtr("testString")
+				registerApplicationOptionsModel.Name = core.StringPtr("App1")
+				registerApplicationOptionsModel.Type = core.StringPtr("regularwebapp")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -582,8 +582,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
-				registerApplicationOptionsModel.Name = core.StringPtr("testString")
-				registerApplicationOptionsModel.Type = core.StringPtr("testString")
+				registerApplicationOptionsModel.Name = core.StringPtr("App1")
+				registerApplicationOptionsModel.Type = core.StringPtr("regularwebapp")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -625,8 +625,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
-				registerApplicationOptionsModel.Name = core.StringPtr("testString")
-				registerApplicationOptionsModel.Type = core.StringPtr("testString")
+				registerApplicationOptionsModel.Name = core.StringPtr("App1")
+				registerApplicationOptionsModel.Type = core.StringPtr("regularwebapp")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -20204,14 +20204,14 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewRegisterApplicationOptions successfully`, func() {
 				// Construct an instance of the RegisterApplicationOptions model
-				registerApplicationOptionsName := "testString"
+				registerApplicationOptionsName := "App1"
 				registerApplicationOptionsModel := appIDManagementService.NewRegisterApplicationOptions(registerApplicationOptionsName)
-				registerApplicationOptionsModel.SetName("testString")
-				registerApplicationOptionsModel.SetType("testString")
+				registerApplicationOptionsModel.SetName("App1")
+				registerApplicationOptionsModel.SetType("regularwebapp")
 				registerApplicationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(registerApplicationOptionsModel).ToNot(BeNil())
-				Expect(registerApplicationOptionsModel.Name).To(Equal(core.StringPtr("testString")))
-				Expect(registerApplicationOptionsModel.Type).To(Equal(core.StringPtr("testString")))
+				Expect(registerApplicationOptionsModel.Name).To(Equal(core.StringPtr("App1")))
+				Expect(registerApplicationOptionsModel.Type).To(Equal(core.StringPtr("regularwebapp")))
 				Expect(registerApplicationOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewResendNotificationOptions successfully`, func() {

@@ -115,8 +115,8 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`RegisterApplication(registerApplicationOptions *RegisterApplicationOptions)`, func() {
 
 			registerApplicationOptions := &appidmanagementv4.RegisterApplicationOptions{
-				Name: core.StringPtr("testString"),
-				Type: core.StringPtr("testString"),
+				Name: core.StringPtr("App1"),
+				Type: core.StringPtr("regularwebapp"),
 			}
 
 			application, response, err := appIDManagementService.RegisterApplication(registerApplicationOptions)
