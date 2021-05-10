@@ -41,14 +41,14 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		It(`Instantiate service client`, func() {
 			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 				Authenticator: &core.NoAuthAuthenticator{},
-				TenantID: core.StringPtr(tenantID),
+				TenantID:      core.StringPtr(tenantID),
 			})
 			Expect(appIDManagementService).ToNot(BeNil())
 			Expect(serviceErr).To(BeNil())
 		})
 		It(`Instantiate service client with error: Invalid URL`, func() {
 			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
-				URL: "{BAD_URL_STRING",
+				URL:      "{BAD_URL_STRING",
 				TenantID: core.StringPtr(tenantID),
 			})
 			Expect(appIDManagementService).To(BeNil())
@@ -56,7 +56,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 		It(`Instantiate service client with error: Invalid Auth`, func() {
 			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
-				URL: "https://appidmanagementv4/api",
+				URL:      "https://appidmanagementv4/api",
 				TenantID: core.StringPtr(tenantID),
 				Authenticator: &core.BasicAuthenticator{
 					Username: "",
@@ -77,7 +77,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		Context(`Using external config, construct service client instances`, func() {
 			// Map containing environment variables used in testing.
 			var testEnvironment = map[string]string{
-				"APP_ID_MANAGEMENT_URL": "https://appidmanagementv4/api",
+				"APP_ID_MANAGEMENT_URL":       "https://appidmanagementv4/api",
 				"APP_ID_MANAGEMENT_AUTH_TYPE": "noauth",
 			}
 
@@ -99,7 +99,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			It(`Create service client using external config and set url from constructor successfully`, func() {
 				SetTestEnvironment(testEnvironment)
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
-					URL: "https://testService/api",
+					URL:      "https://testService/api",
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -135,7 +135,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		Context(`Using external config, construct service client instances with error: Invalid Auth`, func() {
 			// Map containing environment variables used in testing.
 			var testEnvironment = map[string]string{
-				"APP_ID_MANAGEMENT_URL": "https://appidmanagementv4/api",
+				"APP_ID_MANAGEMENT_URL":       "https://appidmanagementv4/api",
 				"APP_ID_MANAGEMENT_AUTH_TYPE": "someOtherAuth",
 			}
 
@@ -153,12 +153,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		Context(`Using external config, construct service client instances with error: Invalid URL`, func() {
 			// Map containing environment variables used in testing.
 			var testEnvironment = map[string]string{
-				"APP_ID_MANAGEMENT_AUTH_TYPE":   "NOAuth",
+				"APP_ID_MANAGEMENT_AUTH_TYPE": "NOAuth",
 			}
 
 			SetTestEnvironment(testEnvironment)
 			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
-				URL: "{BAD_URL_STRING",
+				URL:      "{BAD_URL_STRING",
 				TenantID: core.StringPtr(tenantID),
 			})
 
@@ -199,7 +199,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -250,7 +250,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -304,7 +304,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -330,7 +330,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -364,7 +364,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -406,7 +406,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -475,7 +475,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -547,7 +547,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -575,7 +575,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -618,7 +618,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -662,7 +662,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -714,7 +714,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -769,7 +769,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -796,7 +796,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -838,7 +838,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -881,7 +881,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -950,7 +950,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1022,7 +1022,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1050,7 +1050,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1093,7 +1093,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1136,7 +1136,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1160,7 +1160,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1208,7 +1208,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1260,7 +1260,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1315,7 +1315,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1342,7 +1342,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1384,7 +1384,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1427,7 +1427,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1496,7 +1496,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1568,7 +1568,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1596,7 +1596,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1639,7 +1639,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1683,7 +1683,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1735,7 +1735,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1790,7 +1790,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1817,7 +1817,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1859,7 +1859,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1902,7 +1902,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1975,7 +1975,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2051,7 +2051,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2083,7 +2083,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2130,7 +2130,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2181,7 +2181,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2238,7 +2238,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2298,7 +2298,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2327,7 +2327,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2364,7 +2364,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2424,7 +2424,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2456,7 +2456,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2511,7 +2511,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2535,7 +2535,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2598,7 +2598,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2631,7 +2631,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2687,7 +2687,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2711,7 +2711,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2758,7 +2758,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2782,7 +2782,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2833,7 +2833,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2890,7 +2890,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2950,7 +2950,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2979,7 +2979,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3023,7 +3023,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3069,7 +3069,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3151,7 +3151,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3236,7 +3236,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3276,7 +3276,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3331,7 +3331,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3387,7 +3387,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3439,7 +3439,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3494,7 +3494,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3521,7 +3521,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3563,7 +3563,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3623,7 +3623,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3657,7 +3657,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3715,7 +3715,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3783,7 +3783,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3854,7 +3854,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3881,7 +3881,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3923,7 +3923,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3982,7 +3982,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4007,7 +4007,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4056,7 +4056,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4124,7 +4124,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4195,7 +4195,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4222,7 +4222,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4264,7 +4264,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4323,7 +4323,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4350,7 +4350,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4402,7 +4402,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4473,7 +4473,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4547,7 +4547,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4576,7 +4576,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4620,7 +4620,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4664,7 +4664,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4688,7 +4688,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4736,7 +4736,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4787,7 +4787,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4841,7 +4841,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4867,7 +4867,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4901,7 +4901,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4943,7 +4943,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5030,7 +5030,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5120,7 +5120,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5166,7 +5166,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5220,7 +5220,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5282,7 +5282,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5333,7 +5333,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5387,7 +5387,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5413,7 +5413,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5447,7 +5447,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5504,7 +5504,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5534,7 +5534,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5588,7 +5588,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5639,7 +5639,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5693,7 +5693,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5719,7 +5719,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5753,7 +5753,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5810,7 +5810,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5834,7 +5834,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5882,7 +5882,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5933,7 +5933,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5987,7 +5987,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6013,7 +6013,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6047,7 +6047,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6104,7 +6104,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6129,7 +6129,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6172,7 +6172,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6223,7 +6223,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6277,7 +6277,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6303,7 +6303,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6337,7 +6337,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6394,7 +6394,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6418,7 +6418,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6460,7 +6460,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6511,7 +6511,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6565,7 +6565,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6591,7 +6591,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6625,7 +6625,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6667,7 +6667,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6693,7 +6693,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6748,7 +6748,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6802,7 +6802,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6828,7 +6828,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6862,7 +6862,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6904,7 +6904,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6957,7 +6957,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7013,7 +7013,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7041,7 +7041,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7084,7 +7084,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7128,7 +7128,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7201,7 +7201,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7277,7 +7277,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7309,7 +7309,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7356,7 +7356,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7403,7 +7403,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7428,7 +7428,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7477,7 +7477,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7528,7 +7528,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7582,7 +7582,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7608,7 +7608,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7642,7 +7642,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7699,7 +7699,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7723,7 +7723,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7765,7 +7765,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7816,7 +7816,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7870,7 +7870,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7896,7 +7896,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7930,7 +7930,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7987,7 +7987,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8027,7 +8027,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8091,7 +8091,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8143,7 +8143,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8198,7 +8198,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8225,7 +8225,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8267,7 +8267,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8310,7 +8310,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8379,7 +8379,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8451,7 +8451,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8479,7 +8479,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8522,7 +8522,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8565,7 +8565,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8589,7 +8589,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8637,7 +8637,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8688,7 +8688,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8742,7 +8742,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8768,7 +8768,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8802,7 +8802,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8844,7 +8844,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8914,7 +8914,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8987,7 +8987,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9016,7 +9016,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9053,7 +9053,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9098,7 +9098,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9149,7 +9149,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9203,7 +9203,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9229,7 +9229,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9263,7 +9263,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9305,7 +9305,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9391,7 +9391,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9480,7 +9480,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9525,7 +9525,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9585,7 +9585,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9646,7 +9646,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9753,7 +9753,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9863,7 +9863,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9929,7 +9929,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10010,7 +10010,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10092,7 +10092,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10160,7 +10160,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10231,7 +10231,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10258,7 +10258,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10300,7 +10300,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10343,7 +10343,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10411,7 +10411,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10482,7 +10482,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10509,7 +10509,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10551,7 +10551,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10594,7 +10594,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10645,7 +10645,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10699,7 +10699,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10725,7 +10725,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10759,7 +10759,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10801,7 +10801,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10919,7 +10919,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11040,7 +11040,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11117,7 +11117,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11209,7 +11209,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11301,7 +11301,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11324,7 +11324,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11380,7 +11380,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11404,7 +11404,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11452,7 +11452,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11503,7 +11503,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11557,7 +11557,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11583,7 +11583,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11617,7 +11617,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11659,7 +11659,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11711,7 +11711,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11766,7 +11766,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11793,7 +11793,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11835,7 +11835,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11878,7 +11878,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11948,7 +11948,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12021,7 +12021,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12050,7 +12050,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12094,7 +12094,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12139,7 +12139,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12191,7 +12191,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12246,7 +12246,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12273,7 +12273,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12315,7 +12315,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12358,7 +12358,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12433,7 +12433,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12511,7 +12511,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12545,7 +12545,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12594,7 +12594,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12644,7 +12644,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12714,7 +12714,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12787,7 +12787,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12816,7 +12816,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12860,7 +12860,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12905,7 +12905,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12957,7 +12957,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13012,7 +13012,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13039,7 +13039,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13081,7 +13081,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13124,7 +13124,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13175,7 +13175,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13229,7 +13229,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13255,7 +13255,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13289,7 +13289,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13331,7 +13331,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13400,7 +13400,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13472,7 +13472,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13500,7 +13500,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13543,7 +13543,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13586,7 +13586,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13609,7 +13609,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13665,7 +13665,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13691,7 +13691,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13740,7 +13740,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13763,7 +13763,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13819,7 +13819,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13844,7 +13844,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13893,7 +13893,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13944,7 +13944,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13998,7 +13998,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14024,7 +14024,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14058,7 +14058,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14100,7 +14100,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14179,7 +14179,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14261,7 +14261,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14299,7 +14299,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14352,7 +14352,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14406,7 +14406,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14457,7 +14457,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14511,7 +14511,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14537,7 +14537,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14571,7 +14571,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14613,7 +14613,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14692,7 +14692,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14774,7 +14774,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14812,7 +14812,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14865,7 +14865,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14919,7 +14919,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14970,7 +14970,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15024,7 +15024,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15050,7 +15050,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15084,7 +15084,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15126,7 +15126,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15199,7 +15199,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15275,7 +15275,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15307,7 +15307,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15354,7 +15354,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15402,7 +15402,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15453,7 +15453,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15507,7 +15507,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15533,7 +15533,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15567,7 +15567,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15609,7 +15609,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15697,7 +15697,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15788,7 +15788,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15835,7 +15835,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15897,7 +15897,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15960,7 +15960,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16011,7 +16011,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16065,7 +16065,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16091,7 +16091,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16125,7 +16125,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16167,7 +16167,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16253,7 +16253,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16342,7 +16342,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16387,7 +16387,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16447,7 +16447,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16508,7 +16508,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16559,7 +16559,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16613,7 +16613,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16639,7 +16639,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16673,7 +16673,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16715,7 +16715,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16790,7 +16790,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16868,7 +16868,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16902,7 +16902,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16951,7 +16951,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17001,7 +17001,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17053,7 +17053,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17108,7 +17108,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17135,7 +17135,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17177,7 +17177,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17220,7 +17220,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17296,7 +17296,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17375,7 +17375,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17410,7 +17410,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17460,7 +17460,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17510,7 +17510,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17534,7 +17534,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17587,7 +17587,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17648,7 +17648,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17712,7 +17712,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17743,7 +17743,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17789,7 +17789,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17851,7 +17851,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17881,7 +17881,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17937,7 +17937,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17992,7 +17992,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18050,7 +18050,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18078,7 +18078,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18114,7 +18114,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18158,7 +18158,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18249,7 +18249,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18343,7 +18343,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18393,7 +18393,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18458,7 +18458,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18523,7 +18523,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18547,7 +18547,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18594,7 +18594,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18618,7 +18618,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18665,7 +18665,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18689,7 +18689,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18752,7 +18752,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18777,7 +18777,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18826,7 +18826,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18878,7 +18878,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18933,7 +18933,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18960,7 +18960,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19002,7 +19002,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19045,7 +19045,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19118,7 +19118,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19194,7 +19194,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19226,7 +19226,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19273,7 +19273,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID: core.StringPtr(tenantID),
+					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19307,7 +19307,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			appIDManagementService, _ := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 				URL:           "http://appidmanagementv4modelgenerator.com",
 				Authenticator: &core.NoAuthAuthenticator{},
-				TenantID: core.StringPtr(tenantID),
+				TenantID:      core.StringPtr(tenantID),
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagement successfully`, func() {
 				enabled := true

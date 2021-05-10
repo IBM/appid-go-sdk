@@ -22,7 +22,7 @@ import (
 )
 
 const (
-	sdkName = "appid-go-sdk"
+	sdkName             = "appid-go-sdk"
 	headerNameUserAgent = "User-Agent"
 )
 

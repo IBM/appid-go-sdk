@@ -121,7 +121,7 @@ func NewAppIDManagementV4(options *AppIDManagementV4Options) (service *AppIDMana
 	}
 
 	service = &AppIDManagementV4{
-		Service: baseService,
+		Service:  baseService,
 		TenantID: options.TenantID,
 	}
 
@@ -912,7 +912,7 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectoryUserWithContext(ctx c
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"userId": *getCloudDirectoryUserOptions.UserID,
+		"userId":   *getCloudDirectoryUserOptions.UserID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -963,7 +963,7 @@ func (appIdManagement *AppIDManagementV4) UpdateCloudDirectoryUserWithContext(ct
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"userId": *updateCloudDirectoryUserOptions.UserID,
+		"userId":   *updateCloudDirectoryUserOptions.UserID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -1035,7 +1035,7 @@ func (appIdManagement *AppIDManagementV4) DeleteCloudDirectoryUserWithContext(ct
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"userId": *deleteCloudDirectoryUserOptions.UserID,
+		"userId":   *deleteCloudDirectoryUserOptions.UserID,
 	}
 
 	builder := core.NewRequestBuilder(core.DELETE)
@@ -1086,7 +1086,7 @@ func (appIdManagement *AppIDManagementV4) InvalidateUserSSOSessionsWithContext(c
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"userId": *invalidateUserSSOSessionsOptions.UserID,
+		"userId":   *invalidateUserSSOSessionsOptions.UserID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -1278,7 +1278,7 @@ func (appIdManagement *AppIDManagementV4) CloudDirectoryGetUserinfoWithContext(c
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"userId": *cloudDirectoryGetUserinfoOptions.UserID,
+		"userId":   *cloudDirectoryGetUserinfoOptions.UserID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -1689,7 +1689,7 @@ func (appIdManagement *AppIDManagementV4) ResendNotificationWithContext(ctx cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId":     *appIdManagement.TenantID,
 		"templateName": *resendNotificationOptions.TemplateName,
 	}
 
@@ -1767,7 +1767,7 @@ func (appIdManagement *AppIDManagementV4) CloudDirectoryRemoveWithContext(ctx co
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"userId": *cloudDirectoryRemoveOptions.UserID,
+		"userId":   *cloudDirectoryRemoveOptions.UserID,
 	}
 
 	builder := core.NewRequestBuilder(core.DELETE)
@@ -2580,9 +2580,9 @@ func (appIdManagement *AppIDManagementV4) GetTemplateWithContext(ctx context.Con
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId":     *appIdManagement.TenantID,
 		"templateName": *getTemplateOptions.TemplateName,
-		"language": *getTemplateOptions.Language,
+		"language":     *getTemplateOptions.Language,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -2643,9 +2643,9 @@ func (appIdManagement *AppIDManagementV4) UpdateTemplateWithContext(ctx context.
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId":     *appIdManagement.TenantID,
 		"templateName": *updateTemplateOptions.TemplateName,
-		"language": *updateTemplateOptions.Language,
+		"language":     *updateTemplateOptions.Language,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -2725,9 +2725,9 @@ func (appIdManagement *AppIDManagementV4) DeleteTemplateWithContext(ctx context.
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId":     *appIdManagement.TenantID,
 		"templateName": *deleteTemplateOptions.TemplateName,
-		"language": *deleteTemplateOptions.Language,
+		"language":     *deleteTemplateOptions.Language,
 	}
 
 	builder := core.NewRequestBuilder(core.DELETE)
@@ -3003,7 +3003,7 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectoryActionURLWithContext(
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"action": *getCloudDirectoryActionURLOptions.Action,
+		"action":   *getCloudDirectoryActionURLOptions.Action,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -3065,7 +3065,7 @@ func (appIdManagement *AppIDManagementV4) SetCloudDirectoryActionWithContext(ctx
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"action": *setCloudDirectoryActionOptions.Action,
+		"action":   *setCloudDirectoryActionOptions.Action,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -3137,7 +3137,7 @@ func (appIdManagement *AppIDManagementV4) DeleteActionURLWithContext(ctx context
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"action": *deleteActionURLOptions.Action,
+		"action":   *deleteActionURLOptions.Action,
 	}
 
 	builder := core.NewRequestBuilder(core.DELETE)
@@ -3962,7 +3962,7 @@ func (appIdManagement *AppIDManagementV4) GetChannelWithContext(ctx context.Cont
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"channel": *getChannelOptions.Channel,
+		"channel":  *getChannelOptions.Channel,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -4023,7 +4023,7 @@ func (appIdManagement *AppIDManagementV4) UpdateChannelWithContext(ctx context.C
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"channel": *updateChannelOptions.Channel,
+		"channel":  *updateChannelOptions.Channel,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -4098,7 +4098,7 @@ func (appIdManagement *AppIDManagementV4) GetExtensionConfigWithContext(ctx cont
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"name": *getExtensionConfigOptions.Name,
+		"name":     *getExtensionConfigOptions.Name,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -4160,7 +4160,7 @@ func (appIdManagement *AppIDManagementV4) UpdateExtensionConfigWithContext(ctx c
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"name": *updateExtensionConfigOptions.Name,
+		"name":     *updateExtensionConfigOptions.Name,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -4235,7 +4235,7 @@ func (appIdManagement *AppIDManagementV4) UpdateExtensionActiveWithContext(ctx c
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"name": *updateExtensionActiveOptions.Name,
+		"name":     *updateExtensionActiveOptions.Name,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -4310,7 +4310,7 @@ func (appIdManagement *AppIDManagementV4) PostExtensionsTestWithContext(ctx cont
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"name": *postExtensionsTestOptions.Name,
+		"name":     *postExtensionsTestOptions.Name,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -5488,7 +5488,7 @@ func (appIdManagement *AppIDManagementV4) GetRoleWithContext(ctx context.Context
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"roleId": *getRoleOptions.RoleID,
+		"roleId":   *getRoleOptions.RoleID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -5549,7 +5549,7 @@ func (appIdManagement *AppIDManagementV4) UpdateRoleWithContext(ctx context.Cont
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"roleId": *updateRoleOptions.RoleID,
+		"roleId":   *updateRoleOptions.RoleID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -5626,7 +5626,7 @@ func (appIdManagement *AppIDManagementV4) DeleteRoleWithContext(ctx context.Cont
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"roleId": *deleteRoleOptions.RoleID,
+		"roleId":   *deleteRoleOptions.RoleID,
 	}
 
 	builder := core.NewRequestBuilder(core.DELETE)
@@ -5949,7 +5949,7 @@ func (appIdManagement *AppIDManagementV4) UsersDeleteUserProfileWithContext(ctx 
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"id": *usersDeleteUserProfileOptions.ID,
+		"id":       *usersDeleteUserProfileOptions.ID,
 	}
 
 	builder := core.NewRequestBuilder(core.DELETE)
@@ -5999,7 +5999,7 @@ func (appIdManagement *AppIDManagementV4) UsersRevokeRefreshTokenWithContext(ctx
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"id": *usersRevokeRefreshTokenOptions.ID,
+		"id":       *usersRevokeRefreshTokenOptions.ID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -6049,7 +6049,7 @@ func (appIdManagement *AppIDManagementV4) UsersGetUserProfileWithContext(ctx con
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"id": *usersGetUserProfileOptions.ID,
+		"id":       *usersGetUserProfileOptions.ID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -6100,7 +6100,7 @@ func (appIdManagement *AppIDManagementV4) UsersSetUserProfileWithContext(ctx con
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"id": *usersSetUserProfileOptions.ID,
+		"id":       *usersSetUserProfileOptions.ID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -6160,7 +6160,7 @@ func (appIdManagement *AppIDManagementV4) GetUserRolesWithContext(ctx context.Co
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"id": *getUserRolesOptions.ID,
+		"id":       *getUserRolesOptions.ID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -6221,7 +6221,7 @@ func (appIdManagement *AppIDManagementV4) UpdateUserRolesWithContext(ctx context
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"id": *updateUserRolesOptions.ID,
+		"id":       *updateUserRolesOptions.ID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -6291,11 +6291,11 @@ type ApmSchemaAdvancedPasswordManagement struct {
 // NewApmSchemaAdvancedPasswordManagement : Instantiate ApmSchemaAdvancedPasswordManagement (Generic Model Constructor)
 func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagement(enabled bool, passwordReuse *ApmSchemaAdvancedPasswordManagementPasswordReuse, preventPasswordWithUsername *ApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername, passwordExpiration *ApmSchemaAdvancedPasswordManagementPasswordExpiration, lockOutPolicy *ApmSchemaAdvancedPasswordManagementLockOutPolicy) (model *ApmSchemaAdvancedPasswordManagement, err error) {
 	model = &ApmSchemaAdvancedPasswordManagement{
-		Enabled: core.BoolPtr(enabled),
-		PasswordReuse: passwordReuse,
+		Enabled:                     core.BoolPtr(enabled),
+		PasswordReuse:               passwordReuse,
 		PreventPasswordWithUsername: preventPasswordWithUsername,
-		PasswordExpiration: passwordExpiration,
-		LockOutPolicy: lockOutPolicy,
+		PasswordExpiration:          passwordExpiration,
+		LockOutPolicy:               lockOutPolicy,
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -6374,7 +6374,7 @@ type ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig struct {
 func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig(lockOutTimeSec float64, numOfAttempts float64) (model *ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig{
 		LockOutTimeSec: core.Float64Ptr(lockOutTimeSec),
-		NumOfAttempts: core.Float64Ptr(numOfAttempts),
+		NumOfAttempts:  core.Float64Ptr(numOfAttempts),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -6698,7 +6698,7 @@ type ChangePasswordOptions struct {
 func (*AppIDManagementV4) NewChangePasswordOptions(newPassword string, uuid string) *ChangePasswordOptions {
 	return &ChangePasswordOptions{
 		NewPassword: core.StringPtr(newPassword),
-		UUID: core.StringPtr(uuid),
+		UUID:        core.StringPtr(uuid),
 	}
 }
 
@@ -6746,9 +6746,9 @@ type CloudDirectoryConfigParamsInteractions struct {
 // NewCloudDirectoryConfigParamsInteractions : Instantiate CloudDirectoryConfigParamsInteractions (Generic Model Constructor)
 func (*AppIDManagementV4) NewCloudDirectoryConfigParamsInteractions(identityConfirmation *CloudDirectoryConfigParamsInteractionsIdentityConfirmation, welcomeEnabled bool, resetPasswordEnabled bool, resetPasswordNotificationEnable bool) (model *CloudDirectoryConfigParamsInteractions, err error) {
 	model = &CloudDirectoryConfigParamsInteractions{
-		IdentityConfirmation: identityConfirmation,
-		WelcomeEnabled: core.BoolPtr(welcomeEnabled),
-		ResetPasswordEnabled: core.BoolPtr(resetPasswordEnabled),
+		IdentityConfirmation:            identityConfirmation,
+		WelcomeEnabled:                  core.BoolPtr(welcomeEnabled),
+		ResetPasswordEnabled:            core.BoolPtr(resetPasswordEnabled),
 		ResetPasswordNotificationEnable: core.BoolPtr(resetPasswordNotificationEnable),
 	}
 	err = core.ValidateStruct(model, "required parameters")
@@ -6787,8 +6787,8 @@ type CloudDirectoryConfigParamsInteractionsIdentityConfirmation struct {
 
 // Constants associated with the CloudDirectoryConfigParamsInteractionsIdentityConfirmation.AccessMode property.
 const (
-	CloudDirectoryConfigParamsInteractionsIdentityConfirmationAccessModeFalseConst = "false"
-	CloudDirectoryConfigParamsInteractionsIdentityConfirmationAccessModeFullConst = "FULL"
+	CloudDirectoryConfigParamsInteractionsIdentityConfirmationAccessModeFalseConst       = "false"
+	CloudDirectoryConfigParamsInteractionsIdentityConfirmationAccessModeFullConst        = "FULL"
 	CloudDirectoryConfigParamsInteractionsIdentityConfirmationAccessModeRestrictiveConst = "RESTRICTIVE"
 )
 
@@ -6910,7 +6910,7 @@ type CloudDirectoryImportOptions struct {
 func (*AppIDManagementV4) NewCloudDirectoryImportOptions(encryptionSecret string, users []ExportUserUsersItem) *CloudDirectoryImportOptions {
 	return &CloudDirectoryImportOptions{
 		EncryptionSecret: core.StringPtr(encryptionSecret),
-		Users: users,
+		Users:            users,
 	}
 }
 
@@ -7067,7 +7067,7 @@ type CreateCloudDirectoryUserOptions struct {
 // NewCreateCloudDirectoryUserOptions : Instantiate CreateCloudDirectoryUserOptions
 func (*AppIDManagementV4) NewCreateCloudDirectoryUserOptions(emails []CreateNewUserEmailsItem, password string) *CreateCloudDirectoryUserOptions {
 	return &CreateCloudDirectoryUserOptions{
-		Emails: emails,
+		Emails:   emails,
 		Password: core.StringPtr(password),
 	}
 }
@@ -7148,7 +7148,7 @@ type CreateRoleOptions struct {
 // NewCreateRoleOptions : Instantiate CreateRoleOptions
 func (*AppIDManagementV4) NewCreateRoleOptions(name string, access []CreateRoleParamsAccessItem) *CreateRoleOptions {
 	return &CreateRoleOptions{
-		Name: core.StringPtr(name),
+		Name:   core.StringPtr(name),
 		Access: access,
 	}
 }
@@ -7188,7 +7188,7 @@ type CreateRoleParamsAccessItem struct {
 func (*AppIDManagementV4) NewCreateRoleParamsAccessItem(applicationID string, scopes []string) (model *CreateRoleParamsAccessItem, err error) {
 	model = &CreateRoleParamsAccessItem{
 		ApplicationID: core.StringPtr(applicationID),
-		Scopes: scopes,
+		Scopes:        scopes,
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -7262,7 +7262,7 @@ type DeleteActionURLOptions struct {
 // your custom reset password page.
 const (
 	DeleteActionURLOptionsActionOnResetPasswordConst = "on_reset_password"
-	DeleteActionURLOptionsActionOnUserVerifiedConst = "on_user_verified"
+	DeleteActionURLOptionsActionOnUserVerifiedConst  = "on_user_verified"
 )
 
 // NewDeleteActionURLOptions : Instantiate DeleteActionURLOptions
@@ -7386,18 +7386,18 @@ type DeleteTemplateOptions struct {
 // The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED", "RESET_PASSWORD" or
 // "MFA_VERIFICATION".
 const (
-	DeleteTemplateOptionsTemplateNameMFAVerificationConst = "MFA_VERIFICATION"
-	DeleteTemplateOptionsTemplateNamePasswordChangedConst = "PASSWORD_CHANGED"
-	DeleteTemplateOptionsTemplateNameResetPasswordConst = "RESET_PASSWORD"
+	DeleteTemplateOptionsTemplateNameMFAVerificationConst  = "MFA_VERIFICATION"
+	DeleteTemplateOptionsTemplateNamePasswordChangedConst  = "PASSWORD_CHANGED"
+	DeleteTemplateOptionsTemplateNameResetPasswordConst    = "RESET_PASSWORD"
 	DeleteTemplateOptionsTemplateNameUserVerificationConst = "USER_VERIFICATION"
-	DeleteTemplateOptionsTemplateNameWelcomeConst = "WELCOME"
+	DeleteTemplateOptionsTemplateNameWelcomeConst          = "WELCOME"
 )
 
 // NewDeleteTemplateOptions : Instantiate DeleteTemplateOptions
 func (*AppIDManagementV4) NewDeleteTemplateOptions(templateName string, language string) *DeleteTemplateOptions {
 	return &DeleteTemplateOptions{
 		TemplateName: core.StringPtr(templateName),
-		Language: core.StringPtr(language),
+		Language:     core.StringPtr(language),
 	}
 }
 
@@ -7429,7 +7429,7 @@ type EmailDispatcherParamsCustom struct {
 // NewEmailDispatcherParamsCustom : Instantiate EmailDispatcherParamsCustom (Generic Model Constructor)
 func (*AppIDManagementV4) NewEmailDispatcherParamsCustom(url string, authorization *EmailDispatcherParamsCustomAuthorization) (model *EmailDispatcherParamsCustom, err error) {
 	model = &EmailDispatcherParamsCustom{
-		URL: core.StringPtr(url),
+		URL:           core.StringPtr(url),
 		Authorization: authorization,
 	}
 	err = core.ValidateStruct(model, "required parameters")
@@ -7465,7 +7465,7 @@ type EmailDispatcherParamsCustomAuthorization struct {
 // Constants associated with the EmailDispatcherParamsCustomAuthorization.Type property.
 const (
 	EmailDispatcherParamsCustomAuthorizationTypeBasicConst = "basic"
-	EmailDispatcherParamsCustomAuthorizationTypeNoneConst = "none"
+	EmailDispatcherParamsCustomAuthorizationTypeNoneConst  = "none"
 	EmailDispatcherParamsCustomAuthorizationTypeValueConst = "value"
 )
 
@@ -7541,7 +7541,7 @@ type EmailSettingTestOptions struct {
 // NewEmailSettingTestOptions : Instantiate EmailSettingTestOptions
 func (*AppIDManagementV4) NewEmailSettingTestOptions(emailTo string, emailSettings *EmailSettingsTestParamsEmailSettings, senderDetails *EmailSettingsTestParamsSenderDetails) *EmailSettingTestOptions {
 	return &EmailSettingTestOptions{
-		EmailTo: core.StringPtr(emailTo),
+		EmailTo:       core.StringPtr(emailTo),
 		EmailSettings: emailSettings,
 		SenderDetails: senderDetails,
 	}
@@ -7582,7 +7582,7 @@ type EmailSettingsTestParamsEmailSettings struct {
 
 // Constants associated with the EmailSettingsTestParamsEmailSettings.Provider property.
 const (
-	EmailSettingsTestParamsEmailSettingsProviderCustomConst = "custom"
+	EmailSettingsTestParamsEmailSettingsProviderCustomConst   = "custom"
 	EmailSettingsTestParamsEmailSettingsProviderSendgridConst = "sendgrid"
 )
 
@@ -7624,7 +7624,7 @@ type EmailSettingsTestParamsEmailSettingsCustom struct {
 // NewEmailSettingsTestParamsEmailSettingsCustom : Instantiate EmailSettingsTestParamsEmailSettingsCustom (Generic Model Constructor)
 func (*AppIDManagementV4) NewEmailSettingsTestParamsEmailSettingsCustom(url string, authorization *EmailSettingsTestParamsEmailSettingsCustomAuthorization) (model *EmailSettingsTestParamsEmailSettingsCustom, err error) {
 	model = &EmailSettingsTestParamsEmailSettingsCustom{
-		URL: core.StringPtr(url),
+		URL:           core.StringPtr(url),
 		Authorization: authorization,
 	}
 	err = core.ValidateStruct(model, "required parameters")
@@ -7660,7 +7660,7 @@ type EmailSettingsTestParamsEmailSettingsCustomAuthorization struct {
 // Constants associated with the EmailSettingsTestParamsEmailSettingsCustomAuthorization.Type property.
 const (
 	EmailSettingsTestParamsEmailSettingsCustomAuthorizationTypeBasicConst = "basic"
-	EmailSettingsTestParamsEmailSettingsCustomAuthorizationTypeNoneConst = "none"
+	EmailSettingsTestParamsEmailSettingsCustomAuthorizationTypeNoneConst  = "none"
 	EmailSettingsTestParamsEmailSettingsCustomAuthorizationTypeValueConst = "value"
 )
 
@@ -7846,7 +7846,7 @@ type ExportUserProfileUsersItem struct {
 // NewExportUserProfileUsersItem : Instantiate ExportUserProfileUsersItem (Generic Model Constructor)
 func (*AppIDManagementV4) NewExportUserProfileUsersItem(id string, identities []ExportUserProfileUsersItemIdentitiesItem, attributes interface{}) (model *ExportUserProfileUsersItem, err error) {
 	model = &ExportUserProfileUsersItem{
-		ID: core.StringPtr(id),
+		ID:         core.StringPtr(id),
 		Identities: identities,
 		Attributes: attributes,
 	}
@@ -8011,11 +8011,11 @@ type ExportUserUsersItem struct {
 // NewExportUserUsersItem : Instantiate ExportUserUsersItem (Generic Model Constructor)
 func (*AppIDManagementV4) NewExportUserUsersItem(scimUser interface{}, passwordHash string, passwordHashAlg string, profile *ExportUserUsersItemProfile, roles []string) (model *ExportUserUsersItem, err error) {
 	model = &ExportUserUsersItem{
-		ScimUser: scimUser,
-		PasswordHash: core.StringPtr(passwordHash),
+		ScimUser:        scimUser,
+		PasswordHash:    core.StringPtr(passwordHash),
 		PasswordHashAlg: core.StringPtr(passwordHashAlg),
-		Profile: profile,
-		Roles: roles,
+		Profile:         profile,
+		Roles:           roles,
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -8127,7 +8127,7 @@ type FacebookGoogleConfigParamsConfig struct {
 // NewFacebookGoogleConfigParamsConfig : Instantiate FacebookGoogleConfigParamsConfig (Generic Model Constructor)
 func (*AppIDManagementV4) NewFacebookGoogleConfigParamsConfig(idpID string, secret string) (model *FacebookGoogleConfigParamsConfig, err error) {
 	model = &FacebookGoogleConfigParamsConfig{
-		IDPID: core.StringPtr(idpID),
+		IDPID:  core.StringPtr(idpID),
 		Secret: core.StringPtr(secret),
 	}
 	err = core.ValidateStruct(model, "required parameters")
@@ -8329,7 +8329,7 @@ type GetCloudDirectoryActionURLOptions struct {
 // your custom reset password page.
 const (
 	GetCloudDirectoryActionURLOptionsActionOnResetPasswordConst = "on_reset_password"
-	GetCloudDirectoryActionURLOptionsActionOnUserVerifiedConst = "on_user_verified"
+	GetCloudDirectoryActionURLOptionsActionOnUserVerifiedConst  = "on_user_verified"
 )
 
 // NewGetCloudDirectoryActionURLOptions : Instantiate GetCloudDirectoryActionURLOptions
@@ -8500,7 +8500,7 @@ type GetExtensionConfigOptions struct {
 // The name of the extension.
 const (
 	GetExtensionConfigOptionsNamePostmfaConst = "postmfa"
-	GetExtensionConfigOptionsNamePremfaConst = "premfa"
+	GetExtensionConfigOptionsNamePremfaConst  = "premfa"
 )
 
 // NewGetExtensionConfigOptions : Instantiate GetExtensionConfigOptions
@@ -8820,18 +8820,18 @@ type GetTemplateOptions struct {
 // The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED", "RESET_PASSWORD" or
 // "MFA_VERIFICATION".
 const (
-	GetTemplateOptionsTemplateNameMFAVerificationConst = "MFA_VERIFICATION"
-	GetTemplateOptionsTemplateNamePasswordChangedConst = "PASSWORD_CHANGED"
-	GetTemplateOptionsTemplateNameResetPasswordConst = "RESET_PASSWORD"
+	GetTemplateOptionsTemplateNameMFAVerificationConst  = "MFA_VERIFICATION"
+	GetTemplateOptionsTemplateNamePasswordChangedConst  = "PASSWORD_CHANGED"
+	GetTemplateOptionsTemplateNameResetPasswordConst    = "RESET_PASSWORD"
 	GetTemplateOptionsTemplateNameUserVerificationConst = "USER_VERIFICATION"
-	GetTemplateOptionsTemplateNameWelcomeConst = "WELCOME"
+	GetTemplateOptionsTemplateNameWelcomeConst          = "WELCOME"
 )
 
 // NewGetTemplateOptions : Instantiate GetTemplateOptions
 func (*AppIDManagementV4) NewGetTemplateOptions(templateName string, language string) *GetTemplateOptions {
 	return &GetTemplateOptions{
 		TemplateName: core.StringPtr(templateName),
-		Language: core.StringPtr(language),
+		Language:     core.StringPtr(language),
 	}
 }
 
@@ -9415,7 +9415,7 @@ type PostExtensionsTestOptions struct {
 // The name of the extension.
 const (
 	PostExtensionsTestOptionsNamePostmfaConst = "postmfa"
-	PostExtensionsTestOptionsNamePremfaConst = "premfa"
+	PostExtensionsTestOptionsNamePremfaConst  = "premfa"
 )
 
 // NewPostExtensionsTestOptions : Instantiate PostExtensionsTestOptions
@@ -9462,7 +9462,7 @@ const (
 func (*AppIDManagementV4) NewPostMediaOptions(mediaType string, file io.ReadCloser) *PostMediaOptions {
 	return &PostMediaOptions{
 		MediaType: core.StringPtr(mediaType),
-		File: file,
+		File:      file,
 	}
 }
 
@@ -9590,7 +9590,7 @@ type PutApplicationsRolesOptions struct {
 func (*AppIDManagementV4) NewPutApplicationsRolesOptions(clientID string, roles *UpdateUserRolesParamsRoles) *PutApplicationsRolesOptions {
 	return &PutApplicationsRolesOptions{
 		ClientID: core.StringPtr(clientID),
-		Roles: roles,
+		Roles:    roles,
 	}
 }
 
@@ -9760,17 +9760,17 @@ type ResendNotificationOptions struct {
 // Constants associated with the ResendNotificationOptions.TemplateName property.
 // The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED" or "RESET_PASSWORD".
 const (
-	ResendNotificationOptionsTemplateNamePasswordChangedConst = "PASSWORD_CHANGED"
-	ResendNotificationOptionsTemplateNameResetPasswordConst = "RESET_PASSWORD"
+	ResendNotificationOptionsTemplateNamePasswordChangedConst  = "PASSWORD_CHANGED"
+	ResendNotificationOptionsTemplateNameResetPasswordConst    = "RESET_PASSWORD"
 	ResendNotificationOptionsTemplateNameUserVerificationConst = "USER_VERIFICATION"
-	ResendNotificationOptionsTemplateNameWelcomeConst = "WELCOME"
+	ResendNotificationOptionsTemplateNameWelcomeConst          = "WELCOME"
 )
 
 // NewResendNotificationOptions : Instantiate ResendNotificationOptions
 func (*AppIDManagementV4) NewResendNotificationOptions(templateName string, uuid string) *ResendNotificationOptions {
 	return &ResendNotificationOptions{
 		TemplateName: core.StringPtr(templateName),
-		UUID: core.StringPtr(uuid),
+		UUID:         core.StringPtr(uuid),
 	}
 }
 
@@ -9895,37 +9895,37 @@ type SAMLConfigParamsAuthnContext struct {
 
 // Constants associated with the SAMLConfigParamsAuthnContext.Class property.
 const (
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesAuthenticatedtelephonyConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:AuthenticatedTelephony"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesInternetprotocolConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesInternetprotocolpasswordConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocolPassword"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesKerberosConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:Kerberos"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesMobileonefactorcontractConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorContract"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesAuthenticatedtelephonyConst      = "urn:oasis:names:tc:SAML:2.0:ac:classes:AuthenticatedTelephony"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesInternetprotocolConst            = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesInternetprotocolpasswordConst    = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocolPassword"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesKerberosConst                    = "urn:oasis:names:tc:SAML:2.0:ac:classes:Kerberos"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesMobileonefactorcontractConst     = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorContract"
 	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesMobileonefactorunregisteredConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorUnregistered"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesMobiletwofactorcontractConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesMobiletwofactorcontractConst     = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract"
 	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesMobiletwofactorunregisteredConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorUnregistered"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesNomadtelephonyConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:NomadTelephony"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPasswordConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:Password"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPasswordprotectedtransportConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPersonaltelephonyConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:PersonalTelephony"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPgpConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:PGP"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPrevioussessionConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:PreviousSession"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSecureremotepasswordConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:SecureRemotePassword"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSmartcardConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:Smartcard"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSmartcardpkiConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSoftwarepkiConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:SoftwarePKI"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSpkiConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:SPKI"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesTelephonyConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:Telephony"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesTimesynctokenConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:TimeSyncToken"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesTlsclientConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesUnspecifiedConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesX509Const = "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
-	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesXmldsigConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:XMLDSig"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesNomadtelephonyConst              = "urn:oasis:names:tc:SAML:2.0:ac:classes:NomadTelephony"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPasswordConst                    = "urn:oasis:names:tc:SAML:2.0:ac:classes:Password"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPasswordprotectedtransportConst  = "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPersonaltelephonyConst           = "urn:oasis:names:tc:SAML:2.0:ac:classes:PersonalTelephony"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPgpConst                         = "urn:oasis:names:tc:SAML:2.0:ac:classes:PGP"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPrevioussessionConst             = "urn:oasis:names:tc:SAML:2.0:ac:classes:PreviousSession"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSecureremotepasswordConst        = "urn:oasis:names:tc:SAML:2.0:ac:classes:SecureRemotePassword"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSmartcardConst                   = "urn:oasis:names:tc:SAML:2.0:ac:classes:Smartcard"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSmartcardpkiConst                = "urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSoftwarepkiConst                 = "urn:oasis:names:tc:SAML:2.0:ac:classes:SoftwarePKI"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSpkiConst                        = "urn:oasis:names:tc:SAML:2.0:ac:classes:SPKI"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesTelephonyConst                   = "urn:oasis:names:tc:SAML:2.0:ac:classes:Telephony"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesTimesynctokenConst               = "urn:oasis:names:tc:SAML:2.0:ac:classes:TimeSyncToken"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesTlsclientConst                   = "urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesUnspecifiedConst                 = "urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesX509Const                        = "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesXmldsigConst                     = "urn:oasis:names:tc:SAML:2.0:ac:classes:XMLDSig"
 )
 
 // Constants associated with the SAMLConfigParamsAuthnContext.Comparison property.
 const (
-	SAMLConfigParamsAuthnContextComparisonBetterConst = "better"
-	SAMLConfigParamsAuthnContextComparisonExactConst = "exact"
+	SAMLConfigParamsAuthnContextComparisonBetterConst  = "better"
+	SAMLConfigParamsAuthnContextComparisonExactConst   = "exact"
 	SAMLConfigParamsAuthnContextComparisonMaximumConst = "maximum"
 	SAMLConfigParamsAuthnContextComparisonMinimumConst = "minimum"
 )
@@ -10034,13 +10034,13 @@ type SetCloudDirectoryActionOptions struct {
 // your custom reset password page.
 const (
 	SetCloudDirectoryActionOptionsActionOnResetPasswordConst = "on_reset_password"
-	SetCloudDirectoryActionOptionsActionOnUserVerifiedConst = "on_user_verified"
+	SetCloudDirectoryActionOptionsActionOnUserVerifiedConst  = "on_user_verified"
 )
 
 // NewSetCloudDirectoryActionOptions : Instantiate SetCloudDirectoryActionOptions
 func (*AppIDManagementV4) NewSetCloudDirectoryActionOptions(action string, actionURL string) *SetCloudDirectoryActionOptions {
 	return &SetCloudDirectoryActionOptions{
-		Action: core.StringPtr(action),
+		Action:    core.StringPtr(action),
 		ActionURL: core.StringPtr(actionURL),
 	}
 }
@@ -10104,8 +10104,8 @@ type SetCloudDirectoryEmailDispatcherOptions struct {
 
 // Constants associated with the SetCloudDirectoryEmailDispatcherOptions.Provider property.
 const (
-	SetCloudDirectoryEmailDispatcherOptionsProviderAppidConst = "appid"
-	SetCloudDirectoryEmailDispatcherOptionsProviderCustomConst = "custom"
+	SetCloudDirectoryEmailDispatcherOptionsProviderAppidConst    = "appid"
+	SetCloudDirectoryEmailDispatcherOptionsProviderCustomConst   = "custom"
 	SetCloudDirectoryEmailDispatcherOptionsProviderSendgridConst = "sendgrid"
 )
 
@@ -10154,7 +10154,7 @@ type SetCloudDirectoryIDPOptions struct {
 func (*AppIDManagementV4) NewSetCloudDirectoryIDPOptions(isActive bool, config *CloudDirectoryConfigParams) *SetCloudDirectoryIDPOptions {
 	return &SetCloudDirectoryIDPOptions{
 		IsActive: core.BoolPtr(isActive),
-		Config: config,
+		Config:   config,
 	}
 }
 
@@ -10434,8 +10434,8 @@ type StartSignUpOptions struct {
 func (*AppIDManagementV4) NewStartSignUpOptions(shouldCreateProfile bool, emails []CreateNewUserEmailsItem, password string) *StartSignUpOptions {
 	return &StartSignUpOptions{
 		ShouldCreateProfile: core.BoolPtr(shouldCreateProfile),
-		Emails: emails,
-		Password: core.StringPtr(password),
+		Emails:              emails,
+		Password:            core.StringPtr(password),
 	}
 }
 
@@ -10497,7 +10497,7 @@ type UpdateApplicationOptions struct {
 func (*AppIDManagementV4) NewUpdateApplicationOptions(clientID string, name string) *UpdateApplicationOptions {
 	return &UpdateApplicationOptions{
 		ClientID: core.StringPtr(clientID),
-		Name: core.StringPtr(name),
+		Name:     core.StringPtr(name),
 	}
 }
 
@@ -10542,7 +10542,7 @@ const (
 // NewUpdateChannelOptions : Instantiate UpdateChannelOptions
 func (*AppIDManagementV4) NewUpdateChannelOptions(channel string, isActive bool) *UpdateChannelOptions {
 	return &UpdateChannelOptions{
-		Channel: core.StringPtr(channel),
+		Channel:  core.StringPtr(channel),
 		IsActive: core.BoolPtr(isActive),
 	}
 }
@@ -10649,13 +10649,13 @@ type UpdateExtensionActiveOptions struct {
 // The name of the extension.
 const (
 	UpdateExtensionActiveOptionsNamePostmfaConst = "postmfa"
-	UpdateExtensionActiveOptionsNamePremfaConst = "premfa"
+	UpdateExtensionActiveOptionsNamePremfaConst  = "premfa"
 )
 
 // NewUpdateExtensionActiveOptions : Instantiate UpdateExtensionActiveOptions
 func (*AppIDManagementV4) NewUpdateExtensionActiveOptions(name string, isActive bool) *UpdateExtensionActiveOptions {
 	return &UpdateExtensionActiveOptions{
-		Name: core.StringPtr(name),
+		Name:     core.StringPtr(name),
 		IsActive: core.BoolPtr(isActive),
 	}
 }
@@ -10723,13 +10723,13 @@ type UpdateExtensionConfigOptions struct {
 // The name of the extension.
 const (
 	UpdateExtensionConfigOptionsNamePostmfaConst = "postmfa"
-	UpdateExtensionConfigOptionsNamePremfaConst = "premfa"
+	UpdateExtensionConfigOptionsNamePremfaConst  = "premfa"
 )
 
 // NewUpdateExtensionConfigOptions : Instantiate UpdateExtensionConfigOptions
 func (*AppIDManagementV4) NewUpdateExtensionConfigOptions(name string, isActive bool) *UpdateExtensionConfigOptions {
 	return &UpdateExtensionConfigOptions{
-		Name: core.StringPtr(name),
+		Name:     core.StringPtr(name),
 		IsActive: core.BoolPtr(isActive),
 	}
 }
@@ -10901,7 +10901,7 @@ type UpdateRoleOptions struct {
 func (*AppIDManagementV4) NewUpdateRoleOptions(roleID string, name string, access []UpdateRoleParamsAccessItem) *UpdateRoleOptions {
 	return &UpdateRoleOptions{
 		RoleID: core.StringPtr(roleID),
-		Name: core.StringPtr(name),
+		Name:   core.StringPtr(name),
 		Access: access,
 	}
 }
@@ -10947,7 +10947,7 @@ type UpdateRoleParamsAccessItem struct {
 func (*AppIDManagementV4) NewUpdateRoleParamsAccessItem(applicationID string, scopes []string) (model *UpdateRoleParamsAccessItem, err error) {
 	model = &UpdateRoleParamsAccessItem{
 		ApplicationID: core.StringPtr(applicationID),
-		Scopes: scopes,
+		Scopes:        scopes,
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -11005,9 +11005,9 @@ type UpdateSSOConfigOptions struct {
 // NewUpdateSSOConfigOptions : Instantiate UpdateSSOConfigOptions
 func (*AppIDManagementV4) NewUpdateSSOConfigOptions(isActive bool, inactivityTimeoutSeconds float64, logoutRedirectUris []string) *UpdateSSOConfigOptions {
 	return &UpdateSSOConfigOptions{
-		IsActive: core.BoolPtr(isActive),
+		IsActive:                 core.BoolPtr(isActive),
 		InactivityTimeoutSeconds: core.Float64Ptr(inactivityTimeoutSeconds),
-		LogoutRedirectUris: logoutRedirectUris,
+		LogoutRedirectUris:       logoutRedirectUris,
 	}
 }
 
@@ -11061,19 +11061,19 @@ type UpdateTemplateOptions struct {
 // The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED", "RESET_PASSWORD" or
 // "MFA_VERIFICATION".
 const (
-	UpdateTemplateOptionsTemplateNameMFAVerificationConst = "MFA_VERIFICATION"
-	UpdateTemplateOptionsTemplateNamePasswordChangedConst = "PASSWORD_CHANGED"
-	UpdateTemplateOptionsTemplateNameResetPasswordConst = "RESET_PASSWORD"
+	UpdateTemplateOptionsTemplateNameMFAVerificationConst  = "MFA_VERIFICATION"
+	UpdateTemplateOptionsTemplateNamePasswordChangedConst  = "PASSWORD_CHANGED"
+	UpdateTemplateOptionsTemplateNameResetPasswordConst    = "RESET_PASSWORD"
 	UpdateTemplateOptionsTemplateNameUserVerificationConst = "USER_VERIFICATION"
-	UpdateTemplateOptionsTemplateNameWelcomeConst = "WELCOME"
+	UpdateTemplateOptionsTemplateNameWelcomeConst          = "WELCOME"
 )
 
 // NewUpdateTemplateOptions : Instantiate UpdateTemplateOptions
 func (*AppIDManagementV4) NewUpdateTemplateOptions(templateName string, language string, subject string) *UpdateTemplateOptions {
 	return &UpdateTemplateOptions{
 		TemplateName: core.StringPtr(templateName),
-		Language: core.StringPtr(language),
-		Subject: core.StringPtr(subject),
+		Language:     core.StringPtr(language),
+		Subject:      core.StringPtr(subject),
 	}
 }
 
@@ -11161,7 +11161,7 @@ type UpdateUserRolesOptions struct {
 // NewUpdateUserRolesOptions : Instantiate UpdateUserRolesOptions
 func (*AppIDManagementV4) NewUpdateUserRolesOptions(id string, roles *UpdateUserRolesParamsRoles) *UpdateUserRolesOptions {
 	return &UpdateUserRolesOptions{
-		ID: core.StringPtr(id),
+		ID:    core.StringPtr(id),
 		Roles: roles,
 	}
 }
@@ -11440,18 +11440,18 @@ type UsersNominateUserOptions struct {
 
 // Constants associated with the UsersNominateUserOptions.IDP property.
 const (
-	UsersNominateUserOptionsIDPAppidCustomConst = "appid_custom"
+	UsersNominateUserOptionsIDPAppidCustomConst    = "appid_custom"
 	UsersNominateUserOptionsIDPCloudDirectoryConst = "cloud_directory"
-	UsersNominateUserOptionsIDPFacebookConst = "facebook"
-	UsersNominateUserOptionsIDPGoogleConst = "google"
-	UsersNominateUserOptionsIDPIbmidConst = "ibmid"
-	UsersNominateUserOptionsIDPSAMLConst = "saml"
+	UsersNominateUserOptionsIDPFacebookConst       = "facebook"
+	UsersNominateUserOptionsIDPGoogleConst         = "google"
+	UsersNominateUserOptionsIDPIbmidConst          = "ibmid"
+	UsersNominateUserOptionsIDPSAMLConst           = "saml"
 )
 
 // NewUsersNominateUserOptions : Instantiate UsersNominateUserOptions
 func (*AppIDManagementV4) NewUsersNominateUserOptions(idp string, idpIdentity string) *UsersNominateUserOptions {
 	return &UsersNominateUserOptions{
-		IDP: core.StringPtr(idp),
+		IDP:         core.StringPtr(idp),
 		IDPIdentity: core.StringPtr(idpIdentity),
 	}
 }
@@ -11549,7 +11549,7 @@ type UsersSearchUserProfileOptions struct {
 // Constants associated with the UsersSearchUserProfileOptions.DataScope property.
 // display user data.
 const (
-	UsersSearchUserProfileOptionsDataScopeFullConst = "full"
+	UsersSearchUserProfileOptionsDataScopeFullConst  = "full"
 	UsersSearchUserProfileOptionsDataScopeIndexConst = "index"
 )
 
@@ -11611,7 +11611,7 @@ type UsersSetUserProfileOptions struct {
 // NewUsersSetUserProfileOptions : Instantiate UsersSetUserProfileOptions
 func (*AppIDManagementV4) NewUsersSetUserProfileOptions(id string, attributes map[string]interface{}) *UsersSetUserProfileOptions {
 	return &UsersSetUserProfileOptions{
-		ID: core.StringPtr(id),
+		ID:         core.StringPtr(id),
 		Attributes: attributes,
 	}
 }
@@ -11704,7 +11704,7 @@ type CloudDirectoryConfigParams struct {
 
 // Constants associated with the CloudDirectoryConfigParams.IdentityField property.
 const (
-	CloudDirectoryConfigParamsIdentityFieldEmailConst = "email"
+	CloudDirectoryConfigParamsIdentityFieldEmailConst    = "email"
 	CloudDirectoryConfigParamsIdentityFieldUsernameConst = "userName"
 )
 
@@ -11712,7 +11712,7 @@ const (
 func (*AppIDManagementV4) NewCloudDirectoryConfigParams(selfServiceEnabled bool, interactions *CloudDirectoryConfigParamsInteractions) (model *CloudDirectoryConfigParams, err error) {
 	model = &CloudDirectoryConfigParams{
 		SelfServiceEnabled: core.BoolPtr(selfServiceEnabled),
-		Interactions: interactions,
+		Interactions:       interactions,
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -11886,8 +11886,8 @@ type EmailDispatcherParams struct {
 
 // Constants associated with the EmailDispatcherParams.Provider property.
 const (
-	EmailDispatcherParamsProviderAppidConst = "appid"
-	EmailDispatcherParamsProviderCustomConst = "custom"
+	EmailDispatcherParamsProviderAppidConst    = "appid"
+	EmailDispatcherParamsProviderCustomConst   = "custom"
 	EmailDispatcherParamsProviderSendgridConst = "sendgrid"
 )
 
@@ -12571,7 +12571,7 @@ type RefreshTokenConfigParams struct {
 func (*AppIDManagementV4) NewRefreshTokenConfigParams(expiresIn float64, enabled bool) (model *RefreshTokenConfigParams, err error) {
 	model = &RefreshTokenConfigParams{
 		ExpiresIn: core.Float64Ptr(expiresIn),
-		Enabled: core.BoolPtr(enabled),
+		Enabled:   core.BoolPtr(enabled),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -12689,8 +12689,8 @@ type SAMLConfigParams struct {
 // NewSAMLConfigParams : Instantiate SAMLConfigParams (Generic Model Constructor)
 func (*AppIDManagementV4) NewSAMLConfigParams(entityID string, signInURL string, certificates []string) (model *SAMLConfigParams, err error) {
 	model = &SAMLConfigParams{
-		EntityID: core.StringPtr(entityID),
-		SignInURL: core.StringPtr(signInURL),
+		EntityID:     core.StringPtr(entityID),
+		SignInURL:    core.StringPtr(signInURL),
 		Certificates: certificates,
 	}
 	err = core.ValidateStruct(model, "required parameters")
@@ -12868,14 +12868,14 @@ type TokenClaimMapping struct {
 
 // Constants associated with the TokenClaimMapping.Source property.
 const (
-	TokenClaimMappingSourceAppidCustomConst = "appid_custom"
-	TokenClaimMappingSourceAttributesConst = "attributes"
+	TokenClaimMappingSourceAppidCustomConst    = "appid_custom"
+	TokenClaimMappingSourceAttributesConst     = "attributes"
 	TokenClaimMappingSourceCloudDirectoryConst = "cloud_directory"
-	TokenClaimMappingSourceFacebookConst = "facebook"
-	TokenClaimMappingSourceGoogleConst = "google"
-	TokenClaimMappingSourceIbmidConst = "ibmid"
-	TokenClaimMappingSourceRolesConst = "roles"
-	TokenClaimMappingSourceSAMLConst = "saml"
+	TokenClaimMappingSourceFacebookConst       = "facebook"
+	TokenClaimMappingSourceGoogleConst         = "google"
+	TokenClaimMappingSourceIbmidConst          = "ibmid"
+	TokenClaimMappingSourceRolesConst          = "roles"
+	TokenClaimMappingSourceSAMLConst           = "saml"
 )
 
 // NewTokenClaimMapping : Instantiate TokenClaimMapping (Generic Model Constructor)
