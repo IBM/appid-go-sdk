@@ -2739,22 +2739,22 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`SSOLogoutFromAllApps(ssoLogoutFromAllAppsOptions *SSOLogoutFromAllAppsOptions)`, func() {
+	Describe(`InvalidateUserSSOSessions(invalidateUserSSOSessionsOptions *InvalidateUserSSOSessionsOptions)`, func() {
 		tenantID := "testString"
-		ssoLogoutFromAllAppsPath := "/management/v4/testString/cloud_directory/Users/testString/sso/logout"
+		invalidateUserSSOSessionsPath := "/management/v4/testString/cloud_directory/Users/testString/sso/logout"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(ssoLogoutFromAllAppsPath))
+					Expect(req.URL.EscapedPath()).To(Equal(invalidateUserSSOSessionsPath))
 					Expect(req.Method).To(Equal("POST"))
 
 					res.WriteHeader(204)
 				}))
 			})
-			It(`Invoke SSOLogoutFromAllApps successfully`, func() {
+			It(`Invoke InvalidateUserSSOSessions successfully`, func() {
 				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -2764,21 +2764,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(appIdManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.SSOLogoutFromAllApps(nil)
+				response, operationErr := appIdManagementService.InvalidateUserSSOSessions(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
-				// Construct an instance of the SSOLogoutFromAllAppsOptions model
-				ssoLogoutFromAllAppsOptionsModel := new(appidmanagementv4.SSOLogoutFromAllAppsOptions)
-				ssoLogoutFromAllAppsOptionsModel.UserID = core.StringPtr("testString")
-				ssoLogoutFromAllAppsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the InvalidateUserSSOSessionsOptions model
+				invalidateUserSSOSessionsOptionsModel := new(appidmanagementv4.InvalidateUserSSOSessionsOptions)
+				invalidateUserSSOSessionsOptionsModel.UserID = core.StringPtr("testString")
+				invalidateUserSSOSessionsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.SSOLogoutFromAllApps(ssoLogoutFromAllAppsOptionsModel)
+				response, operationErr = appIdManagementService.InvalidateUserSSOSessions(invalidateUserSSOSessionsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
-			It(`Invoke SSOLogoutFromAllApps with error: Operation validation and request error`, func() {
+			It(`Invoke InvalidateUserSSOSessions with error: Operation validation and request error`, func() {
 				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -2787,21 +2787,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(appIdManagementService).ToNot(BeNil())
 
-				// Construct an instance of the SSOLogoutFromAllAppsOptions model
-				ssoLogoutFromAllAppsOptionsModel := new(appidmanagementv4.SSOLogoutFromAllAppsOptions)
-				ssoLogoutFromAllAppsOptionsModel.UserID = core.StringPtr("testString")
-				ssoLogoutFromAllAppsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the InvalidateUserSSOSessionsOptions model
+				invalidateUserSSOSessionsOptionsModel := new(appidmanagementv4.InvalidateUserSSOSessionsOptions)
+				invalidateUserSSOSessionsOptionsModel.UserID = core.StringPtr("testString")
+				invalidateUserSSOSessionsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIdManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.SSOLogoutFromAllApps(ssoLogoutFromAllAppsOptionsModel)
+				response, operationErr := appIdManagementService.InvalidateUserSSOSessions(invalidateUserSSOSessionsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
-				// Construct a second instance of the SSOLogoutFromAllAppsOptions model with no property values
-				ssoLogoutFromAllAppsOptionsModelNew := new(appidmanagementv4.SSOLogoutFromAllAppsOptions)
+				// Construct a second instance of the InvalidateUserSSOSessionsOptions model with no property values
+				invalidateUserSSOSessionsOptionsModelNew := new(appidmanagementv4.InvalidateUserSSOSessionsOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.SSOLogoutFromAllApps(ssoLogoutFromAllAppsOptionsModelNew)
+				response, operationErr = appIdManagementService.InvalidateUserSSOSessions(invalidateUserSSOSessionsOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -20021,6 +20021,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(getUserRolesOptionsModel.ID).To(Equal(core.StringPtr("testString")))
 				Expect(getUserRolesOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
+			It(`Invoke NewInvalidateUserSSOSessionsOptions successfully`, func() {
+				// Construct an instance of the InvalidateUserSSOSessionsOptions model
+				userID := "testString"
+				invalidateUserSSOSessionsOptionsModel := appIdManagementService.NewInvalidateUserSSOSessionsOptions(userID)
+				invalidateUserSSOSessionsOptionsModel.SetUserID("testString")
+				invalidateUserSSOSessionsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(invalidateUserSSOSessionsOptionsModel).ToNot(BeNil())
+				Expect(invalidateUserSSOSessionsOptionsModel.UserID).To(Equal(core.StringPtr("testString")))
+				Expect(invalidateUserSSOSessionsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+			})
 			It(`Invoke NewListApplicationsOptions successfully`, func() {
 				// Construct an instance of the ListApplicationsOptions model
 				listApplicationsOptionsModel := appIdManagementService.NewListApplicationsOptions()
@@ -20584,16 +20594,6 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(setSAMLIDPOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(setSAMLIDPOptionsModel.Config).To(Equal(SAMLConfigParamsModel))
 				Expect(setSAMLIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
-			})
-			It(`Invoke NewSSOLogoutFromAllAppsOptions successfully`, func() {
-				// Construct an instance of the SSOLogoutFromAllAppsOptions model
-				userID := "testString"
-				ssoLogoutFromAllAppsOptionsModel := appIdManagementService.NewSSOLogoutFromAllAppsOptions(userID)
-				ssoLogoutFromAllAppsOptionsModel.SetUserID("testString")
-				ssoLogoutFromAllAppsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(ssoLogoutFromAllAppsOptionsModel).ToNot(BeNil())
-				Expect(ssoLogoutFromAllAppsOptionsModel.UserID).To(Equal(core.StringPtr("testString")))
-				Expect(ssoLogoutFromAllAppsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewStartForgotPasswordOptions successfully`, func() {
 				// Construct an instance of the StartForgotPasswordOptions model

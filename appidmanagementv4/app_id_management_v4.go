@@ -15,7 +15,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-120747
+ * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-124052
  */
 
 // Package appidmanagementv4 : Operations and models for the AppIdManagementV4 service
@@ -1065,28 +1065,28 @@ func (appIdManagement *AppIdManagementV4) DeleteCloudDirectoryUserWithContext(ct
 	return
 }
 
-// SSOLogoutFromAllApps : Invalidate all SSO sessions
+// InvalidateUserSSOSessions : Invalidate all SSO sessions
 // Invalidate all the user's SSO sessions. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-sso#ending-all-sessions-for-a-user" target="_blank">Learn
 // more</a>.
-func (appIdManagement *AppIdManagementV4) SSOLogoutFromAllApps(ssoLogoutFromAllAppsOptions *SSOLogoutFromAllAppsOptions) (response *core.DetailedResponse, err error) {
-	return appIdManagement.SSOLogoutFromAllAppsWithContext(context.Background(), ssoLogoutFromAllAppsOptions)
+func (appIdManagement *AppIdManagementV4) InvalidateUserSSOSessions(invalidateUserSSOSessionsOptions *InvalidateUserSSOSessionsOptions) (response *core.DetailedResponse, err error) {
+	return appIdManagement.InvalidateUserSSOSessionsWithContext(context.Background(), invalidateUserSSOSessionsOptions)
 }
 
-// SSOLogoutFromAllAppsWithContext is an alternate form of the SSOLogoutFromAllApps method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SSOLogoutFromAllAppsWithContext(ctx context.Context, ssoLogoutFromAllAppsOptions *SSOLogoutFromAllAppsOptions) (response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(ssoLogoutFromAllAppsOptions, "ssoLogoutFromAllAppsOptions cannot be nil")
+// InvalidateUserSSOSessionsWithContext is an alternate form of the InvalidateUserSSOSessions method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) InvalidateUserSSOSessionsWithContext(ctx context.Context, invalidateUserSSOSessionsOptions *InvalidateUserSSOSessionsOptions) (response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(invalidateUserSSOSessionsOptions, "invalidateUserSSOSessionsOptions cannot be nil")
 	if err != nil {
 		return
 	}
-	err = core.ValidateStruct(ssoLogoutFromAllAppsOptions, "ssoLogoutFromAllAppsOptions")
+	err = core.ValidateStruct(invalidateUserSSOSessionsOptions, "invalidateUserSSOSessionsOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"userId": *sSOLogoutFromAllAppsOptions.UserID,
+		"userId": *invalidateUserSSOSessionsOptions.UserID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -1097,11 +1097,11 @@ func (appIdManagement *AppIdManagementV4) SSOLogoutFromAllAppsWithContext(ctx co
 		return
 	}
 
-	for headerName, headerValue := range ssoLogoutFromAllAppsOptions.Headers {
+	for headerName, headerValue := range invalidateUserSSOSessionsOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SSOLogoutFromAllApps")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "InvalidateUserSSOSessions")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -9170,6 +9170,34 @@ func UnmarshalImportResponseFailReasonsItem(m map[string]json.RawMessage, result
 	return
 }
 
+// InvalidateUserSSOSessionsOptions : The InvalidateUserSSOSessions options.
+type InvalidateUserSSOSessionsOptions struct {
+	// The ID assigned to a user when they sign in by using Cloud Directory.
+	UserID *string `validate:"required,ne="`
+
+	// Allows users to set headers on API requests
+	Headers map[string]string
+}
+
+// NewInvalidateUserSSOSessionsOptions : Instantiate InvalidateUserSSOSessionsOptions
+func (*AppIdManagementV4) NewInvalidateUserSSOSessionsOptions(userID string) *InvalidateUserSSOSessionsOptions {
+	return &InvalidateUserSSOSessionsOptions{
+		UserID: core.StringPtr(userID),
+	}
+}
+
+// SetUserID : Allow user to set UserID
+func (options *InvalidateUserSSOSessionsOptions) SetUserID(userID string) *InvalidateUserSSOSessionsOptions {
+	options.UserID = core.StringPtr(userID)
+	return options
+}
+
+// SetHeaders : Allow user to set Headers
+func (options *InvalidateUserSSOSessionsOptions) SetHeaders(param map[string]string) *InvalidateUserSSOSessionsOptions {
+	options.Headers = param
+	return options
+}
+
 // ListApplicationsOptions : The ListApplications options.
 type ListApplicationsOptions struct {
 
@@ -10340,34 +10368,6 @@ func (options *SetSAMLIDPOptions) SetConfig(config *SAMLConfigParams) *SetSAMLID
 
 // SetHeaders : Allow user to set Headers
 func (options *SetSAMLIDPOptions) SetHeaders(param map[string]string) *SetSAMLIDPOptions {
-	options.Headers = param
-	return options
-}
-
-// SSOLogoutFromAllAppsOptions : The SSOLogoutFromAllApps options.
-type SSOLogoutFromAllAppsOptions struct {
-	// The ID assigned to a user when they sign in by using Cloud Directory.
-	UserID *string `validate:"required,ne="`
-
-	// Allows users to set headers on API requests
-	Headers map[string]string
-}
-
-// NewSSOLogoutFromAllAppsOptions : Instantiate SSOLogoutFromAllAppsOptions
-func (*AppIdManagementV4) NewSSOLogoutFromAllAppsOptions(userID string) *SSOLogoutFromAllAppsOptions {
-	return &SSOLogoutFromAllAppsOptions{
-		UserID: core.StringPtr(userID),
-	}
-}
-
-// SetUserID : Allow user to set UserID
-func (options *SSOLogoutFromAllAppsOptions) SetUserID(userID string) *SSOLogoutFromAllAppsOptions {
-	options.UserID = core.StringPtr(userID)
-	return options
-}
-
-// SetHeaders : Allow user to set Headers
-func (options *SSOLogoutFromAllAppsOptions) SetHeaders(param map[string]string) *SSOLogoutFromAllAppsOptions {
 	options.Headers = param
 	return options
 }
