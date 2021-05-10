@@ -62,7 +62,7 @@ Here is an example:
 
 ```go
 import (
-	"github.com/IBM/appid-go-sdk.git/exampleservicev1"
+	"github.com/IBM/appid-go-sdk/exampleservicev1"
 )
 ```
 Next, run `go build` or `go mod tidy` to download and install the new dependencies and update your application's
@@ -75,7 +75,7 @@ See the service table above to find the approprate package name for the services
 ### `go get` command  
 Alternatively, you can use the `go get` command to download and install the appropriate packages needed by your application:
 ```
-go get -u github.com/IBM/appid-go-sdk.git/exampleservicev1
+go get -u github.com/IBM/appid-go-sdk/exampleservicev1
 ```
 Be sure to use the appropriate package name from the service table above for the services used by your application.
 
@@ -90,7 +90,7 @@ please ask a question at
 
 ## Issues
 If you encounter an issue with the project, you are welcome to submit a
-[bug report](https://github.com/IBM/appid-go-sdk.git/issues).
+[bug report](https://github.com/IBM/appid-go-sdk/issues).
 Before that, please search for similar issues. It's possible that someone has already reported the problem.
 
 ## Open source @ IBM

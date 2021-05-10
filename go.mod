@@ -1,4 +1,4 @@
-module github.com/IBM/appid-go-sdk.git
+module github.com/IBM/appid-go-sdk
 
 go 1.15
 
