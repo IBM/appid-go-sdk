@@ -5305,11 +5305,11 @@ func (appIdManagement *AppIDManagementV4) SetSamlidpWithContext(ctx context.Cont
 	builder.AddHeader("Content-Type", "application/json")
 
 	body := make(map[string]interface{})
-	if setSamlidpOptions.IsActive != nil {
-		body["isActive"] = setSamlidpOptions.IsActive
+	if setSAMLIDPOptions.IsActive != nil {
+		body["isActive"] = setSAMLIDPOptions.IsActive
 	}
-	if setSamlidpOptions.Config != nil {
-		body["config"] = setSamlidpOptions.Config
+	if setSAMLIDPOptions.Config != nil {
+		body["config"] = setSAMLIDPOptions.Config
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
