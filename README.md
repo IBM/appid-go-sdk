@@ -75,7 +75,7 @@ See the service table above to find the approprate package name for the services
 ### `go get` command  
 Alternatively, you can use the `go get` command to download and install the appropriate packages needed by your application:
 ```
-go get -u github.com/IBM/appid-go-sdk/appidmanagementv4
+go get -u github.com/IBM/appid-go-sdk
 ```
 Be sure to use the appropriate package name from the service table above for the services used by your application.
 
