@@ -15,7 +15,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-110443
+ * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-115948
  */
 
 // Package appidmanagementv4 : Operations and models for the AppIdManagementV4 service
@@ -2515,16 +2515,16 @@ func (appIdManagement *AppIdManagementV4) PostMediaWithContext(ctx context.Conte
 	return
 }
 
-// GetSamlMetadata : Get the SAML metadata
+// GetSAMLMetadata : Get the SAML metadata
 // Returns the SAML metadata required in order to integrate App ID with a SAML identity provider. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-enterprise" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetSamlMetadata(getSamlMetadataOptions *GetSamlMetadataOptions) (result *string, response *core.DetailedResponse, err error) {
-	return appIdManagement.GetSamlMetadataWithContext(context.Background(), getSamlMetadataOptions)
+func (appIdManagement *AppIdManagementV4) GetSAMLMetadata(getSAMLMetadataOptions *GetSAMLMetadataOptions) (result *string, response *core.DetailedResponse, err error) {
+	return appIdManagement.GetSAMLMetadataWithContext(context.Background(), getSAMLMetadataOptions)
 }
 
-// GetSamlMetadataWithContext is an alternate form of the GetSamlMetadata method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetSamlMetadataWithContext(ctx context.Context, getSamlMetadataOptions *GetSamlMetadataOptions) (result *string, response *core.DetailedResponse, err error) {
-	err = core.ValidateStruct(getSamlMetadataOptions, "getSamlMetadataOptions")
+// GetSAMLMetadataWithContext is an alternate form of the GetSAMLMetadata method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) GetSAMLMetadataWithContext(ctx context.Context, getSAMLMetadataOptions *GetSAMLMetadataOptions) (result *string, response *core.DetailedResponse, err error) {
+	err = core.ValidateStruct(getSAMLMetadataOptions, "getSAMLMetadataOptions")
 	if err != nil {
 		return
 	}
@@ -2541,11 +2541,11 @@ func (appIdManagement *AppIdManagementV4) GetSamlMetadataWithContext(ctx context
 		return
 	}
 
-	for headerName, headerValue := range getSamlMetadataOptions.Headers {
+	for headerName, headerValue := range getSAMLMetadataOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetSamlMetadata")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetSAMLMetadata")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -5206,16 +5206,16 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIDPWithContext(ctx co
 	return
 }
 
-// GetSamlIDP : Get SAML IDP configuration
+// GetSAMLIDP : Get SAML IDP configuration
 // Returns the SAML identity provider configuration, including status and credentials. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-enterprise" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetSamlIDP(getSamlIDPOptions *GetSamlIDPOptions) (result *SamlResponse, response *core.DetailedResponse, err error) {
-	return appIdManagement.GetSamlIDPWithContext(context.Background(), getSamlIDPOptions)
+func (appIdManagement *AppIdManagementV4) GetSAMLIDP(getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
+	return appIdManagement.GetSAMLIDPWithContext(context.Background(), getSAMLIDPOptions)
 }
 
-// GetSamlIDPWithContext is an alternate form of the GetSamlIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetSamlIDPWithContext(ctx context.Context, getSamlIDPOptions *GetSamlIDPOptions) (result *SamlResponse, response *core.DetailedResponse, err error) {
-	err = core.ValidateStruct(getSamlIDPOptions, "getSamlIDPOptions")
+// GetSAMLIDPWithContext is an alternate form of the GetSAMLIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) GetSAMLIDPWithContext(ctx context.Context, getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateStruct(getSAMLIDPOptions, "getSAMLIDPOptions")
 	if err != nil {
 		return
 	}
@@ -5232,11 +5232,11 @@ func (appIdManagement *AppIdManagementV4) GetSamlIDPWithContext(ctx context.Cont
 		return
 	}
 
-	for headerName, headerValue := range getSamlIDPOptions.Headers {
+	for headerName, headerValue := range getSAMLIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetSamlIDP")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetSAMLIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -5253,7 +5253,7 @@ func (appIdManagement *AppIdManagementV4) GetSamlIDPWithContext(ctx context.Cont
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSamlResponse)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSAMLResponse)
 		if err != nil {
 			return
 		}
@@ -5263,20 +5263,20 @@ func (appIdManagement *AppIdManagementV4) GetSamlIDPWithContext(ctx context.Cont
 	return
 }
 
-// SetSamlIDP : Update SAML IDP configuration
+// SetSAMLIDP : Update SAML IDP configuration
 // Configure SAML to set up a single sign-on experience for your users. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-enterprise" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetSamlIDP(setSamlIDPOptions *SetSamlIDPOptions) (result *SamlResponseWithValidationData, response *core.DetailedResponse, err error) {
-	return appIdManagement.SetSamlIDPWithContext(context.Background(), setSamlIDPOptions)
+func (appIdManagement *AppIdManagementV4) SetSAMLIDP(setSAMLIDPOptions *SetSAMLIDPOptions) (result *SAMLResponseWithValidationData, response *core.DetailedResponse, err error) {
+	return appIdManagement.SetSAMLIDPWithContext(context.Background(), setSAMLIDPOptions)
 }
 
-// SetSamlIDPWithContext is an alternate form of the SetSamlIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetSamlIDPWithContext(ctx context.Context, setSamlIDPOptions *SetSamlIDPOptions) (result *SamlResponseWithValidationData, response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(setSamlIDPOptions, "setSamlIDPOptions cannot be nil")
+// SetSAMLIDPWithContext is an alternate form of the SetSAMLIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) SetSAMLIDPWithContext(ctx context.Context, setSAMLIDPOptions *SetSAMLIDPOptions) (result *SAMLResponseWithValidationData, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(setSAMLIDPOptions, "setSAMLIDPOptions cannot be nil")
 	if err != nil {
 		return
 	}
-	err = core.ValidateStruct(setSamlIDPOptions, "setSamlIDPOptions")
+	err = core.ValidateStruct(setSAMLIDPOptions, "setSAMLIDPOptions")
 	if err != nil {
 		return
 	}
@@ -5293,11 +5293,11 @@ func (appIdManagement *AppIdManagementV4) SetSamlIDPWithContext(ctx context.Cont
 		return
 	}
 
-	for headerName, headerValue := range setSamlIDPOptions.Headers {
+	for headerName, headerValue := range setSAMLIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetSamlIDP")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetSAMLIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -5305,11 +5305,11 @@ func (appIdManagement *AppIdManagementV4) SetSamlIDPWithContext(ctx context.Cont
 	builder.AddHeader("Content-Type", "application/json")
 
 	body := make(map[string]interface{})
-	if setSamlIDPOptions.IsActive != nil {
-		body["isActive"] = setSamlIDPOptions.IsActive
+	if setSAMLIDPOptions.IsActive != nil {
+		body["isActive"] = setSAMLIDPOptions.IsActive
 	}
-	if setSamlIDPOptions.Config != nil {
-		body["config"] = setSamlIDPOptions.Config
+	if setSAMLIDPOptions.Config != nil {
+		body["config"] = setSAMLIDPOptions.Config
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -5327,7 +5327,7 @@ func (appIdManagement *AppIdManagementV4) SetSamlIDPWithContext(ctx context.Cont
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSamlResponseWithValidationData)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSAMLResponseWithValidationData)
 		if err != nil {
 			return
 		}
@@ -8766,38 +8766,38 @@ func (options *GetSSOConfigOptions) SetHeaders(param map[string]string) *GetSSOC
 	return options
 }
 
-// GetSamlIDPOptions : The GetSamlIDP options.
-type GetSamlIDPOptions struct {
+// GetSAMLIDPOptions : The GetSAMLIDP options.
+type GetSAMLIDPOptions struct {
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewGetSamlIDPOptions : Instantiate GetSamlIDPOptions
-func (*AppIdManagementV4) NewGetSamlIDPOptions() *GetSamlIDPOptions {
-	return &GetSamlIDPOptions{}
+// NewGetSAMLIDPOptions : Instantiate GetSAMLIDPOptions
+func (*AppIdManagementV4) NewGetSAMLIDPOptions() *GetSAMLIDPOptions {
+	return &GetSAMLIDPOptions{}
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *GetSamlIDPOptions) SetHeaders(param map[string]string) *GetSamlIDPOptions {
+func (options *GetSAMLIDPOptions) SetHeaders(param map[string]string) *GetSAMLIDPOptions {
 	options.Headers = param
 	return options
 }
 
-// GetSamlMetadataOptions : The GetSamlMetadata options.
-type GetSamlMetadataOptions struct {
+// GetSAMLMetadataOptions : The GetSAMLMetadata options.
+type GetSAMLMetadataOptions struct {
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewGetSamlMetadataOptions : Instantiate GetSamlMetadataOptions
-func (*AppIdManagementV4) NewGetSamlMetadataOptions() *GetSamlMetadataOptions {
-	return &GetSamlMetadataOptions{}
+// NewGetSAMLMetadataOptions : Instantiate GetSAMLMetadataOptions
+func (*AppIdManagementV4) NewGetSAMLMetadataOptions() *GetSAMLMetadataOptions {
+	return &GetSAMLMetadataOptions{}
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *GetSamlMetadataOptions) SetHeaders(param map[string]string) *GetSamlMetadataOptions {
+func (options *GetSAMLMetadataOptions) SetHeaders(param map[string]string) *GetSAMLMetadataOptions {
 	options.Headers = param
 	return options
 }
@@ -9858,53 +9858,53 @@ func UnmarshalRolesListRolesItemAccessItem(m map[string]json.RawMessage, result 
 	return
 }
 
-// SamlConfigParamsAuthnContext : SamlConfigParamsAuthnContext struct
-type SamlConfigParamsAuthnContext struct {
+// SAMLConfigParamsAuthnContext : SAMLConfigParamsAuthnContext struct
+type SAMLConfigParamsAuthnContext struct {
 	Class []string `json:"class,omitempty"`
 
 	Comparison *string `json:"comparison,omitempty"`
 }
 
-// Constants associated with the SamlConfigParamsAuthnContext.Class property.
+// Constants associated with the SAMLConfigParamsAuthnContext.Class property.
 const (
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesAuthenticatedtelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:AuthenticatedTelephony"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesInternetprotocol = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesInternetprotocolpassword = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocolPassword"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesKerberos = "urn:oasis:names:tc:SAML:2.0:ac:classes:Kerberos"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesMobileonefactorcontract = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorContract"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesMobileonefactorunregistered = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorUnregistered"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesMobiletwofactorcontract = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesMobiletwofactorunregistered = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorUnregistered"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesNomadtelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:NomadTelephony"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesPassword = "urn:oasis:names:tc:SAML:2.0:ac:classes:Password"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesPasswordprotectedtransport = "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesPersonaltelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:PersonalTelephony"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesPgp = "urn:oasis:names:tc:SAML:2.0:ac:classes:PGP"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesPrevioussession = "urn:oasis:names:tc:SAML:2.0:ac:classes:PreviousSession"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesSecureremotepassword = "urn:oasis:names:tc:SAML:2.0:ac:classes:SecureRemotePassword"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesSmartcard = "urn:oasis:names:tc:SAML:2.0:ac:classes:Smartcard"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesSmartcardpki = "urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesSoftwarepki = "urn:oasis:names:tc:SAML:2.0:ac:classes:SoftwarePKI"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesSpki = "urn:oasis:names:tc:SAML:2.0:ac:classes:SPKI"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesTelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:Telephony"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesTimesynctoken = "urn:oasis:names:tc:SAML:2.0:ac:classes:TimeSyncToken"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesTlsclient = "urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesUnspecified = "urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesX509 = "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
-	SamlConfigParamsAuthnContext_Class_UrnOasisNamesTcSaml20AcClassesXmldsig = "urn:oasis:names:tc:SAML:2.0:ac:classes:XMLDSig"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesAuthenticatedtelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:AuthenticatedTelephony"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesInternetprotocol = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesInternetprotocolpassword = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocolPassword"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesKerberos = "urn:oasis:names:tc:SAML:2.0:ac:classes:Kerberos"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesMobileonefactorcontract = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorContract"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesMobileonefactorunregistered = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorUnregistered"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesMobiletwofactorcontract = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesMobiletwofactorunregistered = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorUnregistered"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesNomadtelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:NomadTelephony"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesPassword = "urn:oasis:names:tc:SAML:2.0:ac:classes:Password"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesPasswordprotectedtransport = "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesPersonaltelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:PersonalTelephony"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesPgp = "urn:oasis:names:tc:SAML:2.0:ac:classes:PGP"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesPrevioussession = "urn:oasis:names:tc:SAML:2.0:ac:classes:PreviousSession"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesSecureremotepassword = "urn:oasis:names:tc:SAML:2.0:ac:classes:SecureRemotePassword"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesSmartcard = "urn:oasis:names:tc:SAML:2.0:ac:classes:Smartcard"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesSmartcardpki = "urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesSoftwarepki = "urn:oasis:names:tc:SAML:2.0:ac:classes:SoftwarePKI"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesSpki = "urn:oasis:names:tc:SAML:2.0:ac:classes:SPKI"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesTelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:Telephony"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesTimesynctoken = "urn:oasis:names:tc:SAML:2.0:ac:classes:TimeSyncToken"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesTlsclient = "urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesUnspecified = "urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesX509 = "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
+	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesXmldsig = "urn:oasis:names:tc:SAML:2.0:ac:classes:XMLDSig"
 )
 
-// Constants associated with the SamlConfigParamsAuthnContext.Comparison property.
+// Constants associated with the SAMLConfigParamsAuthnContext.Comparison property.
 const (
-	SamlConfigParamsAuthnContext_Comparison_Better = "better"
-	SamlConfigParamsAuthnContext_Comparison_Exact = "exact"
-	SamlConfigParamsAuthnContext_Comparison_Maximum = "maximum"
-	SamlConfigParamsAuthnContext_Comparison_Minimum = "minimum"
+	SAMLConfigParamsAuthnContext_Comparison_Better = "better"
+	SAMLConfigParamsAuthnContext_Comparison_Exact = "exact"
+	SAMLConfigParamsAuthnContext_Comparison_Maximum = "maximum"
+	SAMLConfigParamsAuthnContext_Comparison_Minimum = "minimum"
 )
 
-// UnmarshalSamlConfigParamsAuthnContext unmarshals an instance of SamlConfigParamsAuthnContext from the specified map of raw messages.
-func UnmarshalSamlConfigParamsAuthnContext(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(SamlConfigParamsAuthnContext)
+// UnmarshalSAMLConfigParamsAuthnContext unmarshals an instance of SAMLConfigParamsAuthnContext from the specified map of raw messages.
+func UnmarshalSAMLConfigParamsAuthnContext(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SAMLConfigParamsAuthnContext)
 	err = core.UnmarshalPrimitive(m, "class", &obj.Class)
 	if err != nil {
 		return
@@ -9917,15 +9917,15 @@ func UnmarshalSamlConfigParamsAuthnContext(m map[string]json.RawMessage, result 
 	return
 }
 
-// SamlResponseWithValidationDataValidationData : SamlResponseWithValidationDataValidationData struct
-type SamlResponseWithValidationDataValidationData struct {
-	Certificates []SamlResponseWithValidationDataValidationDataCertificatesItem `json:"certificates" validate:"required"`
+// SAMLResponseWithValidationDataValidationData : SAMLResponseWithValidationDataValidationData struct
+type SAMLResponseWithValidationDataValidationData struct {
+	Certificates []SAMLResponseWithValidationDataValidationDataCertificatesItem `json:"certificates" validate:"required"`
 }
 
-// UnmarshalSamlResponseWithValidationDataValidationData unmarshals an instance of SamlResponseWithValidationDataValidationData from the specified map of raw messages.
-func UnmarshalSamlResponseWithValidationDataValidationData(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(SamlResponseWithValidationDataValidationData)
-	err = core.UnmarshalModel(m, "certificates", &obj.Certificates, UnmarshalSamlResponseWithValidationDataValidationDataCertificatesItem)
+// UnmarshalSAMLResponseWithValidationDataValidationData unmarshals an instance of SAMLResponseWithValidationDataValidationData from the specified map of raw messages.
+func UnmarshalSAMLResponseWithValidationDataValidationData(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SAMLResponseWithValidationDataValidationData)
+	err = core.UnmarshalModel(m, "certificates", &obj.Certificates, UnmarshalSAMLResponseWithValidationDataValidationDataCertificatesItem)
 	if err != nil {
 		return
 	}
@@ -9933,8 +9933,8 @@ func UnmarshalSamlResponseWithValidationDataValidationData(m map[string]json.Raw
 	return
 }
 
-// SamlResponseWithValidationDataValidationDataCertificatesItem : SamlResponseWithValidationDataValidationDataCertificatesItem struct
-type SamlResponseWithValidationDataValidationDataCertificatesItem struct {
+// SAMLResponseWithValidationDataValidationDataCertificatesItem : SAMLResponseWithValidationDataValidationDataCertificatesItem struct
+type SAMLResponseWithValidationDataValidationDataCertificatesItem struct {
 	CertificateIndex *float64 `json:"certificate_index" validate:"required"`
 
 	ExpirationTimestamp *float64 `json:"expiration_timestamp" validate:"required"`
@@ -9942,9 +9942,9 @@ type SamlResponseWithValidationDataValidationDataCertificatesItem struct {
 	Warning *string `json:"warning,omitempty"`
 }
 
-// UnmarshalSamlResponseWithValidationDataValidationDataCertificatesItem unmarshals an instance of SamlResponseWithValidationDataValidationDataCertificatesItem from the specified map of raw messages.
-func UnmarshalSamlResponseWithValidationDataValidationDataCertificatesItem(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(SamlResponseWithValidationDataValidationDataCertificatesItem)
+// UnmarshalSAMLResponseWithValidationDataValidationDataCertificatesItem unmarshals an instance of SAMLResponseWithValidationDataValidationDataCertificatesItem from the specified map of raw messages.
+func UnmarshalSAMLResponseWithValidationDataValidationDataCertificatesItem(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SAMLResponseWithValidationDataValidationDataCertificatesItem)
 	err = core.UnmarshalPrimitive(m, "certificate_index", &obj.CertificateIndex)
 	if err != nil {
 		return
@@ -10309,37 +10309,37 @@ func (options *SetGoogleIDPOptions) SetHeaders(param map[string]string) *SetGoog
 	return options
 }
 
-// SetSamlIDPOptions : The SetSamlIDP options.
-type SetSamlIDPOptions struct {
+// SetSAMLIDPOptions : The SetSAMLIDP options.
+type SetSAMLIDPOptions struct {
 	IsActive *bool `validate:"required"`
 
-	Config *SamlConfigParams
+	Config *SAMLConfigParams
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewSetSamlIDPOptions : Instantiate SetSamlIDPOptions
-func (*AppIdManagementV4) NewSetSamlIDPOptions(isActive bool) *SetSamlIDPOptions {
-	return &SetSamlIDPOptions{
+// NewSetSAMLIDPOptions : Instantiate SetSAMLIDPOptions
+func (*AppIdManagementV4) NewSetSAMLIDPOptions(isActive bool) *SetSAMLIDPOptions {
+	return &SetSAMLIDPOptions{
 		IsActive: core.BoolPtr(isActive),
 	}
 }
 
 // SetIsActive : Allow user to set IsActive
-func (options *SetSamlIDPOptions) SetIsActive(isActive bool) *SetSamlIDPOptions {
+func (options *SetSAMLIDPOptions) SetIsActive(isActive bool) *SetSAMLIDPOptions {
 	options.IsActive = core.BoolPtr(isActive)
 	return options
 }
 
 // SetConfig : Allow user to set Config
-func (options *SetSamlIDPOptions) SetConfig(config *SamlConfigParams) *SetSamlIDPOptions {
+func (options *SetSAMLIDPOptions) SetConfig(config *SAMLConfigParams) *SetSAMLIDPOptions {
 	options.Config = config
 	return options
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *SetSamlIDPOptions) SetHeaders(param map[string]string) *SetSamlIDPOptions {
+func (options *SetSAMLIDPOptions) SetHeaders(param map[string]string) *SetSAMLIDPOptions {
 	options.Headers = param
 	return options
 }
@@ -11445,7 +11445,7 @@ const (
 	UsersNominateUserOptions_IDP_Facebook = "facebook"
 	UsersNominateUserOptions_IDP_Google = "google"
 	UsersNominateUserOptions_IDP_Ibmid = "ibmid"
-	UsersNominateUserOptions_IDP_Saml = "saml"
+	UsersNominateUserOptions_IDP_SAML = "saml"
 )
 
 // NewUsersNominateUserOptions : Instantiate UsersNominateUserOptions
@@ -12664,8 +12664,8 @@ func UnmarshalRespSMSDisParams(m map[string]json.RawMessage, result interface{})
 	return
 }
 
-// SamlConfigParams : SamlConfigParams struct
-type SamlConfigParams struct {
+// SAMLConfigParams : SAMLConfigParams struct
+type SAMLConfigParams struct {
 	EntityID *string `json:"entityID" validate:"required"`
 
 	SignInURL *string `json:"signInUrl" validate:"required"`
@@ -12674,7 +12674,7 @@ type SamlConfigParams struct {
 
 	DisplayName *string `json:"displayName,omitempty"`
 
-	AuthnContext *SamlConfigParamsAuthnContext `json:"authnContext,omitempty"`
+	AuthnContext *SAMLConfigParamsAuthnContext `json:"authnContext,omitempty"`
 
 	SignRequest *bool `json:"signRequest,omitempty"`
 
@@ -12686,9 +12686,9 @@ type SamlConfigParams struct {
 	additionalProperties map[string]interface{}
 }
 
-// NewSamlConfigParams : Instantiate SamlConfigParams (Generic Model Constructor)
-func (*AppIdManagementV4) NewSamlConfigParams(entityID string, signInURL string, certificates []string) (model *SamlConfigParams, err error) {
-	model = &SamlConfigParams{
+// NewSAMLConfigParams : Instantiate SAMLConfigParams (Generic Model Constructor)
+func (*AppIdManagementV4) NewSAMLConfigParams(entityID string, signInURL string, certificates []string) (model *SAMLConfigParams, err error) {
+	model = &SAMLConfigParams{
 		EntityID: core.StringPtr(entityID),
 		SignInURL: core.StringPtr(signInURL),
 		Certificates: certificates,
@@ -12697,26 +12697,26 @@ func (*AppIdManagementV4) NewSamlConfigParams(entityID string, signInURL string,
 	return
 }
 
-// SetProperty allows the user to set an arbitrary property on an instance of SamlConfigParams
-func (o *SamlConfigParams) SetProperty(key string, value interface{}) {
+// SetProperty allows the user to set an arbitrary property on an instance of SAMLConfigParams
+func (o *SAMLConfigParams) SetProperty(key string, value interface{}) {
 	if o.additionalProperties == nil {
 		o.additionalProperties = make(map[string]interface{})
 	}
 	o.additionalProperties[key] = value
 }
 
-// GetProperty allows the user to retrieve an arbitrary property from an instance of SamlConfigParams
-func (o *SamlConfigParams) GetProperty(key string) interface{} {
+// GetProperty allows the user to retrieve an arbitrary property from an instance of SAMLConfigParams
+func (o *SAMLConfigParams) GetProperty(key string) interface{} {
 	return o.additionalProperties[key]
 }
 
-// GetProperties allows the user to retrieve the map of arbitrary properties from an instance of SamlConfigParams
-func (o *SamlConfigParams) GetProperties() map[string]interface{} {
+// GetProperties allows the user to retrieve the map of arbitrary properties from an instance of SAMLConfigParams
+func (o *SAMLConfigParams) GetProperties() map[string]interface{} {
 	return o.additionalProperties
 }
 
-// MarshalJSON performs custom serialization for instances of SamlConfigParams
-func (o *SamlConfigParams) MarshalJSON() (buffer []byte, err error) {
+// MarshalJSON performs custom serialization for instances of SAMLConfigParams
+func (o *SAMLConfigParams) MarshalJSON() (buffer []byte, err error) {
 	m := make(map[string]interface{})
 	if len(o.additionalProperties) > 0 {
 		for k, v := range o.additionalProperties {
@@ -12751,9 +12751,9 @@ func (o *SamlConfigParams) MarshalJSON() (buffer []byte, err error) {
 	return
 }
 
-// UnmarshalSamlConfigParams unmarshals an instance of SamlConfigParams from the specified map of raw messages.
-func UnmarshalSamlConfigParams(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(SamlConfigParams)
+// UnmarshalSAMLConfigParams unmarshals an instance of SAMLConfigParams from the specified map of raw messages.
+func UnmarshalSAMLConfigParams(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SAMLConfigParams)
 	err = core.UnmarshalPrimitive(m, "entityID", &obj.EntityID)
 	if err != nil {
 		return
@@ -12774,7 +12774,7 @@ func UnmarshalSamlConfigParams(m map[string]json.RawMessage, result interface{})
 		return
 	}
 	delete(m, "displayName")
-	err = core.UnmarshalModel(m, "authnContext", &obj.AuthnContext, UnmarshalSamlConfigParamsAuthnContext)
+	err = core.UnmarshalModel(m, "authnContext", &obj.AuthnContext, UnmarshalSAMLConfigParamsAuthnContext)
 	if err != nil {
 		return
 	}
@@ -12807,21 +12807,21 @@ func UnmarshalSamlConfigParams(m map[string]json.RawMessage, result interface{})
 	return
 }
 
-// SamlResponse : SamlResponse struct
-type SamlResponse struct {
+// SAMLResponse : SAMLResponse struct
+type SAMLResponse struct {
 	IsActive *bool `json:"isActive" validate:"required"`
 
-	Config *SamlConfigParams `json:"config,omitempty"`
+	Config *SAMLConfigParams `json:"config,omitempty"`
 }
 
-// UnmarshalSamlResponse unmarshals an instance of SamlResponse from the specified map of raw messages.
-func UnmarshalSamlResponse(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(SamlResponse)
+// UnmarshalSAMLResponse unmarshals an instance of SAMLResponse from the specified map of raw messages.
+func UnmarshalSAMLResponse(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SAMLResponse)
 	err = core.UnmarshalPrimitive(m, "isActive", &obj.IsActive)
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalSamlConfigParams)
+	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalSAMLConfigParams)
 	if err != nil {
 		return
 	}
@@ -12829,27 +12829,27 @@ func UnmarshalSamlResponse(m map[string]json.RawMessage, result interface{}) (er
 	return
 }
 
-// SamlResponseWithValidationData : SamlResponseWithValidationData struct
-type SamlResponseWithValidationData struct {
+// SAMLResponseWithValidationData : SAMLResponseWithValidationData struct
+type SAMLResponseWithValidationData struct {
 	IsActive *bool `json:"isActive" validate:"required"`
 
-	Config *SamlConfigParams `json:"config,omitempty"`
+	Config *SAMLConfigParams `json:"config,omitempty"`
 
-	ValidationData *SamlResponseWithValidationDataValidationData `json:"validation_data,omitempty"`
+	ValidationData *SAMLResponseWithValidationDataValidationData `json:"validation_data,omitempty"`
 }
 
-// UnmarshalSamlResponseWithValidationData unmarshals an instance of SamlResponseWithValidationData from the specified map of raw messages.
-func UnmarshalSamlResponseWithValidationData(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(SamlResponseWithValidationData)
+// UnmarshalSAMLResponseWithValidationData unmarshals an instance of SAMLResponseWithValidationData from the specified map of raw messages.
+func UnmarshalSAMLResponseWithValidationData(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SAMLResponseWithValidationData)
 	err = core.UnmarshalPrimitive(m, "isActive", &obj.IsActive)
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalSamlConfigParams)
+	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalSAMLConfigParams)
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "validation_data", &obj.ValidationData, UnmarshalSamlResponseWithValidationDataValidationData)
+	err = core.UnmarshalModel(m, "validation_data", &obj.ValidationData, UnmarshalSAMLResponseWithValidationDataValidationData)
 	if err != nil {
 		return
 	}
@@ -12875,7 +12875,7 @@ const (
 	TokenClaimMapping_Source_Google = "google"
 	TokenClaimMapping_Source_Ibmid = "ibmid"
 	TokenClaimMapping_Source_Roles = "roles"
-	TokenClaimMapping_Source_Saml = "saml"
+	TokenClaimMapping_Source_SAML = "saml"
 )
 
 // NewTokenClaimMapping : Instantiate TokenClaimMapping (Generic Model Constructor)
