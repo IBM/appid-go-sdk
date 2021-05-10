@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.com/IBM/appid-go-sdk.git.svg?token=eW5FVD71iyte6tTby8gr&branch=main)](https://travis.ibm.com/IBM/appid-go-sdk.git.svg?token=eW5FVD71iyte6tTby8gr&branch=main)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-# IBM Cloud App ID Management Go SDK 0.0.1
-Go client library to interact with the various [IBM Cloud App ID Management Services APIs](https://cloud.ibm.com/apidocs?category=security).
+# IBM Cloud App ID Go SDK 0.0.1
+Go client library to interact with the various [IBM Cloud App ID Services APIs](https://cloud.ibm.com/apidocs?category=security).
 
 Disclaimer: this SDK is being released initially as a **pre-release** version.
 Changes might occur which impact applications that use this SDK.
@@ -20,7 +20,7 @@ Changes might occur which impact applications that use this SDK.
 
 <!-- toc -->
 
-- [IBM Cloud App ID Management Go SDK 0.0.1](#ibm-cloud-app-id-management-go-sdk-001)
+- [IBM Cloud App ID Go SDK 0.0.1](#ibm-cloud-app-id-go-sdk-001)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Prerequisites](#prerequisites)
@@ -38,11 +38,11 @@ Changes might occur which impact applications that use this SDK.
 
 ## Overview
 
-The IBM Cloud App ID Management Services Go SDK allows developers to programmatically interact with the following IBM Cloud services:
+The IBM Cloud App ID Services Go SDK allows developers to programmatically interact with the following IBM Cloud services:
 
 Service Name | Package name 
 --- | --- 
-<!-- [App ID Management Service](https://cloud.ibm.com/apidocs/app-id/management) | appidmanagementv4 -->
+[App ID Management Service](https://cloud.ibm.com/apidocs/app-id/management) | appidmanagementv4
 
 ## Prerequisites
 
