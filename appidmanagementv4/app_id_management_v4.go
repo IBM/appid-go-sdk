@@ -15,10 +15,10 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-124052
+ * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-150009
  */
 
-// Package appidmanagementv4 : Operations and models for the AppIdManagementV4 service
+// Package appidmanagementv4 : Operations and models for the AppIDManagementV4 service
 package appidmanagementv4
 
 import (
@@ -34,7 +34,7 @@ import (
 	"github.com/IBM/go-sdk-core/v5/core"
 )
 
-// AppIdManagementV4 : You can use the following APIs to configure your instances of IBM Cloud App ID. To define fine
+// AppIDManagementV4 : You can use the following APIs to configure your instances of IBM Cloud App ID. To define fine
 // grain access policies, you must have an instance of App ID that was created after March 15, 2018.</br> New to the
 // APIs? Try them out by using the <a href="https://github.com/ibm-cloud-security/appid-postman">App ID Postman
 // collection</a>!</br> </br> <b>Important:</b> You must have an <a
@@ -44,7 +44,7 @@ import (
 // key</a>.
 //
 // Version: 4
-type AppIdManagementV4 struct {
+type AppIDManagementV4 struct {
 	Service *core.BaseService
 
 	// The service tenantId. The tenantId can be found in the service credentials.
@@ -57,8 +57,8 @@ const DefaultServiceURL = "https://app-id-management.cloud.ibm.com"
 // DefaultServiceName is the default key used to find external configuration information.
 const DefaultServiceName = "app_id_management"
 
-// AppIdManagementV4Options : Service options
-type AppIdManagementV4Options struct {
+// AppIDManagementV4Options : Service options
+type AppIDManagementV4Options struct {
 	ServiceName   string
 	URL           string
 	Authenticator core.Authenticator
@@ -67,8 +67,8 @@ type AppIdManagementV4Options struct {
 	TenantID *string `validate:"required"`
 }
 
-// NewAppIdManagementV4UsingExternalConfig : constructs an instance of AppIdManagementV4 with passed in options and external configuration.
-func NewAppIdManagementV4UsingExternalConfig(options *AppIdManagementV4Options) (appIdManagement *AppIdManagementV4, err error) {
+// NewAppIDManagementV4UsingExternalConfig : constructs an instance of AppIDManagementV4 with passed in options and external configuration.
+func NewAppIDManagementV4UsingExternalConfig(options *AppIDManagementV4Options) (appIdManagement *AppIDManagementV4, err error) {
 	if options.ServiceName == "" {
 		options.ServiceName = DefaultServiceName
 	}
@@ -80,7 +80,7 @@ func NewAppIdManagementV4UsingExternalConfig(options *AppIdManagementV4Options) 
 		}
 	}
 
-	appIdManagement, err = NewAppIdManagementV4(options)
+	appIdManagement, err = NewAppIDManagementV4(options)
 	if err != nil {
 		return
 	}
@@ -96,8 +96,8 @@ func NewAppIdManagementV4UsingExternalConfig(options *AppIdManagementV4Options) 
 	return
 }
 
-// NewAppIdManagementV4 : constructs an instance of AppIdManagementV4 with passed in options.
-func NewAppIdManagementV4(options *AppIdManagementV4Options) (service *AppIdManagementV4, err error) {
+// NewAppIDManagementV4 : constructs an instance of AppIDManagementV4 with passed in options.
+func NewAppIDManagementV4(options *AppIDManagementV4Options) (service *AppIDManagementV4, err error) {
 	serviceOptions := &core.ServiceOptions{
 		URL:           DefaultServiceURL,
 		Authenticator: options.Authenticator,
@@ -120,7 +120,7 @@ func NewAppIdManagementV4(options *AppIdManagementV4Options) (service *AppIdMana
 		}
 	}
 
-	service = &AppIdManagementV4{
+	service = &AppIDManagementV4{
 		Service: baseService,
 		TenantID: options.TenantID,
 	}
@@ -134,7 +134,7 @@ func GetServiceURLForRegion(region string) (string, error) {
 }
 
 // Clone makes a copy of "appIdManagement" suitable for processing requests.
-func (appIdManagement *AppIdManagementV4) Clone() *AppIdManagementV4 {
+func (appIdManagement *AppIDManagementV4) Clone() *AppIDManagementV4 {
 	if core.IsNil(appIdManagement) {
 		return nil
 	}
@@ -144,49 +144,49 @@ func (appIdManagement *AppIdManagementV4) Clone() *AppIdManagementV4 {
 }
 
 // SetServiceURL sets the service URL
-func (appIdManagement *AppIdManagementV4) SetServiceURL(url string) error {
+func (appIdManagement *AppIDManagementV4) SetServiceURL(url string) error {
 	return appIdManagement.Service.SetServiceURL(url)
 }
 
 // GetServiceURL returns the service URL
-func (appIdManagement *AppIdManagementV4) GetServiceURL() string {
+func (appIdManagement *AppIDManagementV4) GetServiceURL() string {
 	return appIdManagement.Service.GetServiceURL()
 }
 
 // SetDefaultHeaders sets HTTP headers to be sent in every request
-func (appIdManagement *AppIdManagementV4) SetDefaultHeaders(headers http.Header) {
+func (appIdManagement *AppIDManagementV4) SetDefaultHeaders(headers http.Header) {
 	appIdManagement.Service.SetDefaultHeaders(headers)
 }
 
 // SetEnableGzipCompression sets the service's EnableGzipCompression field
-func (appIdManagement *AppIdManagementV4) SetEnableGzipCompression(enableGzip bool) {
+func (appIdManagement *AppIDManagementV4) SetEnableGzipCompression(enableGzip bool) {
 	appIdManagement.Service.SetEnableGzipCompression(enableGzip)
 }
 
 // GetEnableGzipCompression returns the service's EnableGzipCompression field
-func (appIdManagement *AppIdManagementV4) GetEnableGzipCompression() bool {
+func (appIdManagement *AppIDManagementV4) GetEnableGzipCompression() bool {
 	return appIdManagement.Service.GetEnableGzipCompression()
 }
 
 // EnableRetries enables automatic retries for requests invoked for this service instance.
 // If either parameter is specified as 0, then a default value is used instead.
-func (appIdManagement *AppIdManagementV4) EnableRetries(maxRetries int, maxRetryInterval time.Duration) {
+func (appIdManagement *AppIDManagementV4) EnableRetries(maxRetries int, maxRetryInterval time.Duration) {
 	appIdManagement.Service.EnableRetries(maxRetries, maxRetryInterval)
 }
 
 // DisableRetries disables automatic retries for requests invoked for this service instance.
-func (appIdManagement *AppIdManagementV4) DisableRetries() {
+func (appIdManagement *AppIDManagementV4) DisableRetries() {
 	appIdManagement.Service.DisableRetries()
 }
 
 // ListApplications : List applications
 // Returns a list of all applications registered with the App ID Instance.
-func (appIdManagement *AppIdManagementV4) ListApplications(listApplicationsOptions *ListApplicationsOptions) (result *ApplicationsList, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ListApplications(listApplicationsOptions *ListApplicationsOptions) (result *ApplicationsList, response *core.DetailedResponse, err error) {
 	return appIdManagement.ListApplicationsWithContext(context.Background(), listApplicationsOptions)
 }
 
 // ListApplicationsWithContext is an alternate form of the ListApplications method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) ListApplicationsWithContext(ctx context.Context, listApplicationsOptions *ListApplicationsOptions) (result *ApplicationsList, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ListApplicationsWithContext(ctx context.Context, listApplicationsOptions *ListApplicationsOptions) (result *ApplicationsList, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(listApplicationsOptions, "listApplicationsOptions")
 	if err != nil {
 		return
@@ -237,12 +237,12 @@ func (appIdManagement *AppIdManagementV4) ListApplicationsWithContext(ctx contex
 
 // RegisterApplication : Create application
 // Register a new application with the App ID instance.
-func (appIdManagement *AppIdManagementV4) RegisterApplication(registerApplicationOptions *RegisterApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) RegisterApplication(registerApplicationOptions *RegisterApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
 	return appIdManagement.RegisterApplicationWithContext(context.Background(), registerApplicationOptions)
 }
 
 // RegisterApplicationWithContext is an alternate form of the RegisterApplication method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) RegisterApplicationWithContext(ctx context.Context, registerApplicationOptions *RegisterApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) RegisterApplicationWithContext(ctx context.Context, registerApplicationOptions *RegisterApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(registerApplicationOptions, "registerApplicationOptions cannot be nil")
 	if err != nil {
 		return
@@ -310,12 +310,12 @@ func (appIdManagement *AppIdManagementV4) RegisterApplicationWithContext(ctx con
 
 // GetApplication : Get application
 // Returns a specific application registered with the App ID Instance.
-func (appIdManagement *AppIdManagementV4) GetApplication(getApplicationOptions *GetApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetApplication(getApplicationOptions *GetApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetApplicationWithContext(context.Background(), getApplicationOptions)
 }
 
 // GetApplicationWithContext is an alternate form of the GetApplication method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetApplicationWithContext(ctx context.Context, getApplicationOptions *GetApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetApplicationWithContext(ctx context.Context, getApplicationOptions *GetApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getApplicationOptions, "getApplicationOptions cannot be nil")
 	if err != nil {
 		return
@@ -371,12 +371,12 @@ func (appIdManagement *AppIdManagementV4) GetApplicationWithContext(ctx context.
 
 // UpdateApplication : Update application
 // Update an application registered with the App ID instance.
-func (appIdManagement *AppIdManagementV4) UpdateApplication(updateApplicationOptions *UpdateApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateApplication(updateApplicationOptions *UpdateApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateApplicationWithContext(context.Background(), updateApplicationOptions)
 }
 
 // UpdateApplicationWithContext is an alternate form of the UpdateApplication method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateApplicationWithContext(ctx context.Context, updateApplicationOptions *UpdateApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateApplicationWithContext(ctx context.Context, updateApplicationOptions *UpdateApplicationOptions) (result *Application, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateApplicationOptions, "updateApplicationOptions cannot be nil")
 	if err != nil {
 		return
@@ -442,12 +442,12 @@ func (appIdManagement *AppIdManagementV4) UpdateApplicationWithContext(ctx conte
 
 // DeleteApplication : Delete application
 // Delete an application registered with the App ID instance. Note: This action cannot be undone.
-func (appIdManagement *AppIdManagementV4) DeleteApplication(deleteApplicationOptions *DeleteApplicationOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) DeleteApplication(deleteApplicationOptions *DeleteApplicationOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.DeleteApplicationWithContext(context.Background(), deleteApplicationOptions)
 }
 
 // DeleteApplicationWithContext is an alternate form of the DeleteApplication method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) DeleteApplicationWithContext(ctx context.Context, deleteApplicationOptions *DeleteApplicationOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) DeleteApplicationWithContext(ctx context.Context, deleteApplicationOptions *DeleteApplicationOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(deleteApplicationOptions, "deleteApplicationOptions cannot be nil")
 	if err != nil {
 		return
@@ -491,12 +491,12 @@ func (appIdManagement *AppIdManagementV4) DeleteApplicationWithContext(ctx conte
 
 // GetApplicationScopes : Get application scopes
 // View the defined scopes for an application that is registered with an App ID instance.
-func (appIdManagement *AppIdManagementV4) GetApplicationScopes(getApplicationScopesOptions *GetApplicationScopesOptions) (result *GetScopesForApplication, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetApplicationScopes(getApplicationScopesOptions *GetApplicationScopesOptions) (result *GetScopesForApplication, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetApplicationScopesWithContext(context.Background(), getApplicationScopesOptions)
 }
 
 // GetApplicationScopesWithContext is an alternate form of the GetApplicationScopes method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetApplicationScopesWithContext(ctx context.Context, getApplicationScopesOptions *GetApplicationScopesOptions) (result *GetScopesForApplication, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetApplicationScopesWithContext(ctx context.Context, getApplicationScopesOptions *GetApplicationScopesOptions) (result *GetScopesForApplication, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getApplicationScopesOptions, "getApplicationScopesOptions cannot be nil")
 	if err != nil {
 		return
@@ -553,12 +553,12 @@ func (appIdManagement *AppIdManagementV4) GetApplicationScopesWithContext(ctx co
 // PutApplicationsScopes : Add application scope
 // Update the scopes for a registered application.</br> <b>Important</b>: Removing a scope from an array deletes it from
 // any roles that it is associated with and the action cannot be undone.
-func (appIdManagement *AppIdManagementV4) PutApplicationsScopes(putApplicationsScopesOptions *PutApplicationsScopesOptions) (result *GetScopesForApplication, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PutApplicationsScopes(putApplicationsScopesOptions *PutApplicationsScopesOptions) (result *GetScopesForApplication, response *core.DetailedResponse, err error) {
 	return appIdManagement.PutApplicationsScopesWithContext(context.Background(), putApplicationsScopesOptions)
 }
 
 // PutApplicationsScopesWithContext is an alternate form of the PutApplicationsScopes method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) PutApplicationsScopesWithContext(ctx context.Context, putApplicationsScopesOptions *PutApplicationsScopesOptions) (result *GetScopesForApplication, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PutApplicationsScopesWithContext(ctx context.Context, putApplicationsScopesOptions *PutApplicationsScopesOptions) (result *GetScopesForApplication, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(putApplicationsScopesOptions, "putApplicationsScopesOptions cannot be nil")
 	if err != nil {
 		return
@@ -624,12 +624,12 @@ func (appIdManagement *AppIdManagementV4) PutApplicationsScopesWithContext(ctx c
 
 // GetApplicationRoles : Get application roles
 // View the defined roles for an application that is registered with an App ID instance.
-func (appIdManagement *AppIdManagementV4) GetApplicationRoles(getApplicationRolesOptions *GetApplicationRolesOptions) (result *GetUserRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetApplicationRoles(getApplicationRolesOptions *GetApplicationRolesOptions) (result *GetUserRolesResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetApplicationRolesWithContext(context.Background(), getApplicationRolesOptions)
 }
 
 // GetApplicationRolesWithContext is an alternate form of the GetApplicationRoles method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetApplicationRolesWithContext(ctx context.Context, getApplicationRolesOptions *GetApplicationRolesOptions) (result *GetUserRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetApplicationRolesWithContext(ctx context.Context, getApplicationRolesOptions *GetApplicationRolesOptions) (result *GetUserRolesResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getApplicationRolesOptions, "getApplicationRolesOptions cannot be nil")
 	if err != nil {
 		return
@@ -685,12 +685,12 @@ func (appIdManagement *AppIdManagementV4) GetApplicationRolesWithContext(ctx con
 
 // PutApplicationsRoles : Add application role
 // Update the roles for a registered application.</br>.
-func (appIdManagement *AppIdManagementV4) PutApplicationsRoles(putApplicationsRolesOptions *PutApplicationsRolesOptions) (result *AssignRoleToUser, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PutApplicationsRoles(putApplicationsRolesOptions *PutApplicationsRolesOptions) (result *AssignRoleToUser, response *core.DetailedResponse, err error) {
 	return appIdManagement.PutApplicationsRolesWithContext(context.Background(), putApplicationsRolesOptions)
 }
 
 // PutApplicationsRolesWithContext is an alternate form of the PutApplicationsRoles method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) PutApplicationsRolesWithContext(ctx context.Context, putApplicationsRolesOptions *PutApplicationsRolesOptions) (result *AssignRoleToUser, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PutApplicationsRolesWithContext(ctx context.Context, putApplicationsRolesOptions *PutApplicationsRolesOptions) (result *AssignRoleToUser, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(putApplicationsRolesOptions, "putApplicationsRolesOptions cannot be nil")
 	if err != nil {
 		return
@@ -757,12 +757,12 @@ func (appIdManagement *AppIdManagementV4) PutApplicationsRolesWithContext(ctx co
 // ListCloudDirectoryUsers : List Cloud Directory users
 // Get the list of Cloud Directory users. <a href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) ListCloudDirectoryUsers(listCloudDirectoryUsersOptions *ListCloudDirectoryUsersOptions) (result *UsersList, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ListCloudDirectoryUsers(listCloudDirectoryUsersOptions *ListCloudDirectoryUsersOptions) (result *UsersList, response *core.DetailedResponse, err error) {
 	return appIdManagement.ListCloudDirectoryUsersWithContext(context.Background(), listCloudDirectoryUsersOptions)
 }
 
 // ListCloudDirectoryUsersWithContext is an alternate form of the ListCloudDirectoryUsers method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) ListCloudDirectoryUsersWithContext(ctx context.Context, listCloudDirectoryUsersOptions *ListCloudDirectoryUsersOptions) (result *UsersList, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ListCloudDirectoryUsersWithContext(ctx context.Context, listCloudDirectoryUsersOptions *ListCloudDirectoryUsersOptions) (result *UsersList, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(listCloudDirectoryUsersOptions, "listCloudDirectoryUsersOptions")
 	if err != nil {
 		return
@@ -826,12 +826,12 @@ func (appIdManagement *AppIdManagementV4) ListCloudDirectoryUsersWithContext(ctx
 // new Cloud Directory user use the  <a href="/swagger-ui/#/Management API - Cloud Directory Workflows/mgmt.startSignUp"
 // target="_blank">sign_up</a> API. <a href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) CreateCloudDirectoryUser(createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CreateCloudDirectoryUser(createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.CreateCloudDirectoryUserWithContext(context.Background(), createCloudDirectoryUserOptions)
 }
 
 // CreateCloudDirectoryUserWithContext is an alternate form of the CreateCloudDirectoryUser method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) CreateCloudDirectoryUserWithContext(ctx context.Context, createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CreateCloudDirectoryUserWithContext(ctx context.Context, createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(createCloudDirectoryUserOptions, "createCloudDirectoryUserOptions cannot be nil")
 	if err != nil {
 		return
@@ -895,12 +895,12 @@ func (appIdManagement *AppIdManagementV4) CreateCloudDirectoryUserWithContext(ct
 // GetCloudDirectoryUser : Get a Cloud Directory user
 // Returns the requested Cloud Directory user object. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryUser(getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryUser(getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.GetCloudDirectoryUserWithContext(context.Background(), getCloudDirectoryUserOptions)
 }
 
 // GetCloudDirectoryUserWithContext is an alternate form of the GetCloudDirectoryUser method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryUserWithContext(ctx context.Context, getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryUserWithContext(ctx context.Context, getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getCloudDirectoryUserOptions, "getCloudDirectoryUserOptions cannot be nil")
 	if err != nil {
 		return
@@ -946,12 +946,12 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryUserWithContext(ctx c
 // UpdateCloudDirectoryUser : Update a Cloud Directory user
 // Updates an existing Cloud Directory user. <a href="https://cloud.ibm.com/docs/appid?topic=appid-cd-users"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UpdateCloudDirectoryUser(updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateCloudDirectoryUser(updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateCloudDirectoryUserWithContext(context.Background(), updateCloudDirectoryUserOptions)
 }
 
 // UpdateCloudDirectoryUserWithContext is an alternate form of the UpdateCloudDirectoryUser method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateCloudDirectoryUserWithContext(ctx context.Context, updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateCloudDirectoryUserWithContext(ctx context.Context, updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateCloudDirectoryUserOptions, "updateCloudDirectoryUserOptions cannot be nil")
 	if err != nil {
 		return
@@ -1018,12 +1018,12 @@ func (appIdManagement *AppIdManagementV4) UpdateCloudDirectoryUserWithContext(ct
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-users" target="_blank">Learn more</a>.</br> To remove a Cloud
 // Directory user use the <a href="/swagger-ui/#/Management API - Cloud Directory Workflows/mgmt.cloud_directory_remove"
 // target="_blank">remove</a> API. </br> <b>Note: This action cannot be undone</b>.
-func (appIdManagement *AppIdManagementV4) DeleteCloudDirectoryUser(deleteCloudDirectoryUserOptions *DeleteCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) DeleteCloudDirectoryUser(deleteCloudDirectoryUserOptions *DeleteCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.DeleteCloudDirectoryUserWithContext(context.Background(), deleteCloudDirectoryUserOptions)
 }
 
 // DeleteCloudDirectoryUserWithContext is an alternate form of the DeleteCloudDirectoryUser method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) DeleteCloudDirectoryUserWithContext(ctx context.Context, deleteCloudDirectoryUserOptions *DeleteCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) DeleteCloudDirectoryUserWithContext(ctx context.Context, deleteCloudDirectoryUserOptions *DeleteCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(deleteCloudDirectoryUserOptions, "deleteCloudDirectoryUserOptions cannot be nil")
 	if err != nil {
 		return
@@ -1069,12 +1069,12 @@ func (appIdManagement *AppIdManagementV4) DeleteCloudDirectoryUserWithContext(ct
 // Invalidate all the user's SSO sessions. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-sso#ending-all-sessions-for-a-user" target="_blank">Learn
 // more</a>.
-func (appIdManagement *AppIdManagementV4) InvalidateUserSSOSessions(invalidateUserSSOSessionsOptions *InvalidateUserSSOSessionsOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) InvalidateUserSSOSessions(invalidateUserSSOSessionsOptions *InvalidateUserSSOSessionsOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.InvalidateUserSSOSessionsWithContext(context.Background(), invalidateUserSSOSessionsOptions)
 }
 
 // InvalidateUserSSOSessionsWithContext is an alternate form of the InvalidateUserSSOSessions method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) InvalidateUserSSOSessionsWithContext(ctx context.Context, invalidateUserSSOSessionsOptions *InvalidateUserSSOSessionsOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) InvalidateUserSSOSessionsWithContext(ctx context.Context, invalidateUserSSOSessionsOptions *InvalidateUserSSOSessionsOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(invalidateUserSSOSessionsOptions, "invalidateUserSSOSessionsOptions cannot be nil")
 	if err != nil {
 		return
@@ -1119,12 +1119,12 @@ func (appIdManagement *AppIdManagementV4) InvalidateUserSSOSessionsWithContext(c
 // CloudDirectoryExport : Export Cloud Directory users
 // Exports Cloud Directory users with their profile attributes and hashed passwords. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-users" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) CloudDirectoryExport(cloudDirectoryExportOptions *CloudDirectoryExportOptions) (result *ExportUser, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CloudDirectoryExport(cloudDirectoryExportOptions *CloudDirectoryExportOptions) (result *ExportUser, response *core.DetailedResponse, err error) {
 	return appIdManagement.CloudDirectoryExportWithContext(context.Background(), cloudDirectoryExportOptions)
 }
 
 // CloudDirectoryExportWithContext is an alternate form of the CloudDirectoryExport method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) CloudDirectoryExportWithContext(ctx context.Context, cloudDirectoryExportOptions *CloudDirectoryExportOptions) (result *ExportUser, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CloudDirectoryExportWithContext(ctx context.Context, cloudDirectoryExportOptions *CloudDirectoryExportOptions) (result *ExportUser, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(cloudDirectoryExportOptions, "cloudDirectoryExportOptions cannot be nil")
 	if err != nil {
 		return
@@ -1188,12 +1188,12 @@ func (appIdManagement *AppIdManagementV4) CloudDirectoryExportWithContext(ctx co
 // CloudDirectoryImport : Import Cloud Directory users
 // Imports Cloud Directory users list that was exported using the /export API. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-users" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) CloudDirectoryImport(cloudDirectoryImportOptions *CloudDirectoryImportOptions) (result *ImportResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CloudDirectoryImport(cloudDirectoryImportOptions *CloudDirectoryImportOptions) (result *ImportResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.CloudDirectoryImportWithContext(context.Background(), cloudDirectoryImportOptions)
 }
 
 // CloudDirectoryImportWithContext is an alternate form of the CloudDirectoryImport method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) CloudDirectoryImportWithContext(ctx context.Context, cloudDirectoryImportOptions *CloudDirectoryImportOptions) (result *ImportResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CloudDirectoryImportWithContext(ctx context.Context, cloudDirectoryImportOptions *CloudDirectoryImportOptions) (result *ImportResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(cloudDirectoryImportOptions, "cloudDirectoryImportOptions cannot be nil")
 	if err != nil {
 		return
@@ -1261,12 +1261,12 @@ func (appIdManagement *AppIdManagementV4) CloudDirectoryImportWithContext(ctx co
 // CloudDirectoryGetUserinfo : Get Cloud Directory SCIM and Attributes
 // Returns the Cloud Directory user SCIM and the Profile related to it. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-users" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptions *CloudDirectoryGetUserinfoOptions) (result *GetUserAndProfile, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptions *CloudDirectoryGetUserinfoOptions) (result *GetUserAndProfile, response *core.DetailedResponse, err error) {
 	return appIdManagement.CloudDirectoryGetUserinfoWithContext(context.Background(), cloudDirectoryGetUserinfoOptions)
 }
 
 // CloudDirectoryGetUserinfoWithContext is an alternate form of the CloudDirectoryGetUserinfo method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) CloudDirectoryGetUserinfoWithContext(ctx context.Context, cloudDirectoryGetUserinfoOptions *CloudDirectoryGetUserinfoOptions) (result *GetUserAndProfile, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CloudDirectoryGetUserinfoWithContext(ctx context.Context, cloudDirectoryGetUserinfoOptions *CloudDirectoryGetUserinfoOptions) (result *GetUserAndProfile, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(cloudDirectoryGetUserinfoOptions, "cloudDirectoryGetUserinfoOptions cannot be nil")
 	if err != nil {
 		return
@@ -1323,12 +1323,12 @@ func (appIdManagement *AppIdManagementV4) CloudDirectoryGetUserinfoWithContext(c
 // StartSignUp : Sign up
 // Start the sign up process <a href="https://cloud.ibm.com/docs/appid?topic=appid-branded" target="_blank">Learn
 // more</a>.
-func (appIdManagement *AppIdManagementV4) StartSignUp(startSignUpOptions *StartSignUpOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) StartSignUp(startSignUpOptions *StartSignUpOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.StartSignUpWithContext(context.Background(), startSignUpOptions)
 }
 
 // StartSignUpWithContext is an alternate form of the StartSignUp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) StartSignUpWithContext(ctx context.Context, startSignUpOptions *StartSignUpOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) StartSignUpWithContext(ctx context.Context, startSignUpOptions *StartSignUpOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(startSignUpOptions, "startSignUpOptions cannot be nil")
 	if err != nil {
 		return
@@ -1397,12 +1397,12 @@ func (appIdManagement *AppIdManagementV4) StartSignUpWithContext(ctx context.Con
 // UserVerificationResult : Get signup confirmation result
 // Returns the sign up confirmation result. <a href="https://cloud.ibm.com/docs/appid?topic=appid-branded"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UserVerificationResult(userVerificationResultOptions *UserVerificationResultOptions) (result *ConfirmationResultOK, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UserVerificationResult(userVerificationResultOptions *UserVerificationResultOptions) (result *ConfirmationResultOk, response *core.DetailedResponse, err error) {
 	return appIdManagement.UserVerificationResultWithContext(context.Background(), userVerificationResultOptions)
 }
 
 // UserVerificationResultWithContext is an alternate form of the UserVerificationResult method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UserVerificationResultWithContext(ctx context.Context, userVerificationResultOptions *UserVerificationResultOptions) (result *ConfirmationResultOK, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UserVerificationResultWithContext(ctx context.Context, userVerificationResultOptions *UserVerificationResultOptions) (result *ConfirmationResultOk, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(userVerificationResultOptions, "userVerificationResultOptions cannot be nil")
 	if err != nil {
 		return
@@ -1455,7 +1455,7 @@ func (appIdManagement *AppIdManagementV4) UserVerificationResultWithContext(ctx 
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalConfirmationResultOK)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalConfirmationResultOk)
 		if err != nil {
 			return
 		}
@@ -1468,12 +1468,12 @@ func (appIdManagement *AppIdManagementV4) UserVerificationResultWithContext(ctx 
 // StartForgotPassword : Forgot password
 // Starts the forgot password process. <a href="https://cloud.ibm.com/docs/appid?topic=appid-branded"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) StartForgotPassword(startForgotPasswordOptions *StartForgotPasswordOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) StartForgotPassword(startForgotPasswordOptions *StartForgotPasswordOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.StartForgotPasswordWithContext(context.Background(), startForgotPasswordOptions)
 }
 
 // StartForgotPasswordWithContext is an alternate form of the StartForgotPassword method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) StartForgotPasswordWithContext(ctx context.Context, startForgotPasswordOptions *StartForgotPasswordOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) StartForgotPasswordWithContext(ctx context.Context, startForgotPasswordOptions *StartForgotPasswordOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(startForgotPasswordOptions, "startForgotPasswordOptions cannot be nil")
 	if err != nil {
 		return
@@ -1532,12 +1532,12 @@ func (appIdManagement *AppIdManagementV4) StartForgotPasswordWithContext(ctx con
 // ForgotPasswordResult : Forgot password confirmation result
 // Returns the forgot password flow confirmation result. <a href="https://cloud.ibm.com/docs/appid?topic=appid-branded"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) ForgotPasswordResult(forgotPasswordResultOptions *ForgotPasswordResultOptions) (result *ConfirmationResultOK, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ForgotPasswordResult(forgotPasswordResultOptions *ForgotPasswordResultOptions) (result *ConfirmationResultOk, response *core.DetailedResponse, err error) {
 	return appIdManagement.ForgotPasswordResultWithContext(context.Background(), forgotPasswordResultOptions)
 }
 
 // ForgotPasswordResultWithContext is an alternate form of the ForgotPasswordResult method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) ForgotPasswordResultWithContext(ctx context.Context, forgotPasswordResultOptions *ForgotPasswordResultOptions) (result *ConfirmationResultOK, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ForgotPasswordResultWithContext(ctx context.Context, forgotPasswordResultOptions *ForgotPasswordResultOptions) (result *ConfirmationResultOk, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(forgotPasswordResultOptions, "forgotPasswordResultOptions cannot be nil")
 	if err != nil {
 		return
@@ -1590,7 +1590,7 @@ func (appIdManagement *AppIdManagementV4) ForgotPasswordResultWithContext(ctx co
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalConfirmationResultOK)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalConfirmationResultOk)
 		if err != nil {
 			return
 		}
@@ -1603,12 +1603,12 @@ func (appIdManagement *AppIdManagementV4) ForgotPasswordResultWithContext(ctx co
 // ChangePassword : Change password
 // Changes the Cloud Directory user password. <a href="https://cloud.ibm.com/docs/appid?topic=appid-branded"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) ChangePassword(changePasswordOptions *ChangePasswordOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ChangePassword(changePasswordOptions *ChangePasswordOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.ChangePasswordWithContext(context.Background(), changePasswordOptions)
 }
 
 // ChangePasswordWithContext is an alternate form of the ChangePassword method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) ChangePasswordWithContext(ctx context.Context, changePasswordOptions *ChangePasswordOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ChangePasswordWithContext(ctx context.Context, changePasswordOptions *ChangePasswordOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(changePasswordOptions, "changePasswordOptions cannot be nil")
 	if err != nil {
 		return
@@ -1652,8 +1652,8 @@ func (appIdManagement *AppIdManagementV4) ChangePasswordWithContext(ctx context.
 	if changePasswordOptions.UUID != nil {
 		body["uuid"] = changePasswordOptions.UUID
 	}
-	if changePasswordOptions.ChangedIpAddress != nil {
-		body["changedIpAddress"] = changePasswordOptions.ChangedIpAddress
+	if changePasswordOptions.ChangedIPAddress != nil {
+		body["changedIpAddress"] = changePasswordOptions.ChangedIPAddress
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -1673,12 +1673,12 @@ func (appIdManagement *AppIdManagementV4) ChangePasswordWithContext(ctx context.
 // ResendNotification : Resend user notifications
 // Resend user email notifications (e.g. resend user verification email). <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-branded" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) ResendNotification(resendNotificationOptions *ResendNotificationOptions) (result *ResendNotificationResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ResendNotification(resendNotificationOptions *ResendNotificationOptions) (result *ResendNotificationResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.ResendNotificationWithContext(context.Background(), resendNotificationOptions)
 }
 
 // ResendNotificationWithContext is an alternate form of the ResendNotification method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) ResendNotificationWithContext(ctx context.Context, resendNotificationOptions *ResendNotificationOptions) (result *ResendNotificationResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ResendNotificationWithContext(ctx context.Context, resendNotificationOptions *ResendNotificationOptions) (result *ResendNotificationResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(resendNotificationOptions, "resendNotificationOptions cannot be nil")
 	if err != nil {
 		return
@@ -1750,12 +1750,12 @@ func (appIdManagement *AppIdManagementV4) ResendNotificationWithContext(ctx cont
 // Deletes an existing Cloud Directory user and the Profile related to it. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-users" target="_blank">Learn more</a>. <b>Note: This action
 // cannot be undone</b>.
-func (appIdManagement *AppIdManagementV4) CloudDirectoryRemove(cloudDirectoryRemoveOptions *CloudDirectoryRemoveOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CloudDirectoryRemove(cloudDirectoryRemoveOptions *CloudDirectoryRemoveOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.CloudDirectoryRemoveWithContext(context.Background(), cloudDirectoryRemoveOptions)
 }
 
 // CloudDirectoryRemoveWithContext is an alternate form of the CloudDirectoryRemove method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) CloudDirectoryRemoveWithContext(ctx context.Context, cloudDirectoryRemoveOptions *CloudDirectoryRemoveOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CloudDirectoryRemoveWithContext(ctx context.Context, cloudDirectoryRemoveOptions *CloudDirectoryRemoveOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(cloudDirectoryRemoveOptions, "cloudDirectoryRemoveOptions cannot be nil")
 	if err != nil {
 		return
@@ -1800,12 +1800,12 @@ func (appIdManagement *AppIdManagementV4) CloudDirectoryRemoveWithContext(ctx co
 // GetTokensConfig : Get tokens configuration
 // Returns the token configuration. <a href="https://cloud.ibm.com/docs/appid?topic=appid-key-concepts"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetTokensConfig(getTokensConfigOptions *GetTokensConfigOptions) (result *TokensConfigResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetTokensConfig(getTokensConfigOptions *GetTokensConfigOptions) (result *TokensConfigResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetTokensConfigWithContext(context.Background(), getTokensConfigOptions)
 }
 
 // GetTokensConfigWithContext is an alternate form of the GetTokensConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetTokensConfigWithContext(ctx context.Context, getTokensConfigOptions *GetTokensConfigOptions) (result *TokensConfigResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetTokensConfigWithContext(ctx context.Context, getTokensConfigOptions *GetTokensConfigOptions) (result *TokensConfigResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getTokensConfigOptions, "getTokensConfigOptions")
 	if err != nil {
 		return
@@ -1859,12 +1859,12 @@ func (appIdManagement *AppIdManagementV4) GetTokensConfigWithContext(ctx context
 // enable/disable refresh and anonymous tokens, and to configure custom claims. When a token config object is not
 // included in the set, its value will be reset back to default. <br> For more information, check out the <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-key-concepts" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) PutTokensConfig(putTokensConfigOptions *PutTokensConfigOptions) (result *TokensConfigResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PutTokensConfig(putTokensConfigOptions *PutTokensConfigOptions) (result *TokensConfigResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.PutTokensConfigWithContext(context.Background(), putTokensConfigOptions)
 }
 
 // PutTokensConfigWithContext is an alternate form of the PutTokensConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) PutTokensConfigWithContext(ctx context.Context, putTokensConfigOptions *PutTokensConfigOptions) (result *TokensConfigResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PutTokensConfigWithContext(ctx context.Context, putTokensConfigOptions *PutTokensConfigOptions) (result *TokensConfigResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(putTokensConfigOptions, "putTokensConfigOptions cannot be nil")
 	if err != nil {
 		return
@@ -1898,8 +1898,8 @@ func (appIdManagement *AppIdManagementV4) PutTokensConfigWithContext(ctx context
 	builder.AddHeader("Content-Type", "application/json")
 
 	body := make(map[string]interface{})
-	if putTokensConfigOptions.IdTokenClaims != nil {
-		body["idTokenClaims"] = putTokensConfigOptions.IdTokenClaims
+	if putTokensConfigOptions.IDTokenClaims != nil {
+		body["idTokenClaims"] = putTokensConfigOptions.IDTokenClaims
 	}
 	if putTokensConfigOptions.AccessTokenClaims != nil {
 		body["accessTokenClaims"] = putTokensConfigOptions.AccessTokenClaims
@@ -1942,12 +1942,12 @@ func (appIdManagement *AppIdManagementV4) PutTokensConfigWithContext(ctx context
 // GetRedirectUris : Get redirect URIs
 // Returns the list of the redirect URIs that can be used as callbacks of App ID authentication flow. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-managing-idp#add-redirect-uri" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetRedirectUris(getRedirectUrisOptions *GetRedirectUrisOptions) (result *RedirectUriResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetRedirectUris(getRedirectUrisOptions *GetRedirectUrisOptions) (result *RedirectURIResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetRedirectUrisWithContext(context.Background(), getRedirectUrisOptions)
 }
 
 // GetRedirectUrisWithContext is an alternate form of the GetRedirectUris method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetRedirectUrisWithContext(ctx context.Context, getRedirectUrisOptions *GetRedirectUrisOptions) (result *RedirectUriResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetRedirectUrisWithContext(ctx context.Context, getRedirectUrisOptions *GetRedirectUrisOptions) (result *RedirectURIResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getRedirectUrisOptions, "getRedirectUrisOptions")
 	if err != nil {
 		return
@@ -1986,7 +1986,7 @@ func (appIdManagement *AppIdManagementV4) GetRedirectUrisWithContext(ctx context
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRedirectUriResponse)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRedirectURIResponse)
 		if err != nil {
 			return
 		}
@@ -1999,12 +1999,12 @@ func (appIdManagement *AppIdManagementV4) GetRedirectUrisWithContext(ctx context
 // UpdateRedirectUris : Update redirect URIs
 // Update the list of the redirect URIs that can be used as callbacks of App ID authentication flow. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-managing-idp#add-redirect-uri" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UpdateRedirectUris(updateRedirectUrisOptions *UpdateRedirectUrisOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateRedirectUris(updateRedirectUrisOptions *UpdateRedirectUrisOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateRedirectUrisWithContext(context.Background(), updateRedirectUrisOptions)
 }
 
 // UpdateRedirectUrisWithContext is an alternate form of the UpdateRedirectUris method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateRedirectUrisWithContext(ctx context.Context, updateRedirectUrisOptions *UpdateRedirectUrisOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateRedirectUrisWithContext(ctx context.Context, updateRedirectUrisOptions *UpdateRedirectUrisOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateRedirectUrisOptions, "updateRedirectUrisOptions cannot be nil")
 	if err != nil {
 		return
@@ -2055,12 +2055,12 @@ func (appIdManagement *AppIdManagementV4) UpdateRedirectUrisWithContext(ctx cont
 // A user profile is an entity that is stored and maintained by App ID. The profile holds a user's attributes and
 // identity. It can be anonymous or linked to an identity that is managed by an identity provider. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-profiles" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetUserProfilesConfig(getUserProfilesConfigOptions *GetUserProfilesConfigOptions) (result *GetUserProfilesConfigResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetUserProfilesConfig(getUserProfilesConfigOptions *GetUserProfilesConfigOptions) (result *GetUserProfilesConfigResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetUserProfilesConfigWithContext(context.Background(), getUserProfilesConfigOptions)
 }
 
 // GetUserProfilesConfigWithContext is an alternate form of the GetUserProfilesConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetUserProfilesConfigWithContext(ctx context.Context, getUserProfilesConfigOptions *GetUserProfilesConfigOptions) (result *GetUserProfilesConfigResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetUserProfilesConfigWithContext(ctx context.Context, getUserProfilesConfigOptions *GetUserProfilesConfigOptions) (result *GetUserProfilesConfigResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getUserProfilesConfigOptions, "getUserProfilesConfigOptions")
 	if err != nil {
 		return
@@ -2113,12 +2113,12 @@ func (appIdManagement *AppIdManagementV4) GetUserProfilesConfigWithContext(ctx c
 // A user profile is an entity that is stored and maintained by App ID. The profile holds a user's attributes and
 // identity. It can be anonymous or linked to an identity that is managed by an identity provider. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-profiles" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UpdateUserProfilesConfig(updateUserProfilesConfigOptions *UpdateUserProfilesConfigOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateUserProfilesConfig(updateUserProfilesConfigOptions *UpdateUserProfilesConfigOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateUserProfilesConfigWithContext(context.Background(), updateUserProfilesConfigOptions)
 }
 
 // UpdateUserProfilesConfigWithContext is an alternate form of the UpdateUserProfilesConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateUserProfilesConfigWithContext(ctx context.Context, updateUserProfilesConfigOptions *UpdateUserProfilesConfigOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateUserProfilesConfigWithContext(ctx context.Context, updateUserProfilesConfigOptions *UpdateUserProfilesConfigOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateUserProfilesConfigOptions, "updateUserProfilesConfigOptions cannot be nil")
 	if err != nil {
 		return
@@ -2172,12 +2172,12 @@ func (appIdManagement *AppIdManagementV4) UpdateUserProfilesConfigWithContext(ct
 // GetThemeText : Get widget texts
 // Get the theme texts of the App ID login widget. <a href="https://cloud.ibm.com/docs/appid?topic=appid-login-widget"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetThemeText(getThemeTextOptions *GetThemeTextOptions) (result *GetThemeTextResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetThemeText(getThemeTextOptions *GetThemeTextOptions) (result *GetThemeTextResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetThemeTextWithContext(context.Background(), getThemeTextOptions)
 }
 
 // GetThemeTextWithContext is an alternate form of the GetThemeText method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetThemeTextWithContext(ctx context.Context, getThemeTextOptions *GetThemeTextOptions) (result *GetThemeTextResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetThemeTextWithContext(ctx context.Context, getThemeTextOptions *GetThemeTextOptions) (result *GetThemeTextResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getThemeTextOptions, "getThemeTextOptions")
 	if err != nil {
 		return
@@ -2229,12 +2229,12 @@ func (appIdManagement *AppIdManagementV4) GetThemeTextWithContext(ctx context.Co
 // PostThemeText : Update widget texts
 // Update the texts of the App ID login widget. <a href="https://cloud.ibm.com/docs/appid?topic=appid-login-widget"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) PostThemeText(postThemeTextOptions *PostThemeTextOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PostThemeText(postThemeTextOptions *PostThemeTextOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.PostThemeTextWithContext(context.Background(), postThemeTextOptions)
 }
 
 // PostThemeTextWithContext is an alternate form of the PostThemeText method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) PostThemeTextWithContext(ctx context.Context, postThemeTextOptions *PostThemeTextOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PostThemeTextWithContext(ctx context.Context, postThemeTextOptions *PostThemeTextOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(postThemeTextOptions, "postThemeTextOptions cannot be nil")
 	if err != nil {
 		return
@@ -2291,12 +2291,12 @@ func (appIdManagement *AppIdManagementV4) PostThemeTextWithContext(ctx context.C
 // GetThemeColor : Get widget colors
 // Get the colors of the App ID login widget. <a href="https://cloud.ibm.com/docs/appid?topic=appid-login-widget"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetThemeColor(getThemeColorOptions *GetThemeColorOptions) (result *GetThemeColorResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetThemeColor(getThemeColorOptions *GetThemeColorOptions) (result *GetThemeColorResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetThemeColorWithContext(context.Background(), getThemeColorOptions)
 }
 
 // GetThemeColorWithContext is an alternate form of the GetThemeColor method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetThemeColorWithContext(ctx context.Context, getThemeColorOptions *GetThemeColorOptions) (result *GetThemeColorResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetThemeColorWithContext(ctx context.Context, getThemeColorOptions *GetThemeColorOptions) (result *GetThemeColorResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getThemeColorOptions, "getThemeColorOptions")
 	if err != nil {
 		return
@@ -2348,12 +2348,12 @@ func (appIdManagement *AppIdManagementV4) GetThemeColorWithContext(ctx context.C
 // PostThemeColor : Update widget colors
 // Update the colors of the App ID login widget. <a href="https://cloud.ibm.com/docs/appid?topic=appid-login-widget"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) PostThemeColor(postThemeColorOptions *PostThemeColorOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PostThemeColor(postThemeColorOptions *PostThemeColorOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.PostThemeColorWithContext(context.Background(), postThemeColorOptions)
 }
 
 // PostThemeColorWithContext is an alternate form of the PostThemeColor method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) PostThemeColorWithContext(ctx context.Context, postThemeColorOptions *PostThemeColorOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PostThemeColorWithContext(ctx context.Context, postThemeColorOptions *PostThemeColorOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(postThemeColorOptions, "postThemeColorOptions cannot be nil")
 	if err != nil {
 		return
@@ -2407,12 +2407,12 @@ func (appIdManagement *AppIdManagementV4) PostThemeColorWithContext(ctx context.
 // GetMedia : Get widget logo
 // Returns the link to the custom logo image of the login widget. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-login-widget" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetMedia(getMediaOptions *GetMediaOptions) (result *GetMediaResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetMedia(getMediaOptions *GetMediaOptions) (result *GetMediaResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetMediaWithContext(context.Background(), getMediaOptions)
 }
 
 // GetMediaWithContext is an alternate form of the GetMedia method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetMediaWithContext(ctx context.Context, getMediaOptions *GetMediaOptions) (result *GetMediaResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetMediaWithContext(ctx context.Context, getMediaOptions *GetMediaOptions) (result *GetMediaResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getMediaOptions, "getMediaOptions")
 	if err != nil {
 		return
@@ -2464,12 +2464,12 @@ func (appIdManagement *AppIdManagementV4) GetMediaWithContext(ctx context.Contex
 // PostMedia : Update widget logo
 // You can update the image file shown in the login widget. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-login-widget" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) PostMedia(postMediaOptions *PostMediaOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PostMedia(postMediaOptions *PostMediaOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.PostMediaWithContext(context.Background(), postMediaOptions)
 }
 
 // PostMediaWithContext is an alternate form of the PostMedia method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) PostMediaWithContext(ctx context.Context, postMediaOptions *PostMediaOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PostMediaWithContext(ctx context.Context, postMediaOptions *PostMediaOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(postMediaOptions, "postMediaOptions cannot be nil")
 	if err != nil {
 		return
@@ -2518,12 +2518,12 @@ func (appIdManagement *AppIdManagementV4) PostMediaWithContext(ctx context.Conte
 // GetSAMLMetadata : Get the SAML metadata
 // Returns the SAML metadata required in order to integrate App ID with a SAML identity provider. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-enterprise" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetSAMLMetadata(getSAMLMetadataOptions *GetSAMLMetadataOptions) (result *string, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetSAMLMetadata(getSAMLMetadataOptions *GetSAMLMetadataOptions) (result *string, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetSAMLMetadataWithContext(context.Background(), getSAMLMetadataOptions)
 }
 
 // GetSAMLMetadataWithContext is an alternate form of the GetSAMLMetadata method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetSAMLMetadataWithContext(ctx context.Context, getSAMLMetadataOptions *GetSAMLMetadataOptions) (result *string, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetSAMLMetadataWithContext(ctx context.Context, getSAMLMetadataOptions *GetSAMLMetadataOptions) (result *string, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getSAMLMetadataOptions, "getSAMLMetadataOptions")
 	if err != nil {
 		return
@@ -2564,12 +2564,12 @@ func (appIdManagement *AppIdManagementV4) GetSAMLMetadataWithContext(ctx context
 // GetTemplate : Get an email template
 // Returns the content of a custom email template or the default template in case it wasn't customized. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-types" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetTemplate(getTemplateOptions *GetTemplateOptions) (result *GetTemplate, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetTemplate(getTemplateOptions *GetTemplateOptions) (result *GetTemplate, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetTemplateWithContext(context.Background(), getTemplateOptions)
 }
 
 // GetTemplateWithContext is an alternate form of the GetTemplate method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetTemplateWithContext(ctx context.Context, getTemplateOptions *GetTemplateOptions) (result *GetTemplate, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetTemplateWithContext(ctx context.Context, getTemplateOptions *GetTemplateOptions) (result *GetTemplate, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getTemplateOptions, "getTemplateOptions cannot be nil")
 	if err != nil {
 		return
@@ -2627,12 +2627,12 @@ func (appIdManagement *AppIdManagementV4) GetTemplateWithContext(ctx context.Con
 // UpdateTemplate : Update an email template
 // Updates the Cloud Directory email template. <a href="https://cloud.ibm.com/docs/appid?topic=appid-cd-types"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UpdateTemplate(updateTemplateOptions *UpdateTemplateOptions) (result *GetTemplate, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateTemplate(updateTemplateOptions *UpdateTemplateOptions) (result *GetTemplate, response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateTemplateWithContext(context.Background(), updateTemplateOptions)
 }
 
 // UpdateTemplateWithContext is an alternate form of the UpdateTemplate method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateTemplateWithContext(ctx context.Context, updateTemplateOptions *UpdateTemplateOptions) (result *GetTemplate, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateTemplateWithContext(ctx context.Context, updateTemplateOptions *UpdateTemplateOptions) (result *GetTemplate, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateTemplateOptions, "updateTemplateOptions cannot be nil")
 	if err != nil {
 		return
@@ -2709,12 +2709,12 @@ func (appIdManagement *AppIdManagementV4) UpdateTemplateWithContext(ctx context.
 // DeleteTemplate : Delete an email template
 // Delete the customized email template and reverts to App ID default template. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-users" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) DeleteTemplate(deleteTemplateOptions *DeleteTemplateOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) DeleteTemplate(deleteTemplateOptions *DeleteTemplateOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.DeleteTemplateWithContext(context.Background(), deleteTemplateOptions)
 }
 
 // DeleteTemplateWithContext is an alternate form of the DeleteTemplate method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) DeleteTemplateWithContext(ctx context.Context, deleteTemplateOptions *DeleteTemplateOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) DeleteTemplateWithContext(ctx context.Context, deleteTemplateOptions *DeleteTemplateOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(deleteTemplateOptions, "deleteTemplateOptions cannot be nil")
 	if err != nil {
 		return
@@ -2759,12 +2759,12 @@ func (appIdManagement *AppIdManagementV4) DeleteTemplateWithContext(ctx context.
 
 // GetLocalization : Get languages
 // Returns the list of languages that can be used to customize email templates for Cloud Directory.
-func (appIdManagement *AppIdManagementV4) GetLocalization(getLocalizationOptions *GetLocalizationOptions) (result *GetLanguages, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetLocalization(getLocalizationOptions *GetLocalizationOptions) (result *GetLanguages, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetLocalizationWithContext(context.Background(), getLocalizationOptions)
 }
 
 // GetLocalizationWithContext is an alternate form of the GetLocalization method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetLocalizationWithContext(ctx context.Context, getLocalizationOptions *GetLocalizationOptions) (result *GetLanguages, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetLocalizationWithContext(ctx context.Context, getLocalizationOptions *GetLocalizationOptions) (result *GetLanguages, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getLocalizationOptions, "getLocalizationOptions")
 	if err != nil {
 		return
@@ -2815,12 +2815,12 @@ func (appIdManagement *AppIdManagementV4) GetLocalizationWithContext(ctx context
 
 // UpdateLocalization : Update languages
 // Update the list of languages that can be used to customize email templates for Cloud Directory.
-func (appIdManagement *AppIdManagementV4) UpdateLocalization(updateLocalizationOptions *UpdateLocalizationOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateLocalization(updateLocalizationOptions *UpdateLocalizationOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateLocalizationWithContext(context.Background(), updateLocalizationOptions)
 }
 
 // UpdateLocalizationWithContext is an alternate form of the UpdateLocalization method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateLocalizationWithContext(ctx context.Context, updateLocalizationOptions *UpdateLocalizationOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateLocalizationWithContext(ctx context.Context, updateLocalizationOptions *UpdateLocalizationOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(updateLocalizationOptions, "updateLocalizationOptions")
 	if err != nil {
 		return
@@ -2870,12 +2870,12 @@ func (appIdManagement *AppIdManagementV4) UpdateLocalizationWithContext(ctx cont
 // GetCloudDirectorySenderDetails : Get sender details
 // Returns the sender details configuration that is used by Cloud Directory when sending emails. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-types" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptions *GetCloudDirectorySenderDetailsOptions) (result *CloudDirectorySenderDetails, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptions *GetCloudDirectorySenderDetailsOptions) (result *CloudDirectorySenderDetails, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetCloudDirectorySenderDetailsWithContext(context.Background(), getCloudDirectorySenderDetailsOptions)
 }
 
 // GetCloudDirectorySenderDetailsWithContext is an alternate form of the GetCloudDirectorySenderDetails method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetCloudDirectorySenderDetailsWithContext(ctx context.Context, getCloudDirectorySenderDetailsOptions *GetCloudDirectorySenderDetailsOptions) (result *CloudDirectorySenderDetails, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectorySenderDetailsWithContext(ctx context.Context, getCloudDirectorySenderDetailsOptions *GetCloudDirectorySenderDetailsOptions) (result *CloudDirectorySenderDetails, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getCloudDirectorySenderDetailsOptions, "getCloudDirectorySenderDetailsOptions")
 	if err != nil {
 		return
@@ -2927,12 +2927,12 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectorySenderDetailsWithCont
 // SetCloudDirectorySenderDetails : Update the sender details
 // Updates the sender details configuration that is used by Cloud Directory when sending emails. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-types" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetCloudDirectorySenderDetails(setCloudDirectorySenderDetailsOptions *SetCloudDirectorySenderDetailsOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectorySenderDetails(setCloudDirectorySenderDetailsOptions *SetCloudDirectorySenderDetailsOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.SetCloudDirectorySenderDetailsWithContext(context.Background(), setCloudDirectorySenderDetailsOptions)
 }
 
 // SetCloudDirectorySenderDetailsWithContext is an alternate form of the SetCloudDirectorySenderDetails method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetCloudDirectorySenderDetailsWithContext(ctx context.Context, setCloudDirectorySenderDetailsOptions *SetCloudDirectorySenderDetailsOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectorySenderDetailsWithContext(ctx context.Context, setCloudDirectorySenderDetailsOptions *SetCloudDirectorySenderDetailsOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setCloudDirectorySenderDetailsOptions, "setCloudDirectorySenderDetailsOptions cannot be nil")
 	if err != nil {
 		return
@@ -2986,24 +2986,24 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectorySenderDetailsWithCont
 // GetCloudDirectoryActionURL : Get action url
 // Get the custom url to redirect to when <b>action</b> is executed. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryActionURL(getCloudDirectoryActionUrlOptions *GetCloudDirectoryActionUrlOptions) (result *ActionUrlResponse, response *core.DetailedResponse, err error) {
-	return appIdManagement.GetCloudDirectoryActionURLWithContext(context.Background(), getCloudDirectoryActionUrlOptions)
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptions *GetCloudDirectoryActionURLOptions) (result *ActionURLResponse, response *core.DetailedResponse, err error) {
+	return appIdManagement.GetCloudDirectoryActionURLWithContext(context.Background(), getCloudDirectoryActionURLOptions)
 }
 
 // GetCloudDirectoryActionURLWithContext is an alternate form of the GetCloudDirectoryActionURL method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryActionURLWithContext(ctx context.Context, getCloudDirectoryActionUrlOptions *GetCloudDirectoryActionUrlOptions) (result *ActionUrlResponse, response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(getCloudDirectoryActionUrlOptions, "getCloudDirectoryActionUrlOptions cannot be nil")
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryActionURLWithContext(ctx context.Context, getCloudDirectoryActionURLOptions *GetCloudDirectoryActionURLOptions) (result *ActionURLResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getCloudDirectoryActionURLOptions, "getCloudDirectoryActionURLOptions cannot be nil")
 	if err != nil {
 		return
 	}
-	err = core.ValidateStruct(getCloudDirectoryActionUrlOptions, "getCloudDirectoryActionUrlOptions")
+	err = core.ValidateStruct(getCloudDirectoryActionURLOptions, "getCloudDirectoryActionURLOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"action": *getCloudDirectoryActionUrlOptions.Action,
+		"action": *getCloudDirectoryActionURLOptions.Action,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -3014,7 +3014,7 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryActionURLWithContext(
 		return
 	}
 
-	for headerName, headerValue := range getCloudDirectoryActionUrlOptions.Headers {
+	for headerName, headerValue := range getCloudDirectoryActionURLOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
@@ -3035,7 +3035,7 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryActionURLWithContext(
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalActionUrlResponse)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalActionURLResponse)
 		if err != nil {
 			return
 		}
@@ -3048,12 +3048,12 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryActionURLWithContext(
 // SetCloudDirectoryAction : Update action url
 // Updates the custom url to redirect to when <b>action</b> is executed. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryAction(setCloudDirectoryActionOptions *SetCloudDirectoryActionOptions) (result *ActionUrlResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectoryAction(setCloudDirectoryActionOptions *SetCloudDirectoryActionOptions) (result *ActionURLResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.SetCloudDirectoryActionWithContext(context.Background(), setCloudDirectoryActionOptions)
 }
 
 // SetCloudDirectoryActionWithContext is an alternate form of the SetCloudDirectoryAction method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryActionWithContext(ctx context.Context, setCloudDirectoryActionOptions *SetCloudDirectoryActionOptions) (result *ActionUrlResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectoryActionWithContext(ctx context.Context, setCloudDirectoryActionOptions *SetCloudDirectoryActionOptions) (result *ActionURLResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setCloudDirectoryActionOptions, "setCloudDirectoryActionOptions cannot be nil")
 	if err != nil {
 		return
@@ -3107,7 +3107,7 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryActionWithContext(ctx
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalActionUrlResponse)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalActionURLResponse)
 		if err != nil {
 			return
 		}
@@ -3120,24 +3120,24 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryActionWithContext(ctx
 // DeleteActionURL : Delete action url
 // Delete the custom url to redirect to when <b>action</b> is executed. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) DeleteActionURL(deleteActionUrlOptions *DeleteActionUrlOptions) (response *core.DetailedResponse, err error) {
-	return appIdManagement.DeleteActionURLWithContext(context.Background(), deleteActionUrlOptions)
+func (appIdManagement *AppIDManagementV4) DeleteActionURL(deleteActionURLOptions *DeleteActionURLOptions) (response *core.DetailedResponse, err error) {
+	return appIdManagement.DeleteActionURLWithContext(context.Background(), deleteActionURLOptions)
 }
 
 // DeleteActionURLWithContext is an alternate form of the DeleteActionURL method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) DeleteActionURLWithContext(ctx context.Context, deleteActionUrlOptions *DeleteActionUrlOptions) (response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(deleteActionUrlOptions, "deleteActionUrlOptions cannot be nil")
+func (appIdManagement *AppIDManagementV4) DeleteActionURLWithContext(ctx context.Context, deleteActionURLOptions *DeleteActionURLOptions) (response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(deleteActionURLOptions, "deleteActionURLOptions cannot be nil")
 	if err != nil {
 		return
 	}
-	err = core.ValidateStruct(deleteActionUrlOptions, "deleteActionUrlOptions")
+	err = core.ValidateStruct(deleteActionURLOptions, "deleteActionURLOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"action": *deleteActionUrlOptions.Action,
+		"action": *deleteActionURLOptions.Action,
 	}
 
 	builder := core.NewRequestBuilder(core.DELETE)
@@ -3148,7 +3148,7 @@ func (appIdManagement *AppIdManagementV4) DeleteActionURLWithContext(ctx context
 		return
 	}
 
-	for headerName, headerValue := range deleteActionUrlOptions.Headers {
+	for headerName, headerValue := range deleteActionURLOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
@@ -3170,12 +3170,12 @@ func (appIdManagement *AppIdManagementV4) DeleteActionURLWithContext(ctx context
 // GetCloudDirectoryPasswordRegex : Get password regex
 // Returns the regular expression used by App ID for password strength validation. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-strength" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptions *GetCloudDirectoryPasswordRegexOptions) (result *PasswordRegexConfigParamsGet, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptions *GetCloudDirectoryPasswordRegexOptions) (result *PasswordRegexConfigParamsGet, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetCloudDirectoryPasswordRegexWithContext(context.Background(), getCloudDirectoryPasswordRegexOptions)
 }
 
 // GetCloudDirectoryPasswordRegexWithContext is an alternate form of the GetCloudDirectoryPasswordRegex method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryPasswordRegexWithContext(ctx context.Context, getCloudDirectoryPasswordRegexOptions *GetCloudDirectoryPasswordRegexOptions) (result *PasswordRegexConfigParamsGet, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryPasswordRegexWithContext(ctx context.Context, getCloudDirectoryPasswordRegexOptions *GetCloudDirectoryPasswordRegexOptions) (result *PasswordRegexConfigParamsGet, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getCloudDirectoryPasswordRegexOptions, "getCloudDirectoryPasswordRegexOptions")
 	if err != nil {
 		return
@@ -3230,12 +3230,12 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryPasswordRegexWithCont
 // "XltBLVphLXpcZF0qJA==", <br />&nbsp;&nbsp;"error_message": "Must only contain letters and digits"<br />}</code> <br
 // /><br /> <a href="https://cloud.ibm.com/docs/appid?topic=appid-cd-strength" target="_blank" rel="noopener">Learn
 // more</a>.
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptions *SetCloudDirectoryPasswordRegexOptions) (result *PasswordRegexConfigParamsGet, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptions *SetCloudDirectoryPasswordRegexOptions) (result *PasswordRegexConfigParamsGet, response *core.DetailedResponse, err error) {
 	return appIdManagement.SetCloudDirectoryPasswordRegexWithContext(context.Background(), setCloudDirectoryPasswordRegexOptions)
 }
 
 // SetCloudDirectoryPasswordRegexWithContext is an alternate form of the SetCloudDirectoryPasswordRegex method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryPasswordRegexWithContext(ctx context.Context, setCloudDirectoryPasswordRegexOptions *SetCloudDirectoryPasswordRegexOptions) (result *PasswordRegexConfigParamsGet, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectoryPasswordRegexWithContext(ctx context.Context, setCloudDirectoryPasswordRegexOptions *SetCloudDirectoryPasswordRegexOptions) (result *PasswordRegexConfigParamsGet, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setCloudDirectoryPasswordRegexOptions, "setCloudDirectoryPasswordRegexOptions cannot be nil")
 	if err != nil {
 		return
@@ -3306,12 +3306,12 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryPasswordRegexWithCont
 
 // GetCloudDirectoryEmailDispatcher : Get email dispatcher configuration
 // Get the configuration of email dispatcher that is used by Cloud Directory when sending emails.
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptions *GetCloudDirectoryEmailDispatcherOptions) (result *EmailDispatcherParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptions *GetCloudDirectoryEmailDispatcherOptions) (result *EmailDispatcherParams, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetCloudDirectoryEmailDispatcherWithContext(context.Background(), getCloudDirectoryEmailDispatcherOptions)
 }
 
 // GetCloudDirectoryEmailDispatcherWithContext is an alternate form of the GetCloudDirectoryEmailDispatcher method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryEmailDispatcherWithContext(ctx context.Context, getCloudDirectoryEmailDispatcherOptions *GetCloudDirectoryEmailDispatcherOptions) (result *EmailDispatcherParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryEmailDispatcherWithContext(ctx context.Context, getCloudDirectoryEmailDispatcherOptions *GetCloudDirectoryEmailDispatcherOptions) (result *EmailDispatcherParams, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getCloudDirectoryEmailDispatcherOptions, "getCloudDirectoryEmailDispatcherOptions")
 	if err != nil {
 		return
@@ -3365,12 +3365,12 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryEmailDispatcherWithCo
 // API key. Alternatively, you can define a custom email dispatcher by providing App ID with URL. The URL is called for
 // sending emails. Optionally, you can determine a specific authorization method – either basic, such as a username and
 // password, or a custom value. By default, App ID's email provider will be used.
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptions *SetCloudDirectoryEmailDispatcherOptions) (result *EmailDispatcherParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptions *SetCloudDirectoryEmailDispatcherOptions) (result *EmailDispatcherParams, response *core.DetailedResponse, err error) {
 	return appIdManagement.SetCloudDirectoryEmailDispatcherWithContext(context.Background(), setCloudDirectoryEmailDispatcherOptions)
 }
 
 // SetCloudDirectoryEmailDispatcherWithContext is an alternate form of the SetCloudDirectoryEmailDispatcher method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryEmailDispatcherWithContext(ctx context.Context, setCloudDirectoryEmailDispatcherOptions *SetCloudDirectoryEmailDispatcherOptions) (result *EmailDispatcherParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectoryEmailDispatcherWithContext(ctx context.Context, setCloudDirectoryEmailDispatcherOptions *SetCloudDirectoryEmailDispatcherOptions) (result *EmailDispatcherParams, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setCloudDirectoryEmailDispatcherOptions, "setCloudDirectoryEmailDispatcherOptions cannot be nil")
 	if err != nil {
 		return
@@ -3441,12 +3441,12 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryEmailDispatcherWithCo
 
 // EmailSettingTest : Test the email provider configuration
 // You can send a message to a specific email to test your settings.
-func (appIdManagement *AppIdManagementV4) EmailSettingTest(emailSettingTestOptions *EmailSettingTestOptions) (result *RespEmailSettingsTest, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) EmailSettingTest(emailSettingTestOptions *EmailSettingTestOptions) (result *RespEmailSettingsTest, response *core.DetailedResponse, err error) {
 	return appIdManagement.EmailSettingTestWithContext(context.Background(), emailSettingTestOptions)
 }
 
 // EmailSettingTestWithContext is an alternate form of the EmailSettingTest method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) EmailSettingTestWithContext(ctx context.Context, emailSettingTestOptions *EmailSettingTestOptions) (result *RespEmailSettingsTest, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) EmailSettingTestWithContext(ctx context.Context, emailSettingTestOptions *EmailSettingTestOptions) (result *RespEmailSettingsTest, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(emailSettingTestOptions, "emailSettingTestOptions cannot be nil")
 	if err != nil {
 		return
@@ -3517,12 +3517,12 @@ func (appIdManagement *AppIdManagementV4) EmailSettingTestWithContext(ctx contex
 
 // PostEmailDispatcherTest : Test the email dispatcher configuration
 // You can send a message to a specific email to test your configuration.
-func (appIdManagement *AppIdManagementV4) PostEmailDispatcherTest(postEmailDispatcherTestOptions *PostEmailDispatcherTestOptions) (result *RespCustomEmailDisParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PostEmailDispatcherTest(postEmailDispatcherTestOptions *PostEmailDispatcherTestOptions) (result *RespCustomEmailDisParams, response *core.DetailedResponse, err error) {
 	return appIdManagement.PostEmailDispatcherTestWithContext(context.Background(), postEmailDispatcherTestOptions)
 }
 
 // PostEmailDispatcherTestWithContext is an alternate form of the PostEmailDispatcherTest method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) PostEmailDispatcherTestWithContext(ctx context.Context, postEmailDispatcherTestOptions *PostEmailDispatcherTestOptions) (result *RespCustomEmailDisParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PostEmailDispatcherTestWithContext(ctx context.Context, postEmailDispatcherTestOptions *PostEmailDispatcherTestOptions) (result *RespCustomEmailDisParams, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(postEmailDispatcherTestOptions, "postEmailDispatcherTestOptions cannot be nil")
 	if err != nil {
 		return
@@ -3585,19 +3585,19 @@ func (appIdManagement *AppIdManagementV4) PostEmailDispatcherTestWithContext(ctx
 	return
 }
 
-// PostSmsDispatcherTest : Test the MFA SMS dispatcher configuration
+// PostSMSDispatcherTest : Test the MFA SMS dispatcher configuration
 // You can send a message to a specific phone number to test your MFA SMS configuration.
-func (appIdManagement *AppIdManagementV4) PostSmsDispatcherTest(postSmsDispatcherTestOptions *PostSmsDispatcherTestOptions) (result *RespSMSDisParams, response *core.DetailedResponse, err error) {
-	return appIdManagement.PostSmsDispatcherTestWithContext(context.Background(), postSmsDispatcherTestOptions)
+func (appIdManagement *AppIDManagementV4) PostSMSDispatcherTest(postSMSDispatcherTestOptions *PostSMSDispatcherTestOptions) (result *RespSMSDisParams, response *core.DetailedResponse, err error) {
+	return appIdManagement.PostSMSDispatcherTestWithContext(context.Background(), postSMSDispatcherTestOptions)
 }
 
-// PostSmsDispatcherTestWithContext is an alternate form of the PostSmsDispatcherTest method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) PostSmsDispatcherTestWithContext(ctx context.Context, postSmsDispatcherTestOptions *PostSmsDispatcherTestOptions) (result *RespSMSDisParams, response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(postSmsDispatcherTestOptions, "postSmsDispatcherTestOptions cannot be nil")
+// PostSMSDispatcherTestWithContext is an alternate form of the PostSMSDispatcherTest method which supports a Context parameter
+func (appIdManagement *AppIDManagementV4) PostSMSDispatcherTestWithContext(ctx context.Context, postSMSDispatcherTestOptions *PostSMSDispatcherTestOptions) (result *RespSMSDisParams, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(postSMSDispatcherTestOptions, "postSMSDispatcherTestOptions cannot be nil")
 	if err != nil {
 		return
 	}
-	err = core.ValidateStruct(postSmsDispatcherTestOptions, "postSmsDispatcherTestOptions")
+	err = core.ValidateStruct(postSMSDispatcherTestOptions, "postSMSDispatcherTestOptions")
 	if err != nil {
 		return
 	}
@@ -3614,11 +3614,11 @@ func (appIdManagement *AppIdManagementV4) PostSmsDispatcherTestWithContext(ctx c
 		return
 	}
 
-	for headerName, headerValue := range postSmsDispatcherTestOptions.Headers {
+	for headerName, headerValue := range postSMSDispatcherTestOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "PostSmsDispatcherTest")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "PostSMSDispatcherTest")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -3626,8 +3626,8 @@ func (appIdManagement *AppIdManagementV4) PostSmsDispatcherTestWithContext(ctx c
 	builder.AddHeader("Content-Type", "application/json")
 
 	body := make(map[string]interface{})
-	if postSmsDispatcherTestOptions.PhoneNumber != nil {
-		body["phone_number"] = postSmsDispatcherTestOptions.PhoneNumber
+	if postSMSDispatcherTestOptions.PhoneNumber != nil {
+		body["phone_number"] = postSMSDispatcherTestOptions.PhoneNumber
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -3657,12 +3657,12 @@ func (appIdManagement *AppIdManagementV4) PostSmsDispatcherTestWithContext(ctx c
 
 // GetCloudDirectoryAdvancedPasswordManagement : Get APM configuration
 // Get the configuration of the advanced password management.
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptions *GetCloudDirectoryAdvancedPasswordManagementOptions) (result *ApmSchema, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptions *GetCloudDirectoryAdvancedPasswordManagementOptions) (result *ApmSchema, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetCloudDirectoryAdvancedPasswordManagementWithContext(context.Background(), getCloudDirectoryAdvancedPasswordManagementOptions)
 }
 
 // GetCloudDirectoryAdvancedPasswordManagementWithContext is an alternate form of the GetCloudDirectoryAdvancedPasswordManagement method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryAdvancedPasswordManagementWithContext(ctx context.Context, getCloudDirectoryAdvancedPasswordManagementOptions *GetCloudDirectoryAdvancedPasswordManagementOptions) (result *ApmSchema, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryAdvancedPasswordManagementWithContext(ctx context.Context, getCloudDirectoryAdvancedPasswordManagementOptions *GetCloudDirectoryAdvancedPasswordManagementOptions) (result *ApmSchema, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getCloudDirectoryAdvancedPasswordManagementOptions, "getCloudDirectoryAdvancedPasswordManagementOptions")
 	if err != nil {
 		return
@@ -3714,12 +3714,12 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryAdvancedPasswordManag
 // SetCloudDirectoryAdvancedPasswordManagement : Update APM configuration
 // Updates the advanced password management configuration for the provided tenantId. By turning this on, any
 // authentication event is also charged as advanced security event.
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptions *SetCloudDirectoryAdvancedPasswordManagementOptions) (result *ApmSchema, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptions *SetCloudDirectoryAdvancedPasswordManagementOptions) (result *ApmSchema, response *core.DetailedResponse, err error) {
 	return appIdManagement.SetCloudDirectoryAdvancedPasswordManagementWithContext(context.Background(), setCloudDirectoryAdvancedPasswordManagementOptions)
 }
 
 // SetCloudDirectoryAdvancedPasswordManagementWithContext is an alternate form of the SetCloudDirectoryAdvancedPasswordManagement method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryAdvancedPasswordManagementWithContext(ctx context.Context, setCloudDirectoryAdvancedPasswordManagementOptions *SetCloudDirectoryAdvancedPasswordManagementOptions) (result *ApmSchema, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectoryAdvancedPasswordManagementWithContext(ctx context.Context, setCloudDirectoryAdvancedPasswordManagementOptions *SetCloudDirectoryAdvancedPasswordManagementOptions) (result *ApmSchema, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setCloudDirectoryAdvancedPasswordManagementOptions, "setCloudDirectoryAdvancedPasswordManagementOptions cannot be nil")
 	if err != nil {
 		return
@@ -3784,12 +3784,12 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryAdvancedPasswordManag
 
 // GetAuditStatus : Get tenant audit status
 // Returns a JSON object containing the auditing status of the tenant.
-func (appIdManagement *AppIdManagementV4) GetAuditStatus(getAuditStatusOptions *GetAuditStatusOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetAuditStatus(getAuditStatusOptions *GetAuditStatusOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.GetAuditStatusWithContext(context.Background(), getAuditStatusOptions)
 }
 
 // GetAuditStatusWithContext is an alternate form of the GetAuditStatus method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetAuditStatusWithContext(ctx context.Context, getAuditStatusOptions *GetAuditStatusOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetAuditStatusWithContext(ctx context.Context, getAuditStatusOptions *GetAuditStatusOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getAuditStatusOptions, "getAuditStatusOptions")
 	if err != nil {
 		return
@@ -3831,12 +3831,12 @@ func (appIdManagement *AppIdManagementV4) GetAuditStatusWithContext(ctx context.
 // Capture app user sign-in, sign-up and other runtime events in Activity Tracker for you to search, analyse and report.
 // By turning this On, any authentication event is also charged as advanced security event. Activity Tracker with LogDNA
 // is available in select regions. <a href="https://cloud.ibm.com/docs/appid?topic=appid-at-events">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetAuditStatus(setAuditStatusOptions *SetAuditStatusOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetAuditStatus(setAuditStatusOptions *SetAuditStatusOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.SetAuditStatusWithContext(context.Background(), setAuditStatusOptions)
 }
 
 // SetAuditStatusWithContext is an alternate form of the SetAuditStatus method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetAuditStatusWithContext(ctx context.Context, setAuditStatusOptions *SetAuditStatusOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetAuditStatusWithContext(ctx context.Context, setAuditStatusOptions *SetAuditStatusOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setAuditStatusOptions, "setAuditStatusOptions cannot be nil")
 	if err != nil {
 		return
@@ -3889,12 +3889,12 @@ func (appIdManagement *AppIdManagementV4) SetAuditStatusWithContext(ctx context.
 
 // ListChannels : List channels
 // Returns all MFA channels registered with the App ID Instance.
-func (appIdManagement *AppIdManagementV4) ListChannels(listChannelsOptions *ListChannelsOptions) (result *MfaChannelsList, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ListChannels(listChannelsOptions *ListChannelsOptions) (result *MFAChannelsList, response *core.DetailedResponse, err error) {
 	return appIdManagement.ListChannelsWithContext(context.Background(), listChannelsOptions)
 }
 
 // ListChannelsWithContext is an alternate form of the ListChannels method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) ListChannelsWithContext(ctx context.Context, listChannelsOptions *ListChannelsOptions) (result *MfaChannelsList, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ListChannelsWithContext(ctx context.Context, listChannelsOptions *ListChannelsOptions) (result *MFAChannelsList, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(listChannelsOptions, "listChannelsOptions")
 	if err != nil {
 		return
@@ -3933,7 +3933,7 @@ func (appIdManagement *AppIdManagementV4) ListChannelsWithContext(ctx context.Co
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalMfaChannelsList)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalMFAChannelsList)
 		if err != nil {
 			return
 		}
@@ -3945,12 +3945,12 @@ func (appIdManagement *AppIdManagementV4) ListChannelsWithContext(ctx context.Co
 
 // GetChannel : Get channel
 // Returns a specific MFA channel registered with the App ID Instance.
-func (appIdManagement *AppIdManagementV4) GetChannel(getChannelOptions *GetChannelOptions) (result *GetSMSChannel, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetChannel(getChannelOptions *GetChannelOptions) (result *GetSMSChannel, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetChannelWithContext(context.Background(), getChannelOptions)
 }
 
 // GetChannelWithContext is an alternate form of the GetChannel method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetChannelWithContext(ctx context.Context, getChannelOptions *GetChannelOptions) (result *GetSMSChannel, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetChannelWithContext(ctx context.Context, getChannelOptions *GetChannelOptions) (result *GetSMSChannel, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getChannelOptions, "getChannelOptions cannot be nil")
 	if err != nil {
 		return
@@ -4006,12 +4006,12 @@ func (appIdManagement *AppIdManagementV4) GetChannelWithContext(ctx context.Cont
 
 // UpdateChannel : Update channel
 // Enable or disable a registered MFA channel on the App ID instance.
-func (appIdManagement *AppIdManagementV4) UpdateChannel(updateChannelOptions *UpdateChannelOptions) (result *GetSMSChannel, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateChannel(updateChannelOptions *UpdateChannelOptions) (result *GetSMSChannel, response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateChannelWithContext(context.Background(), updateChannelOptions)
 }
 
 // UpdateChannelWithContext is an alternate form of the UpdateChannel method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateChannelWithContext(ctx context.Context, updateChannelOptions *UpdateChannelOptions) (result *GetSMSChannel, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateChannelWithContext(ctx context.Context, updateChannelOptions *UpdateChannelOptions) (result *GetSMSChannel, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateChannelOptions, "updateChannelOptions cannot be nil")
 	if err != nil {
 		return
@@ -4081,12 +4081,12 @@ func (appIdManagement *AppIdManagementV4) UpdateChannelWithContext(ctx context.C
 // GetExtensionConfig : Get an extension configuration
 // View a registered extension's configuration for an instance of App ID. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-mfa#cd-mfa-extensions" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetExtensionConfig(getExtensionConfigOptions *GetExtensionConfigOptions) (result *UpdateExtensionConfig, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetExtensionConfig(getExtensionConfigOptions *GetExtensionConfigOptions) (result *UpdateExtensionConfig, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetExtensionConfigWithContext(context.Background(), getExtensionConfigOptions)
 }
 
 // GetExtensionConfigWithContext is an alternate form of the GetExtensionConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetExtensionConfigWithContext(ctx context.Context, getExtensionConfigOptions *GetExtensionConfigOptions) (result *UpdateExtensionConfig, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetExtensionConfigWithContext(ctx context.Context, getExtensionConfigOptions *GetExtensionConfigOptions) (result *UpdateExtensionConfig, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getExtensionConfigOptions, "getExtensionConfigOptions cannot be nil")
 	if err != nil {
 		return
@@ -4143,12 +4143,12 @@ func (appIdManagement *AppIdManagementV4) GetExtensionConfigWithContext(ctx cont
 // UpdateExtensionConfig : Update an extension configuration
 // Set or update a registered extension's configuration for an instance of App ID. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-mfa#cd-mfa-extensions" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UpdateExtensionConfig(updateExtensionConfigOptions *UpdateExtensionConfigOptions) (result *UpdateExtensionConfig, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateExtensionConfig(updateExtensionConfigOptions *UpdateExtensionConfigOptions) (result *UpdateExtensionConfig, response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateExtensionConfigWithContext(context.Background(), updateExtensionConfigOptions)
 }
 
 // UpdateExtensionConfigWithContext is an alternate form of the UpdateExtensionConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateExtensionConfigWithContext(ctx context.Context, updateExtensionConfigOptions *UpdateExtensionConfigOptions) (result *UpdateExtensionConfig, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateExtensionConfigWithContext(ctx context.Context, updateExtensionConfigOptions *UpdateExtensionConfigOptions) (result *UpdateExtensionConfig, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateExtensionConfigOptions, "updateExtensionConfigOptions cannot be nil")
 	if err != nil {
 		return
@@ -4218,12 +4218,12 @@ func (appIdManagement *AppIdManagementV4) UpdateExtensionConfigWithContext(ctx c
 // UpdateExtensionActive : Enable or disable an extension
 // Update the status of a registered extension for an instance of App ID to enabled or disabled. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-mfa#cd-mfa-extensions" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UpdateExtensionActive(updateExtensionActiveOptions *UpdateExtensionActiveOptions) (result *ExtensionActive, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateExtensionActive(updateExtensionActiveOptions *UpdateExtensionActiveOptions) (result *ExtensionActive, response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateExtensionActiveWithContext(context.Background(), updateExtensionActiveOptions)
 }
 
 // UpdateExtensionActiveWithContext is an alternate form of the UpdateExtensionActive method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateExtensionActiveWithContext(ctx context.Context, updateExtensionActiveOptions *UpdateExtensionActiveOptions) (result *ExtensionActive, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateExtensionActiveWithContext(ctx context.Context, updateExtensionActiveOptions *UpdateExtensionActiveOptions) (result *ExtensionActive, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateExtensionActiveOptions, "updateExtensionActiveOptions cannot be nil")
 	if err != nil {
 		return
@@ -4293,12 +4293,12 @@ func (appIdManagement *AppIdManagementV4) UpdateExtensionActiveWithContext(ctx c
 // PostExtensionsTest : Test the extension configuration
 // Test an extension configuration. <a href="https://cloud.ibm.com/docs/appid?topic=appid-cd-mfa#cd-mfa-extensions"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) PostExtensionsTest(postExtensionsTestOptions *PostExtensionsTestOptions) (result *ExtensionTest, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PostExtensionsTest(postExtensionsTestOptions *PostExtensionsTestOptions) (result *ExtensionTest, response *core.DetailedResponse, err error) {
 	return appIdManagement.PostExtensionsTestWithContext(context.Background(), postExtensionsTestOptions)
 }
 
 // PostExtensionsTestWithContext is an alternate form of the PostExtensionsTest method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) PostExtensionsTestWithContext(ctx context.Context, postExtensionsTestOptions *PostExtensionsTestOptions) (result *ExtensionTest, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) PostExtensionsTestWithContext(ctx context.Context, postExtensionsTestOptions *PostExtensionsTestOptions) (result *ExtensionTest, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(postExtensionsTestOptions, "postExtensionsTestOptions cannot be nil")
 	if err != nil {
 		return
@@ -4354,12 +4354,12 @@ func (appIdManagement *AppIdManagementV4) PostExtensionsTestWithContext(ctx cont
 
 // GetMFAConfig : Get MFA configuration
 // Returns MFA configuration registered with the App ID Instance.
-func (appIdManagement *AppIdManagementV4) GetMFAConfig(getMFAConfigOptions *GetMFAConfigOptions) (result *GetMFAConfiguration, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetMFAConfig(getMFAConfigOptions *GetMFAConfigOptions) (result *GetMFAConfiguration, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetMFAConfigWithContext(context.Background(), getMFAConfigOptions)
 }
 
 // GetMFAConfigWithContext is an alternate form of the GetMFAConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetMFAConfigWithContext(ctx context.Context, getMFAConfigOptions *GetMFAConfigOptions) (result *GetMFAConfiguration, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetMFAConfigWithContext(ctx context.Context, getMFAConfigOptions *GetMFAConfigOptions) (result *GetMFAConfiguration, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getMFAConfigOptions, "getMFAConfigOptions")
 	if err != nil {
 		return
@@ -4410,12 +4410,12 @@ func (appIdManagement *AppIdManagementV4) GetMFAConfigWithContext(ctx context.Co
 
 // UpdateMFAConfig : Update MFA configuration
 // Update MFA configuration on the App ID instance.
-func (appIdManagement *AppIdManagementV4) UpdateMFAConfig(updateMFAConfigOptions *UpdateMFAConfigOptions) (result *GetMFAConfiguration, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateMFAConfig(updateMFAConfigOptions *UpdateMFAConfigOptions) (result *GetMFAConfiguration, response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateMFAConfigWithContext(context.Background(), updateMFAConfigOptions)
 }
 
 // UpdateMFAConfigWithContext is an alternate form of the UpdateMFAConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateMFAConfigWithContext(ctx context.Context, updateMFAConfigOptions *UpdateMFAConfigOptions) (result *GetMFAConfiguration, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateMFAConfigWithContext(ctx context.Context, updateMFAConfigOptions *UpdateMFAConfigOptions) (result *GetMFAConfiguration, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateMFAConfigOptions, "updateMFAConfigOptions cannot be nil")
 	if err != nil {
 		return
@@ -4483,12 +4483,12 @@ func (appIdManagement *AppIdManagementV4) UpdateMFAConfigWithContext(ctx context
 
 // GetSSOConfig : Get SSO configuration
 // Returns SSO configuration registered with the App ID Instance.
-func (appIdManagement *AppIdManagementV4) GetSSOConfig(getSSOConfigOptions *GetSSOConfigOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetSSOConfig(getSSOConfigOptions *GetSSOConfigOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.GetSSOConfigWithContext(context.Background(), getSSOConfigOptions)
 }
 
 // GetSSOConfigWithContext is an alternate form of the GetSSOConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetSSOConfigWithContext(ctx context.Context, getSSOConfigOptions *GetSSOConfigOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetSSOConfigWithContext(ctx context.Context, getSSOConfigOptions *GetSSOConfigOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getSSOConfigOptions, "getSSOConfigOptions")
 	if err != nil {
 		return
@@ -4528,12 +4528,12 @@ func (appIdManagement *AppIdManagementV4) GetSSOConfigWithContext(ctx context.Co
 
 // UpdateSSOConfig : Update SSO configuration
 // Update SSO configuration on the App ID instance.
-func (appIdManagement *AppIdManagementV4) UpdateSSOConfig(updateSSOConfigOptions *UpdateSSOConfigOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateSSOConfig(updateSSOConfigOptions *UpdateSSOConfigOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateSSOConfigWithContext(context.Background(), updateSSOConfigOptions)
 }
 
 // UpdateSSOConfigWithContext is an alternate form of the UpdateSSOConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateSSOConfigWithContext(ctx context.Context, updateSSOConfigOptions *UpdateSSOConfigOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateSSOConfigWithContext(ctx context.Context, updateSSOConfigOptions *UpdateSSOConfigOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateSSOConfigOptions, "updateSSOConfigOptions cannot be nil")
 	if err != nil {
 		return
@@ -4593,12 +4593,12 @@ func (appIdManagement *AppIdManagementV4) UpdateSSOConfigWithContext(ctx context
 
 // GetRateLimitConfig : Get the rate limit configuration
 // Returns the rate limit configuration registered with the App ID Instance.
-func (appIdManagement *AppIdManagementV4) GetRateLimitConfig(getRateLimitConfigOptions *GetRateLimitConfigOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetRateLimitConfig(getRateLimitConfigOptions *GetRateLimitConfigOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.GetRateLimitConfigWithContext(context.Background(), getRateLimitConfigOptions)
 }
 
 // GetRateLimitConfigWithContext is an alternate form of the GetRateLimitConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetRateLimitConfigWithContext(ctx context.Context, getRateLimitConfigOptions *GetRateLimitConfigOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetRateLimitConfigWithContext(ctx context.Context, getRateLimitConfigOptions *GetRateLimitConfigOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getRateLimitConfigOptions, "getRateLimitConfigOptions")
 	if err != nil {
 		return
@@ -4638,12 +4638,12 @@ func (appIdManagement *AppIdManagementV4) GetRateLimitConfigWithContext(ctx cont
 
 // UpdateRateLimitConfig : Update the rate limit configuration
 // Update the rate limit configuration on the App ID instance.
-func (appIdManagement *AppIdManagementV4) UpdateRateLimitConfig(updateRateLimitConfigOptions *UpdateRateLimitConfigOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateRateLimitConfig(updateRateLimitConfigOptions *UpdateRateLimitConfigOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateRateLimitConfigWithContext(context.Background(), updateRateLimitConfigOptions)
 }
 
 // UpdateRateLimitConfigWithContext is an alternate form of the UpdateRateLimitConfig method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateRateLimitConfigWithContext(ctx context.Context, updateRateLimitConfigOptions *UpdateRateLimitConfigOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateRateLimitConfigWithContext(ctx context.Context, updateRateLimitConfigOptions *UpdateRateLimitConfigOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateRateLimitConfigOptions, "updateRateLimitConfigOptions cannot be nil")
 	if err != nil {
 		return
@@ -4700,12 +4700,12 @@ func (appIdManagement *AppIdManagementV4) UpdateRateLimitConfigWithContext(ctx c
 
 // GetFacebookIDP : Get Facebook IDP configuration
 // Returns the Facebook identity provider configuration.
-func (appIdManagement *AppIdManagementV4) GetFacebookIDP(getFacebookIDPOptions *GetFacebookIDPOptions) (result *FacebookConfigParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetFacebookIDP(getFacebookIDPOptions *GetFacebookIDPOptions) (result *FacebookConfigParams, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetFacebookIDPWithContext(context.Background(), getFacebookIDPOptions)
 }
 
 // GetFacebookIDPWithContext is an alternate form of the GetFacebookIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetFacebookIDPWithContext(ctx context.Context, getFacebookIDPOptions *GetFacebookIDPOptions) (result *FacebookConfigParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetFacebookIDPWithContext(ctx context.Context, getFacebookIDPOptions *GetFacebookIDPOptions) (result *FacebookConfigParams, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getFacebookIDPOptions, "getFacebookIDPOptions")
 	if err != nil {
 		return
@@ -4758,12 +4758,12 @@ func (appIdManagement *AppIdManagementV4) GetFacebookIDPWithContext(ctx context.
 // Configure Facebook to set up a single sign-on experience for your users. By using Facebook, users are able to sign in
 // with credentials with which they are already familiar. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-social#facebook" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetFacebookIDP(setFacebookIDPOptions *SetFacebookIDPOptions) (result *FacebookConfigParamsPUT, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetFacebookIDP(setFacebookIDPOptions *SetFacebookIDPOptions) (result *FacebookConfigParamsPut, response *core.DetailedResponse, err error) {
 	return appIdManagement.SetFacebookIDPWithContext(context.Background(), setFacebookIDPOptions)
 }
 
 // SetFacebookIDPWithContext is an alternate form of the SetFacebookIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetFacebookIDPWithContext(ctx context.Context, setFacebookIDPOptions *SetFacebookIDPOptions) (result *FacebookConfigParamsPUT, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetFacebookIDPWithContext(ctx context.Context, setFacebookIDPOptions *SetFacebookIDPOptions) (result *FacebookConfigParamsPut, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setFacebookIDPOptions, "setFacebookIDPOptions cannot be nil")
 	if err != nil {
 		return
@@ -4812,7 +4812,7 @@ func (appIdManagement *AppIdManagementV4) SetFacebookIDPWithContext(ctx context.
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalFacebookConfigParamsPUT)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalFacebookConfigParamsPut)
 		if err != nil {
 			return
 		}
@@ -4824,12 +4824,12 @@ func (appIdManagement *AppIdManagementV4) SetFacebookIDPWithContext(ctx context.
 
 // GetGoogleIDP : Get Google IDP configuration
 // Returns the Google identity provider configuration.
-func (appIdManagement *AppIdManagementV4) GetGoogleIDP(getGoogleIDPOptions *GetGoogleIDPOptions) (result *GoogleConfigParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetGoogleIDP(getGoogleIDPOptions *GetGoogleIDPOptions) (result *GoogleConfigParams, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetGoogleIDPWithContext(context.Background(), getGoogleIDPOptions)
 }
 
 // GetGoogleIDPWithContext is an alternate form of the GetGoogleIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetGoogleIDPWithContext(ctx context.Context, getGoogleIDPOptions *GetGoogleIDPOptions) (result *GoogleConfigParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetGoogleIDPWithContext(ctx context.Context, getGoogleIDPOptions *GetGoogleIDPOptions) (result *GoogleConfigParams, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getGoogleIDPOptions, "getGoogleIDPOptions")
 	if err != nil {
 		return
@@ -4882,12 +4882,12 @@ func (appIdManagement *AppIdManagementV4) GetGoogleIDPWithContext(ctx context.Co
 // Configure Google to set up a single sign-on experience for your users. By using Google, users are able to sign in
 // with credentials with which they are already familiar. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-social#google" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetGoogleIDP(setGoogleIDPOptions *SetGoogleIDPOptions) (result *GoogleConfigParamsPUT, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetGoogleIDP(setGoogleIDPOptions *SetGoogleIDPOptions) (result *GoogleConfigParamsPut, response *core.DetailedResponse, err error) {
 	return appIdManagement.SetGoogleIDPWithContext(context.Background(), setGoogleIDPOptions)
 }
 
 // SetGoogleIDPWithContext is an alternate form of the SetGoogleIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetGoogleIDPWithContext(ctx context.Context, setGoogleIDPOptions *SetGoogleIDPOptions) (result *GoogleConfigParamsPUT, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetGoogleIDPWithContext(ctx context.Context, setGoogleIDPOptions *SetGoogleIDPOptions) (result *GoogleConfigParamsPut, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setGoogleIDPOptions, "setGoogleIDPOptions cannot be nil")
 	if err != nil {
 		return
@@ -4936,7 +4936,7 @@ func (appIdManagement *AppIdManagementV4) SetGoogleIDPWithContext(ctx context.Co
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGoogleConfigParamsPUT)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGoogleConfigParamsPut)
 		if err != nil {
 			return
 		}
@@ -4947,12 +4947,12 @@ func (appIdManagement *AppIdManagementV4) SetGoogleIDPWithContext(ctx context.Co
 }
 
 // GetCustomIDP : Returns the Custom identity configuration
-func (appIdManagement *AppIdManagementV4) GetCustomIDP(getCustomIDPOptions *GetCustomIDPOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCustomIDP(getCustomIDPOptions *GetCustomIDPOptions) (result *CustomIDPConfigParams, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetCustomIDPWithContext(context.Background(), getCustomIDPOptions)
 }
 
 // GetCustomIDPWithContext is an alternate form of the GetCustomIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetCustomIDPWithContext(ctx context.Context, getCustomIDPOptions *GetCustomIDPOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCustomIDPWithContext(ctx context.Context, getCustomIDPOptions *GetCustomIDPOptions) (result *CustomIDPConfigParams, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getCustomIDPOptions, "getCustomIDPOptions")
 	if err != nil {
 		return
@@ -4991,7 +4991,7 @@ func (appIdManagement *AppIdManagementV4) GetCustomIDPWithContext(ctx context.Co
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCustomIdPConfigParams)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCustomIDPConfigParams)
 		if err != nil {
 			return
 		}
@@ -5003,12 +5003,12 @@ func (appIdManagement *AppIdManagementV4) GetCustomIDPWithContext(ctx context.Co
 
 // SetCustomIDP : Update or change the configuration of the Custom identity
 // Configure App ID Custom identity to allow users to sign-in using your own identity provider.
-func (appIdManagement *AppIdManagementV4) SetCustomIDP(setCustomIDPOptions *SetCustomIDPOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCustomIDP(setCustomIDPOptions *SetCustomIDPOptions) (result *CustomIDPConfigParams, response *core.DetailedResponse, err error) {
 	return appIdManagement.SetCustomIDPWithContext(context.Background(), setCustomIDPOptions)
 }
 
 // SetCustomIDPWithContext is an alternate form of the SetCustomIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetCustomIDPWithContext(ctx context.Context, setCustomIDPOptions *SetCustomIDPOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCustomIDPWithContext(ctx context.Context, setCustomIDPOptions *SetCustomIDPOptions) (result *CustomIDPConfigParams, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setCustomIDPOptions, "setCustomIDPOptions cannot be nil")
 	if err != nil {
 		return
@@ -5064,7 +5064,7 @@ func (appIdManagement *AppIdManagementV4) SetCustomIDPWithContext(ctx context.Co
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCustomIdPConfigParams)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCustomIDPConfigParams)
 		if err != nil {
 			return
 		}
@@ -5077,12 +5077,12 @@ func (appIdManagement *AppIdManagementV4) SetCustomIDPWithContext(ctx context.Co
 // GetCloudDirectoryIDP : Get Cloud Directory IDP configuration
 // Returns the Cloud Directory identity provider configuration. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryIDP(getCloudDirectoryIDPOptions *GetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryIDP(getCloudDirectoryIDPOptions *GetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetCloudDirectoryIDPWithContext(context.Background(), getCloudDirectoryIDPOptions)
 }
 
 // GetCloudDirectoryIDPWithContext is an alternate form of the GetCloudDirectoryIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryIDPWithContext(ctx context.Context, getCloudDirectoryIDPOptions *GetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryIDPWithContext(ctx context.Context, getCloudDirectoryIDPOptions *GetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getCloudDirectoryIDPOptions, "getCloudDirectoryIDPOptions")
 	if err != nil {
 		return
@@ -5135,12 +5135,12 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryIDPWithContext(ctx co
 // Configure Cloud Directory to set up a single sign-on experience for your users. With Cloud Directory users can use
 // their email and a password of their choice to log in to your applications. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIDP(setCloudDirectoryIDPOptions *SetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectoryIDP(setCloudDirectoryIDPOptions *SetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.SetCloudDirectoryIDPWithContext(context.Background(), setCloudDirectoryIDPOptions)
 }
 
 // SetCloudDirectoryIDPWithContext is an alternate form of the SetCloudDirectoryIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIDPWithContext(ctx context.Context, setCloudDirectoryIDPOptions *SetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) SetCloudDirectoryIDPWithContext(ctx context.Context, setCloudDirectoryIDPOptions *SetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setCloudDirectoryIDPOptions, "setCloudDirectoryIDPOptions cannot be nil")
 	if err != nil {
 		return
@@ -5206,15 +5206,15 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIDPWithContext(ctx co
 	return
 }
 
-// GetSAMLIDP : Get SAML IDP configuration
+// GetSamlidp : Get SAML IDP configuration
 // Returns the SAML identity provider configuration, including status and credentials. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-enterprise" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetSAMLIDP(getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
-	return appIdManagement.GetSAMLIDPWithContext(context.Background(), getSAMLIDPOptions)
+func (appIdManagement *AppIDManagementV4) GetSamlidp(getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
+	return appIdManagement.GetSamlidpWithContext(context.Background(), getSAMLIDPOptions)
 }
 
-// GetSAMLIDPWithContext is an alternate form of the GetSAMLIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetSAMLIDPWithContext(ctx context.Context, getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
+// GetSamlidpWithContext is an alternate form of the GetSamlidp method which supports a Context parameter
+func (appIdManagement *AppIDManagementV4) GetSamlidpWithContext(ctx context.Context, getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(getSAMLIDPOptions, "getSAMLIDPOptions")
 	if err != nil {
 		return
@@ -5263,15 +5263,15 @@ func (appIdManagement *AppIdManagementV4) GetSAMLIDPWithContext(ctx context.Cont
 	return
 }
 
-// SetSAMLIDP : Update SAML IDP configuration
+// SetSamlidp : Update SAML IDP configuration
 // Configure SAML to set up a single sign-on experience for your users. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-enterprise" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetSAMLIDP(setSAMLIDPOptions *SetSAMLIDPOptions) (result *SAMLResponseWithValidationData, response *core.DetailedResponse, err error) {
-	return appIdManagement.SetSAMLIDPWithContext(context.Background(), setSAMLIDPOptions)
+func (appIdManagement *AppIDManagementV4) SetSamlidp(setSAMLIDPOptions *SetSAMLIDPOptions) (result *SAMLResponseWithValidationData, response *core.DetailedResponse, err error) {
+	return appIdManagement.SetSamlidpWithContext(context.Background(), setSAMLIDPOptions)
 }
 
-// SetSAMLIDPWithContext is an alternate form of the SetSAMLIDP method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetSAMLIDPWithContext(ctx context.Context, setSAMLIDPOptions *SetSAMLIDPOptions) (result *SAMLResponseWithValidationData, response *core.DetailedResponse, err error) {
+// SetSamlidpWithContext is an alternate form of the SetSamlidp method which supports a Context parameter
+func (appIdManagement *AppIDManagementV4) SetSamlidpWithContext(ctx context.Context, setSAMLIDPOptions *SetSAMLIDPOptions) (result *SAMLResponseWithValidationData, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setSAMLIDPOptions, "setSAMLIDPOptions cannot be nil")
 	if err != nil {
 		return
@@ -5305,11 +5305,11 @@ func (appIdManagement *AppIdManagementV4) SetSAMLIDPWithContext(ctx context.Cont
 	builder.AddHeader("Content-Type", "application/json")
 
 	body := make(map[string]interface{})
-	if setSAMLIDPOptions.IsActive != nil {
-		body["isActive"] = setSAMLIDPOptions.IsActive
+	if setSamlidpOptions.IsActive != nil {
+		body["isActive"] = setSamlidpOptions.IsActive
 	}
-	if setSAMLIDPOptions.Config != nil {
-		body["config"] = setSAMLIDPOptions.Config
+	if setSamlidpOptions.Config != nil {
+		body["config"] = setSamlidpOptions.Config
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -5339,12 +5339,12 @@ func (appIdManagement *AppIdManagementV4) SetSAMLIDPWithContext(ctx context.Cont
 
 // ListRoles : List all roles
 // Obtain a list of the roles that are associated with your registered application.
-func (appIdManagement *AppIdManagementV4) ListRoles(listRolesOptions *ListRolesOptions) (result *RolesList, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ListRoles(listRolesOptions *ListRolesOptions) (result *RolesList, response *core.DetailedResponse, err error) {
 	return appIdManagement.ListRolesWithContext(context.Background(), listRolesOptions)
 }
 
 // ListRolesWithContext is an alternate form of the ListRoles method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) ListRolesWithContext(ctx context.Context, listRolesOptions *ListRolesOptions) (result *RolesList, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ListRolesWithContext(ctx context.Context, listRolesOptions *ListRolesOptions) (result *RolesList, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(listRolesOptions, "listRolesOptions")
 	if err != nil {
 		return
@@ -5395,12 +5395,12 @@ func (appIdManagement *AppIdManagementV4) ListRolesWithContext(ctx context.Conte
 
 // CreateRole : Create a role
 // Create a new role for a registered application.
-func (appIdManagement *AppIdManagementV4) CreateRole(createRoleOptions *CreateRoleOptions) (result *CreateRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CreateRole(createRoleOptions *CreateRoleOptions) (result *CreateRolesResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.CreateRoleWithContext(context.Background(), createRoleOptions)
 }
 
 // CreateRoleWithContext is an alternate form of the CreateRole method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) CreateRoleWithContext(ctx context.Context, createRoleOptions *CreateRoleOptions) (result *CreateRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CreateRoleWithContext(ctx context.Context, createRoleOptions *CreateRoleOptions) (result *CreateRolesResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(createRoleOptions, "createRoleOptions cannot be nil")
 	if err != nil {
 		return
@@ -5471,12 +5471,12 @@ func (appIdManagement *AppIdManagementV4) CreateRoleWithContext(ctx context.Cont
 
 // GetRole : View a specific role
 // By using the role ID, obtain the information for a specific role that is associated with a registered application.
-func (appIdManagement *AppIdManagementV4) GetRole(getRoleOptions *GetRoleOptions) (result *GetRoleResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetRole(getRoleOptions *GetRoleOptions) (result *GetRoleResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetRoleWithContext(context.Background(), getRoleOptions)
 }
 
 // GetRoleWithContext is an alternate form of the GetRole method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetRoleWithContext(ctx context.Context, getRoleOptions *GetRoleOptions) (result *GetRoleResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetRoleWithContext(ctx context.Context, getRoleOptions *GetRoleOptions) (result *GetRoleResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getRoleOptions, "getRoleOptions cannot be nil")
 	if err != nil {
 		return
@@ -5532,12 +5532,12 @@ func (appIdManagement *AppIdManagementV4) GetRoleWithContext(ctx context.Context
 
 // UpdateRole : Update a role
 // Update an existing role.
-func (appIdManagement *AppIdManagementV4) UpdateRole(updateRoleOptions *UpdateRoleOptions) (result *UpdateRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateRole(updateRoleOptions *UpdateRoleOptions) (result *UpdateRolesResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateRoleWithContext(context.Background(), updateRoleOptions)
 }
 
 // UpdateRoleWithContext is an alternate form of the UpdateRole method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateRoleWithContext(ctx context.Context, updateRoleOptions *UpdateRoleOptions) (result *UpdateRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateRoleWithContext(ctx context.Context, updateRoleOptions *UpdateRoleOptions) (result *UpdateRolesResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateRoleOptions, "updateRoleOptions cannot be nil")
 	if err != nil {
 		return
@@ -5609,12 +5609,12 @@ func (appIdManagement *AppIdManagementV4) UpdateRoleWithContext(ctx context.Cont
 
 // DeleteRole : Delete a role
 // Delete an existing role.
-func (appIdManagement *AppIdManagementV4) DeleteRole(deleteRoleOptions *DeleteRoleOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) DeleteRole(deleteRoleOptions *DeleteRoleOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.DeleteRoleWithContext(context.Background(), deleteRoleOptions)
 }
 
 // DeleteRoleWithContext is an alternate form of the DeleteRole method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) DeleteRoleWithContext(ctx context.Context, deleteRoleOptions *DeleteRoleOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) DeleteRoleWithContext(ctx context.Context, deleteRoleOptions *DeleteRoleOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(deleteRoleOptions, "deleteRoleOptions cannot be nil")
 	if err != nil {
 		return
@@ -5659,12 +5659,12 @@ func (appIdManagement *AppIdManagementV4) DeleteRoleWithContext(ctx context.Cont
 // UsersSearchUserProfile : Search users
 // Returns list of users, if given email/id returns only users which match the email/id - not including anonymous
 // profiles. <a href="https://cloud.ibm.com/docs/appid?topic=appid-profiles" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UsersSearchUserProfile(usersSearchUserProfileOptions *UsersSearchUserProfileOptions) (result *UserSearchResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersSearchUserProfile(usersSearchUserProfileOptions *UsersSearchUserProfileOptions) (result *UserSearchResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.UsersSearchUserProfileWithContext(context.Background(), usersSearchUserProfileOptions)
 }
 
 // UsersSearchUserProfileWithContext is an alternate form of the UsersSearchUserProfile method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UsersSearchUserProfileWithContext(ctx context.Context, usersSearchUserProfileOptions *UsersSearchUserProfileOptions) (result *UserSearchResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersSearchUserProfileWithContext(ctx context.Context, usersSearchUserProfileOptions *UsersSearchUserProfileOptions) (result *UserSearchResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(usersSearchUserProfileOptions, "usersSearchUserProfileOptions cannot be nil")
 	if err != nil {
 		return
@@ -5734,12 +5734,12 @@ func (appIdManagement *AppIdManagementV4) UsersSearchUserProfileWithContext(ctx 
 // UsersNominateUser : Pre-register a user profile
 // Create a profile for a user that you know needs access to your app before they sign in to your app for the first
 // time. <a href="https://cloud.ibm.com/docs/appid?topic=appid-preregister" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UsersNominateUser(usersNominateUserOptions *UsersNominateUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersNominateUser(usersNominateUserOptions *UsersNominateUserOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UsersNominateUserWithContext(context.Background(), usersNominateUserOptions)
 }
 
 // UsersNominateUserWithContext is an alternate form of the UsersNominateUser method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UsersNominateUserWithContext(ctx context.Context, usersNominateUserOptions *UsersNominateUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersNominateUserWithContext(ctx context.Context, usersNominateUserOptions *UsersNominateUserOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(usersNominateUserOptions, "usersNominateUserOptions cannot be nil")
 	if err != nil {
 		return
@@ -5799,12 +5799,12 @@ func (appIdManagement *AppIdManagementV4) UsersNominateUserWithContext(ctx conte
 
 // UserProfilesExport : Export user profiles
 // Exports App ID user profiles, not including Cloud Directory and anonymous users.
-func (appIdManagement *AppIdManagementV4) UserProfilesExport(userProfilesExportOptions *UserProfilesExportOptions) (result *ExportUserProfile, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UserProfilesExport(userProfilesExportOptions *UserProfilesExportOptions) (result *ExportUserProfile, response *core.DetailedResponse, err error) {
 	return appIdManagement.UserProfilesExportWithContext(context.Background(), userProfilesExportOptions)
 }
 
 // UserProfilesExportWithContext is an alternate form of the UserProfilesExport method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UserProfilesExportWithContext(ctx context.Context, userProfilesExportOptions *UserProfilesExportOptions) (result *ExportUserProfile, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UserProfilesExportWithContext(ctx context.Context, userProfilesExportOptions *UserProfilesExportOptions) (result *ExportUserProfile, response *core.DetailedResponse, err error) {
 	err = core.ValidateStruct(userProfilesExportOptions, "userProfilesExportOptions")
 	if err != nil {
 		return
@@ -5862,12 +5862,12 @@ func (appIdManagement *AppIdManagementV4) UserProfilesExportWithContext(ctx cont
 
 // UserProfilesImport : Import user profiles
 // Imports App ID user profiles, not including Cloud Directory and anonymous users.
-func (appIdManagement *AppIdManagementV4) UserProfilesImport(userProfilesImportOptions *UserProfilesImportOptions) (result *ImportProfilesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UserProfilesImport(userProfilesImportOptions *UserProfilesImportOptions) (result *ImportProfilesResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.UserProfilesImportWithContext(context.Background(), userProfilesImportOptions)
 }
 
 // UserProfilesImportWithContext is an alternate form of the UserProfilesImport method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UserProfilesImportWithContext(ctx context.Context, userProfilesImportOptions *UserProfilesImportOptions) (result *ImportProfilesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UserProfilesImportWithContext(ctx context.Context, userProfilesImportOptions *UserProfilesImportOptions) (result *ImportProfilesResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(userProfilesImportOptions, "userProfilesImportOptions cannot be nil")
 	if err != nil {
 		return
@@ -5932,12 +5932,12 @@ func (appIdManagement *AppIdManagementV4) UserProfilesImportWithContext(ctx cont
 
 // UsersDeleteUserProfile : Delete user
 // Deletes a user by id. <a href="https://cloud.ibm.com/docs/appid?topic=appid-profiles" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UsersDeleteUserProfile(usersDeleteUserProfileOptions *UsersDeleteUserProfileOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersDeleteUserProfile(usersDeleteUserProfileOptions *UsersDeleteUserProfileOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UsersDeleteUserProfileWithContext(context.Background(), usersDeleteUserProfileOptions)
 }
 
 // UsersDeleteUserProfileWithContext is an alternate form of the UsersDeleteUserProfile method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UsersDeleteUserProfileWithContext(ctx context.Context, usersDeleteUserProfileOptions *UsersDeleteUserProfileOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersDeleteUserProfileWithContext(ctx context.Context, usersDeleteUserProfileOptions *UsersDeleteUserProfileOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(usersDeleteUserProfileOptions, "usersDeleteUserProfileOptions cannot be nil")
 	if err != nil {
 		return
@@ -5982,12 +5982,12 @@ func (appIdManagement *AppIdManagementV4) UsersDeleteUserProfileWithContext(ctx 
 // UsersRevokeRefreshToken : Revoke refresh token
 // Revokes all the refresh tokens issued for the given user. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-profiles" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UsersRevokeRefreshToken(usersRevokeRefreshTokenOptions *UsersRevokeRefreshTokenOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersRevokeRefreshToken(usersRevokeRefreshTokenOptions *UsersRevokeRefreshTokenOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UsersRevokeRefreshTokenWithContext(context.Background(), usersRevokeRefreshTokenOptions)
 }
 
 // UsersRevokeRefreshTokenWithContext is an alternate form of the UsersRevokeRefreshToken method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UsersRevokeRefreshTokenWithContext(ctx context.Context, usersRevokeRefreshTokenOptions *UsersRevokeRefreshTokenOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersRevokeRefreshTokenWithContext(ctx context.Context, usersRevokeRefreshTokenOptions *UsersRevokeRefreshTokenOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(usersRevokeRefreshTokenOptions, "usersRevokeRefreshTokenOptions cannot be nil")
 	if err != nil {
 		return
@@ -6032,12 +6032,12 @@ func (appIdManagement *AppIdManagementV4) UsersRevokeRefreshTokenWithContext(ctx
 // UsersGetUserProfile : Get user profile
 // Returns the profile of a given user. <a href="https://cloud.ibm.com/docs/appid?topic=appid-profiles"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) UsersGetUserProfile(usersGetUserProfileOptions *UsersGetUserProfileOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersGetUserProfile(usersGetUserProfileOptions *UsersGetUserProfileOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UsersGetUserProfileWithContext(context.Background(), usersGetUserProfileOptions)
 }
 
 // UsersGetUserProfileWithContext is an alternate form of the UsersGetUserProfile method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UsersGetUserProfileWithContext(ctx context.Context, usersGetUserProfileOptions *UsersGetUserProfileOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersGetUserProfileWithContext(ctx context.Context, usersGetUserProfileOptions *UsersGetUserProfileOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(usersGetUserProfileOptions, "usersGetUserProfileOptions cannot be nil")
 	if err != nil {
 		return
@@ -6083,12 +6083,12 @@ func (appIdManagement *AppIdManagementV4) UsersGetUserProfileWithContext(ctx con
 // UsersSetUserProfile : Update user profile
 // Updates a user profile. <a href="https://cloud.ibm.com/docs/appid?topic=appid-profiles" target="_blank">Learn
 // more</a>.
-func (appIdManagement *AppIdManagementV4) UsersSetUserProfile(usersSetUserProfileOptions *UsersSetUserProfileOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersSetUserProfile(usersSetUserProfileOptions *UsersSetUserProfileOptions) (response *core.DetailedResponse, err error) {
 	return appIdManagement.UsersSetUserProfileWithContext(context.Background(), usersSetUserProfileOptions)
 }
 
 // UsersSetUserProfileWithContext is an alternate form of the UsersSetUserProfile method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UsersSetUserProfileWithContext(ctx context.Context, usersSetUserProfileOptions *UsersSetUserProfileOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UsersSetUserProfileWithContext(ctx context.Context, usersSetUserProfileOptions *UsersSetUserProfileOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(usersSetUserProfileOptions, "usersSetUserProfileOptions cannot be nil")
 	if err != nil {
 		return
@@ -6143,12 +6143,12 @@ func (appIdManagement *AppIdManagementV4) UsersSetUserProfileWithContext(ctx con
 
 // GetUserRoles : Get a user's roles
 // View a list of roles that are associated with a specific user.
-func (appIdManagement *AppIdManagementV4) GetUserRoles(getUserRolesOptions *GetUserRolesOptions) (result *GetUserRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetUserRoles(getUserRolesOptions *GetUserRolesOptions) (result *GetUserRolesResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetUserRolesWithContext(context.Background(), getUserRolesOptions)
 }
 
 // GetUserRolesWithContext is an alternate form of the GetUserRoles method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetUserRolesWithContext(ctx context.Context, getUserRolesOptions *GetUserRolesOptions) (result *GetUserRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetUserRolesWithContext(ctx context.Context, getUserRolesOptions *GetUserRolesOptions) (result *GetUserRolesResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getUserRolesOptions, "getUserRolesOptions cannot be nil")
 	if err != nil {
 		return
@@ -6204,12 +6204,12 @@ func (appIdManagement *AppIdManagementV4) GetUserRolesWithContext(ctx context.Co
 
 // UpdateUserRoles : Update a user's roles
 // Update which roles are associated with a specific user or assign a role to a user for the first time.
-func (appIdManagement *AppIdManagementV4) UpdateUserRoles(updateUserRolesOptions *UpdateUserRolesOptions) (result *AssignRoleToUser, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateUserRoles(updateUserRolesOptions *UpdateUserRolesOptions) (result *AssignRoleToUser, response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateUserRolesWithContext(context.Background(), updateUserRolesOptions)
 }
 
 // UpdateUserRolesWithContext is an alternate form of the UpdateUserRoles method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) UpdateUserRolesWithContext(ctx context.Context, updateUserRolesOptions *UpdateUserRolesOptions) (result *AssignRoleToUser, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateUserRolesWithContext(ctx context.Context, updateUserRolesOptions *UpdateUserRolesOptions) (result *AssignRoleToUser, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateUserRolesOptions, "updateUserRolesOptions cannot be nil")
 	if err != nil {
 		return
@@ -6289,7 +6289,7 @@ type ApmSchemaAdvancedPasswordManagement struct {
 }
 
 // NewApmSchemaAdvancedPasswordManagement : Instantiate ApmSchemaAdvancedPasswordManagement (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchemaAdvancedPasswordManagement(enabled bool, passwordReuse *ApmSchemaAdvancedPasswordManagementPasswordReuse, preventPasswordWithUsername *ApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername, passwordExpiration *ApmSchemaAdvancedPasswordManagementPasswordExpiration, lockOutPolicy *ApmSchemaAdvancedPasswordManagementLockOutPolicy) (model *ApmSchemaAdvancedPasswordManagement, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagement(enabled bool, passwordReuse *ApmSchemaAdvancedPasswordManagementPasswordReuse, preventPasswordWithUsername *ApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername, passwordExpiration *ApmSchemaAdvancedPasswordManagementPasswordExpiration, lockOutPolicy *ApmSchemaAdvancedPasswordManagementLockOutPolicy) (model *ApmSchemaAdvancedPasswordManagement, err error) {
 	model = &ApmSchemaAdvancedPasswordManagement{
 		Enabled: core.BoolPtr(enabled),
 		PasswordReuse: passwordReuse,
@@ -6340,7 +6340,7 @@ type ApmSchemaAdvancedPasswordManagementLockOutPolicy struct {
 }
 
 // NewApmSchemaAdvancedPasswordManagementLockOutPolicy : Instantiate ApmSchemaAdvancedPasswordManagementLockOutPolicy (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchemaAdvancedPasswordManagementLockOutPolicy(enabled bool) (model *ApmSchemaAdvancedPasswordManagementLockOutPolicy, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementLockOutPolicy(enabled bool) (model *ApmSchemaAdvancedPasswordManagementLockOutPolicy, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementLockOutPolicy{
 		Enabled: core.BoolPtr(enabled),
 	}
@@ -6371,7 +6371,7 @@ type ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig struct {
 }
 
 // NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig : Instantiate ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig(lockOutTimeSec float64, numOfAttempts float64) (model *ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig(lockOutTimeSec float64, numOfAttempts float64) (model *ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig{
 		LockOutTimeSec: core.Float64Ptr(lockOutTimeSec),
 		NumOfAttempts: core.Float64Ptr(numOfAttempts),
@@ -6403,7 +6403,7 @@ type ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval struct {
 }
 
 // NewApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval : Instantiate ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval(enabled bool) (model *ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval(enabled bool) (model *ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval{
 		Enabled: core.BoolPtr(enabled),
 	}
@@ -6432,7 +6432,7 @@ type ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig struct {
 }
 
 // NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig : Instantiate ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig(minHoursToChangePassword float64) (model *ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig(minHoursToChangePassword float64) (model *ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig{
 		MinHoursToChangePassword: core.Float64Ptr(minHoursToChangePassword),
 	}
@@ -6459,7 +6459,7 @@ type ApmSchemaAdvancedPasswordManagementPasswordExpiration struct {
 }
 
 // NewApmSchemaAdvancedPasswordManagementPasswordExpiration : Instantiate ApmSchemaAdvancedPasswordManagementPasswordExpiration (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordExpiration(enabled bool) (model *ApmSchemaAdvancedPasswordManagementPasswordExpiration, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordExpiration(enabled bool) (model *ApmSchemaAdvancedPasswordManagementPasswordExpiration, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementPasswordExpiration{
 		Enabled: core.BoolPtr(enabled),
 	}
@@ -6488,7 +6488,7 @@ type ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig struct {
 }
 
 // NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig : Instantiate ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig(daysToExpire float64) (model *ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig(daysToExpire float64) (model *ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig{
 		DaysToExpire: core.Float64Ptr(daysToExpire),
 	}
@@ -6515,7 +6515,7 @@ type ApmSchemaAdvancedPasswordManagementPasswordReuse struct {
 }
 
 // NewApmSchemaAdvancedPasswordManagementPasswordReuse : Instantiate ApmSchemaAdvancedPasswordManagementPasswordReuse (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordReuse(enabled bool) (model *ApmSchemaAdvancedPasswordManagementPasswordReuse, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordReuse(enabled bool) (model *ApmSchemaAdvancedPasswordManagementPasswordReuse, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementPasswordReuse{
 		Enabled: core.BoolPtr(enabled),
 	}
@@ -6544,7 +6544,7 @@ type ApmSchemaAdvancedPasswordManagementPasswordReuseConfig struct {
 }
 
 // NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig : Instantiate ApmSchemaAdvancedPasswordManagementPasswordReuseConfig (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig(maxPasswordReuse float64) (model *ApmSchemaAdvancedPasswordManagementPasswordReuseConfig, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig(maxPasswordReuse float64) (model *ApmSchemaAdvancedPasswordManagementPasswordReuseConfig, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementPasswordReuseConfig{
 		MaxPasswordReuse: core.Float64Ptr(maxPasswordReuse),
 	}
@@ -6569,7 +6569,7 @@ type ApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername struct {
 }
 
 // NewApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername : Instantiate ApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername(enabled bool) (model *ApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername(enabled bool) (model *ApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername{
 		Enabled: core.BoolPtr(enabled),
 	}
@@ -6685,7 +6685,7 @@ type ChangePasswordOptions struct {
 	UUID *string `validate:"required"`
 
 	// The ip address the password changed from.
-	ChangedIpAddress *string
+	ChangedIPAddress *string
 
 	// Preferred language for resource. Format as described at RFC5646.
 	Language *string
@@ -6695,7 +6695,7 @@ type ChangePasswordOptions struct {
 }
 
 // NewChangePasswordOptions : Instantiate ChangePasswordOptions
-func (*AppIdManagementV4) NewChangePasswordOptions(newPassword string, uuid string) *ChangePasswordOptions {
+func (*AppIDManagementV4) NewChangePasswordOptions(newPassword string, uuid string) *ChangePasswordOptions {
 	return &ChangePasswordOptions{
 		NewPassword: core.StringPtr(newPassword),
 		UUID: core.StringPtr(uuid),
@@ -6714,9 +6714,9 @@ func (options *ChangePasswordOptions) SetUUID(uuid string) *ChangePasswordOption
 	return options
 }
 
-// SetChangedIpAddress : Allow user to set ChangedIpAddress
-func (options *ChangePasswordOptions) SetChangedIpAddress(changedIpAddress string) *ChangePasswordOptions {
-	options.ChangedIpAddress = core.StringPtr(changedIpAddress)
+// SetChangedIPAddress : Allow user to set ChangedIPAddress
+func (options *ChangePasswordOptions) SetChangedIPAddress(changedIPAddress string) *ChangePasswordOptions {
+	options.ChangedIPAddress = core.StringPtr(changedIPAddress)
 	return options
 }
 
@@ -6744,7 +6744,7 @@ type CloudDirectoryConfigParamsInteractions struct {
 }
 
 // NewCloudDirectoryConfigParamsInteractions : Instantiate CloudDirectoryConfigParamsInteractions (Generic Model Constructor)
-func (*AppIdManagementV4) NewCloudDirectoryConfigParamsInteractions(identityConfirmation *CloudDirectoryConfigParamsInteractionsIdentityConfirmation, welcomeEnabled bool, resetPasswordEnabled bool, resetPasswordNotificationEnable bool) (model *CloudDirectoryConfigParamsInteractions, err error) {
+func (*AppIDManagementV4) NewCloudDirectoryConfigParamsInteractions(identityConfirmation *CloudDirectoryConfigParamsInteractionsIdentityConfirmation, welcomeEnabled bool, resetPasswordEnabled bool, resetPasswordNotificationEnable bool) (model *CloudDirectoryConfigParamsInteractions, err error) {
 	model = &CloudDirectoryConfigParamsInteractions{
 		IdentityConfirmation: identityConfirmation,
 		WelcomeEnabled: core.BoolPtr(welcomeEnabled),
@@ -6787,18 +6787,18 @@ type CloudDirectoryConfigParamsInteractionsIdentityConfirmation struct {
 
 // Constants associated with the CloudDirectoryConfigParamsInteractionsIdentityConfirmation.AccessMode property.
 const (
-	CloudDirectoryConfigParamsInteractionsIdentityConfirmation_AccessMode_False = "false"
-	CloudDirectoryConfigParamsInteractionsIdentityConfirmation_AccessMode_Full = "FULL"
-	CloudDirectoryConfigParamsInteractionsIdentityConfirmation_AccessMode_Restrictive = "RESTRICTIVE"
+	CloudDirectoryConfigParamsInteractionsIdentityConfirmationAccessModeFalseConst = "false"
+	CloudDirectoryConfigParamsInteractionsIdentityConfirmationAccessModeFullConst = "FULL"
+	CloudDirectoryConfigParamsInteractionsIdentityConfirmationAccessModeRestrictiveConst = "RESTRICTIVE"
 )
 
 // Constants associated with the CloudDirectoryConfigParamsInteractionsIdentityConfirmation.Methods property.
 const (
-	CloudDirectoryConfigParamsInteractionsIdentityConfirmation_Methods_Email = "email"
+	CloudDirectoryConfigParamsInteractionsIdentityConfirmationMethodsEmailConst = "email"
 )
 
 // NewCloudDirectoryConfigParamsInteractionsIdentityConfirmation : Instantiate CloudDirectoryConfigParamsInteractionsIdentityConfirmation (Generic Model Constructor)
-func (*AppIdManagementV4) NewCloudDirectoryConfigParamsInteractionsIdentityConfirmation(accessMode string) (model *CloudDirectoryConfigParamsInteractionsIdentityConfirmation, err error) {
+func (*AppIDManagementV4) NewCloudDirectoryConfigParamsInteractionsIdentityConfirmation(accessMode string) (model *CloudDirectoryConfigParamsInteractionsIdentityConfirmation, err error) {
 	model = &CloudDirectoryConfigParamsInteractionsIdentityConfirmation{
 		AccessMode: core.StringPtr(accessMode),
 	}
@@ -6837,7 +6837,7 @@ type CloudDirectoryExportOptions struct {
 }
 
 // NewCloudDirectoryExportOptions : Instantiate CloudDirectoryExportOptions
-func (*AppIdManagementV4) NewCloudDirectoryExportOptions(encryptionSecret string) *CloudDirectoryExportOptions {
+func (*AppIDManagementV4) NewCloudDirectoryExportOptions(encryptionSecret string) *CloudDirectoryExportOptions {
 	return &CloudDirectoryExportOptions{
 		EncryptionSecret: core.StringPtr(encryptionSecret),
 	}
@@ -6877,7 +6877,7 @@ type CloudDirectoryGetUserinfoOptions struct {
 }
 
 // NewCloudDirectoryGetUserinfoOptions : Instantiate CloudDirectoryGetUserinfoOptions
-func (*AppIdManagementV4) NewCloudDirectoryGetUserinfoOptions(userID string) *CloudDirectoryGetUserinfoOptions {
+func (*AppIDManagementV4) NewCloudDirectoryGetUserinfoOptions(userID string) *CloudDirectoryGetUserinfoOptions {
 	return &CloudDirectoryGetUserinfoOptions{
 		UserID: core.StringPtr(userID),
 	}
@@ -6907,7 +6907,7 @@ type CloudDirectoryImportOptions struct {
 }
 
 // NewCloudDirectoryImportOptions : Instantiate CloudDirectoryImportOptions
-func (*AppIdManagementV4) NewCloudDirectoryImportOptions(encryptionSecret string, users []ExportUserUsersItem) *CloudDirectoryImportOptions {
+func (*AppIDManagementV4) NewCloudDirectoryImportOptions(encryptionSecret string, users []ExportUserUsersItem) *CloudDirectoryImportOptions {
 	return &CloudDirectoryImportOptions{
 		EncryptionSecret: core.StringPtr(encryptionSecret),
 		Users: users,
@@ -6942,7 +6942,7 @@ type CloudDirectoryRemoveOptions struct {
 }
 
 // NewCloudDirectoryRemoveOptions : Instantiate CloudDirectoryRemoveOptions
-func (*AppIdManagementV4) NewCloudDirectoryRemoveOptions(userID string) *CloudDirectoryRemoveOptions {
+func (*AppIDManagementV4) NewCloudDirectoryRemoveOptions(userID string) *CloudDirectoryRemoveOptions {
 	return &CloudDirectoryRemoveOptions{
 		UserID: core.StringPtr(userID),
 	}
@@ -6970,7 +6970,7 @@ type CloudDirectorySenderDetailsSenderDetails struct {
 }
 
 // NewCloudDirectorySenderDetailsSenderDetails : Instantiate CloudDirectorySenderDetailsSenderDetails (Generic Model Constructor)
-func (*AppIdManagementV4) NewCloudDirectorySenderDetailsSenderDetails(from *CloudDirectorySenderDetailsSenderDetailsFrom) (model *CloudDirectorySenderDetailsSenderDetails, err error) {
+func (*AppIDManagementV4) NewCloudDirectorySenderDetailsSenderDetails(from *CloudDirectorySenderDetailsSenderDetailsFrom) (model *CloudDirectorySenderDetailsSenderDetails, err error) {
 	model = &CloudDirectorySenderDetailsSenderDetails{
 		From: from,
 	}
@@ -7005,7 +7005,7 @@ type CloudDirectorySenderDetailsSenderDetailsFrom struct {
 }
 
 // NewCloudDirectorySenderDetailsSenderDetailsFrom : Instantiate CloudDirectorySenderDetailsSenderDetailsFrom (Generic Model Constructor)
-func (*AppIdManagementV4) NewCloudDirectorySenderDetailsSenderDetailsFrom(email string) (model *CloudDirectorySenderDetailsSenderDetailsFrom, err error) {
+func (*AppIDManagementV4) NewCloudDirectorySenderDetailsSenderDetailsFrom(email string) (model *CloudDirectorySenderDetailsSenderDetailsFrom, err error) {
 	model = &CloudDirectorySenderDetailsSenderDetailsFrom{
 		Email: core.StringPtr(email),
 	}
@@ -7065,7 +7065,7 @@ type CreateCloudDirectoryUserOptions struct {
 }
 
 // NewCreateCloudDirectoryUserOptions : Instantiate CreateCloudDirectoryUserOptions
-func (*AppIdManagementV4) NewCreateCloudDirectoryUserOptions(emails []CreateNewUserEmailsItem, password string) *CreateCloudDirectoryUserOptions {
+func (*AppIDManagementV4) NewCreateCloudDirectoryUserOptions(emails []CreateNewUserEmailsItem, password string) *CreateCloudDirectoryUserOptions {
 	return &CreateCloudDirectoryUserOptions{
 		Emails: emails,
 		Password: core.StringPtr(password),
@@ -7110,7 +7110,7 @@ type CreateNewUserEmailsItem struct {
 }
 
 // NewCreateNewUserEmailsItem : Instantiate CreateNewUserEmailsItem (Generic Model Constructor)
-func (*AppIdManagementV4) NewCreateNewUserEmailsItem(value string) (model *CreateNewUserEmailsItem, err error) {
+func (*AppIDManagementV4) NewCreateNewUserEmailsItem(value string) (model *CreateNewUserEmailsItem, err error) {
 	model = &CreateNewUserEmailsItem{
 		Value: core.StringPtr(value),
 	}
@@ -7146,7 +7146,7 @@ type CreateRoleOptions struct {
 }
 
 // NewCreateRoleOptions : Instantiate CreateRoleOptions
-func (*AppIdManagementV4) NewCreateRoleOptions(name string, access []CreateRoleParamsAccessItem) *CreateRoleOptions {
+func (*AppIDManagementV4) NewCreateRoleOptions(name string, access []CreateRoleParamsAccessItem) *CreateRoleOptions {
 	return &CreateRoleOptions{
 		Name: core.StringPtr(name),
 		Access: access,
@@ -7185,7 +7185,7 @@ type CreateRoleParamsAccessItem struct {
 }
 
 // NewCreateRoleParamsAccessItem : Instantiate CreateRoleParamsAccessItem (Generic Model Constructor)
-func (*AppIdManagementV4) NewCreateRoleParamsAccessItem(applicationID string, scopes []string) (model *CreateRoleParamsAccessItem, err error) {
+func (*AppIDManagementV4) NewCreateRoleParamsAccessItem(applicationID string, scopes []string) (model *CreateRoleParamsAccessItem, err error) {
 	model = &CreateRoleParamsAccessItem{
 		ApplicationID: core.StringPtr(applicationID),
 		Scopes: scopes,
@@ -7231,14 +7231,14 @@ func UnmarshalCreateRolesResponseAccessItem(m map[string]json.RawMessage, result
 	return
 }
 
-// CustomIdPConfigParamsConfig : CustomIdPConfigParamsConfig struct
-type CustomIdPConfigParamsConfig struct {
+// CustomIDPConfigParamsConfig : CustomIDPConfigParamsConfig struct
+type CustomIDPConfigParamsConfig struct {
 	PublicKey *string `json:"publicKey,omitempty"`
 }
 
-// UnmarshalCustomIdPConfigParamsConfig unmarshals an instance of CustomIdPConfigParamsConfig from the specified map of raw messages.
-func UnmarshalCustomIdPConfigParamsConfig(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(CustomIdPConfigParamsConfig)
+// UnmarshalCustomIDPConfigParamsConfig unmarshals an instance of CustomIDPConfigParamsConfig from the specified map of raw messages.
+func UnmarshalCustomIDPConfigParamsConfig(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(CustomIDPConfigParamsConfig)
 	err = core.UnmarshalPrimitive(m, "publicKey", &obj.PublicKey)
 	if err != nil {
 		return
@@ -7247,8 +7247,8 @@ func UnmarshalCustomIdPConfigParamsConfig(m map[string]json.RawMessage, result i
 	return
 }
 
-// DeleteActionUrlOptions : The DeleteActionURL options.
-type DeleteActionUrlOptions struct {
+// DeleteActionURLOptions : The DeleteActionURL options.
+type DeleteActionURLOptions struct {
 	// The type of the action. on_user_verified - the URL of your custom user verified page, on_reset_password - the URL of
 	// your custom reset password page.
 	Action *string `validate:"required,ne="`
@@ -7257,29 +7257,29 @@ type DeleteActionUrlOptions struct {
 	Headers map[string]string
 }
 
-// Constants associated with the DeleteActionUrlOptions.Action property.
+// Constants associated with the DeleteActionURLOptions.Action property.
 // The type of the action. on_user_verified - the URL of your custom user verified page, on_reset_password - the URL of
 // your custom reset password page.
 const (
-	DeleteActionUrlOptions_Action_OnResetPassword = "on_reset_password"
-	DeleteActionUrlOptions_Action_OnUserVerified = "on_user_verified"
+	DeleteActionURLOptionsActionOnResetPasswordConst = "on_reset_password"
+	DeleteActionURLOptionsActionOnUserVerifiedConst = "on_user_verified"
 )
 
-// NewDeleteActionUrlOptions : Instantiate DeleteActionUrlOptions
-func (*AppIdManagementV4) NewDeleteActionUrlOptions(action string) *DeleteActionUrlOptions {
-	return &DeleteActionUrlOptions{
+// NewDeleteActionURLOptions : Instantiate DeleteActionURLOptions
+func (*AppIDManagementV4) NewDeleteActionURLOptions(action string) *DeleteActionURLOptions {
+	return &DeleteActionURLOptions{
 		Action: core.StringPtr(action),
 	}
 }
 
 // SetAction : Allow user to set Action
-func (options *DeleteActionUrlOptions) SetAction(action string) *DeleteActionUrlOptions {
+func (options *DeleteActionURLOptions) SetAction(action string) *DeleteActionURLOptions {
 	options.Action = core.StringPtr(action)
 	return options
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *DeleteActionUrlOptions) SetHeaders(param map[string]string) *DeleteActionUrlOptions {
+func (options *DeleteActionURLOptions) SetHeaders(param map[string]string) *DeleteActionURLOptions {
 	options.Headers = param
 	return options
 }
@@ -7294,7 +7294,7 @@ type DeleteApplicationOptions struct {
 }
 
 // NewDeleteApplicationOptions : Instantiate DeleteApplicationOptions
-func (*AppIdManagementV4) NewDeleteApplicationOptions(clientID string) *DeleteApplicationOptions {
+func (*AppIDManagementV4) NewDeleteApplicationOptions(clientID string) *DeleteApplicationOptions {
 	return &DeleteApplicationOptions{
 		ClientID: core.StringPtr(clientID),
 	}
@@ -7322,7 +7322,7 @@ type DeleteCloudDirectoryUserOptions struct {
 }
 
 // NewDeleteCloudDirectoryUserOptions : Instantiate DeleteCloudDirectoryUserOptions
-func (*AppIdManagementV4) NewDeleteCloudDirectoryUserOptions(userID string) *DeleteCloudDirectoryUserOptions {
+func (*AppIDManagementV4) NewDeleteCloudDirectoryUserOptions(userID string) *DeleteCloudDirectoryUserOptions {
 	return &DeleteCloudDirectoryUserOptions{
 		UserID: core.StringPtr(userID),
 	}
@@ -7350,7 +7350,7 @@ type DeleteRoleOptions struct {
 }
 
 // NewDeleteRoleOptions : Instantiate DeleteRoleOptions
-func (*AppIdManagementV4) NewDeleteRoleOptions(roleID string) *DeleteRoleOptions {
+func (*AppIDManagementV4) NewDeleteRoleOptions(roleID string) *DeleteRoleOptions {
 	return &DeleteRoleOptions{
 		RoleID: core.StringPtr(roleID),
 	}
@@ -7386,15 +7386,15 @@ type DeleteTemplateOptions struct {
 // The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED", "RESET_PASSWORD" or
 // "MFA_VERIFICATION".
 const (
-	DeleteTemplateOptions_TemplateName_MfaVerification = "MFA_VERIFICATION"
-	DeleteTemplateOptions_TemplateName_PasswordChanged = "PASSWORD_CHANGED"
-	DeleteTemplateOptions_TemplateName_ResetPassword = "RESET_PASSWORD"
-	DeleteTemplateOptions_TemplateName_UserVerification = "USER_VERIFICATION"
-	DeleteTemplateOptions_TemplateName_Welcome = "WELCOME"
+	DeleteTemplateOptionsTemplateNameMFAVerificationConst = "MFA_VERIFICATION"
+	DeleteTemplateOptionsTemplateNamePasswordChangedConst = "PASSWORD_CHANGED"
+	DeleteTemplateOptionsTemplateNameResetPasswordConst = "RESET_PASSWORD"
+	DeleteTemplateOptionsTemplateNameUserVerificationConst = "USER_VERIFICATION"
+	DeleteTemplateOptionsTemplateNameWelcomeConst = "WELCOME"
 )
 
 // NewDeleteTemplateOptions : Instantiate DeleteTemplateOptions
-func (*AppIdManagementV4) NewDeleteTemplateOptions(templateName string, language string) *DeleteTemplateOptions {
+func (*AppIDManagementV4) NewDeleteTemplateOptions(templateName string, language string) *DeleteTemplateOptions {
 	return &DeleteTemplateOptions{
 		TemplateName: core.StringPtr(templateName),
 		Language: core.StringPtr(language),
@@ -7427,7 +7427,7 @@ type EmailDispatcherParamsCustom struct {
 }
 
 // NewEmailDispatcherParamsCustom : Instantiate EmailDispatcherParamsCustom (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailDispatcherParamsCustom(url string, authorization *EmailDispatcherParamsCustomAuthorization) (model *EmailDispatcherParamsCustom, err error) {
+func (*AppIDManagementV4) NewEmailDispatcherParamsCustom(url string, authorization *EmailDispatcherParamsCustomAuthorization) (model *EmailDispatcherParamsCustom, err error) {
 	model = &EmailDispatcherParamsCustom{
 		URL: core.StringPtr(url),
 		Authorization: authorization,
@@ -7464,13 +7464,13 @@ type EmailDispatcherParamsCustomAuthorization struct {
 
 // Constants associated with the EmailDispatcherParamsCustomAuthorization.Type property.
 const (
-	EmailDispatcherParamsCustomAuthorization_Type_Basic = "basic"
-	EmailDispatcherParamsCustomAuthorization_Type_None = "none"
-	EmailDispatcherParamsCustomAuthorization_Type_Value = "value"
+	EmailDispatcherParamsCustomAuthorizationTypeBasicConst = "basic"
+	EmailDispatcherParamsCustomAuthorizationTypeNoneConst = "none"
+	EmailDispatcherParamsCustomAuthorizationTypeValueConst = "value"
 )
 
 // NewEmailDispatcherParamsCustomAuthorization : Instantiate EmailDispatcherParamsCustomAuthorization (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailDispatcherParamsCustomAuthorization(typeVar string) (model *EmailDispatcherParamsCustomAuthorization, err error) {
+func (*AppIDManagementV4) NewEmailDispatcherParamsCustomAuthorization(typeVar string) (model *EmailDispatcherParamsCustomAuthorization, err error) {
 	model = &EmailDispatcherParamsCustomAuthorization{
 		Type: core.StringPtr(typeVar),
 	}
@@ -7503,13 +7503,13 @@ func UnmarshalEmailDispatcherParamsCustomAuthorization(m map[string]json.RawMess
 
 // EmailDispatcherParamsSendgrid : EmailDispatcherParamsSendgrid struct
 type EmailDispatcherParamsSendgrid struct {
-	ApiKey *string `json:"apiKey" validate:"required"`
+	APIKey *string `json:"apiKey" validate:"required"`
 }
 
 // NewEmailDispatcherParamsSendgrid : Instantiate EmailDispatcherParamsSendgrid (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailDispatcherParamsSendgrid(apiKey string) (model *EmailDispatcherParamsSendgrid, err error) {
+func (*AppIDManagementV4) NewEmailDispatcherParamsSendgrid(apiKey string) (model *EmailDispatcherParamsSendgrid, err error) {
 	model = &EmailDispatcherParamsSendgrid{
-		ApiKey: core.StringPtr(apiKey),
+		APIKey: core.StringPtr(apiKey),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -7518,7 +7518,7 @@ func (*AppIdManagementV4) NewEmailDispatcherParamsSendgrid(apiKey string) (model
 // UnmarshalEmailDispatcherParamsSendgrid unmarshals an instance of EmailDispatcherParamsSendgrid from the specified map of raw messages.
 func UnmarshalEmailDispatcherParamsSendgrid(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(EmailDispatcherParamsSendgrid)
-	err = core.UnmarshalPrimitive(m, "apiKey", &obj.ApiKey)
+	err = core.UnmarshalPrimitive(m, "apiKey", &obj.APIKey)
 	if err != nil {
 		return
 	}
@@ -7539,7 +7539,7 @@ type EmailSettingTestOptions struct {
 }
 
 // NewEmailSettingTestOptions : Instantiate EmailSettingTestOptions
-func (*AppIdManagementV4) NewEmailSettingTestOptions(emailTo string, emailSettings *EmailSettingsTestParamsEmailSettings, senderDetails *EmailSettingsTestParamsSenderDetails) *EmailSettingTestOptions {
+func (*AppIDManagementV4) NewEmailSettingTestOptions(emailTo string, emailSettings *EmailSettingsTestParamsEmailSettings, senderDetails *EmailSettingsTestParamsSenderDetails) *EmailSettingTestOptions {
 	return &EmailSettingTestOptions{
 		EmailTo: core.StringPtr(emailTo),
 		EmailSettings: emailSettings,
@@ -7582,12 +7582,12 @@ type EmailSettingsTestParamsEmailSettings struct {
 
 // Constants associated with the EmailSettingsTestParamsEmailSettings.Provider property.
 const (
-	EmailSettingsTestParamsEmailSettings_Provider_Custom = "custom"
-	EmailSettingsTestParamsEmailSettings_Provider_Sendgrid = "sendgrid"
+	EmailSettingsTestParamsEmailSettingsProviderCustomConst = "custom"
+	EmailSettingsTestParamsEmailSettingsProviderSendgridConst = "sendgrid"
 )
 
 // NewEmailSettingsTestParamsEmailSettings : Instantiate EmailSettingsTestParamsEmailSettings (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailSettingsTestParamsEmailSettings(provider string) (model *EmailSettingsTestParamsEmailSettings, err error) {
+func (*AppIDManagementV4) NewEmailSettingsTestParamsEmailSettings(provider string) (model *EmailSettingsTestParamsEmailSettings, err error) {
 	model = &EmailSettingsTestParamsEmailSettings{
 		Provider: core.StringPtr(provider),
 	}
@@ -7622,7 +7622,7 @@ type EmailSettingsTestParamsEmailSettingsCustom struct {
 }
 
 // NewEmailSettingsTestParamsEmailSettingsCustom : Instantiate EmailSettingsTestParamsEmailSettingsCustom (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailSettingsTestParamsEmailSettingsCustom(url string, authorization *EmailSettingsTestParamsEmailSettingsCustomAuthorization) (model *EmailSettingsTestParamsEmailSettingsCustom, err error) {
+func (*AppIDManagementV4) NewEmailSettingsTestParamsEmailSettingsCustom(url string, authorization *EmailSettingsTestParamsEmailSettingsCustomAuthorization) (model *EmailSettingsTestParamsEmailSettingsCustom, err error) {
 	model = &EmailSettingsTestParamsEmailSettingsCustom{
 		URL: core.StringPtr(url),
 		Authorization: authorization,
@@ -7659,13 +7659,13 @@ type EmailSettingsTestParamsEmailSettingsCustomAuthorization struct {
 
 // Constants associated with the EmailSettingsTestParamsEmailSettingsCustomAuthorization.Type property.
 const (
-	EmailSettingsTestParamsEmailSettingsCustomAuthorization_Type_Basic = "basic"
-	EmailSettingsTestParamsEmailSettingsCustomAuthorization_Type_None = "none"
-	EmailSettingsTestParamsEmailSettingsCustomAuthorization_Type_Value = "value"
+	EmailSettingsTestParamsEmailSettingsCustomAuthorizationTypeBasicConst = "basic"
+	EmailSettingsTestParamsEmailSettingsCustomAuthorizationTypeNoneConst = "none"
+	EmailSettingsTestParamsEmailSettingsCustomAuthorizationTypeValueConst = "value"
 )
 
 // NewEmailSettingsTestParamsEmailSettingsCustomAuthorization : Instantiate EmailSettingsTestParamsEmailSettingsCustomAuthorization (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailSettingsTestParamsEmailSettingsCustomAuthorization(typeVar string) (model *EmailSettingsTestParamsEmailSettingsCustomAuthorization, err error) {
+func (*AppIDManagementV4) NewEmailSettingsTestParamsEmailSettingsCustomAuthorization(typeVar string) (model *EmailSettingsTestParamsEmailSettingsCustomAuthorization, err error) {
 	model = &EmailSettingsTestParamsEmailSettingsCustomAuthorization{
 		Type: core.StringPtr(typeVar),
 	}
@@ -7698,13 +7698,13 @@ func UnmarshalEmailSettingsTestParamsEmailSettingsCustomAuthorization(m map[stri
 
 // EmailSettingsTestParamsEmailSettingsSendgrid : EmailSettingsTestParamsEmailSettingsSendgrid struct
 type EmailSettingsTestParamsEmailSettingsSendgrid struct {
-	ApiKey *string `json:"apiKey" validate:"required"`
+	APIKey *string `json:"apiKey" validate:"required"`
 }
 
 // NewEmailSettingsTestParamsEmailSettingsSendgrid : Instantiate EmailSettingsTestParamsEmailSettingsSendgrid (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailSettingsTestParamsEmailSettingsSendgrid(apiKey string) (model *EmailSettingsTestParamsEmailSettingsSendgrid, err error) {
+func (*AppIDManagementV4) NewEmailSettingsTestParamsEmailSettingsSendgrid(apiKey string) (model *EmailSettingsTestParamsEmailSettingsSendgrid, err error) {
 	model = &EmailSettingsTestParamsEmailSettingsSendgrid{
-		ApiKey: core.StringPtr(apiKey),
+		APIKey: core.StringPtr(apiKey),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -7713,7 +7713,7 @@ func (*AppIdManagementV4) NewEmailSettingsTestParamsEmailSettingsSendgrid(apiKey
 // UnmarshalEmailSettingsTestParamsEmailSettingsSendgrid unmarshals an instance of EmailSettingsTestParamsEmailSettingsSendgrid from the specified map of raw messages.
 func UnmarshalEmailSettingsTestParamsEmailSettingsSendgrid(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(EmailSettingsTestParamsEmailSettingsSendgrid)
-	err = core.UnmarshalPrimitive(m, "apiKey", &obj.ApiKey)
+	err = core.UnmarshalPrimitive(m, "apiKey", &obj.APIKey)
 	if err != nil {
 		return
 	}
@@ -7729,7 +7729,7 @@ type EmailSettingsTestParamsSenderDetails struct {
 }
 
 // NewEmailSettingsTestParamsSenderDetails : Instantiate EmailSettingsTestParamsSenderDetails (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailSettingsTestParamsSenderDetails(from *EmailSettingsTestParamsSenderDetailsFrom) (model *EmailSettingsTestParamsSenderDetails, err error) {
+func (*AppIDManagementV4) NewEmailSettingsTestParamsSenderDetails(from *EmailSettingsTestParamsSenderDetailsFrom) (model *EmailSettingsTestParamsSenderDetails, err error) {
 	model = &EmailSettingsTestParamsSenderDetails{
 		From: from,
 	}
@@ -7760,7 +7760,7 @@ type EmailSettingsTestParamsSenderDetailsFrom struct {
 }
 
 // NewEmailSettingsTestParamsSenderDetailsFrom : Instantiate EmailSettingsTestParamsSenderDetailsFrom (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailSettingsTestParamsSenderDetailsFrom(email string) (model *EmailSettingsTestParamsSenderDetailsFrom, err error) {
+func (*AppIDManagementV4) NewEmailSettingsTestParamsSenderDetailsFrom(email string) (model *EmailSettingsTestParamsSenderDetailsFrom, err error) {
 	model = &EmailSettingsTestParamsSenderDetailsFrom{
 		Email: core.StringPtr(email),
 	}
@@ -7791,7 +7791,7 @@ type EmailSettingsTestParamsSenderDetailsReplyTo struct {
 }
 
 // NewEmailSettingsTestParamsSenderDetailsReplyTo : Instantiate EmailSettingsTestParamsSenderDetailsReplyTo (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailSettingsTestParamsSenderDetailsReplyTo(email string) (model *EmailSettingsTestParamsSenderDetailsReplyTo, err error) {
+func (*AppIDManagementV4) NewEmailSettingsTestParamsSenderDetailsReplyTo(email string) (model *EmailSettingsTestParamsSenderDetailsReplyTo, err error) {
 	model = &EmailSettingsTestParamsSenderDetailsReplyTo{
 		Email: core.StringPtr(email),
 	}
@@ -7844,7 +7844,7 @@ type ExportUserProfileUsersItem struct {
 }
 
 // NewExportUserProfileUsersItem : Instantiate ExportUserProfileUsersItem (Generic Model Constructor)
-func (*AppIdManagementV4) NewExportUserProfileUsersItem(id string, identities []ExportUserProfileUsersItemIdentitiesItem, attributes interface{}) (model *ExportUserProfileUsersItem, err error) {
+func (*AppIDManagementV4) NewExportUserProfileUsersItem(id string, identities []ExportUserProfileUsersItemIdentitiesItem, attributes interface{}) (model *ExportUserProfileUsersItem, err error) {
 	model = &ExportUserProfileUsersItem{
 		ID: core.StringPtr(id),
 		Identities: identities,
@@ -8009,7 +8009,7 @@ type ExportUserUsersItem struct {
 }
 
 // NewExportUserUsersItem : Instantiate ExportUserUsersItem (Generic Model Constructor)
-func (*AppIdManagementV4) NewExportUserUsersItem(scimUser interface{}, passwordHash string, passwordHashAlg string, profile *ExportUserUsersItemProfile, roles []string) (model *ExportUserUsersItem, err error) {
+func (*AppIDManagementV4) NewExportUserUsersItem(scimUser interface{}, passwordHash string, passwordHashAlg string, profile *ExportUserUsersItemProfile, roles []string) (model *ExportUserUsersItem, err error) {
 	model = &ExportUserUsersItem{
 		ScimUser: scimUser,
 		PasswordHash: core.StringPtr(passwordHash),
@@ -8054,7 +8054,7 @@ type ExportUserUsersItemProfile struct {
 }
 
 // NewExportUserUsersItemProfile : Instantiate ExportUserUsersItemProfile (Generic Model Constructor)
-func (*AppIdManagementV4) NewExportUserUsersItemProfile(attributes interface{}) (model *ExportUserUsersItemProfile, err error) {
+func (*AppIDManagementV4) NewExportUserUsersItemProfile(attributes interface{}) (model *ExportUserUsersItemProfile, err error) {
 	model = &ExportUserUsersItemProfile{
 		Attributes: attributes,
 	}
@@ -8095,16 +8095,16 @@ func UnmarshalFacebookConfigParamsConfig(m map[string]json.RawMessage, result in
 	return
 }
 
-// FacebookConfigParamsPUTConfig : FacebookConfigParamsPUTConfig struct
-type FacebookConfigParamsPUTConfig struct {
+// FacebookConfigParamsPutConfig : FacebookConfigParamsPutConfig struct
+type FacebookConfigParamsPutConfig struct {
 	IDPID *string `json:"idpId" validate:"required"`
 
 	Secret *string `json:"secret" validate:"required"`
 }
 
-// UnmarshalFacebookConfigParamsPUTConfig unmarshals an instance of FacebookConfigParamsPUTConfig from the specified map of raw messages.
-func UnmarshalFacebookConfigParamsPUTConfig(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(FacebookConfigParamsPUTConfig)
+// UnmarshalFacebookConfigParamsPutConfig unmarshals an instance of FacebookConfigParamsPutConfig from the specified map of raw messages.
+func UnmarshalFacebookConfigParamsPutConfig(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(FacebookConfigParamsPutConfig)
 	err = core.UnmarshalPrimitive(m, "idpId", &obj.IDPID)
 	if err != nil {
 		return
@@ -8125,9 +8125,9 @@ type FacebookGoogleConfigParamsConfig struct {
 }
 
 // NewFacebookGoogleConfigParamsConfig : Instantiate FacebookGoogleConfigParamsConfig (Generic Model Constructor)
-func (*AppIdManagementV4) NewFacebookGoogleConfigParamsConfig(iDPID string, secret string) (model *FacebookGoogleConfigParamsConfig, err error) {
+func (*AppIDManagementV4) NewFacebookGoogleConfigParamsConfig(idpID string, secret string) (model *FacebookGoogleConfigParamsConfig, err error) {
 	model = &FacebookGoogleConfigParamsConfig{
-		IDPID: core.StringPtr(iDPID),
+		IDPID: core.StringPtr(idpID),
 		Secret: core.StringPtr(secret),
 	}
 	err = core.ValidateStruct(model, "required parameters")
@@ -8159,7 +8159,7 @@ type ForgotPasswordResultOptions struct {
 }
 
 // NewForgotPasswordResultOptions : Instantiate ForgotPasswordResultOptions
-func (*AppIdManagementV4) NewForgotPasswordResultOptions(context string) *ForgotPasswordResultOptions {
+func (*AppIDManagementV4) NewForgotPasswordResultOptions(context string) *ForgotPasswordResultOptions {
 	return &ForgotPasswordResultOptions{
 		Context: core.StringPtr(context),
 	}
@@ -8187,7 +8187,7 @@ type GetApplicationOptions struct {
 }
 
 // NewGetApplicationOptions : Instantiate GetApplicationOptions
-func (*AppIdManagementV4) NewGetApplicationOptions(clientID string) *GetApplicationOptions {
+func (*AppIDManagementV4) NewGetApplicationOptions(clientID string) *GetApplicationOptions {
 	return &GetApplicationOptions{
 		ClientID: core.StringPtr(clientID),
 	}
@@ -8215,7 +8215,7 @@ type GetApplicationRolesOptions struct {
 }
 
 // NewGetApplicationRolesOptions : Instantiate GetApplicationRolesOptions
-func (*AppIdManagementV4) NewGetApplicationRolesOptions(clientID string) *GetApplicationRolesOptions {
+func (*AppIDManagementV4) NewGetApplicationRolesOptions(clientID string) *GetApplicationRolesOptions {
 	return &GetApplicationRolesOptions{
 		ClientID: core.StringPtr(clientID),
 	}
@@ -8243,7 +8243,7 @@ type GetApplicationScopesOptions struct {
 }
 
 // NewGetApplicationScopesOptions : Instantiate GetApplicationScopesOptions
-func (*AppIdManagementV4) NewGetApplicationScopesOptions(clientID string) *GetApplicationScopesOptions {
+func (*AppIDManagementV4) NewGetApplicationScopesOptions(clientID string) *GetApplicationScopesOptions {
 	return &GetApplicationScopesOptions{
 		ClientID: core.StringPtr(clientID),
 	}
@@ -8269,7 +8269,7 @@ type GetAuditStatusOptions struct {
 }
 
 // NewGetAuditStatusOptions : Instantiate GetAuditStatusOptions
-func (*AppIdManagementV4) NewGetAuditStatusOptions() *GetAuditStatusOptions {
+func (*AppIDManagementV4) NewGetAuditStatusOptions() *GetAuditStatusOptions {
 	return &GetAuditStatusOptions{}
 }
 
@@ -8291,12 +8291,12 @@ type GetChannelOptions struct {
 // Constants associated with the GetChannelOptions.Channel property.
 // The MFA channel.
 const (
-	GetChannelOptions_Channel_Email = "email"
-	GetChannelOptions_Channel_Nexmo = "nexmo"
+	GetChannelOptionsChannelEmailConst = "email"
+	GetChannelOptionsChannelNexmoConst = "nexmo"
 )
 
 // NewGetChannelOptions : Instantiate GetChannelOptions
-func (*AppIdManagementV4) NewGetChannelOptions(channel string) *GetChannelOptions {
+func (*AppIDManagementV4) NewGetChannelOptions(channel string) *GetChannelOptions {
 	return &GetChannelOptions{
 		Channel: core.StringPtr(channel),
 	}
@@ -8314,8 +8314,8 @@ func (options *GetChannelOptions) SetHeaders(param map[string]string) *GetChanne
 	return options
 }
 
-// GetCloudDirectoryActionUrlOptions : The GetCloudDirectoryActionURL options.
-type GetCloudDirectoryActionUrlOptions struct {
+// GetCloudDirectoryActionURLOptions : The GetCloudDirectoryActionURL options.
+type GetCloudDirectoryActionURLOptions struct {
 	// The type of the action. on_user_verified - the URL of your custom user verified page, on_reset_password - the URL of
 	// your custom reset password page.
 	Action *string `validate:"required,ne="`
@@ -8324,29 +8324,29 @@ type GetCloudDirectoryActionUrlOptions struct {
 	Headers map[string]string
 }
 
-// Constants associated with the GetCloudDirectoryActionUrlOptions.Action property.
+// Constants associated with the GetCloudDirectoryActionURLOptions.Action property.
 // The type of the action. on_user_verified - the URL of your custom user verified page, on_reset_password - the URL of
 // your custom reset password page.
 const (
-	GetCloudDirectoryActionUrlOptions_Action_OnResetPassword = "on_reset_password"
-	GetCloudDirectoryActionUrlOptions_Action_OnUserVerified = "on_user_verified"
+	GetCloudDirectoryActionURLOptionsActionOnResetPasswordConst = "on_reset_password"
+	GetCloudDirectoryActionURLOptionsActionOnUserVerifiedConst = "on_user_verified"
 )
 
-// NewGetCloudDirectoryActionUrlOptions : Instantiate GetCloudDirectoryActionUrlOptions
-func (*AppIdManagementV4) NewGetCloudDirectoryActionUrlOptions(action string) *GetCloudDirectoryActionUrlOptions {
-	return &GetCloudDirectoryActionUrlOptions{
+// NewGetCloudDirectoryActionURLOptions : Instantiate GetCloudDirectoryActionURLOptions
+func (*AppIDManagementV4) NewGetCloudDirectoryActionURLOptions(action string) *GetCloudDirectoryActionURLOptions {
+	return &GetCloudDirectoryActionURLOptions{
 		Action: core.StringPtr(action),
 	}
 }
 
 // SetAction : Allow user to set Action
-func (options *GetCloudDirectoryActionUrlOptions) SetAction(action string) *GetCloudDirectoryActionUrlOptions {
+func (options *GetCloudDirectoryActionURLOptions) SetAction(action string) *GetCloudDirectoryActionURLOptions {
 	options.Action = core.StringPtr(action)
 	return options
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *GetCloudDirectoryActionUrlOptions) SetHeaders(param map[string]string) *GetCloudDirectoryActionUrlOptions {
+func (options *GetCloudDirectoryActionURLOptions) SetHeaders(param map[string]string) *GetCloudDirectoryActionURLOptions {
 	options.Headers = param
 	return options
 }
@@ -8359,7 +8359,7 @@ type GetCloudDirectoryAdvancedPasswordManagementOptions struct {
 }
 
 // NewGetCloudDirectoryAdvancedPasswordManagementOptions : Instantiate GetCloudDirectoryAdvancedPasswordManagementOptions
-func (*AppIdManagementV4) NewGetCloudDirectoryAdvancedPasswordManagementOptions() *GetCloudDirectoryAdvancedPasswordManagementOptions {
+func (*AppIDManagementV4) NewGetCloudDirectoryAdvancedPasswordManagementOptions() *GetCloudDirectoryAdvancedPasswordManagementOptions {
 	return &GetCloudDirectoryAdvancedPasswordManagementOptions{}
 }
 
@@ -8377,7 +8377,7 @@ type GetCloudDirectoryEmailDispatcherOptions struct {
 }
 
 // NewGetCloudDirectoryEmailDispatcherOptions : Instantiate GetCloudDirectoryEmailDispatcherOptions
-func (*AppIdManagementV4) NewGetCloudDirectoryEmailDispatcherOptions() *GetCloudDirectoryEmailDispatcherOptions {
+func (*AppIDManagementV4) NewGetCloudDirectoryEmailDispatcherOptions() *GetCloudDirectoryEmailDispatcherOptions {
 	return &GetCloudDirectoryEmailDispatcherOptions{}
 }
 
@@ -8395,7 +8395,7 @@ type GetCloudDirectoryIDPOptions struct {
 }
 
 // NewGetCloudDirectoryIDPOptions : Instantiate GetCloudDirectoryIDPOptions
-func (*AppIdManagementV4) NewGetCloudDirectoryIDPOptions() *GetCloudDirectoryIDPOptions {
+func (*AppIDManagementV4) NewGetCloudDirectoryIDPOptions() *GetCloudDirectoryIDPOptions {
 	return &GetCloudDirectoryIDPOptions{}
 }
 
@@ -8413,7 +8413,7 @@ type GetCloudDirectoryPasswordRegexOptions struct {
 }
 
 // NewGetCloudDirectoryPasswordRegexOptions : Instantiate GetCloudDirectoryPasswordRegexOptions
-func (*AppIdManagementV4) NewGetCloudDirectoryPasswordRegexOptions() *GetCloudDirectoryPasswordRegexOptions {
+func (*AppIDManagementV4) NewGetCloudDirectoryPasswordRegexOptions() *GetCloudDirectoryPasswordRegexOptions {
 	return &GetCloudDirectoryPasswordRegexOptions{}
 }
 
@@ -8431,7 +8431,7 @@ type GetCloudDirectorySenderDetailsOptions struct {
 }
 
 // NewGetCloudDirectorySenderDetailsOptions : Instantiate GetCloudDirectorySenderDetailsOptions
-func (*AppIdManagementV4) NewGetCloudDirectorySenderDetailsOptions() *GetCloudDirectorySenderDetailsOptions {
+func (*AppIDManagementV4) NewGetCloudDirectorySenderDetailsOptions() *GetCloudDirectorySenderDetailsOptions {
 	return &GetCloudDirectorySenderDetailsOptions{}
 }
 
@@ -8451,7 +8451,7 @@ type GetCloudDirectoryUserOptions struct {
 }
 
 // NewGetCloudDirectoryUserOptions : Instantiate GetCloudDirectoryUserOptions
-func (*AppIdManagementV4) NewGetCloudDirectoryUserOptions(userID string) *GetCloudDirectoryUserOptions {
+func (*AppIDManagementV4) NewGetCloudDirectoryUserOptions(userID string) *GetCloudDirectoryUserOptions {
 	return &GetCloudDirectoryUserOptions{
 		UserID: core.StringPtr(userID),
 	}
@@ -8477,7 +8477,7 @@ type GetCustomIDPOptions struct {
 }
 
 // NewGetCustomIDPOptions : Instantiate GetCustomIDPOptions
-func (*AppIdManagementV4) NewGetCustomIDPOptions() *GetCustomIDPOptions {
+func (*AppIDManagementV4) NewGetCustomIDPOptions() *GetCustomIDPOptions {
 	return &GetCustomIDPOptions{}
 }
 
@@ -8499,12 +8499,12 @@ type GetExtensionConfigOptions struct {
 // Constants associated with the GetExtensionConfigOptions.Name property.
 // The name of the extension.
 const (
-	GetExtensionConfigOptions_Name_Postmfa = "postmfa"
-	GetExtensionConfigOptions_Name_Premfa = "premfa"
+	GetExtensionConfigOptionsNamePostmfaConst = "postmfa"
+	GetExtensionConfigOptionsNamePremfaConst = "premfa"
 )
 
 // NewGetExtensionConfigOptions : Instantiate GetExtensionConfigOptions
-func (*AppIdManagementV4) NewGetExtensionConfigOptions(name string) *GetExtensionConfigOptions {
+func (*AppIDManagementV4) NewGetExtensionConfigOptions(name string) *GetExtensionConfigOptions {
 	return &GetExtensionConfigOptions{
 		Name: core.StringPtr(name),
 	}
@@ -8530,7 +8530,7 @@ type GetFacebookIDPOptions struct {
 }
 
 // NewGetFacebookIDPOptions : Instantiate GetFacebookIDPOptions
-func (*AppIdManagementV4) NewGetFacebookIDPOptions() *GetFacebookIDPOptions {
+func (*AppIDManagementV4) NewGetFacebookIDPOptions() *GetFacebookIDPOptions {
 	return &GetFacebookIDPOptions{}
 }
 
@@ -8548,7 +8548,7 @@ type GetGoogleIDPOptions struct {
 }
 
 // NewGetGoogleIDPOptions : Instantiate GetGoogleIDPOptions
-func (*AppIdManagementV4) NewGetGoogleIDPOptions() *GetGoogleIDPOptions {
+func (*AppIDManagementV4) NewGetGoogleIDPOptions() *GetGoogleIDPOptions {
 	return &GetGoogleIDPOptions{}
 }
 
@@ -8566,7 +8566,7 @@ type GetLocalizationOptions struct {
 }
 
 // NewGetLocalizationOptions : Instantiate GetLocalizationOptions
-func (*AppIdManagementV4) NewGetLocalizationOptions() *GetLocalizationOptions {
+func (*AppIDManagementV4) NewGetLocalizationOptions() *GetLocalizationOptions {
 	return &GetLocalizationOptions{}
 }
 
@@ -8584,7 +8584,7 @@ type GetMFAConfigOptions struct {
 }
 
 // NewGetMFAConfigOptions : Instantiate GetMFAConfigOptions
-func (*AppIdManagementV4) NewGetMFAConfigOptions() *GetMFAConfigOptions {
+func (*AppIDManagementV4) NewGetMFAConfigOptions() *GetMFAConfigOptions {
 	return &GetMFAConfigOptions{}
 }
 
@@ -8602,7 +8602,7 @@ type GetMediaOptions struct {
 }
 
 // NewGetMediaOptions : Instantiate GetMediaOptions
-func (*AppIdManagementV4) NewGetMediaOptions() *GetMediaOptions {
+func (*AppIDManagementV4) NewGetMediaOptions() *GetMediaOptions {
 	return &GetMediaOptions{}
 }
 
@@ -8636,7 +8636,7 @@ type GetRateLimitConfigOptions struct {
 }
 
 // NewGetRateLimitConfigOptions : Instantiate GetRateLimitConfigOptions
-func (*AppIdManagementV4) NewGetRateLimitConfigOptions() *GetRateLimitConfigOptions {
+func (*AppIDManagementV4) NewGetRateLimitConfigOptions() *GetRateLimitConfigOptions {
 	return &GetRateLimitConfigOptions{}
 }
 
@@ -8654,7 +8654,7 @@ type GetRedirectUrisOptions struct {
 }
 
 // NewGetRedirectUrisOptions : Instantiate GetRedirectUrisOptions
-func (*AppIdManagementV4) NewGetRedirectUrisOptions() *GetRedirectUrisOptions {
+func (*AppIDManagementV4) NewGetRedirectUrisOptions() *GetRedirectUrisOptions {
 	return &GetRedirectUrisOptions{}
 }
 
@@ -8674,7 +8674,7 @@ type GetRoleOptions struct {
 }
 
 // NewGetRoleOptions : Instantiate GetRoleOptions
-func (*AppIdManagementV4) NewGetRoleOptions(roleID string) *GetRoleOptions {
+func (*AppIDManagementV4) NewGetRoleOptions(roleID string) *GetRoleOptions {
 	return &GetRoleOptions{
 		RoleID: core.StringPtr(roleID),
 	}
@@ -8756,7 +8756,7 @@ type GetSSOConfigOptions struct {
 }
 
 // NewGetSSOConfigOptions : Instantiate GetSSOConfigOptions
-func (*AppIdManagementV4) NewGetSSOConfigOptions() *GetSSOConfigOptions {
+func (*AppIDManagementV4) NewGetSSOConfigOptions() *GetSSOConfigOptions {
 	return &GetSSOConfigOptions{}
 }
 
@@ -8774,7 +8774,7 @@ type GetSAMLIDPOptions struct {
 }
 
 // NewGetSAMLIDPOptions : Instantiate GetSAMLIDPOptions
-func (*AppIdManagementV4) NewGetSAMLIDPOptions() *GetSAMLIDPOptions {
+func (*AppIDManagementV4) NewGetSAMLIDPOptions() *GetSAMLIDPOptions {
 	return &GetSAMLIDPOptions{}
 }
 
@@ -8792,7 +8792,7 @@ type GetSAMLMetadataOptions struct {
 }
 
 // NewGetSAMLMetadataOptions : Instantiate GetSAMLMetadataOptions
-func (*AppIdManagementV4) NewGetSAMLMetadataOptions() *GetSAMLMetadataOptions {
+func (*AppIDManagementV4) NewGetSAMLMetadataOptions() *GetSAMLMetadataOptions {
 	return &GetSAMLMetadataOptions{}
 }
 
@@ -8820,15 +8820,15 @@ type GetTemplateOptions struct {
 // The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED", "RESET_PASSWORD" or
 // "MFA_VERIFICATION".
 const (
-	GetTemplateOptions_TemplateName_MfaVerification = "MFA_VERIFICATION"
-	GetTemplateOptions_TemplateName_PasswordChanged = "PASSWORD_CHANGED"
-	GetTemplateOptions_TemplateName_ResetPassword = "RESET_PASSWORD"
-	GetTemplateOptions_TemplateName_UserVerification = "USER_VERIFICATION"
-	GetTemplateOptions_TemplateName_Welcome = "WELCOME"
+	GetTemplateOptionsTemplateNameMFAVerificationConst = "MFA_VERIFICATION"
+	GetTemplateOptionsTemplateNamePasswordChangedConst = "PASSWORD_CHANGED"
+	GetTemplateOptionsTemplateNameResetPasswordConst = "RESET_PASSWORD"
+	GetTemplateOptionsTemplateNameUserVerificationConst = "USER_VERIFICATION"
+	GetTemplateOptionsTemplateNameWelcomeConst = "WELCOME"
 )
 
 // NewGetTemplateOptions : Instantiate GetTemplateOptions
-func (*AppIdManagementV4) NewGetTemplateOptions(templateName string, language string) *GetTemplateOptions {
+func (*AppIDManagementV4) NewGetTemplateOptions(templateName string, language string) *GetTemplateOptions {
 	return &GetTemplateOptions{
 		TemplateName: core.StringPtr(templateName),
 		Language: core.StringPtr(language),
@@ -8861,7 +8861,7 @@ type GetThemeColorOptions struct {
 }
 
 // NewGetThemeColorOptions : Instantiate GetThemeColorOptions
-func (*AppIdManagementV4) NewGetThemeColorOptions() *GetThemeColorOptions {
+func (*AppIDManagementV4) NewGetThemeColorOptions() *GetThemeColorOptions {
 	return &GetThemeColorOptions{}
 }
 
@@ -8895,7 +8895,7 @@ type GetThemeTextOptions struct {
 }
 
 // NewGetThemeTextOptions : Instantiate GetThemeTextOptions
-func (*AppIdManagementV4) NewGetThemeTextOptions() *GetThemeTextOptions {
+func (*AppIDManagementV4) NewGetThemeTextOptions() *GetThemeTextOptions {
 	return &GetThemeTextOptions{}
 }
 
@@ -8935,7 +8935,7 @@ type GetTokensConfigOptions struct {
 }
 
 // NewGetTokensConfigOptions : Instantiate GetTokensConfigOptions
-func (*AppIdManagementV4) NewGetTokensConfigOptions() *GetTokensConfigOptions {
+func (*AppIDManagementV4) NewGetTokensConfigOptions() *GetTokensConfigOptions {
 	return &GetTokensConfigOptions{}
 }
 
@@ -8981,7 +8981,7 @@ type GetUserProfilesConfigOptions struct {
 }
 
 // NewGetUserProfilesConfigOptions : Instantiate GetUserProfilesConfigOptions
-func (*AppIdManagementV4) NewGetUserProfilesConfigOptions() *GetUserProfilesConfigOptions {
+func (*AppIDManagementV4) NewGetUserProfilesConfigOptions() *GetUserProfilesConfigOptions {
 	return &GetUserProfilesConfigOptions{}
 }
 
@@ -9018,7 +9018,7 @@ type GetUserRolesOptions struct {
 }
 
 // NewGetUserRolesOptions : Instantiate GetUserRolesOptions
-func (*AppIdManagementV4) NewGetUserRolesOptions(id string) *GetUserRolesOptions {
+func (*AppIDManagementV4) NewGetUserRolesOptions(id string) *GetUserRolesOptions {
 	return &GetUserRolesOptions{
 		ID: core.StringPtr(id),
 	}
@@ -9080,16 +9080,16 @@ func UnmarshalGoogleConfigParamsConfig(m map[string]json.RawMessage, result inte
 	return
 }
 
-// GoogleConfigParamsPUTConfig : GoogleConfigParamsPUTConfig struct
-type GoogleConfigParamsPUTConfig struct {
+// GoogleConfigParamsPutConfig : GoogleConfigParamsPutConfig struct
+type GoogleConfigParamsPutConfig struct {
 	IDPID *string `json:"idpId" validate:"required"`
 
 	Secret *string `json:"secret" validate:"required"`
 }
 
-// UnmarshalGoogleConfigParamsPUTConfig unmarshals an instance of GoogleConfigParamsPUTConfig from the specified map of raw messages.
-func UnmarshalGoogleConfigParamsPUTConfig(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(GoogleConfigParamsPUTConfig)
+// UnmarshalGoogleConfigParamsPutConfig unmarshals an instance of GoogleConfigParamsPutConfig from the specified map of raw messages.
+func UnmarshalGoogleConfigParamsPutConfig(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(GoogleConfigParamsPutConfig)
 	err = core.UnmarshalPrimitive(m, "idpId", &obj.IDPID)
 	if err != nil {
 		return
@@ -9180,7 +9180,7 @@ type InvalidateUserSSOSessionsOptions struct {
 }
 
 // NewInvalidateUserSSOSessionsOptions : Instantiate InvalidateUserSSOSessionsOptions
-func (*AppIdManagementV4) NewInvalidateUserSSOSessionsOptions(userID string) *InvalidateUserSSOSessionsOptions {
+func (*AppIDManagementV4) NewInvalidateUserSSOSessionsOptions(userID string) *InvalidateUserSSOSessionsOptions {
 	return &InvalidateUserSSOSessionsOptions{
 		UserID: core.StringPtr(userID),
 	}
@@ -9206,7 +9206,7 @@ type ListApplicationsOptions struct {
 }
 
 // NewListApplicationsOptions : Instantiate ListApplicationsOptions
-func (*AppIdManagementV4) NewListApplicationsOptions() *ListApplicationsOptions {
+func (*AppIDManagementV4) NewListApplicationsOptions() *ListApplicationsOptions {
 	return &ListApplicationsOptions{}
 }
 
@@ -9224,7 +9224,7 @@ type ListChannelsOptions struct {
 }
 
 // NewListChannelsOptions : Instantiate ListChannelsOptions
-func (*AppIdManagementV4) NewListChannelsOptions() *ListChannelsOptions {
+func (*AppIDManagementV4) NewListChannelsOptions() *ListChannelsOptions {
 	return &ListChannelsOptions{}
 }
 
@@ -9250,7 +9250,7 @@ type ListCloudDirectoryUsersOptions struct {
 }
 
 // NewListCloudDirectoryUsersOptions : Instantiate ListCloudDirectoryUsersOptions
-func (*AppIdManagementV4) NewListCloudDirectoryUsersOptions() *ListCloudDirectoryUsersOptions {
+func (*AppIDManagementV4) NewListCloudDirectoryUsersOptions() *ListCloudDirectoryUsersOptions {
 	return &ListCloudDirectoryUsersOptions{}
 }
 
@@ -9286,7 +9286,7 @@ type ListRolesOptions struct {
 }
 
 // NewListRolesOptions : Instantiate ListRolesOptions
-func (*AppIdManagementV4) NewListRolesOptions() *ListRolesOptions {
+func (*AppIDManagementV4) NewListRolesOptions() *ListRolesOptions {
 	return &ListRolesOptions{}
 }
 
@@ -9296,34 +9296,18 @@ func (options *ListRolesOptions) SetHeaders(param map[string]string) *ListRolesO
 	return options
 }
 
-// MfaChannelsList : MfaChannelsList struct
-type MfaChannelsList struct {
-	Channels []MfaChannelsListChannelsItem `json:"channels" validate:"required"`
-}
-
-// UnmarshalMfaChannelsList unmarshals an instance of MfaChannelsList from the specified map of raw messages.
-func UnmarshalMfaChannelsList(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(MfaChannelsList)
-	err = core.UnmarshalModel(m, "channels", &obj.Channels, UnmarshalMfaChannelsListChannelsItem)
-	if err != nil {
-		return
-	}
-	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
-	return
-}
-
-// MfaChannelsListChannelsItem : MfaChannelsListChannelsItem struct
-type MfaChannelsListChannelsItem struct {
+// MFAChannelsListChannelsItem : MFAChannelsListChannelsItem struct
+type MFAChannelsListChannelsItem struct {
 	Type *string `json:"type" validate:"required"`
 
 	IsActive *bool `json:"isActive" validate:"required"`
 
-	Config *MfaChannelsListChannelsItemConfig `json:"config,omitempty"`
+	Config *MFAChannelsListChannelsItemConfig `json:"config,omitempty"`
 }
 
-// UnmarshalMfaChannelsListChannelsItem unmarshals an instance of MfaChannelsListChannelsItem from the specified map of raw messages.
-func UnmarshalMfaChannelsListChannelsItem(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(MfaChannelsListChannelsItem)
+// UnmarshalMFAChannelsListChannelsItem unmarshals an instance of MFAChannelsListChannelsItem from the specified map of raw messages.
+func UnmarshalMFAChannelsListChannelsItem(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(MFAChannelsListChannelsItem)
 	err = core.UnmarshalPrimitive(m, "type", &obj.Type)
 	if err != nil {
 		return
@@ -9332,7 +9316,7 @@ func UnmarshalMfaChannelsListChannelsItem(m map[string]json.RawMessage, result i
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalMfaChannelsListChannelsItemConfig)
+	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalMFAChannelsListChannelsItemConfig)
 	if err != nil {
 		return
 	}
@@ -9340,8 +9324,8 @@ func UnmarshalMfaChannelsListChannelsItem(m map[string]json.RawMessage, result i
 	return
 }
 
-// MfaChannelsListChannelsItemConfig : MfaChannelsListChannelsItemConfig struct
-type MfaChannelsListChannelsItemConfig struct {
+// MFAChannelsListChannelsItemConfig : MFAChannelsListChannelsItemConfig struct
+type MFAChannelsListChannelsItemConfig struct {
 	Key *string `json:"key,omitempty"`
 
 	Secret *string `json:"secret,omitempty"`
@@ -9351,9 +9335,9 @@ type MfaChannelsListChannelsItemConfig struct {
 	Provider *string `json:"provider,omitempty"`
 }
 
-// UnmarshalMfaChannelsListChannelsItemConfig unmarshals an instance of MfaChannelsListChannelsItemConfig from the specified map of raw messages.
-func UnmarshalMfaChannelsListChannelsItemConfig(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(MfaChannelsListChannelsItemConfig)
+// UnmarshalMFAChannelsListChannelsItemConfig unmarshals an instance of MFAChannelsListChannelsItemConfig from the specified map of raw messages.
+func UnmarshalMFAChannelsListChannelsItemConfig(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(MFAChannelsListChannelsItemConfig)
 	err = core.UnmarshalPrimitive(m, "key", &obj.Key)
 	if err != nil {
 		return
@@ -9374,6 +9358,22 @@ func UnmarshalMfaChannelsListChannelsItemConfig(m map[string]json.RawMessage, re
 	return
 }
 
+// MFAChannelsList : MFAChannelsList struct
+type MFAChannelsList struct {
+	Channels []MFAChannelsListChannelsItem `json:"channels" validate:"required"`
+}
+
+// UnmarshalMFAChannelsList unmarshals an instance of MFAChannelsList from the specified map of raw messages.
+func UnmarshalMFAChannelsList(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(MFAChannelsList)
+	err = core.UnmarshalModel(m, "channels", &obj.Channels, UnmarshalMFAChannelsListChannelsItem)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
 // PostEmailDispatcherTestOptions : The PostEmailDispatcherTest options.
 type PostEmailDispatcherTestOptions struct {
 	// The email address where you want to send your test message.
@@ -9384,7 +9384,7 @@ type PostEmailDispatcherTestOptions struct {
 }
 
 // NewPostEmailDispatcherTestOptions : Instantiate PostEmailDispatcherTestOptions
-func (*AppIdManagementV4) NewPostEmailDispatcherTestOptions(email string) *PostEmailDispatcherTestOptions {
+func (*AppIDManagementV4) NewPostEmailDispatcherTestOptions(email string) *PostEmailDispatcherTestOptions {
 	return &PostEmailDispatcherTestOptions{
 		Email: core.StringPtr(email),
 	}
@@ -9414,12 +9414,12 @@ type PostExtensionsTestOptions struct {
 // Constants associated with the PostExtensionsTestOptions.Name property.
 // The name of the extension.
 const (
-	PostExtensionsTestOptions_Name_Postmfa = "postmfa"
-	PostExtensionsTestOptions_Name_Premfa = "premfa"
+	PostExtensionsTestOptionsNamePostmfaConst = "postmfa"
+	PostExtensionsTestOptionsNamePremfaConst = "premfa"
 )
 
 // NewPostExtensionsTestOptions : Instantiate PostExtensionsTestOptions
-func (*AppIdManagementV4) NewPostExtensionsTestOptions(name string) *PostExtensionsTestOptions {
+func (*AppIDManagementV4) NewPostExtensionsTestOptions(name string) *PostExtensionsTestOptions {
 	return &PostExtensionsTestOptions{
 		Name: core.StringPtr(name),
 	}
@@ -9455,11 +9455,11 @@ type PostMediaOptions struct {
 // Constants associated with the PostMediaOptions.MediaType property.
 // The type of media. You can upload JPG or PNG files.
 const (
-	PostMediaOptions_MediaType_Logo = "logo"
+	PostMediaOptionsMediaTypeLogoConst = "logo"
 )
 
 // NewPostMediaOptions : Instantiate PostMediaOptions
-func (*AppIdManagementV4) NewPostMediaOptions(mediaType string, file io.ReadCloser) *PostMediaOptions {
+func (*AppIDManagementV4) NewPostMediaOptions(mediaType string, file io.ReadCloser) *PostMediaOptions {
 	return &PostMediaOptions{
 		MediaType: core.StringPtr(mediaType),
 		File: file,
@@ -9490,29 +9490,29 @@ func (options *PostMediaOptions) SetHeaders(param map[string]string) *PostMediaO
 	return options
 }
 
-// PostSmsDispatcherTestOptions : The PostSmsDispatcherTest options.
-type PostSmsDispatcherTestOptions struct {
+// PostSMSDispatcherTestOptions : The PostSMSDispatcherTest options.
+type PostSMSDispatcherTestOptions struct {
 	PhoneNumber *string `validate:"required"`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewPostSmsDispatcherTestOptions : Instantiate PostSmsDispatcherTestOptions
-func (*AppIdManagementV4) NewPostSmsDispatcherTestOptions(phoneNumber string) *PostSmsDispatcherTestOptions {
-	return &PostSmsDispatcherTestOptions{
+// NewPostSMSDispatcherTestOptions : Instantiate PostSMSDispatcherTestOptions
+func (*AppIDManagementV4) NewPostSMSDispatcherTestOptions(phoneNumber string) *PostSMSDispatcherTestOptions {
+	return &PostSMSDispatcherTestOptions{
 		PhoneNumber: core.StringPtr(phoneNumber),
 	}
 }
 
 // SetPhoneNumber : Allow user to set PhoneNumber
-func (options *PostSmsDispatcherTestOptions) SetPhoneNumber(phoneNumber string) *PostSmsDispatcherTestOptions {
+func (options *PostSMSDispatcherTestOptions) SetPhoneNumber(phoneNumber string) *PostSMSDispatcherTestOptions {
 	options.PhoneNumber = core.StringPtr(phoneNumber)
 	return options
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *PostSmsDispatcherTestOptions) SetHeaders(param map[string]string) *PostSmsDispatcherTestOptions {
+func (options *PostSMSDispatcherTestOptions) SetHeaders(param map[string]string) *PostSMSDispatcherTestOptions {
 	options.Headers = param
 	return options
 }
@@ -9526,7 +9526,7 @@ type PostThemeColorOptions struct {
 }
 
 // NewPostThemeColorOptions : Instantiate PostThemeColorOptions
-func (*AppIdManagementV4) NewPostThemeColorOptions() *PostThemeColorOptions {
+func (*AppIDManagementV4) NewPostThemeColorOptions() *PostThemeColorOptions {
 	return &PostThemeColorOptions{}
 }
 
@@ -9553,7 +9553,7 @@ type PostThemeTextOptions struct {
 }
 
 // NewPostThemeTextOptions : Instantiate PostThemeTextOptions
-func (*AppIdManagementV4) NewPostThemeTextOptions() *PostThemeTextOptions {
+func (*AppIDManagementV4) NewPostThemeTextOptions() *PostThemeTextOptions {
 	return &PostThemeTextOptions{}
 }
 
@@ -9587,7 +9587,7 @@ type PutApplicationsRolesOptions struct {
 }
 
 // NewPutApplicationsRolesOptions : Instantiate PutApplicationsRolesOptions
-func (*AppIdManagementV4) NewPutApplicationsRolesOptions(clientID string, roles *UpdateUserRolesParamsRoles) *PutApplicationsRolesOptions {
+func (*AppIDManagementV4) NewPutApplicationsRolesOptions(clientID string, roles *UpdateUserRolesParamsRoles) *PutApplicationsRolesOptions {
 	return &PutApplicationsRolesOptions{
 		ClientID: core.StringPtr(clientID),
 		Roles: roles,
@@ -9624,7 +9624,7 @@ type PutApplicationsScopesOptions struct {
 }
 
 // NewPutApplicationsScopesOptions : Instantiate PutApplicationsScopesOptions
-func (*AppIdManagementV4) NewPutApplicationsScopesOptions(clientID string) *PutApplicationsScopesOptions {
+func (*AppIDManagementV4) NewPutApplicationsScopesOptions(clientID string) *PutApplicationsScopesOptions {
 	return &PutApplicationsScopesOptions{
 		ClientID: core.StringPtr(clientID),
 	}
@@ -9650,7 +9650,7 @@ func (options *PutApplicationsScopesOptions) SetHeaders(param map[string]string)
 
 // PutTokensConfigOptions : The PutTokensConfig options.
 type PutTokensConfigOptions struct {
-	IdTokenClaims []TokenClaimMapping
+	IDTokenClaims []TokenClaimMapping
 
 	AccessTokenClaims []TokenClaimMapping
 
@@ -9665,13 +9665,13 @@ type PutTokensConfigOptions struct {
 }
 
 // NewPutTokensConfigOptions : Instantiate PutTokensConfigOptions
-func (*AppIdManagementV4) NewPutTokensConfigOptions() *PutTokensConfigOptions {
+func (*AppIDManagementV4) NewPutTokensConfigOptions() *PutTokensConfigOptions {
 	return &PutTokensConfigOptions{}
 }
 
-// SetIdTokenClaims : Allow user to set IdTokenClaims
-func (options *PutTokensConfigOptions) SetIdTokenClaims(idTokenClaims []TokenClaimMapping) *PutTokensConfigOptions {
-	options.IdTokenClaims = idTokenClaims
+// SetIDTokenClaims : Allow user to set IDTokenClaims
+func (options *PutTokensConfigOptions) SetIDTokenClaims(idTokenClaims []TokenClaimMapping) *PutTokensConfigOptions {
+	options.IDTokenClaims = idTokenClaims
 	return options
 }
 
@@ -9718,7 +9718,7 @@ type RegisterApplicationOptions struct {
 }
 
 // NewRegisterApplicationOptions : Instantiate RegisterApplicationOptions
-func (*AppIdManagementV4) NewRegisterApplicationOptions(name string) *RegisterApplicationOptions {
+func (*AppIDManagementV4) NewRegisterApplicationOptions(name string) *RegisterApplicationOptions {
 	return &RegisterApplicationOptions{
 		Name: core.StringPtr(name),
 	}
@@ -9760,14 +9760,14 @@ type ResendNotificationOptions struct {
 // Constants associated with the ResendNotificationOptions.TemplateName property.
 // The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED" or "RESET_PASSWORD".
 const (
-	ResendNotificationOptions_TemplateName_PasswordChanged = "PASSWORD_CHANGED"
-	ResendNotificationOptions_TemplateName_ResetPassword = "RESET_PASSWORD"
-	ResendNotificationOptions_TemplateName_UserVerification = "USER_VERIFICATION"
-	ResendNotificationOptions_TemplateName_Welcome = "WELCOME"
+	ResendNotificationOptionsTemplateNamePasswordChangedConst = "PASSWORD_CHANGED"
+	ResendNotificationOptionsTemplateNameResetPasswordConst = "RESET_PASSWORD"
+	ResendNotificationOptionsTemplateNameUserVerificationConst = "USER_VERIFICATION"
+	ResendNotificationOptionsTemplateNameWelcomeConst = "WELCOME"
 )
 
 // NewResendNotificationOptions : Instantiate ResendNotificationOptions
-func (*AppIdManagementV4) NewResendNotificationOptions(templateName string, uuid string) *ResendNotificationOptions {
+func (*AppIDManagementV4) NewResendNotificationOptions(templateName string, uuid string) *ResendNotificationOptions {
 	return &ResendNotificationOptions{
 		TemplateName: core.StringPtr(templateName),
 		UUID: core.StringPtr(uuid),
@@ -9895,39 +9895,39 @@ type SAMLConfigParamsAuthnContext struct {
 
 // Constants associated with the SAMLConfigParamsAuthnContext.Class property.
 const (
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesAuthenticatedtelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:AuthenticatedTelephony"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesInternetprotocol = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesInternetprotocolpassword = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocolPassword"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesKerberos = "urn:oasis:names:tc:SAML:2.0:ac:classes:Kerberos"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesMobileonefactorcontract = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorContract"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesMobileonefactorunregistered = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorUnregistered"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesMobiletwofactorcontract = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesMobiletwofactorunregistered = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorUnregistered"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesNomadtelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:NomadTelephony"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesPassword = "urn:oasis:names:tc:SAML:2.0:ac:classes:Password"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesPasswordprotectedtransport = "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesPersonaltelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:PersonalTelephony"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesPgp = "urn:oasis:names:tc:SAML:2.0:ac:classes:PGP"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesPrevioussession = "urn:oasis:names:tc:SAML:2.0:ac:classes:PreviousSession"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesSecureremotepassword = "urn:oasis:names:tc:SAML:2.0:ac:classes:SecureRemotePassword"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesSmartcard = "urn:oasis:names:tc:SAML:2.0:ac:classes:Smartcard"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesSmartcardpki = "urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesSoftwarepki = "urn:oasis:names:tc:SAML:2.0:ac:classes:SoftwarePKI"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesSpki = "urn:oasis:names:tc:SAML:2.0:ac:classes:SPKI"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesTelephony = "urn:oasis:names:tc:SAML:2.0:ac:classes:Telephony"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesTimesynctoken = "urn:oasis:names:tc:SAML:2.0:ac:classes:TimeSyncToken"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesTlsclient = "urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesUnspecified = "urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesX509 = "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
-	SAMLConfigParamsAuthnContext_Class_UrnOasisNamesTcSAML20AcClassesXmldsig = "urn:oasis:names:tc:SAML:2.0:ac:classes:XMLDSig"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesAuthenticatedtelephonyConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:AuthenticatedTelephony"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesInternetprotocolConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesInternetprotocolpasswordConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocolPassword"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesKerberosConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:Kerberos"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesMobileonefactorcontractConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorContract"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesMobileonefactorunregisteredConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileOneFactorUnregistered"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesMobiletwofactorcontractConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorContract"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesMobiletwofactorunregisteredConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:MobileTwoFactorUnregistered"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesNomadtelephonyConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:NomadTelephony"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPasswordConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:Password"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPasswordprotectedtransportConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPersonaltelephonyConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:PersonalTelephony"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPgpConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:PGP"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesPrevioussessionConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:PreviousSession"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSecureremotepasswordConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:SecureRemotePassword"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSmartcardConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:Smartcard"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSmartcardpkiConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:SmartcardPKI"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSoftwarepkiConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:SoftwarePKI"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesSpkiConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:SPKI"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesTelephonyConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:Telephony"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesTimesynctokenConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:TimeSyncToken"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesTlsclientConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesUnspecifiedConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesX509Const = "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
+	SAMLConfigParamsAuthnContextClassUrnOasisNamesTcSaml20AcClassesXmldsigConst = "urn:oasis:names:tc:SAML:2.0:ac:classes:XMLDSig"
 )
 
 // Constants associated with the SAMLConfigParamsAuthnContext.Comparison property.
 const (
-	SAMLConfigParamsAuthnContext_Comparison_Better = "better"
-	SAMLConfigParamsAuthnContext_Comparison_Exact = "exact"
-	SAMLConfigParamsAuthnContext_Comparison_Maximum = "maximum"
-	SAMLConfigParamsAuthnContext_Comparison_Minimum = "minimum"
+	SAMLConfigParamsAuthnContextComparisonBetterConst = "better"
+	SAMLConfigParamsAuthnContextComparisonExactConst = "exact"
+	SAMLConfigParamsAuthnContextComparisonMaximumConst = "maximum"
+	SAMLConfigParamsAuthnContextComparisonMinimumConst = "minimum"
 )
 
 // UnmarshalSAMLConfigParamsAuthnContext unmarshals an instance of SAMLConfigParamsAuthnContext from the specified map of raw messages.
@@ -9998,7 +9998,7 @@ type SetAuditStatusOptions struct {
 }
 
 // NewSetAuditStatusOptions : Instantiate SetAuditStatusOptions
-func (*AppIdManagementV4) NewSetAuditStatusOptions(isActive bool) *SetAuditStatusOptions {
+func (*AppIDManagementV4) NewSetAuditStatusOptions(isActive bool) *SetAuditStatusOptions {
 	return &SetAuditStatusOptions{
 		IsActive: core.BoolPtr(isActive),
 	}
@@ -10033,12 +10033,12 @@ type SetCloudDirectoryActionOptions struct {
 // The type of the action. on_user_verified - the URL of your custom user verified page, on_reset_password - the URL of
 // your custom reset password page.
 const (
-	SetCloudDirectoryActionOptions_Action_OnResetPassword = "on_reset_password"
-	SetCloudDirectoryActionOptions_Action_OnUserVerified = "on_user_verified"
+	SetCloudDirectoryActionOptionsActionOnResetPasswordConst = "on_reset_password"
+	SetCloudDirectoryActionOptionsActionOnUserVerifiedConst = "on_user_verified"
 )
 
 // NewSetCloudDirectoryActionOptions : Instantiate SetCloudDirectoryActionOptions
-func (*AppIdManagementV4) NewSetCloudDirectoryActionOptions(action string, actionURL string) *SetCloudDirectoryActionOptions {
+func (*AppIDManagementV4) NewSetCloudDirectoryActionOptions(action string, actionURL string) *SetCloudDirectoryActionOptions {
 	return &SetCloudDirectoryActionOptions{
 		Action: core.StringPtr(action),
 		ActionURL: core.StringPtr(actionURL),
@@ -10072,7 +10072,7 @@ type SetCloudDirectoryAdvancedPasswordManagementOptions struct {
 }
 
 // NewSetCloudDirectoryAdvancedPasswordManagementOptions : Instantiate SetCloudDirectoryAdvancedPasswordManagementOptions
-func (*AppIdManagementV4) NewSetCloudDirectoryAdvancedPasswordManagementOptions(advancedPasswordManagement *ApmSchemaAdvancedPasswordManagement) *SetCloudDirectoryAdvancedPasswordManagementOptions {
+func (*AppIDManagementV4) NewSetCloudDirectoryAdvancedPasswordManagementOptions(advancedPasswordManagement *ApmSchemaAdvancedPasswordManagement) *SetCloudDirectoryAdvancedPasswordManagementOptions {
 	return &SetCloudDirectoryAdvancedPasswordManagementOptions{
 		AdvancedPasswordManagement: advancedPasswordManagement,
 	}
@@ -10104,13 +10104,13 @@ type SetCloudDirectoryEmailDispatcherOptions struct {
 
 // Constants associated with the SetCloudDirectoryEmailDispatcherOptions.Provider property.
 const (
-	SetCloudDirectoryEmailDispatcherOptions_Provider_Appid = "appid"
-	SetCloudDirectoryEmailDispatcherOptions_Provider_Custom = "custom"
-	SetCloudDirectoryEmailDispatcherOptions_Provider_Sendgrid = "sendgrid"
+	SetCloudDirectoryEmailDispatcherOptionsProviderAppidConst = "appid"
+	SetCloudDirectoryEmailDispatcherOptionsProviderCustomConst = "custom"
+	SetCloudDirectoryEmailDispatcherOptionsProviderSendgridConst = "sendgrid"
 )
 
 // NewSetCloudDirectoryEmailDispatcherOptions : Instantiate SetCloudDirectoryEmailDispatcherOptions
-func (*AppIdManagementV4) NewSetCloudDirectoryEmailDispatcherOptions(provider string) *SetCloudDirectoryEmailDispatcherOptions {
+func (*AppIDManagementV4) NewSetCloudDirectoryEmailDispatcherOptions(provider string) *SetCloudDirectoryEmailDispatcherOptions {
 	return &SetCloudDirectoryEmailDispatcherOptions{
 		Provider: core.StringPtr(provider),
 	}
@@ -10151,7 +10151,7 @@ type SetCloudDirectoryIDPOptions struct {
 }
 
 // NewSetCloudDirectoryIDPOptions : Instantiate SetCloudDirectoryIDPOptions
-func (*AppIdManagementV4) NewSetCloudDirectoryIDPOptions(isActive bool, config *CloudDirectoryConfigParams) *SetCloudDirectoryIDPOptions {
+func (*AppIDManagementV4) NewSetCloudDirectoryIDPOptions(isActive bool, config *CloudDirectoryConfigParams) *SetCloudDirectoryIDPOptions {
 	return &SetCloudDirectoryIDPOptions{
 		IsActive: core.BoolPtr(isActive),
 		Config: config,
@@ -10189,7 +10189,7 @@ type SetCloudDirectoryPasswordRegexOptions struct {
 }
 
 // NewSetCloudDirectoryPasswordRegexOptions : Instantiate SetCloudDirectoryPasswordRegexOptions
-func (*AppIdManagementV4) NewSetCloudDirectoryPasswordRegexOptions() *SetCloudDirectoryPasswordRegexOptions {
+func (*AppIDManagementV4) NewSetCloudDirectoryPasswordRegexOptions() *SetCloudDirectoryPasswordRegexOptions {
 	return &SetCloudDirectoryPasswordRegexOptions{}
 }
 
@@ -10226,7 +10226,7 @@ type SetCloudDirectorySenderDetailsOptions struct {
 }
 
 // NewSetCloudDirectorySenderDetailsOptions : Instantiate SetCloudDirectorySenderDetailsOptions
-func (*AppIdManagementV4) NewSetCloudDirectorySenderDetailsOptions(senderDetails *CloudDirectorySenderDetailsSenderDetails) *SetCloudDirectorySenderDetailsOptions {
+func (*AppIDManagementV4) NewSetCloudDirectorySenderDetailsOptions(senderDetails *CloudDirectorySenderDetailsSenderDetails) *SetCloudDirectorySenderDetailsOptions {
 	return &SetCloudDirectorySenderDetailsOptions{
 		SenderDetails: senderDetails,
 	}
@@ -10248,14 +10248,14 @@ func (options *SetCloudDirectorySenderDetailsOptions) SetHeaders(param map[strin
 type SetCustomIDPOptions struct {
 	IsActive *bool `validate:"required"`
 
-	Config *CustomIdPConfigParamsConfig
+	Config *CustomIDPConfigParamsConfig
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewSetCustomIDPOptions : Instantiate SetCustomIDPOptions
-func (*AppIdManagementV4) NewSetCustomIDPOptions(isActive bool) *SetCustomIDPOptions {
+func (*AppIDManagementV4) NewSetCustomIDPOptions(isActive bool) *SetCustomIDPOptions {
 	return &SetCustomIDPOptions{
 		IsActive: core.BoolPtr(isActive),
 	}
@@ -10268,7 +10268,7 @@ func (options *SetCustomIDPOptions) SetIsActive(isActive bool) *SetCustomIDPOpti
 }
 
 // SetConfig : Allow user to set Config
-func (options *SetCustomIDPOptions) SetConfig(config *CustomIdPConfigParamsConfig) *SetCustomIDPOptions {
+func (options *SetCustomIDPOptions) SetConfig(config *CustomIDPConfigParamsConfig) *SetCustomIDPOptions {
 	options.Config = config
 	return options
 }
@@ -10290,15 +10290,15 @@ type SetFacebookIDPOptions struct {
 }
 
 // NewSetFacebookIDPOptions : Instantiate SetFacebookIDPOptions
-func (*AppIdManagementV4) NewSetFacebookIDPOptions(iDP *FacebookGoogleConfigParams) *SetFacebookIDPOptions {
+func (*AppIDManagementV4) NewSetFacebookIDPOptions(idp *FacebookGoogleConfigParams) *SetFacebookIDPOptions {
 	return &SetFacebookIDPOptions{
-		IDP: iDP,
+		IDP: idp,
 	}
 }
 
 // SetIDP : Allow user to set IDP
-func (options *SetFacebookIDPOptions) SetIDP(iDP *FacebookGoogleConfigParams) *SetFacebookIDPOptions {
-	options.IDP = iDP
+func (options *SetFacebookIDPOptions) SetIDP(idp *FacebookGoogleConfigParams) *SetFacebookIDPOptions {
+	options.IDP = idp
 	return options
 }
 
@@ -10319,15 +10319,15 @@ type SetGoogleIDPOptions struct {
 }
 
 // NewSetGoogleIDPOptions : Instantiate SetGoogleIDPOptions
-func (*AppIdManagementV4) NewSetGoogleIDPOptions(iDP *FacebookGoogleConfigParams) *SetGoogleIDPOptions {
+func (*AppIDManagementV4) NewSetGoogleIDPOptions(idp *FacebookGoogleConfigParams) *SetGoogleIDPOptions {
 	return &SetGoogleIDPOptions{
-		IDP: iDP,
+		IDP: idp,
 	}
 }
 
 // SetIDP : Allow user to set IDP
-func (options *SetGoogleIDPOptions) SetIDP(iDP *FacebookGoogleConfigParams) *SetGoogleIDPOptions {
-	options.IDP = iDP
+func (options *SetGoogleIDPOptions) SetIDP(idp *FacebookGoogleConfigParams) *SetGoogleIDPOptions {
+	options.IDP = idp
 	return options
 }
 
@@ -10348,7 +10348,7 @@ type SetSAMLIDPOptions struct {
 }
 
 // NewSetSAMLIDPOptions : Instantiate SetSAMLIDPOptions
-func (*AppIdManagementV4) NewSetSAMLIDPOptions(isActive bool) *SetSAMLIDPOptions {
+func (*AppIDManagementV4) NewSetSAMLIDPOptions(isActive bool) *SetSAMLIDPOptions {
 	return &SetSAMLIDPOptions{
 		IsActive: core.BoolPtr(isActive),
 	}
@@ -10386,7 +10386,7 @@ type StartForgotPasswordOptions struct {
 }
 
 // NewStartForgotPasswordOptions : Instantiate StartForgotPasswordOptions
-func (*AppIdManagementV4) NewStartForgotPasswordOptions(user string) *StartForgotPasswordOptions {
+func (*AppIDManagementV4) NewStartForgotPasswordOptions(user string) *StartForgotPasswordOptions {
 	return &StartForgotPasswordOptions{
 		User: core.StringPtr(user),
 	}
@@ -10431,7 +10431,7 @@ type StartSignUpOptions struct {
 }
 
 // NewStartSignUpOptions : Instantiate StartSignUpOptions
-func (*AppIdManagementV4) NewStartSignUpOptions(shouldCreateProfile bool, emails []CreateNewUserEmailsItem, password string) *StartSignUpOptions {
+func (*AppIDManagementV4) NewStartSignUpOptions(shouldCreateProfile bool, emails []CreateNewUserEmailsItem, password string) *StartSignUpOptions {
 	return &StartSignUpOptions{
 		ShouldCreateProfile: core.BoolPtr(shouldCreateProfile),
 		Emails: emails,
@@ -10494,7 +10494,7 @@ type UpdateApplicationOptions struct {
 }
 
 // NewUpdateApplicationOptions : Instantiate UpdateApplicationOptions
-func (*AppIdManagementV4) NewUpdateApplicationOptions(clientID string, name string) *UpdateApplicationOptions {
+func (*AppIDManagementV4) NewUpdateApplicationOptions(clientID string, name string) *UpdateApplicationOptions {
 	return &UpdateApplicationOptions{
 		ClientID: core.StringPtr(clientID),
 		Name: core.StringPtr(name),
@@ -10535,12 +10535,12 @@ type UpdateChannelOptions struct {
 // Constants associated with the UpdateChannelOptions.Channel property.
 // The MFA channel.
 const (
-	UpdateChannelOptions_Channel_Email = "email"
-	UpdateChannelOptions_Channel_Nexmo = "nexmo"
+	UpdateChannelOptionsChannelEmailConst = "email"
+	UpdateChannelOptionsChannelNexmoConst = "nexmo"
 )
 
 // NewUpdateChannelOptions : Instantiate UpdateChannelOptions
-func (*AppIdManagementV4) NewUpdateChannelOptions(channel string, isActive bool) *UpdateChannelOptions {
+func (*AppIDManagementV4) NewUpdateChannelOptions(channel string, isActive bool) *UpdateChannelOptions {
 	return &UpdateChannelOptions{
 		Channel: core.StringPtr(channel),
 		IsActive: core.BoolPtr(isActive),
@@ -10589,7 +10589,7 @@ type UpdateCloudDirectoryUserOptions struct {
 }
 
 // NewUpdateCloudDirectoryUserOptions : Instantiate UpdateCloudDirectoryUserOptions
-func (*AppIdManagementV4) NewUpdateCloudDirectoryUserOptions(userID string, emails []CreateNewUserEmailsItem) *UpdateCloudDirectoryUserOptions {
+func (*AppIDManagementV4) NewUpdateCloudDirectoryUserOptions(userID string, emails []CreateNewUserEmailsItem) *UpdateCloudDirectoryUserOptions {
 	return &UpdateCloudDirectoryUserOptions{
 		UserID: core.StringPtr(userID),
 		Emails: emails,
@@ -10648,12 +10648,12 @@ type UpdateExtensionActiveOptions struct {
 // Constants associated with the UpdateExtensionActiveOptions.Name property.
 // The name of the extension.
 const (
-	UpdateExtensionActiveOptions_Name_Postmfa = "postmfa"
-	UpdateExtensionActiveOptions_Name_Premfa = "premfa"
+	UpdateExtensionActiveOptionsNamePostmfaConst = "postmfa"
+	UpdateExtensionActiveOptionsNamePremfaConst = "premfa"
 )
 
 // NewUpdateExtensionActiveOptions : Instantiate UpdateExtensionActiveOptions
-func (*AppIdManagementV4) NewUpdateExtensionActiveOptions(name string, isActive bool) *UpdateExtensionActiveOptions {
+func (*AppIDManagementV4) NewUpdateExtensionActiveOptions(name string, isActive bool) *UpdateExtensionActiveOptions {
 	return &UpdateExtensionActiveOptions{
 		Name: core.StringPtr(name),
 		IsActive: core.BoolPtr(isActive),
@@ -10722,12 +10722,12 @@ type UpdateExtensionConfigOptions struct {
 // Constants associated with the UpdateExtensionConfigOptions.Name property.
 // The name of the extension.
 const (
-	UpdateExtensionConfigOptions_Name_Postmfa = "postmfa"
-	UpdateExtensionConfigOptions_Name_Premfa = "premfa"
+	UpdateExtensionConfigOptionsNamePostmfaConst = "postmfa"
+	UpdateExtensionConfigOptionsNamePremfaConst = "premfa"
 )
 
 // NewUpdateExtensionConfigOptions : Instantiate UpdateExtensionConfigOptions
-func (*AppIdManagementV4) NewUpdateExtensionConfigOptions(name string, isActive bool) *UpdateExtensionConfigOptions {
+func (*AppIDManagementV4) NewUpdateExtensionConfigOptions(name string, isActive bool) *UpdateExtensionConfigOptions {
 	return &UpdateExtensionConfigOptions{
 		Name: core.StringPtr(name),
 		IsActive: core.BoolPtr(isActive),
@@ -10767,7 +10767,7 @@ type UpdateLocalizationOptions struct {
 }
 
 // NewUpdateLocalizationOptions : Instantiate UpdateLocalizationOptions
-func (*AppIdManagementV4) NewUpdateLocalizationOptions() *UpdateLocalizationOptions {
+func (*AppIDManagementV4) NewUpdateLocalizationOptions() *UpdateLocalizationOptions {
 	return &UpdateLocalizationOptions{}
 }
 
@@ -10794,7 +10794,7 @@ type UpdateMFAConfigOptions struct {
 }
 
 // NewUpdateMFAConfigOptions : Instantiate UpdateMFAConfigOptions
-func (*AppIdManagementV4) NewUpdateMFAConfigOptions(isActive bool) *UpdateMFAConfigOptions {
+func (*AppIDManagementV4) NewUpdateMFAConfigOptions(isActive bool) *UpdateMFAConfigOptions {
 	return &UpdateMFAConfigOptions{
 		IsActive: core.BoolPtr(isActive),
 	}
@@ -10829,7 +10829,7 @@ type UpdateRateLimitConfigOptions struct {
 }
 
 // NewUpdateRateLimitConfigOptions : Instantiate UpdateRateLimitConfigOptions
-func (*AppIdManagementV4) NewUpdateRateLimitConfigOptions(signUpLimitPerMinute int64, signInLimitPerMinute int64) *UpdateRateLimitConfigOptions {
+func (*AppIDManagementV4) NewUpdateRateLimitConfigOptions(signUpLimitPerMinute int64, signInLimitPerMinute int64) *UpdateRateLimitConfigOptions {
 	return &UpdateRateLimitConfigOptions{
 		SignUpLimitPerMinute: core.Int64Ptr(signUpLimitPerMinute),
 		SignInLimitPerMinute: core.Int64Ptr(signInLimitPerMinute),
@@ -10857,21 +10857,21 @@ func (options *UpdateRateLimitConfigOptions) SetHeaders(param map[string]string)
 // UpdateRedirectUrisOptions : The UpdateRedirectUris options.
 type UpdateRedirectUrisOptions struct {
 	// The redirect URIs JSON object. If IBM default credentials are used, the redirect URIs are ignored.
-	RedirectUrisArray *RedirectUriConfig `validate:"required"`
+	RedirectUrisArray *RedirectURIConfig `validate:"required"`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewUpdateRedirectUrisOptions : Instantiate UpdateRedirectUrisOptions
-func (*AppIdManagementV4) NewUpdateRedirectUrisOptions(redirectUrisArray *RedirectUriConfig) *UpdateRedirectUrisOptions {
+func (*AppIDManagementV4) NewUpdateRedirectUrisOptions(redirectUrisArray *RedirectURIConfig) *UpdateRedirectUrisOptions {
 	return &UpdateRedirectUrisOptions{
 		RedirectUrisArray: redirectUrisArray,
 	}
 }
 
 // SetRedirectUrisArray : Allow user to set RedirectUrisArray
-func (options *UpdateRedirectUrisOptions) SetRedirectUrisArray(redirectUrisArray *RedirectUriConfig) *UpdateRedirectUrisOptions {
+func (options *UpdateRedirectUrisOptions) SetRedirectUrisArray(redirectUrisArray *RedirectURIConfig) *UpdateRedirectUrisOptions {
 	options.RedirectUrisArray = redirectUrisArray
 	return options
 }
@@ -10898,7 +10898,7 @@ type UpdateRoleOptions struct {
 }
 
 // NewUpdateRoleOptions : Instantiate UpdateRoleOptions
-func (*AppIdManagementV4) NewUpdateRoleOptions(roleID string, name string, access []UpdateRoleParamsAccessItem) *UpdateRoleOptions {
+func (*AppIDManagementV4) NewUpdateRoleOptions(roleID string, name string, access []UpdateRoleParamsAccessItem) *UpdateRoleOptions {
 	return &UpdateRoleOptions{
 		RoleID: core.StringPtr(roleID),
 		Name: core.StringPtr(name),
@@ -10944,7 +10944,7 @@ type UpdateRoleParamsAccessItem struct {
 }
 
 // NewUpdateRoleParamsAccessItem : Instantiate UpdateRoleParamsAccessItem (Generic Model Constructor)
-func (*AppIdManagementV4) NewUpdateRoleParamsAccessItem(applicationID string, scopes []string) (model *UpdateRoleParamsAccessItem, err error) {
+func (*AppIDManagementV4) NewUpdateRoleParamsAccessItem(applicationID string, scopes []string) (model *UpdateRoleParamsAccessItem, err error) {
 	model = &UpdateRoleParamsAccessItem{
 		ApplicationID: core.StringPtr(applicationID),
 		Scopes: scopes,
@@ -11003,7 +11003,7 @@ type UpdateSSOConfigOptions struct {
 }
 
 // NewUpdateSSOConfigOptions : Instantiate UpdateSSOConfigOptions
-func (*AppIdManagementV4) NewUpdateSSOConfigOptions(isActive bool, inactivityTimeoutSeconds float64, logoutRedirectUris []string) *UpdateSSOConfigOptions {
+func (*AppIDManagementV4) NewUpdateSSOConfigOptions(isActive bool, inactivityTimeoutSeconds float64, logoutRedirectUris []string) *UpdateSSOConfigOptions {
 	return &UpdateSSOConfigOptions{
 		IsActive: core.BoolPtr(isActive),
 		InactivityTimeoutSeconds: core.Float64Ptr(inactivityTimeoutSeconds),
@@ -11061,15 +11061,15 @@ type UpdateTemplateOptions struct {
 // The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED", "RESET_PASSWORD" or
 // "MFA_VERIFICATION".
 const (
-	UpdateTemplateOptions_TemplateName_MfaVerification = "MFA_VERIFICATION"
-	UpdateTemplateOptions_TemplateName_PasswordChanged = "PASSWORD_CHANGED"
-	UpdateTemplateOptions_TemplateName_ResetPassword = "RESET_PASSWORD"
-	UpdateTemplateOptions_TemplateName_UserVerification = "USER_VERIFICATION"
-	UpdateTemplateOptions_TemplateName_Welcome = "WELCOME"
+	UpdateTemplateOptionsTemplateNameMFAVerificationConst = "MFA_VERIFICATION"
+	UpdateTemplateOptionsTemplateNamePasswordChangedConst = "PASSWORD_CHANGED"
+	UpdateTemplateOptionsTemplateNameResetPasswordConst = "RESET_PASSWORD"
+	UpdateTemplateOptionsTemplateNameUserVerificationConst = "USER_VERIFICATION"
+	UpdateTemplateOptionsTemplateNameWelcomeConst = "WELCOME"
 )
 
 // NewUpdateTemplateOptions : Instantiate UpdateTemplateOptions
-func (*AppIdManagementV4) NewUpdateTemplateOptions(templateName string, language string, subject string) *UpdateTemplateOptions {
+func (*AppIDManagementV4) NewUpdateTemplateOptions(templateName string, language string, subject string) *UpdateTemplateOptions {
 	return &UpdateTemplateOptions{
 		TemplateName: core.StringPtr(templateName),
 		Language: core.StringPtr(language),
@@ -11128,7 +11128,7 @@ type UpdateUserProfilesConfigOptions struct {
 }
 
 // NewUpdateUserProfilesConfigOptions : Instantiate UpdateUserProfilesConfigOptions
-func (*AppIdManagementV4) NewUpdateUserProfilesConfigOptions(isActive bool) *UpdateUserProfilesConfigOptions {
+func (*AppIDManagementV4) NewUpdateUserProfilesConfigOptions(isActive bool) *UpdateUserProfilesConfigOptions {
 	return &UpdateUserProfilesConfigOptions{
 		IsActive: core.BoolPtr(isActive),
 	}
@@ -11159,7 +11159,7 @@ type UpdateUserRolesOptions struct {
 }
 
 // NewUpdateUserRolesOptions : Instantiate UpdateUserRolesOptions
-func (*AppIdManagementV4) NewUpdateUserRolesOptions(id string, roles *UpdateUserRolesParamsRoles) *UpdateUserRolesOptions {
+func (*AppIDManagementV4) NewUpdateUserRolesOptions(id string, roles *UpdateUserRolesParamsRoles) *UpdateUserRolesOptions {
 	return &UpdateUserRolesOptions{
 		ID: core.StringPtr(id),
 		Roles: roles,
@@ -11213,7 +11213,7 @@ type UserProfilesExportOptions struct {
 }
 
 // NewUserProfilesExportOptions : Instantiate UserProfilesExportOptions
-func (*AppIdManagementV4) NewUserProfilesExportOptions() *UserProfilesExportOptions {
+func (*AppIDManagementV4) NewUserProfilesExportOptions() *UserProfilesExportOptions {
 	return &UserProfilesExportOptions{}
 }
 
@@ -11244,7 +11244,7 @@ type UserProfilesImportOptions struct {
 }
 
 // NewUserProfilesImportOptions : Instantiate UserProfilesImportOptions
-func (*AppIdManagementV4) NewUserProfilesImportOptions(users []ExportUserProfileUsersItem) *UserProfilesImportOptions {
+func (*AppIDManagementV4) NewUserProfilesImportOptions(users []ExportUserProfileUsersItem) *UserProfilesImportOptions {
 	return &UserProfilesImportOptions{
 		Users: users,
 	}
@@ -11322,7 +11322,7 @@ type UserVerificationResultOptions struct {
 }
 
 // NewUserVerificationResultOptions : Instantiate UserVerificationResultOptions
-func (*AppIdManagementV4) NewUserVerificationResultOptions(context string) *UserVerificationResultOptions {
+func (*AppIDManagementV4) NewUserVerificationResultOptions(context string) *UserVerificationResultOptions {
 	return &UserVerificationResultOptions{
 		Context: core.StringPtr(context),
 	}
@@ -11351,7 +11351,7 @@ type UsersDeleteUserProfileOptions struct {
 }
 
 // NewUsersDeleteUserProfileOptions : Instantiate UsersDeleteUserProfileOptions
-func (*AppIdManagementV4) NewUsersDeleteUserProfileOptions(id string) *UsersDeleteUserProfileOptions {
+func (*AppIDManagementV4) NewUsersDeleteUserProfileOptions(id string) *UsersDeleteUserProfileOptions {
 	return &UsersDeleteUserProfileOptions{
 		ID: core.StringPtr(id),
 	}
@@ -11380,7 +11380,7 @@ type UsersGetUserProfileOptions struct {
 }
 
 // NewUsersGetUserProfileOptions : Instantiate UsersGetUserProfileOptions
-func (*AppIdManagementV4) NewUsersGetUserProfileOptions(id string) *UsersGetUserProfileOptions {
+func (*AppIDManagementV4) NewUsersGetUserProfileOptions(id string) *UsersGetUserProfileOptions {
 	return &UsersGetUserProfileOptions{
 		ID: core.StringPtr(id),
 	}
@@ -11440,31 +11440,31 @@ type UsersNominateUserOptions struct {
 
 // Constants associated with the UsersNominateUserOptions.IDP property.
 const (
-	UsersNominateUserOptions_IDP_AppidCustom = "appid_custom"
-	UsersNominateUserOptions_IDP_CloudDirectory = "cloud_directory"
-	UsersNominateUserOptions_IDP_Facebook = "facebook"
-	UsersNominateUserOptions_IDP_Google = "google"
-	UsersNominateUserOptions_IDP_Ibmid = "ibmid"
-	UsersNominateUserOptions_IDP_SAML = "saml"
+	UsersNominateUserOptionsIDPAppidCustomConst = "appid_custom"
+	UsersNominateUserOptionsIDPCloudDirectoryConst = "cloud_directory"
+	UsersNominateUserOptionsIDPFacebookConst = "facebook"
+	UsersNominateUserOptionsIDPGoogleConst = "google"
+	UsersNominateUserOptionsIDPIbmidConst = "ibmid"
+	UsersNominateUserOptionsIDPSAMLConst = "saml"
 )
 
 // NewUsersNominateUserOptions : Instantiate UsersNominateUserOptions
-func (*AppIdManagementV4) NewUsersNominateUserOptions(iDP string, iDPIdentity string) *UsersNominateUserOptions {
+func (*AppIDManagementV4) NewUsersNominateUserOptions(idp string, idpIdentity string) *UsersNominateUserOptions {
 	return &UsersNominateUserOptions{
-		IDP: core.StringPtr(iDP),
-		IDPIdentity: core.StringPtr(iDPIdentity),
+		IDP: core.StringPtr(idp),
+		IDPIdentity: core.StringPtr(idpIdentity),
 	}
 }
 
 // SetIDP : Allow user to set IDP
-func (options *UsersNominateUserOptions) SetIDP(iDP string) *UsersNominateUserOptions {
-	options.IDP = core.StringPtr(iDP)
+func (options *UsersNominateUserOptions) SetIDP(idp string) *UsersNominateUserOptions {
+	options.IDP = core.StringPtr(idp)
 	return options
 }
 
 // SetIDPIdentity : Allow user to set IDPIdentity
-func (options *UsersNominateUserOptions) SetIDPIdentity(iDPIdentity string) *UsersNominateUserOptions {
-	options.IDPIdentity = core.StringPtr(iDPIdentity)
+func (options *UsersNominateUserOptions) SetIDPIdentity(idpIdentity string) *UsersNominateUserOptions {
+	options.IDPIdentity = core.StringPtr(idpIdentity)
 	return options
 }
 
@@ -11507,7 +11507,7 @@ type UsersRevokeRefreshTokenOptions struct {
 }
 
 // NewUsersRevokeRefreshTokenOptions : Instantiate UsersRevokeRefreshTokenOptions
-func (*AppIdManagementV4) NewUsersRevokeRefreshTokenOptions(id string) *UsersRevokeRefreshTokenOptions {
+func (*AppIDManagementV4) NewUsersRevokeRefreshTokenOptions(id string) *UsersRevokeRefreshTokenOptions {
 	return &UsersRevokeRefreshTokenOptions{
 		ID: core.StringPtr(id),
 	}
@@ -11549,12 +11549,12 @@ type UsersSearchUserProfileOptions struct {
 // Constants associated with the UsersSearchUserProfileOptions.DataScope property.
 // display user data.
 const (
-	UsersSearchUserProfileOptions_DataScope_Full = "full"
-	UsersSearchUserProfileOptions_DataScope_Index = "index"
+	UsersSearchUserProfileOptionsDataScopeFullConst = "full"
+	UsersSearchUserProfileOptionsDataScopeIndexConst = "index"
 )
 
 // NewUsersSearchUserProfileOptions : Instantiate UsersSearchUserProfileOptions
-func (*AppIdManagementV4) NewUsersSearchUserProfileOptions(dataScope string) *UsersSearchUserProfileOptions {
+func (*AppIDManagementV4) NewUsersSearchUserProfileOptions(dataScope string) *UsersSearchUserProfileOptions {
 	return &UsersSearchUserProfileOptions{
 		DataScope: core.StringPtr(dataScope),
 	}
@@ -11609,7 +11609,7 @@ type UsersSetUserProfileOptions struct {
 }
 
 // NewUsersSetUserProfileOptions : Instantiate UsersSetUserProfileOptions
-func (*AppIdManagementV4) NewUsersSetUserProfileOptions(id string, attributes map[string]interface{}) *UsersSetUserProfileOptions {
+func (*AppIDManagementV4) NewUsersSetUserProfileOptions(id string, attributes map[string]interface{}) *UsersSetUserProfileOptions {
 	return &UsersSetUserProfileOptions{
 		ID: core.StringPtr(id),
 		Attributes: attributes,
@@ -11634,14 +11634,14 @@ func (options *UsersSetUserProfileOptions) SetHeaders(param map[string]string) *
 	return options
 }
 
-// ActionUrlResponse : ActionUrlResponse struct
-type ActionUrlResponse struct {
+// ActionURLResponse : ActionURLResponse struct
+type ActionURLResponse struct {
 	ActionURL *string `json:"actionUrl" validate:"required"`
 }
 
-// UnmarshalActionUrlResponse unmarshals an instance of ActionUrlResponse from the specified map of raw messages.
-func UnmarshalActionUrlResponse(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(ActionUrlResponse)
+// UnmarshalActionURLResponse unmarshals an instance of ActionURLResponse from the specified map of raw messages.
+func UnmarshalActionURLResponse(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(ActionURLResponse)
 	err = core.UnmarshalPrimitive(m, "actionUrl", &obj.ActionURL)
 	if err != nil {
 		return
@@ -11656,7 +11656,7 @@ type ApmSchema struct {
 }
 
 // NewApmSchema : Instantiate ApmSchema (Generic Model Constructor)
-func (*AppIdManagementV4) NewApmSchema(advancedPasswordManagement *ApmSchemaAdvancedPasswordManagement) (model *ApmSchema, err error) {
+func (*AppIDManagementV4) NewApmSchema(advancedPasswordManagement *ApmSchemaAdvancedPasswordManagement) (model *ApmSchema, err error) {
 	model = &ApmSchema{
 		AdvancedPasswordManagement: advancedPasswordManagement,
 	}
@@ -11704,12 +11704,12 @@ type CloudDirectoryConfigParams struct {
 
 // Constants associated with the CloudDirectoryConfigParams.IdentityField property.
 const (
-	CloudDirectoryConfigParams_IdentityField_Email = "email"
-	CloudDirectoryConfigParams_IdentityField_Username = "userName"
+	CloudDirectoryConfigParamsIdentityFieldEmailConst = "email"
+	CloudDirectoryConfigParamsIdentityFieldUsernameConst = "userName"
 )
 
 // NewCloudDirectoryConfigParams : Instantiate CloudDirectoryConfigParams (Generic Model Constructor)
-func (*AppIdManagementV4) NewCloudDirectoryConfigParams(selfServiceEnabled bool, interactions *CloudDirectoryConfigParamsInteractions) (model *CloudDirectoryConfigParams, err error) {
+func (*AppIDManagementV4) NewCloudDirectoryConfigParams(selfServiceEnabled bool, interactions *CloudDirectoryConfigParamsInteractions) (model *CloudDirectoryConfigParams, err error) {
 	model = &CloudDirectoryConfigParams{
 		SelfServiceEnabled: core.BoolPtr(selfServiceEnabled),
 		Interactions: interactions,
@@ -11769,7 +11769,7 @@ type CloudDirectorySenderDetails struct {
 }
 
 // NewCloudDirectorySenderDetails : Instantiate CloudDirectorySenderDetails (Generic Model Constructor)
-func (*AppIdManagementV4) NewCloudDirectorySenderDetails(senderDetails *CloudDirectorySenderDetailsSenderDetails) (model *CloudDirectorySenderDetails, err error) {
+func (*AppIDManagementV4) NewCloudDirectorySenderDetails(senderDetails *CloudDirectorySenderDetailsSenderDetails) (model *CloudDirectorySenderDetails, err error) {
 	model = &CloudDirectorySenderDetails{
 		SenderDetails: senderDetails,
 	}
@@ -11788,16 +11788,16 @@ func UnmarshalCloudDirectorySenderDetails(m map[string]json.RawMessage, result i
 	return
 }
 
-// ConfirmationResultOK : ConfirmationResultOK struct
-type ConfirmationResultOK struct {
+// ConfirmationResultOk : ConfirmationResultOk struct
+type ConfirmationResultOk struct {
 	Success *bool `json:"success" validate:"required"`
 
 	UUID *string `json:"uuid" validate:"required"`
 }
 
-// UnmarshalConfirmationResultOK unmarshals an instance of ConfirmationResultOK from the specified map of raw messages.
-func UnmarshalConfirmationResultOK(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(ConfirmationResultOK)
+// UnmarshalConfirmationResultOk unmarshals an instance of ConfirmationResultOk from the specified map of raw messages.
+func UnmarshalConfirmationResultOk(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(ConfirmationResultOk)
 	err = core.UnmarshalPrimitive(m, "success", &obj.Success)
 	if err != nil {
 		return
@@ -11844,30 +11844,30 @@ func UnmarshalCreateRolesResponse(m map[string]json.RawMessage, result interface
 	return
 }
 
-// CustomIdPConfigParams : CustomIdPConfigParams struct
-type CustomIdPConfigParams struct {
+// CustomIDPConfigParams : CustomIDPConfigParams struct
+type CustomIDPConfigParams struct {
 	IsActive *bool `json:"isActive" validate:"required"`
 
-	Config *CustomIdPConfigParamsConfig `json:"config,omitempty"`
+	Config *CustomIDPConfigParamsConfig `json:"config,omitempty"`
 }
 
-// NewCustomIdPConfigParams : Instantiate CustomIdPConfigParams (Generic Model Constructor)
-func (*AppIdManagementV4) NewCustomIdPConfigParams(isActive bool) (model *CustomIdPConfigParams, err error) {
-	model = &CustomIdPConfigParams{
+// NewCustomIDPConfigParams : Instantiate CustomIDPConfigParams (Generic Model Constructor)
+func (*AppIDManagementV4) NewCustomIDPConfigParams(isActive bool) (model *CustomIDPConfigParams, err error) {
+	model = &CustomIDPConfigParams{
 		IsActive: core.BoolPtr(isActive),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
 }
 
-// UnmarshalCustomIdPConfigParams unmarshals an instance of CustomIdPConfigParams from the specified map of raw messages.
-func UnmarshalCustomIdPConfigParams(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(CustomIdPConfigParams)
+// UnmarshalCustomIDPConfigParams unmarshals an instance of CustomIDPConfigParams from the specified map of raw messages.
+func UnmarshalCustomIDPConfigParams(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(CustomIDPConfigParams)
 	err = core.UnmarshalPrimitive(m, "isActive", &obj.IsActive)
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalCustomIdPConfigParamsConfig)
+	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalCustomIDPConfigParamsConfig)
 	if err != nil {
 		return
 	}
@@ -11886,13 +11886,13 @@ type EmailDispatcherParams struct {
 
 // Constants associated with the EmailDispatcherParams.Provider property.
 const (
-	EmailDispatcherParams_Provider_Appid = "appid"
-	EmailDispatcherParams_Provider_Custom = "custom"
-	EmailDispatcherParams_Provider_Sendgrid = "sendgrid"
+	EmailDispatcherParamsProviderAppidConst = "appid"
+	EmailDispatcherParamsProviderCustomConst = "custom"
+	EmailDispatcherParamsProviderSendgridConst = "sendgrid"
 )
 
 // NewEmailDispatcherParams : Instantiate EmailDispatcherParams (Generic Model Constructor)
-func (*AppIdManagementV4) NewEmailDispatcherParams(provider string) (model *EmailDispatcherParams, err error) {
+func (*AppIDManagementV4) NewEmailDispatcherParams(provider string) (model *EmailDispatcherParams, err error) {
 	model = &EmailDispatcherParams{
 		Provider: core.StringPtr(provider),
 	}
@@ -11925,7 +11925,7 @@ type ExportUser struct {
 }
 
 // NewExportUser : Instantiate ExportUser (Generic Model Constructor)
-func (*AppIdManagementV4) NewExportUser(users []ExportUserUsersItem) (model *ExportUser, err error) {
+func (*AppIDManagementV4) NewExportUser(users []ExportUserUsersItem) (model *ExportUser, err error) {
 	model = &ExportUser{
 		Users: users,
 	}
@@ -11950,7 +11950,7 @@ type ExportUserProfile struct {
 }
 
 // NewExportUserProfile : Instantiate ExportUserProfile (Generic Model Constructor)
-func (*AppIdManagementV4) NewExportUserProfile(users []ExportUserProfileUsersItem) (model *ExportUserProfile, err error) {
+func (*AppIDManagementV4) NewExportUserProfile(users []ExportUserProfileUsersItem) (model *ExportUserProfile, err error) {
 	model = &ExportUserProfile{
 		Users: users,
 	}
@@ -11977,7 +11977,7 @@ type ExtensionActive struct {
 }
 
 // NewExtensionActive : Instantiate ExtensionActive (Generic Model Constructor)
-func (*AppIdManagementV4) NewExtensionActive(isActive bool) (model *ExtensionActive, err error) {
+func (*AppIDManagementV4) NewExtensionActive(isActive bool) (model *ExtensionActive, err error) {
 	model = &ExtensionActive{
 		IsActive: core.BoolPtr(isActive),
 	}
@@ -12044,21 +12044,21 @@ func UnmarshalFacebookConfigParams(m map[string]json.RawMessage, result interfac
 	return
 }
 
-// FacebookConfigParamsPUT : FacebookConfigParamsPUT struct
-type FacebookConfigParamsPUT struct {
+// FacebookConfigParamsPut : FacebookConfigParamsPut struct
+type FacebookConfigParamsPut struct {
 	IsActive *bool `json:"isActive" validate:"required"`
 
-	Config *FacebookConfigParamsPUTConfig `json:"config,omitempty"`
+	Config *FacebookConfigParamsPutConfig `json:"config,omitempty"`
 }
 
-// UnmarshalFacebookConfigParamsPUT unmarshals an instance of FacebookConfigParamsPUT from the specified map of raw messages.
-func UnmarshalFacebookConfigParamsPUT(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(FacebookConfigParamsPUT)
+// UnmarshalFacebookConfigParamsPut unmarshals an instance of FacebookConfigParamsPut from the specified map of raw messages.
+func UnmarshalFacebookConfigParamsPut(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(FacebookConfigParamsPut)
 	err = core.UnmarshalPrimitive(m, "isActive", &obj.IsActive)
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalFacebookConfigParamsPUTConfig)
+	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalFacebookConfigParamsPutConfig)
 	if err != nil {
 		return
 	}
@@ -12077,7 +12077,7 @@ type FacebookGoogleConfigParams struct {
 }
 
 // NewFacebookGoogleConfigParams : Instantiate FacebookGoogleConfigParams (Generic Model Constructor)
-func (*AppIdManagementV4) NewFacebookGoogleConfigParams(isActive bool) (model *FacebookGoogleConfigParams, err error) {
+func (*AppIDManagementV4) NewFacebookGoogleConfigParams(isActive bool) (model *FacebookGoogleConfigParams, err error) {
 	model = &FacebookGoogleConfigParams{
 		IsActive: core.BoolPtr(isActive),
 	}
@@ -12153,7 +12153,7 @@ type GetLanguages struct {
 }
 
 // NewGetLanguages : Instantiate GetLanguages (Generic Model Constructor)
-func (*AppIdManagementV4) NewGetLanguages(languages []string) (model *GetLanguages, err error) {
+func (*AppIDManagementV4) NewGetLanguages(languages []string) (model *GetLanguages, err error) {
 	model = &GetLanguages{
 		Languages: languages,
 	}
@@ -12366,21 +12366,21 @@ func UnmarshalGoogleConfigParams(m map[string]json.RawMessage, result interface{
 	return
 }
 
-// GoogleConfigParamsPUT : GoogleConfigParamsPUT struct
-type GoogleConfigParamsPUT struct {
+// GoogleConfigParamsPut : GoogleConfigParamsPut struct
+type GoogleConfigParamsPut struct {
 	IsActive *bool `json:"isActive" validate:"required"`
 
-	Config *GoogleConfigParamsPUTConfig `json:"config,omitempty"`
+	Config *GoogleConfigParamsPutConfig `json:"config,omitempty"`
 }
 
-// UnmarshalGoogleConfigParamsPUT unmarshals an instance of GoogleConfigParamsPUT from the specified map of raw messages.
-func UnmarshalGoogleConfigParamsPUT(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(GoogleConfigParamsPUT)
+// UnmarshalGoogleConfigParamsPut unmarshals an instance of GoogleConfigParamsPut from the specified map of raw messages.
+func UnmarshalGoogleConfigParamsPut(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(GoogleConfigParamsPut)
 	err = core.UnmarshalPrimitive(m, "isActive", &obj.IsActive)
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalGoogleConfigParamsPUTConfig)
+	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalGoogleConfigParamsPutConfig)
 	if err != nil {
 		return
 	}
@@ -12472,8 +12472,8 @@ func UnmarshalPasswordRegexConfigParamsGet(m map[string]json.RawMessage, result 
 	return
 }
 
-// RedirectUriConfig : RedirectUriConfig struct
-type RedirectUriConfig struct {
+// RedirectURIConfig : RedirectURIConfig struct
+type RedirectURIConfig struct {
 	RedirectUris []string `json:"redirectUris,omitempty"`
 
 	TrustCloudIAMRedirectUris *bool `json:"trustCloudIAMRedirectUris,omitempty"`
@@ -12482,26 +12482,26 @@ type RedirectUriConfig struct {
 	additionalProperties map[string]interface{}
 }
 
-// SetProperty allows the user to set an arbitrary property on an instance of RedirectUriConfig
-func (o *RedirectUriConfig) SetProperty(key string, value interface{}) {
+// SetProperty allows the user to set an arbitrary property on an instance of RedirectURIConfig
+func (o *RedirectURIConfig) SetProperty(key string, value interface{}) {
 	if o.additionalProperties == nil {
 		o.additionalProperties = make(map[string]interface{})
 	}
 	o.additionalProperties[key] = value
 }
 
-// GetProperty allows the user to retrieve an arbitrary property from an instance of RedirectUriConfig
-func (o *RedirectUriConfig) GetProperty(key string) interface{} {
+// GetProperty allows the user to retrieve an arbitrary property from an instance of RedirectURIConfig
+func (o *RedirectURIConfig) GetProperty(key string) interface{} {
 	return o.additionalProperties[key]
 }
 
-// GetProperties allows the user to retrieve the map of arbitrary properties from an instance of RedirectUriConfig
-func (o *RedirectUriConfig) GetProperties() map[string]interface{} {
+// GetProperties allows the user to retrieve the map of arbitrary properties from an instance of RedirectURIConfig
+func (o *RedirectURIConfig) GetProperties() map[string]interface{} {
 	return o.additionalProperties
 }
 
-// MarshalJSON performs custom serialization for instances of RedirectUriConfig
-func (o *RedirectUriConfig) MarshalJSON() (buffer []byte, err error) {
+// MarshalJSON performs custom serialization for instances of RedirectURIConfig
+func (o *RedirectURIConfig) MarshalJSON() (buffer []byte, err error) {
 	m := make(map[string]interface{})
 	if len(o.additionalProperties) > 0 {
 		for k, v := range o.additionalProperties {
@@ -12518,9 +12518,9 @@ func (o *RedirectUriConfig) MarshalJSON() (buffer []byte, err error) {
 	return
 }
 
-// UnmarshalRedirectUriConfig unmarshals an instance of RedirectUriConfig from the specified map of raw messages.
-func UnmarshalRedirectUriConfig(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(RedirectUriConfig)
+// UnmarshalRedirectURIConfig unmarshals an instance of RedirectURIConfig from the specified map of raw messages.
+func UnmarshalRedirectURIConfig(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(RedirectURIConfig)
 	err = core.UnmarshalPrimitive(m, "redirectUris", &obj.RedirectUris)
 	if err != nil {
 		return
@@ -12544,14 +12544,14 @@ func UnmarshalRedirectUriConfig(m map[string]json.RawMessage, result interface{}
 	return
 }
 
-// RedirectUriResponse : RedirectUriResponse struct
-type RedirectUriResponse struct {
+// RedirectURIResponse : RedirectURIResponse struct
+type RedirectURIResponse struct {
 	RedirectUris []string `json:"redirectUris,omitempty"`
 }
 
-// UnmarshalRedirectUriResponse unmarshals an instance of RedirectUriResponse from the specified map of raw messages.
-func UnmarshalRedirectUriResponse(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(RedirectUriResponse)
+// UnmarshalRedirectURIResponse unmarshals an instance of RedirectURIResponse from the specified map of raw messages.
+func UnmarshalRedirectURIResponse(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(RedirectURIResponse)
 	err = core.UnmarshalPrimitive(m, "redirectUris", &obj.RedirectUris)
 	if err != nil {
 		return
@@ -12568,7 +12568,7 @@ type RefreshTokenConfigParams struct {
 }
 
 // NewRefreshTokenConfigParams : Instantiate RefreshTokenConfigParams (Generic Model Constructor)
-func (*AppIdManagementV4) NewRefreshTokenConfigParams(expiresIn float64, enabled bool) (model *RefreshTokenConfigParams, err error) {
+func (*AppIDManagementV4) NewRefreshTokenConfigParams(expiresIn float64, enabled bool) (model *RefreshTokenConfigParams, err error) {
 	model = &RefreshTokenConfigParams{
 		ExpiresIn: core.Float64Ptr(expiresIn),
 		Enabled: core.BoolPtr(enabled),
@@ -12687,7 +12687,7 @@ type SAMLConfigParams struct {
 }
 
 // NewSAMLConfigParams : Instantiate SAMLConfigParams (Generic Model Constructor)
-func (*AppIdManagementV4) NewSAMLConfigParams(entityID string, signInURL string, certificates []string) (model *SAMLConfigParams, err error) {
+func (*AppIDManagementV4) NewSAMLConfigParams(entityID string, signInURL string, certificates []string) (model *SAMLConfigParams, err error) {
 	model = &SAMLConfigParams{
 		EntityID: core.StringPtr(entityID),
 		SignInURL: core.StringPtr(signInURL),
@@ -12868,18 +12868,18 @@ type TokenClaimMapping struct {
 
 // Constants associated with the TokenClaimMapping.Source property.
 const (
-	TokenClaimMapping_Source_AppidCustom = "appid_custom"
-	TokenClaimMapping_Source_Attributes = "attributes"
-	TokenClaimMapping_Source_CloudDirectory = "cloud_directory"
-	TokenClaimMapping_Source_Facebook = "facebook"
-	TokenClaimMapping_Source_Google = "google"
-	TokenClaimMapping_Source_Ibmid = "ibmid"
-	TokenClaimMapping_Source_Roles = "roles"
-	TokenClaimMapping_Source_SAML = "saml"
+	TokenClaimMappingSourceAppidCustomConst = "appid_custom"
+	TokenClaimMappingSourceAttributesConst = "attributes"
+	TokenClaimMappingSourceCloudDirectoryConst = "cloud_directory"
+	TokenClaimMappingSourceFacebookConst = "facebook"
+	TokenClaimMappingSourceGoogleConst = "google"
+	TokenClaimMappingSourceIbmidConst = "ibmid"
+	TokenClaimMappingSourceRolesConst = "roles"
+	TokenClaimMappingSourceSAMLConst = "saml"
 )
 
 // NewTokenClaimMapping : Instantiate TokenClaimMapping (Generic Model Constructor)
-func (*AppIdManagementV4) NewTokenClaimMapping(source string) (model *TokenClaimMapping, err error) {
+func (*AppIDManagementV4) NewTokenClaimMapping(source string) (model *TokenClaimMapping, err error) {
 	model = &TokenClaimMapping{
 		Source: core.StringPtr(source),
 	}
@@ -12912,7 +12912,7 @@ type TokenConfigParams struct {
 }
 
 // NewTokenConfigParams : Instantiate TokenConfigParams (Generic Model Constructor)
-func (*AppIdManagementV4) NewTokenConfigParams(expiresIn float64) (model *TokenConfigParams, err error) {
+func (*AppIDManagementV4) NewTokenConfigParams(expiresIn float64) (model *TokenConfigParams, err error) {
 	model = &TokenConfigParams{
 		ExpiresIn: core.Float64Ptr(expiresIn),
 	}
@@ -12933,7 +12933,7 @@ func UnmarshalTokenConfigParams(m map[string]json.RawMessage, result interface{}
 
 // TokensConfigResponse : TokensConfigResponse struct
 type TokensConfigResponse struct {
-	IdTokenClaims []TokenClaimMapping `json:"idTokenClaims,omitempty"`
+	IDTokenClaims []TokenClaimMapping `json:"idTokenClaims,omitempty"`
 
 	AccessTokenClaims []TokenClaimMapping `json:"accessTokenClaims,omitempty"`
 
@@ -12947,7 +12947,7 @@ type TokensConfigResponse struct {
 // UnmarshalTokensConfigResponse unmarshals an instance of TokensConfigResponse from the specified map of raw messages.
 func UnmarshalTokensConfigResponse(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(TokensConfigResponse)
-	err = core.UnmarshalModel(m, "idTokenClaims", &obj.IdTokenClaims, UnmarshalTokenClaimMapping)
+	err = core.UnmarshalModel(m, "idTokenClaims", &obj.IDTokenClaims, UnmarshalTokenClaimMapping)
 	if err != nil {
 		return
 	}
@@ -12979,7 +12979,7 @@ type UpdateExtensionConfig struct {
 }
 
 // NewUpdateExtensionConfig : Instantiate UpdateExtensionConfig (Generic Model Constructor)
-func (*AppIdManagementV4) NewUpdateExtensionConfig(isActive bool) (model *UpdateExtensionConfig, err error) {
+func (*AppIDManagementV4) NewUpdateExtensionConfig(isActive bool) (model *UpdateExtensionConfig, err error) {
 	model = &UpdateExtensionConfig{
 		IsActive: core.BoolPtr(isActive),
 	}

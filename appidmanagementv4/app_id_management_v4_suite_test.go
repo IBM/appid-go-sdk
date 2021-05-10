@@ -23,7 +23,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-func TestAppIdManagementV4(t *testing.T) {
+func TestAppIDManagementV4(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "AppIdManagementV4 Suite")
+	RunSpecs(t, "AppIDManagementV4 Suite")
 }

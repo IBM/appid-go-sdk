@@ -34,28 +34,28 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-var _ = Describe(`AppIdManagementV4`, func() {
+var _ = Describe(`AppIDManagementV4`, func() {
 	var testServer *httptest.Server
 	Describe(`Service constructor tests`, func() {
 		tenantID := "testString"
 		It(`Instantiate service client`, func() {
-			appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 				Authenticator: &core.NoAuthAuthenticator{},
 				TenantID: core.StringPtr(tenantID),
 			})
-			Expect(appIdManagementService).ToNot(BeNil())
+			Expect(appIDManagementService).ToNot(BeNil())
 			Expect(serviceErr).To(BeNil())
 		})
 		It(`Instantiate service client with error: Invalid URL`, func() {
-			appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 				URL: "{BAD_URL_STRING",
 				TenantID: core.StringPtr(tenantID),
 			})
-			Expect(appIdManagementService).To(BeNil())
+			Expect(appIDManagementService).To(BeNil())
 			Expect(serviceErr).ToNot(BeNil())
 		})
 		It(`Instantiate service client with error: Invalid Auth`, func() {
-			appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 				URL: "https://appidmanagementv4/api",
 				TenantID: core.StringPtr(tenantID),
 				Authenticator: &core.BasicAuthenticator{
@@ -63,12 +63,12 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					Password: "",
 				},
 			})
-			Expect(appIdManagementService).To(BeNil())
+			Expect(appIDManagementService).To(BeNil())
 			Expect(serviceErr).ToNot(BeNil())
 		})
 		It(`Instantiate service client with error: Validation Error`, func() {
-			appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{})
-			Expect(appIdManagementService).To(BeNil())
+			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{})
+			Expect(appIDManagementService).To(BeNil())
 			Expect(serviceErr).ToNot(BeNil())
 		})
 	})
@@ -83,53 +83,53 @@ var _ = Describe(`AppIdManagementV4`, func() {
 
 			It(`Create service client using external config successfully`, func() {
 				SetTestEnvironment(testEnvironment)
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4UsingExternalConfig(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
 					TenantID: core.StringPtr(tenantID),
 				})
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 				Expect(serviceErr).To(BeNil())
 				ClearTestEnvironment(testEnvironment)
 
-				clone := appIdManagementService.Clone()
+				clone := appIDManagementService.Clone()
 				Expect(clone).ToNot(BeNil())
-				Expect(clone.Service != appIdManagementService.Service).To(BeTrue())
-				Expect(clone.GetServiceURL()).To(Equal(appIdManagementService.GetServiceURL()))
-				Expect(clone.Service.Options.Authenticator).To(Equal(appIdManagementService.Service.Options.Authenticator))
+				Expect(clone.Service != appIDManagementService.Service).To(BeTrue())
+				Expect(clone.GetServiceURL()).To(Equal(appIDManagementService.GetServiceURL()))
+				Expect(clone.Service.Options.Authenticator).To(Equal(appIDManagementService.Service.Options.Authenticator))
 			})
 			It(`Create service client using external config and set url from constructor successfully`, func() {
 				SetTestEnvironment(testEnvironment)
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4UsingExternalConfig(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
 					URL: "https://testService/api",
 					TenantID: core.StringPtr(tenantID),
 				})
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService.Service.GetServiceURL()).To(Equal("https://testService/api"))
+				Expect(appIDManagementService.Service.GetServiceURL()).To(Equal("https://testService/api"))
 				ClearTestEnvironment(testEnvironment)
 
-				clone := appIdManagementService.Clone()
+				clone := appIDManagementService.Clone()
 				Expect(clone).ToNot(BeNil())
-				Expect(clone.Service != appIdManagementService.Service).To(BeTrue())
-				Expect(clone.GetServiceURL()).To(Equal(appIdManagementService.GetServiceURL()))
-				Expect(clone.Service.Options.Authenticator).To(Equal(appIdManagementService.Service.Options.Authenticator))
+				Expect(clone.Service != appIDManagementService.Service).To(BeTrue())
+				Expect(clone.GetServiceURL()).To(Equal(appIDManagementService.GetServiceURL()))
+				Expect(clone.Service.Options.Authenticator).To(Equal(appIDManagementService.Service.Options.Authenticator))
 			})
 			It(`Create service client using external config and set url programatically successfully`, func() {
 				SetTestEnvironment(testEnvironment)
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4UsingExternalConfig(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
 					TenantID: core.StringPtr(tenantID),
 				})
-				err := appIdManagementService.SetServiceURL("https://testService/api")
+				err := appIDManagementService.SetServiceURL("https://testService/api")
 				Expect(err).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService.Service.GetServiceURL()).To(Equal("https://testService/api"))
+				Expect(appIDManagementService.Service.GetServiceURL()).To(Equal("https://testService/api"))
 				ClearTestEnvironment(testEnvironment)
 
-				clone := appIdManagementService.Clone()
+				clone := appIDManagementService.Clone()
 				Expect(clone).ToNot(BeNil())
-				Expect(clone.Service != appIdManagementService.Service).To(BeTrue())
-				Expect(clone.GetServiceURL()).To(Equal(appIdManagementService.GetServiceURL()))
-				Expect(clone.Service.Options.Authenticator).To(Equal(appIdManagementService.Service.Options.Authenticator))
+				Expect(clone.Service != appIDManagementService.Service).To(BeTrue())
+				Expect(clone.GetServiceURL()).To(Equal(appIDManagementService.GetServiceURL()))
+				Expect(clone.Service.Options.Authenticator).To(Equal(appIDManagementService.Service.Options.Authenticator))
 			})
 		})
 		Context(`Using external config, construct service client instances with error: Invalid Auth`, func() {
@@ -140,12 +140,12 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			}
 
 			SetTestEnvironment(testEnvironment)
-			appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4UsingExternalConfig(&appidmanagementv4.AppIdManagementV4Options{
+			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
 				TenantID: core.StringPtr(tenantID),
 			})
 
 			It(`Instantiate service client with error`, func() {
-				Expect(appIdManagementService).To(BeNil())
+				Expect(appIDManagementService).To(BeNil())
 				Expect(serviceErr).ToNot(BeNil())
 				ClearTestEnvironment(testEnvironment)
 			})
@@ -157,13 +157,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			}
 
 			SetTestEnvironment(testEnvironment)
-			appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4UsingExternalConfig(&appidmanagementv4.AppIdManagementV4Options{
+			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
 				URL: "{BAD_URL_STRING",
 				TenantID: core.StringPtr(tenantID),
 			})
 
 			It(`Instantiate service client with error`, func() {
-				Expect(appIdManagementService).To(BeNil())
+				Expect(appIDManagementService).To(BeNil())
 				Expect(serviceErr).ToNot(BeNil())
 				ClearTestEnvironment(testEnvironment)
 			})
@@ -196,26 +196,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListApplications with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListApplicationsOptions model
 				listApplicationsOptionsModel := new(appidmanagementv4.ListApplicationsOptions)
 				listApplicationsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.ListApplications(listApplicationsOptionsModel)
+				result, response, operationErr := appIDManagementService.ListApplications(listApplicationsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.ListApplications(listApplicationsOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.ListApplications(listApplicationsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -247,14 +247,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListApplications successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the ListApplicationsOptions model
 				listApplicationsOptionsModel := new(appidmanagementv4.ListApplicationsOptions)
@@ -263,13 +263,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.ListApplicationsWithContext(ctx, listApplicationsOptionsModel)
+				_, _, operationErr := appIDManagementService.ListApplicationsWithContext(ctx, listApplicationsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.ListApplications(listApplicationsOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.ListApplications(listApplicationsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -277,7 +277,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.ListApplicationsWithContext(ctx, listApplicationsOptionsModel)
+				_, _, operationErr = appIDManagementService.ListApplicationsWithContext(ctx, listApplicationsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -301,16 +301,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListApplications successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.ListApplications(nil)
+				result, response, operationErr := appIDManagementService.ListApplications(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -320,28 +320,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				listApplicationsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.ListApplications(listApplicationsOptionsModel)
+				result, response, operationErr = appIDManagementService.ListApplications(listApplicationsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke ListApplications with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListApplicationsOptions model
 				listApplicationsOptionsModel := new(appidmanagementv4.ListApplicationsOptions)
 				listApplicationsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.ListApplications(listApplicationsOptionsModel)
+				result, response, operationErr := appIDManagementService.ListApplications(listApplicationsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -361,20 +361,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListApplications successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListApplicationsOptions model
 				listApplicationsOptionsModel := new(appidmanagementv4.ListApplicationsOptions)
 				listApplicationsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.ListApplications(listApplicationsOptionsModel)
+				result, response, operationErr := appIDManagementService.ListApplications(listApplicationsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -403,13 +403,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke RegisterApplication with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
@@ -417,14 +417,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				registerApplicationOptionsModel.Type = core.StringPtr("testString")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.RegisterApplication(registerApplicationOptionsModel)
+				result, response, operationErr := appIDManagementService.RegisterApplication(registerApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.RegisterApplication(registerApplicationOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.RegisterApplication(registerApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -472,14 +472,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke RegisterApplication successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
@@ -490,13 +490,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.RegisterApplicationWithContext(ctx, registerApplicationOptionsModel)
+				_, _, operationErr := appIDManagementService.RegisterApplicationWithContext(ctx, registerApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.RegisterApplication(registerApplicationOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.RegisterApplication(registerApplicationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -504,7 +504,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.RegisterApplicationWithContext(ctx, registerApplicationOptionsModel)
+				_, _, operationErr = appIDManagementService.RegisterApplicationWithContext(ctx, registerApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -544,16 +544,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke RegisterApplication successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.RegisterApplication(nil)
+				result, response, operationErr := appIDManagementService.RegisterApplication(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -565,20 +565,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.RegisterApplication(registerApplicationOptionsModel)
+				result, response, operationErr = appIDManagementService.RegisterApplication(registerApplicationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke RegisterApplication with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
@@ -586,9 +586,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				registerApplicationOptionsModel.Type = core.StringPtr("testString")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.RegisterApplication(registerApplicationOptionsModel)
+				result, response, operationErr := appIDManagementService.RegisterApplication(registerApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -596,7 +596,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the RegisterApplicationOptions model with no property values
 				registerApplicationOptionsModelNew := new(appidmanagementv4.RegisterApplicationOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.RegisterApplication(registerApplicationOptionsModelNew)
+				result, response, operationErr = appIDManagementService.RegisterApplication(registerApplicationOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -615,13 +615,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke RegisterApplication successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
@@ -630,7 +630,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.RegisterApplication(registerApplicationOptionsModel)
+				result, response, operationErr := appIDManagementService.RegisterApplication(registerApplicationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -659,27 +659,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplication with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationOptions model
 				getApplicationOptionsModel := new(appidmanagementv4.GetApplicationOptions)
 				getApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetApplication(getApplicationOptionsModel)
+				result, response, operationErr := appIDManagementService.GetApplication(getApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetApplication(getApplicationOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetApplication(getApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -711,14 +711,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplication successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetApplicationOptions model
 				getApplicationOptionsModel := new(appidmanagementv4.GetApplicationOptions)
@@ -728,13 +728,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetApplicationWithContext(ctx, getApplicationOptionsModel)
+				_, _, operationErr := appIDManagementService.GetApplicationWithContext(ctx, getApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetApplication(getApplicationOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetApplication(getApplicationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -742,7 +742,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetApplicationWithContext(ctx, getApplicationOptionsModel)
+				_, _, operationErr = appIDManagementService.GetApplicationWithContext(ctx, getApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -766,16 +766,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplication successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetApplication(nil)
+				result, response, operationErr := appIDManagementService.GetApplication(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -786,29 +786,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetApplication(getApplicationOptionsModel)
+				result, response, operationErr = appIDManagementService.GetApplication(getApplicationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetApplication with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationOptions model
 				getApplicationOptionsModel := new(appidmanagementv4.GetApplicationOptions)
 				getApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetApplication(getApplicationOptionsModel)
+				result, response, operationErr := appIDManagementService.GetApplication(getApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -816,7 +816,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the GetApplicationOptions model with no property values
 				getApplicationOptionsModelNew := new(appidmanagementv4.GetApplicationOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.GetApplication(getApplicationOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetApplication(getApplicationOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -835,13 +835,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplication successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationOptions model
 				getApplicationOptionsModel := new(appidmanagementv4.GetApplicationOptions)
@@ -849,7 +849,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetApplication(getApplicationOptionsModel)
+				result, response, operationErr := appIDManagementService.GetApplication(getApplicationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -878,13 +878,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateApplication with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateApplicationOptions model
 				updateApplicationOptionsModel := new(appidmanagementv4.UpdateApplicationOptions)
@@ -892,14 +892,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateApplicationOptionsModel.Name = core.StringPtr("testString")
 				updateApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UpdateApplication(updateApplicationOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateApplication(updateApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UpdateApplication(updateApplicationOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UpdateApplication(updateApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -947,14 +947,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateApplication successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UpdateApplicationOptions model
 				updateApplicationOptionsModel := new(appidmanagementv4.UpdateApplicationOptions)
@@ -965,13 +965,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UpdateApplicationWithContext(ctx, updateApplicationOptionsModel)
+				_, _, operationErr := appIDManagementService.UpdateApplicationWithContext(ctx, updateApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UpdateApplication(updateApplicationOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UpdateApplication(updateApplicationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -979,7 +979,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UpdateApplicationWithContext(ctx, updateApplicationOptionsModel)
+				_, _, operationErr = appIDManagementService.UpdateApplicationWithContext(ctx, updateApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -1019,16 +1019,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateApplication successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UpdateApplication(nil)
+				result, response, operationErr := appIDManagementService.UpdateApplication(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -1040,20 +1040,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UpdateApplication(updateApplicationOptionsModel)
+				result, response, operationErr = appIDManagementService.UpdateApplication(updateApplicationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UpdateApplication with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateApplicationOptions model
 				updateApplicationOptionsModel := new(appidmanagementv4.UpdateApplicationOptions)
@@ -1061,9 +1061,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateApplicationOptionsModel.Name = core.StringPtr("testString")
 				updateApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UpdateApplication(updateApplicationOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateApplication(updateApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -1071,7 +1071,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the UpdateApplicationOptions model with no property values
 				updateApplicationOptionsModelNew := new(appidmanagementv4.UpdateApplicationOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UpdateApplication(updateApplicationOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UpdateApplication(updateApplicationOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -1090,13 +1090,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateApplication successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateApplicationOptions model
 				updateApplicationOptionsModel := new(appidmanagementv4.UpdateApplicationOptions)
@@ -1105,7 +1105,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UpdateApplication(updateApplicationOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateApplication(updateApplicationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -1133,16 +1133,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke DeleteApplication successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.DeleteApplication(nil)
+				response, operationErr := appIDManagementService.DeleteApplication(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -1152,34 +1152,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				deleteApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.DeleteApplication(deleteApplicationOptionsModel)
+				response, operationErr = appIDManagementService.DeleteApplication(deleteApplicationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke DeleteApplication with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the DeleteApplicationOptions model
 				deleteApplicationOptionsModel := new(appidmanagementv4.DeleteApplicationOptions)
 				deleteApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				deleteApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.DeleteApplication(deleteApplicationOptionsModel)
+				response, operationErr := appIDManagementService.DeleteApplication(deleteApplicationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the DeleteApplicationOptions model with no property values
 				deleteApplicationOptionsModelNew := new(appidmanagementv4.DeleteApplicationOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.DeleteApplication(deleteApplicationOptionsModelNew)
+				response, operationErr = appIDManagementService.DeleteApplication(deleteApplicationOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -1205,27 +1205,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplicationScopes with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationScopesOptions model
 				getApplicationScopesOptionsModel := new(appidmanagementv4.GetApplicationScopesOptions)
 				getApplicationScopesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
+				result, response, operationErr := appIDManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -1257,14 +1257,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplicationScopes successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetApplicationScopesOptions model
 				getApplicationScopesOptionsModel := new(appidmanagementv4.GetApplicationScopesOptions)
@@ -1274,13 +1274,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetApplicationScopesWithContext(ctx, getApplicationScopesOptionsModel)
+				_, _, operationErr := appIDManagementService.GetApplicationScopesWithContext(ctx, getApplicationScopesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -1288,7 +1288,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetApplicationScopesWithContext(ctx, getApplicationScopesOptionsModel)
+				_, _, operationErr = appIDManagementService.GetApplicationScopesWithContext(ctx, getApplicationScopesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -1312,16 +1312,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplicationScopes successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetApplicationScopes(nil)
+				result, response, operationErr := appIDManagementService.GetApplicationScopes(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -1332,29 +1332,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getApplicationScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
+				result, response, operationErr = appIDManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetApplicationScopes with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationScopesOptions model
 				getApplicationScopesOptionsModel := new(appidmanagementv4.GetApplicationScopesOptions)
 				getApplicationScopesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
+				result, response, operationErr := appIDManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -1362,7 +1362,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the GetApplicationScopesOptions model with no property values
 				getApplicationScopesOptionsModelNew := new(appidmanagementv4.GetApplicationScopesOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.GetApplicationScopes(getApplicationScopesOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetApplicationScopes(getApplicationScopesOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -1381,13 +1381,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplicationScopes successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationScopesOptions model
 				getApplicationScopesOptionsModel := new(appidmanagementv4.GetApplicationScopesOptions)
@@ -1395,7 +1395,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getApplicationScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
+				result, response, operationErr := appIDManagementService.GetApplicationScopes(getApplicationScopesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -1424,13 +1424,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutApplicationsScopes with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PutApplicationsScopesOptions model
 				putApplicationsScopesOptionsModel := new(appidmanagementv4.PutApplicationsScopesOptions)
@@ -1438,14 +1438,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				putApplicationsScopesOptionsModel.Scopes = []string{"cartoons", "horror", "animated"}
 				putApplicationsScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
+				result, response, operationErr := appIDManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -1493,14 +1493,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutApplicationsScopes successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the PutApplicationsScopesOptions model
 				putApplicationsScopesOptionsModel := new(appidmanagementv4.PutApplicationsScopesOptions)
@@ -1511,13 +1511,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.PutApplicationsScopesWithContext(ctx, putApplicationsScopesOptionsModel)
+				_, _, operationErr := appIDManagementService.PutApplicationsScopesWithContext(ctx, putApplicationsScopesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -1525,7 +1525,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.PutApplicationsScopesWithContext(ctx, putApplicationsScopesOptionsModel)
+				_, _, operationErr = appIDManagementService.PutApplicationsScopesWithContext(ctx, putApplicationsScopesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -1565,16 +1565,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutApplicationsScopes successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.PutApplicationsScopes(nil)
+				result, response, operationErr := appIDManagementService.PutApplicationsScopes(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -1586,20 +1586,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				putApplicationsScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
+				result, response, operationErr = appIDManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke PutApplicationsScopes with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PutApplicationsScopesOptions model
 				putApplicationsScopesOptionsModel := new(appidmanagementv4.PutApplicationsScopesOptions)
@@ -1607,9 +1607,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				putApplicationsScopesOptionsModel.Scopes = []string{"cartoons", "horror", "animated"}
 				putApplicationsScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
+				result, response, operationErr := appIDManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -1617,7 +1617,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the PutApplicationsScopesOptions model with no property values
 				putApplicationsScopesOptionsModelNew := new(appidmanagementv4.PutApplicationsScopesOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModelNew)
+				result, response, operationErr = appIDManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -1636,13 +1636,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutApplicationsScopes successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PutApplicationsScopesOptions model
 				putApplicationsScopesOptionsModel := new(appidmanagementv4.PutApplicationsScopesOptions)
@@ -1651,7 +1651,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				putApplicationsScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
+				result, response, operationErr := appIDManagementService.PutApplicationsScopes(putApplicationsScopesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -1680,27 +1680,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplicationRoles with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationRolesOptions model
 				getApplicationRolesOptionsModel := new(appidmanagementv4.GetApplicationRolesOptions)
 				getApplicationRolesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -1732,14 +1732,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplicationRoles successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetApplicationRolesOptions model
 				getApplicationRolesOptionsModel := new(appidmanagementv4.GetApplicationRolesOptions)
@@ -1749,13 +1749,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetApplicationRolesWithContext(ctx, getApplicationRolesOptionsModel)
+				_, _, operationErr := appIDManagementService.GetApplicationRolesWithContext(ctx, getApplicationRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -1763,7 +1763,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetApplicationRolesWithContext(ctx, getApplicationRolesOptionsModel)
+				_, _, operationErr = appIDManagementService.GetApplicationRolesWithContext(ctx, getApplicationRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -1787,16 +1787,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplicationRoles successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetApplicationRoles(nil)
+				result, response, operationErr := appIDManagementService.GetApplicationRoles(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -1807,29 +1807,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getApplicationRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
+				result, response, operationErr = appIDManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetApplicationRoles with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationRolesOptions model
 				getApplicationRolesOptionsModel := new(appidmanagementv4.GetApplicationRolesOptions)
 				getApplicationRolesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -1837,7 +1837,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the GetApplicationRolesOptions model with no property values
 				getApplicationRolesOptionsModelNew := new(appidmanagementv4.GetApplicationRolesOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.GetApplicationRoles(getApplicationRolesOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetApplicationRoles(getApplicationRolesOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -1856,13 +1856,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetApplicationRoles successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationRolesOptions model
 				getApplicationRolesOptionsModel := new(appidmanagementv4.GetApplicationRolesOptions)
@@ -1870,7 +1870,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getApplicationRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.GetApplicationRoles(getApplicationRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -1899,13 +1899,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutApplicationsRoles with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateUserRolesParamsRoles model
 				updateUserRolesParamsRolesModel := new(appidmanagementv4.UpdateUserRolesParamsRoles)
@@ -1917,14 +1917,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				putApplicationsRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				putApplicationsRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -1972,14 +1972,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutApplicationsRoles successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UpdateUserRolesParamsRoles model
 				updateUserRolesParamsRolesModel := new(appidmanagementv4.UpdateUserRolesParamsRoles)
@@ -1994,13 +1994,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.PutApplicationsRolesWithContext(ctx, putApplicationsRolesOptionsModel)
+				_, _, operationErr := appIDManagementService.PutApplicationsRolesWithContext(ctx, putApplicationsRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -2008,7 +2008,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.PutApplicationsRolesWithContext(ctx, putApplicationsRolesOptionsModel)
+				_, _, operationErr = appIDManagementService.PutApplicationsRolesWithContext(ctx, putApplicationsRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -2048,16 +2048,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutApplicationsRoles successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.PutApplicationsRoles(nil)
+				result, response, operationErr := appIDManagementService.PutApplicationsRoles(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -2073,20 +2073,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				putApplicationsRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
+				result, response, operationErr = appIDManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke PutApplicationsRoles with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateUserRolesParamsRoles model
 				updateUserRolesParamsRolesModel := new(appidmanagementv4.UpdateUserRolesParamsRoles)
@@ -2098,9 +2098,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				putApplicationsRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				putApplicationsRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -2108,7 +2108,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the PutApplicationsRolesOptions model with no property values
 				putApplicationsRolesOptionsModelNew := new(appidmanagementv4.PutApplicationsRolesOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModelNew)
+				result, response, operationErr = appIDManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -2127,13 +2127,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutApplicationsRoles successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateUserRolesParamsRoles model
 				updateUserRolesParamsRolesModel := new(appidmanagementv4.UpdateUserRolesParamsRoles)
@@ -2146,7 +2146,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				putApplicationsRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.PutApplicationsRoles(putApplicationsRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -2178,13 +2178,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListCloudDirectoryUsers with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
 				listCloudDirectoryUsersOptionsModel := new(appidmanagementv4.ListCloudDirectoryUsersOptions)
@@ -2193,14 +2193,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				listCloudDirectoryUsersOptionsModel.Query = core.StringPtr("testString")
 				listCloudDirectoryUsersOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
+				result, response, operationErr := appIDManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -2235,14 +2235,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListCloudDirectoryUsers successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
 				listCloudDirectoryUsersOptionsModel := new(appidmanagementv4.ListCloudDirectoryUsersOptions)
@@ -2254,13 +2254,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.ListCloudDirectoryUsersWithContext(ctx, listCloudDirectoryUsersOptionsModel)
+				_, _, operationErr := appIDManagementService.ListCloudDirectoryUsersWithContext(ctx, listCloudDirectoryUsersOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -2268,7 +2268,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.ListCloudDirectoryUsersWithContext(ctx, listCloudDirectoryUsersOptionsModel)
+				_, _, operationErr = appIDManagementService.ListCloudDirectoryUsersWithContext(ctx, listCloudDirectoryUsersOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -2295,16 +2295,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListCloudDirectoryUsers successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.ListCloudDirectoryUsers(nil)
+				result, response, operationErr := appIDManagementService.ListCloudDirectoryUsers(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -2317,20 +2317,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				listCloudDirectoryUsersOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
+				result, response, operationErr = appIDManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke ListCloudDirectoryUsers with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
 				listCloudDirectoryUsersOptionsModel := new(appidmanagementv4.ListCloudDirectoryUsersOptions)
@@ -2339,9 +2339,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				listCloudDirectoryUsersOptionsModel.Query = core.StringPtr("testString")
 				listCloudDirectoryUsersOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
+				result, response, operationErr := appIDManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -2361,13 +2361,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListCloudDirectoryUsers successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
 				listCloudDirectoryUsersOptionsModel := new(appidmanagementv4.ListCloudDirectoryUsersOptions)
@@ -2377,7 +2377,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				listCloudDirectoryUsersOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
+				result, response, operationErr := appIDManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -2421,16 +2421,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CreateCloudDirectoryUser successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.CreateCloudDirectoryUser(nil)
+				response, operationErr := appIDManagementService.CreateCloudDirectoryUser(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -2448,18 +2448,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				createCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
+				response, operationErr = appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke CreateCloudDirectoryUser with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CreateNewUserEmailsItem model
 				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
@@ -2474,16 +2474,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				createCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
 				createCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
+				response, operationErr := appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the CreateCloudDirectoryUserOptions model with no property values
 				createCloudDirectoryUserOptionsModelNew := new(appidmanagementv4.CreateCloudDirectoryUserOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModelNew)
+				response, operationErr = appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -2508,16 +2508,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryUser successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.GetCloudDirectoryUser(nil)
+				response, operationErr := appIDManagementService.GetCloudDirectoryUser(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -2527,34 +2527,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
+				response, operationErr = appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke GetCloudDirectoryUser with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryUserOptions model
 				getCloudDirectoryUserOptionsModel := new(appidmanagementv4.GetCloudDirectoryUserOptions)
 				getCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
 				getCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
+				response, operationErr := appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the GetCloudDirectoryUserOptions model with no property values
 				getCloudDirectoryUserOptionsModelNew := new(appidmanagementv4.GetCloudDirectoryUserOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModelNew)
+				response, operationErr = appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -2595,16 +2595,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateCloudDirectoryUser successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UpdateCloudDirectoryUser(nil)
+				response, operationErr := appIDManagementService.UpdateCloudDirectoryUser(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -2623,18 +2623,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
+				response, operationErr = appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UpdateCloudDirectoryUser with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CreateNewUserEmailsItem model
 				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
@@ -2650,16 +2650,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
 				updateCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
+				response, operationErr := appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UpdateCloudDirectoryUserOptions model with no property values
 				updateCloudDirectoryUserOptionsModelNew := new(appidmanagementv4.UpdateCloudDirectoryUserOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModelNew)
+				response, operationErr = appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -2684,16 +2684,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke DeleteCloudDirectoryUser successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.DeleteCloudDirectoryUser(nil)
+				response, operationErr := appIDManagementService.DeleteCloudDirectoryUser(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -2703,34 +2703,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				deleteCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.DeleteCloudDirectoryUser(deleteCloudDirectoryUserOptionsModel)
+				response, operationErr = appIDManagementService.DeleteCloudDirectoryUser(deleteCloudDirectoryUserOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke DeleteCloudDirectoryUser with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the DeleteCloudDirectoryUserOptions model
 				deleteCloudDirectoryUserOptionsModel := new(appidmanagementv4.DeleteCloudDirectoryUserOptions)
 				deleteCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
 				deleteCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.DeleteCloudDirectoryUser(deleteCloudDirectoryUserOptionsModel)
+				response, operationErr := appIDManagementService.DeleteCloudDirectoryUser(deleteCloudDirectoryUserOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the DeleteCloudDirectoryUserOptions model with no property values
 				deleteCloudDirectoryUserOptionsModelNew := new(appidmanagementv4.DeleteCloudDirectoryUserOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.DeleteCloudDirectoryUser(deleteCloudDirectoryUserOptionsModelNew)
+				response, operationErr = appIDManagementService.DeleteCloudDirectoryUser(deleteCloudDirectoryUserOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -2755,16 +2755,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke InvalidateUserSSOSessions successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.InvalidateUserSSOSessions(nil)
+				response, operationErr := appIDManagementService.InvalidateUserSSOSessions(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -2774,34 +2774,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				invalidateUserSSOSessionsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.InvalidateUserSSOSessions(invalidateUserSSOSessionsOptionsModel)
+				response, operationErr = appIDManagementService.InvalidateUserSSOSessions(invalidateUserSSOSessionsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke InvalidateUserSSOSessions with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the InvalidateUserSSOSessionsOptions model
 				invalidateUserSSOSessionsOptionsModel := new(appidmanagementv4.InvalidateUserSSOSessionsOptions)
 				invalidateUserSSOSessionsOptionsModel.UserID = core.StringPtr("testString")
 				invalidateUserSSOSessionsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.InvalidateUserSSOSessions(invalidateUserSSOSessionsOptionsModel)
+				response, operationErr := appIDManagementService.InvalidateUserSSOSessions(invalidateUserSSOSessionsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the InvalidateUserSSOSessionsOptions model with no property values
 				invalidateUserSSOSessionsOptionsModelNew := new(appidmanagementv4.InvalidateUserSSOSessionsOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.InvalidateUserSSOSessions(invalidateUserSSOSessionsOptionsModelNew)
+				response, operationErr = appIDManagementService.InvalidateUserSSOSessions(invalidateUserSSOSessionsOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -2830,13 +2830,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryExport with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryExportOptions model
 				cloudDirectoryExportOptionsModel := new(appidmanagementv4.CloudDirectoryExportOptions)
@@ -2845,14 +2845,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				cloudDirectoryExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
+				result, response, operationErr := appIDManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -2887,14 +2887,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryExport successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the CloudDirectoryExportOptions model
 				cloudDirectoryExportOptionsModel := new(appidmanagementv4.CloudDirectoryExportOptions)
@@ -2906,13 +2906,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.CloudDirectoryExportWithContext(ctx, cloudDirectoryExportOptionsModel)
+				_, _, operationErr := appIDManagementService.CloudDirectoryExportWithContext(ctx, cloudDirectoryExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -2920,7 +2920,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.CloudDirectoryExportWithContext(ctx, cloudDirectoryExportOptionsModel)
+				_, _, operationErr = appIDManagementService.CloudDirectoryExportWithContext(ctx, cloudDirectoryExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -2947,16 +2947,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryExport successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.CloudDirectoryExport(nil)
+				result, response, operationErr := appIDManagementService.CloudDirectoryExport(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -2969,20 +2969,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
+				result, response, operationErr = appIDManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke CloudDirectoryExport with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryExportOptions model
 				cloudDirectoryExportOptionsModel := new(appidmanagementv4.CloudDirectoryExportOptions)
@@ -2991,9 +2991,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				cloudDirectoryExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
+				result, response, operationErr := appIDManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -3001,7 +3001,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the CloudDirectoryExportOptions model with no property values
 				cloudDirectoryExportOptionsModelNew := new(appidmanagementv4.CloudDirectoryExportOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModelNew)
+				result, response, operationErr = appIDManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -3020,13 +3020,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryExport successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryExportOptions model
 				cloudDirectoryExportOptionsModel := new(appidmanagementv4.CloudDirectoryExportOptions)
@@ -3036,7 +3036,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
+				result, response, operationErr := appIDManagementService.CloudDirectoryExport(cloudDirectoryExportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -3066,13 +3066,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryImport with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ExportUserUsersItemProfile model
 				exportUserUsersItemProfileModel := new(appidmanagementv4.ExportUserUsersItemProfile)
@@ -3092,14 +3092,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryImportOptionsModel.Users = []appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel}
 				cloudDirectoryImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
+				result, response, operationErr := appIDManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -3148,14 +3148,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryImport successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the ExportUserUsersItemProfile model
 				exportUserUsersItemProfileModel := new(appidmanagementv4.ExportUserUsersItemProfile)
@@ -3178,13 +3178,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.CloudDirectoryImportWithContext(ctx, cloudDirectoryImportOptionsModel)
+				_, _, operationErr := appIDManagementService.CloudDirectoryImportWithContext(ctx, cloudDirectoryImportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -3192,7 +3192,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.CloudDirectoryImportWithContext(ctx, cloudDirectoryImportOptionsModel)
+				_, _, operationErr = appIDManagementService.CloudDirectoryImportWithContext(ctx, cloudDirectoryImportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -3233,16 +3233,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryImport successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.CloudDirectoryImport(nil)
+				result, response, operationErr := appIDManagementService.CloudDirectoryImport(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -3266,20 +3266,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
+				result, response, operationErr = appIDManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke CloudDirectoryImport with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ExportUserUsersItemProfile model
 				exportUserUsersItemProfileModel := new(appidmanagementv4.ExportUserUsersItemProfile)
@@ -3299,9 +3299,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryImportOptionsModel.Users = []appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel}
 				cloudDirectoryImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
+				result, response, operationErr := appIDManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -3309,7 +3309,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the CloudDirectoryImportOptions model with no property values
 				cloudDirectoryImportOptionsModelNew := new(appidmanagementv4.CloudDirectoryImportOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModelNew)
+				result, response, operationErr = appIDManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -3328,13 +3328,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryImport successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ExportUserUsersItemProfile model
 				exportUserUsersItemProfileModel := new(appidmanagementv4.ExportUserUsersItemProfile)
@@ -3355,7 +3355,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
+				result, response, operationErr := appIDManagementService.CloudDirectoryImport(cloudDirectoryImportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -3384,27 +3384,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryGetUserinfo with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
 				cloudDirectoryGetUserinfoOptionsModel := new(appidmanagementv4.CloudDirectoryGetUserinfoOptions)
 				cloudDirectoryGetUserinfoOptionsModel.UserID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
+				result, response, operationErr := appIDManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -3436,14 +3436,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryGetUserinfo successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
 				cloudDirectoryGetUserinfoOptionsModel := new(appidmanagementv4.CloudDirectoryGetUserinfoOptions)
@@ -3453,13 +3453,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.CloudDirectoryGetUserinfoWithContext(ctx, cloudDirectoryGetUserinfoOptionsModel)
+				_, _, operationErr := appIDManagementService.CloudDirectoryGetUserinfoWithContext(ctx, cloudDirectoryGetUserinfoOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -3467,7 +3467,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.CloudDirectoryGetUserinfoWithContext(ctx, cloudDirectoryGetUserinfoOptionsModel)
+				_, _, operationErr = appIDManagementService.CloudDirectoryGetUserinfoWithContext(ctx, cloudDirectoryGetUserinfoOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -3491,16 +3491,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryGetUserinfo successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.CloudDirectoryGetUserinfo(nil)
+				result, response, operationErr := appIDManagementService.CloudDirectoryGetUserinfo(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -3511,29 +3511,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryGetUserinfoOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
+				result, response, operationErr = appIDManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke CloudDirectoryGetUserinfo with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
 				cloudDirectoryGetUserinfoOptionsModel := new(appidmanagementv4.CloudDirectoryGetUserinfoOptions)
 				cloudDirectoryGetUserinfoOptionsModel.UserID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
+				result, response, operationErr := appIDManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -3541,7 +3541,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the CloudDirectoryGetUserinfoOptions model with no property values
 				cloudDirectoryGetUserinfoOptionsModelNew := new(appidmanagementv4.CloudDirectoryGetUserinfoOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModelNew)
+				result, response, operationErr = appIDManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -3560,13 +3560,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryGetUserinfo successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
 				cloudDirectoryGetUserinfoOptionsModel := new(appidmanagementv4.CloudDirectoryGetUserinfoOptions)
@@ -3574,7 +3574,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryGetUserinfoOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
+				result, response, operationErr := appIDManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -3620,16 +3620,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke StartSignUp successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.StartSignUp(nil)
+				response, operationErr := appIDManagementService.StartSignUp(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -3649,18 +3649,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				startSignUpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.StartSignUp(startSignUpOptionsModel)
+				response, operationErr = appIDManagementService.StartSignUp(startSignUpOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke StartSignUp with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CreateNewUserEmailsItem model
 				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
@@ -3677,16 +3677,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				startSignUpOptionsModel.Language = core.StringPtr("testString")
 				startSignUpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.StartSignUp(startSignUpOptionsModel)
+				response, operationErr := appIDManagementService.StartSignUp(startSignUpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the StartSignUpOptions model with no property values
 				startSignUpOptionsModelNew := new(appidmanagementv4.StartSignUpOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.StartSignUp(startSignUpOptionsModelNew)
+				response, operationErr = appIDManagementService.StartSignUp(startSignUpOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -3712,27 +3712,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserVerificationResult with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserVerificationResultOptions model
 				userVerificationResultOptionsModel := new(appidmanagementv4.UserVerificationResultOptions)
 				userVerificationResultOptionsModel.Context = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UserVerificationResult(userVerificationResultOptionsModel)
+				result, response, operationErr := appIDManagementService.UserVerificationResult(userVerificationResultOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UserVerificationResult(userVerificationResultOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UserVerificationResult(userVerificationResultOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -3780,14 +3780,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserVerificationResult successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UserVerificationResultOptions model
 				userVerificationResultOptionsModel := new(appidmanagementv4.UserVerificationResultOptions)
@@ -3797,13 +3797,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UserVerificationResultWithContext(ctx, userVerificationResultOptionsModel)
+				_, _, operationErr := appIDManagementService.UserVerificationResultWithContext(ctx, userVerificationResultOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UserVerificationResult(userVerificationResultOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UserVerificationResult(userVerificationResultOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -3811,7 +3811,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UserVerificationResultWithContext(ctx, userVerificationResultOptionsModel)
+				_, _, operationErr = appIDManagementService.UserVerificationResultWithContext(ctx, userVerificationResultOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -3851,16 +3851,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserVerificationResult successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UserVerificationResult(nil)
+				result, response, operationErr := appIDManagementService.UserVerificationResult(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -3871,29 +3871,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				userVerificationResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UserVerificationResult(userVerificationResultOptionsModel)
+				result, response, operationErr = appIDManagementService.UserVerificationResult(userVerificationResultOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UserVerificationResult with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserVerificationResultOptions model
 				userVerificationResultOptionsModel := new(appidmanagementv4.UserVerificationResultOptions)
 				userVerificationResultOptionsModel.Context = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UserVerificationResult(userVerificationResultOptionsModel)
+				result, response, operationErr := appIDManagementService.UserVerificationResult(userVerificationResultOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -3901,7 +3901,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the UserVerificationResultOptions model with no property values
 				userVerificationResultOptionsModelNew := new(appidmanagementv4.UserVerificationResultOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UserVerificationResult(userVerificationResultOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UserVerificationResult(userVerificationResultOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -3920,13 +3920,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserVerificationResult successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserVerificationResultOptions model
 				userVerificationResultOptionsModel := new(appidmanagementv4.UserVerificationResultOptions)
@@ -3934,7 +3934,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				userVerificationResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UserVerificationResult(userVerificationResultOptionsModel)
+				result, response, operationErr := appIDManagementService.UserVerificationResult(userVerificationResultOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -3979,16 +3979,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke StartForgotPassword successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.StartForgotPassword(nil)
+				response, operationErr := appIDManagementService.StartForgotPassword(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -3999,18 +3999,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				startForgotPasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
+				response, operationErr = appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke StartForgotPassword with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the StartForgotPasswordOptions model
 				startForgotPasswordOptionsModel := new(appidmanagementv4.StartForgotPasswordOptions)
@@ -4018,16 +4018,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				startForgotPasswordOptionsModel.Language = core.StringPtr("testString")
 				startForgotPasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
+				response, operationErr := appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the StartForgotPasswordOptions model with no property values
 				startForgotPasswordOptionsModelNew := new(appidmanagementv4.StartForgotPasswordOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.StartForgotPassword(startForgotPasswordOptionsModelNew)
+				response, operationErr = appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -4053,27 +4053,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ForgotPasswordResult with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ForgotPasswordResultOptions model
 				forgotPasswordResultOptionsModel := new(appidmanagementv4.ForgotPasswordResultOptions)
 				forgotPasswordResultOptionsModel.Context = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
+				result, response, operationErr := appIDManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -4121,14 +4121,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ForgotPasswordResult successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the ForgotPasswordResultOptions model
 				forgotPasswordResultOptionsModel := new(appidmanagementv4.ForgotPasswordResultOptions)
@@ -4138,13 +4138,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.ForgotPasswordResultWithContext(ctx, forgotPasswordResultOptionsModel)
+				_, _, operationErr := appIDManagementService.ForgotPasswordResultWithContext(ctx, forgotPasswordResultOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -4152,7 +4152,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.ForgotPasswordResultWithContext(ctx, forgotPasswordResultOptionsModel)
+				_, _, operationErr = appIDManagementService.ForgotPasswordResultWithContext(ctx, forgotPasswordResultOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -4192,16 +4192,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ForgotPasswordResult successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.ForgotPasswordResult(nil)
+				result, response, operationErr := appIDManagementService.ForgotPasswordResult(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -4212,29 +4212,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				forgotPasswordResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
+				result, response, operationErr = appIDManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke ForgotPasswordResult with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ForgotPasswordResultOptions model
 				forgotPasswordResultOptionsModel := new(appidmanagementv4.ForgotPasswordResultOptions)
 				forgotPasswordResultOptionsModel.Context = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
+				result, response, operationErr := appIDManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -4242,7 +4242,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the ForgotPasswordResultOptions model with no property values
 				forgotPasswordResultOptionsModelNew := new(appidmanagementv4.ForgotPasswordResultOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModelNew)
+				result, response, operationErr = appIDManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -4261,13 +4261,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ForgotPasswordResult successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ForgotPasswordResultOptions model
 				forgotPasswordResultOptionsModel := new(appidmanagementv4.ForgotPasswordResultOptions)
@@ -4275,7 +4275,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				forgotPasswordResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
+				result, response, operationErr := appIDManagementService.ForgotPasswordResult(forgotPasswordResultOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -4320,16 +4320,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ChangePassword successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.ChangePassword(nil)
+				response, operationErr := appIDManagementService.ChangePassword(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -4337,42 +4337,42 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				changePasswordOptionsModel := new(appidmanagementv4.ChangePasswordOptions)
 				changePasswordOptionsModel.NewPassword = core.StringPtr("testString")
 				changePasswordOptionsModel.UUID = core.StringPtr("testString")
-				changePasswordOptionsModel.ChangedIpAddress = core.StringPtr("testString")
+				changePasswordOptionsModel.ChangedIPAddress = core.StringPtr("testString")
 				changePasswordOptionsModel.Language = core.StringPtr("testString")
 				changePasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.ChangePassword(changePasswordOptionsModel)
+				response, operationErr = appIDManagementService.ChangePassword(changePasswordOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke ChangePassword with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ChangePasswordOptions model
 				changePasswordOptionsModel := new(appidmanagementv4.ChangePasswordOptions)
 				changePasswordOptionsModel.NewPassword = core.StringPtr("testString")
 				changePasswordOptionsModel.UUID = core.StringPtr("testString")
-				changePasswordOptionsModel.ChangedIpAddress = core.StringPtr("testString")
+				changePasswordOptionsModel.ChangedIPAddress = core.StringPtr("testString")
 				changePasswordOptionsModel.Language = core.StringPtr("testString")
 				changePasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.ChangePassword(changePasswordOptionsModel)
+				response, operationErr := appIDManagementService.ChangePassword(changePasswordOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the ChangePasswordOptions model with no property values
 				changePasswordOptionsModelNew := new(appidmanagementv4.ChangePasswordOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.ChangePassword(changePasswordOptionsModelNew)
+				response, operationErr = appIDManagementService.ChangePassword(changePasswordOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -4399,13 +4399,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ResendNotification with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ResendNotificationOptions model
 				resendNotificationOptionsModel := new(appidmanagementv4.ResendNotificationOptions)
@@ -4414,14 +4414,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				resendNotificationOptionsModel.Language = core.StringPtr("testString")
 				resendNotificationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.ResendNotification(resendNotificationOptionsModel)
+				result, response, operationErr := appIDManagementService.ResendNotification(resendNotificationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.ResendNotification(resendNotificationOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.ResendNotification(resendNotificationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -4470,14 +4470,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ResendNotification successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the ResendNotificationOptions model
 				resendNotificationOptionsModel := new(appidmanagementv4.ResendNotificationOptions)
@@ -4489,13 +4489,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.ResendNotificationWithContext(ctx, resendNotificationOptionsModel)
+				_, _, operationErr := appIDManagementService.ResendNotificationWithContext(ctx, resendNotificationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.ResendNotification(resendNotificationOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.ResendNotification(resendNotificationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -4503,7 +4503,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.ResendNotificationWithContext(ctx, resendNotificationOptionsModel)
+				_, _, operationErr = appIDManagementService.ResendNotificationWithContext(ctx, resendNotificationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -4544,16 +4544,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ResendNotification successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.ResendNotification(nil)
+				result, response, operationErr := appIDManagementService.ResendNotification(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -4566,20 +4566,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				resendNotificationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.ResendNotification(resendNotificationOptionsModel)
+				result, response, operationErr = appIDManagementService.ResendNotification(resendNotificationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke ResendNotification with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ResendNotificationOptions model
 				resendNotificationOptionsModel := new(appidmanagementv4.ResendNotificationOptions)
@@ -4588,9 +4588,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				resendNotificationOptionsModel.Language = core.StringPtr("testString")
 				resendNotificationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.ResendNotification(resendNotificationOptionsModel)
+				result, response, operationErr := appIDManagementService.ResendNotification(resendNotificationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -4598,7 +4598,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the ResendNotificationOptions model with no property values
 				resendNotificationOptionsModelNew := new(appidmanagementv4.ResendNotificationOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.ResendNotification(resendNotificationOptionsModelNew)
+				result, response, operationErr = appIDManagementService.ResendNotification(resendNotificationOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -4617,13 +4617,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ResendNotification successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ResendNotificationOptions model
 				resendNotificationOptionsModel := new(appidmanagementv4.ResendNotificationOptions)
@@ -4633,7 +4633,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				resendNotificationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.ResendNotification(resendNotificationOptionsModel)
+				result, response, operationErr := appIDManagementService.ResendNotification(resendNotificationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -4661,16 +4661,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CloudDirectoryRemove successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.CloudDirectoryRemove(nil)
+				response, operationErr := appIDManagementService.CloudDirectoryRemove(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -4680,34 +4680,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				cloudDirectoryRemoveOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.CloudDirectoryRemove(cloudDirectoryRemoveOptionsModel)
+				response, operationErr = appIDManagementService.CloudDirectoryRemove(cloudDirectoryRemoveOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke CloudDirectoryRemove with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryRemoveOptions model
 				cloudDirectoryRemoveOptionsModel := new(appidmanagementv4.CloudDirectoryRemoveOptions)
 				cloudDirectoryRemoveOptionsModel.UserID = core.StringPtr("testString")
 				cloudDirectoryRemoveOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.CloudDirectoryRemove(cloudDirectoryRemoveOptionsModel)
+				response, operationErr := appIDManagementService.CloudDirectoryRemove(cloudDirectoryRemoveOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the CloudDirectoryRemoveOptions model with no property values
 				cloudDirectoryRemoveOptionsModelNew := new(appidmanagementv4.CloudDirectoryRemoveOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.CloudDirectoryRemove(cloudDirectoryRemoveOptionsModelNew)
+				response, operationErr = appIDManagementService.CloudDirectoryRemove(cloudDirectoryRemoveOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -4733,26 +4733,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetTokensConfig with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTokensConfigOptions model
 				getTokensConfigOptionsModel := new(appidmanagementv4.GetTokensConfigOptions)
 				getTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetTokensConfig(getTokensConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetTokensConfig(getTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetTokensConfig(getTokensConfigOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetTokensConfig(getTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -4784,14 +4784,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetTokensConfig successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetTokensConfigOptions model
 				getTokensConfigOptionsModel := new(appidmanagementv4.GetTokensConfigOptions)
@@ -4800,13 +4800,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetTokensConfigWithContext(ctx, getTokensConfigOptionsModel)
+				_, _, operationErr := appIDManagementService.GetTokensConfigWithContext(ctx, getTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetTokensConfig(getTokensConfigOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetTokensConfig(getTokensConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -4814,7 +4814,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetTokensConfigWithContext(ctx, getTokensConfigOptionsModel)
+				_, _, operationErr = appIDManagementService.GetTokensConfigWithContext(ctx, getTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -4838,16 +4838,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetTokensConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetTokensConfig(nil)
+				result, response, operationErr := appIDManagementService.GetTokensConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -4857,28 +4857,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetTokensConfig(getTokensConfigOptionsModel)
+				result, response, operationErr = appIDManagementService.GetTokensConfig(getTokensConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetTokensConfig with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTokensConfigOptions model
 				getTokensConfigOptionsModel := new(appidmanagementv4.GetTokensConfigOptions)
 				getTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetTokensConfig(getTokensConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetTokensConfig(getTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -4898,20 +4898,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetTokensConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTokensConfigOptions model
 				getTokensConfigOptionsModel := new(appidmanagementv4.GetTokensConfigOptions)
 				getTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetTokensConfig(getTokensConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetTokensConfig(getTokensConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -4940,13 +4940,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutTokensConfig with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the TokenClaimMapping model
 				tokenClaimMappingModel := new(appidmanagementv4.TokenClaimMapping)
@@ -4965,21 +4965,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 
 				// Construct an instance of the PutTokensConfigOptions model
 				putTokensConfigOptionsModel := new(appidmanagementv4.PutTokensConfigOptions)
-				putTokensConfigOptionsModel.IdTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
+				putTokensConfigOptionsModel.IDTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
 				putTokensConfigOptionsModel.Refresh = []appidmanagementv4.RefreshTokenConfigParams{*refreshTokenConfigParamsModel}
 				putTokensConfigOptionsModel.AnonymousAccess = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
 				putTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.PutTokensConfig(putTokensConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.PutTokensConfig(putTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.PutTokensConfig(putTokensConfigOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.PutTokensConfig(putTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -5027,14 +5027,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutTokensConfig successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the TokenClaimMapping model
 				tokenClaimMappingModel := new(appidmanagementv4.TokenClaimMapping)
@@ -5053,7 +5053,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 
 				// Construct an instance of the PutTokensConfigOptions model
 				putTokensConfigOptionsModel := new(appidmanagementv4.PutTokensConfigOptions)
-				putTokensConfigOptionsModel.IdTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
+				putTokensConfigOptionsModel.IDTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
 				putTokensConfigOptionsModel.Refresh = []appidmanagementv4.RefreshTokenConfigParams{*refreshTokenConfigParamsModel}
@@ -5063,13 +5063,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.PutTokensConfigWithContext(ctx, putTokensConfigOptionsModel)
+				_, _, operationErr := appIDManagementService.PutTokensConfigWithContext(ctx, putTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.PutTokensConfig(putTokensConfigOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.PutTokensConfig(putTokensConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -5077,7 +5077,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.PutTokensConfigWithContext(ctx, putTokensConfigOptionsModel)
+				_, _, operationErr = appIDManagementService.PutTokensConfigWithContext(ctx, putTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -5117,16 +5117,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutTokensConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.PutTokensConfig(nil)
+				result, response, operationErr := appIDManagementService.PutTokensConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -5148,7 +5148,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 
 				// Construct an instance of the PutTokensConfigOptions model
 				putTokensConfigOptionsModel := new(appidmanagementv4.PutTokensConfigOptions)
-				putTokensConfigOptionsModel.IdTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
+				putTokensConfigOptionsModel.IDTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
 				putTokensConfigOptionsModel.Refresh = []appidmanagementv4.RefreshTokenConfigParams{*refreshTokenConfigParamsModel}
@@ -5156,20 +5156,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				putTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.PutTokensConfig(putTokensConfigOptionsModel)
+				result, response, operationErr = appIDManagementService.PutTokensConfig(putTokensConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke PutTokensConfig with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the TokenClaimMapping model
 				tokenClaimMappingModel := new(appidmanagementv4.TokenClaimMapping)
@@ -5188,16 +5188,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 
 				// Construct an instance of the PutTokensConfigOptions model
 				putTokensConfigOptionsModel := new(appidmanagementv4.PutTokensConfigOptions)
-				putTokensConfigOptionsModel.IdTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
+				putTokensConfigOptionsModel.IDTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
 				putTokensConfigOptionsModel.Refresh = []appidmanagementv4.RefreshTokenConfigParams{*refreshTokenConfigParamsModel}
 				putTokensConfigOptionsModel.AnonymousAccess = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
 				putTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.PutTokensConfig(putTokensConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.PutTokensConfig(putTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -5217,13 +5217,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PutTokensConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the TokenClaimMapping model
 				tokenClaimMappingModel := new(appidmanagementv4.TokenClaimMapping)
@@ -5242,7 +5242,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 
 				// Construct an instance of the PutTokensConfigOptions model
 				putTokensConfigOptionsModel := new(appidmanagementv4.PutTokensConfigOptions)
-				putTokensConfigOptionsModel.IdTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
+				putTokensConfigOptionsModel.IDTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
 				putTokensConfigOptionsModel.Refresh = []appidmanagementv4.RefreshTokenConfigParams{*refreshTokenConfigParamsModel}
@@ -5250,7 +5250,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				putTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.PutTokensConfig(putTokensConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.PutTokensConfig(putTokensConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -5279,26 +5279,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetRedirectUris with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRedirectUrisOptions model
 				getRedirectUrisOptionsModel := new(appidmanagementv4.GetRedirectUrisOptions)
 				getRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
+				result, response, operationErr := appIDManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -5330,14 +5330,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetRedirectUris successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetRedirectUrisOptions model
 				getRedirectUrisOptionsModel := new(appidmanagementv4.GetRedirectUrisOptions)
@@ -5346,13 +5346,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetRedirectUrisWithContext(ctx, getRedirectUrisOptionsModel)
+				_, _, operationErr := appIDManagementService.GetRedirectUrisWithContext(ctx, getRedirectUrisOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -5360,7 +5360,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetRedirectUrisWithContext(ctx, getRedirectUrisOptionsModel)
+				_, _, operationErr = appIDManagementService.GetRedirectUrisWithContext(ctx, getRedirectUrisOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -5384,16 +5384,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetRedirectUris successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetRedirectUris(nil)
+				result, response, operationErr := appIDManagementService.GetRedirectUris(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -5403,28 +5403,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
+				result, response, operationErr = appIDManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetRedirectUris with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRedirectUrisOptions model
 				getRedirectUrisOptionsModel := new(appidmanagementv4.GetRedirectUrisOptions)
 				getRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
+				result, response, operationErr := appIDManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -5444,20 +5444,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetRedirectUris successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRedirectUrisOptions model
 				getRedirectUrisOptionsModel := new(appidmanagementv4.GetRedirectUrisOptions)
 				getRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
+				result, response, operationErr := appIDManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -5501,65 +5501,65 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateRedirectUris successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UpdateRedirectUris(nil)
+				response, operationErr := appIDManagementService.UpdateRedirectUris(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
-				// Construct an instance of the RedirectUriConfig model
-				redirectUriConfigModel := new(appidmanagementv4.RedirectUriConfig)
-				redirectUriConfigModel.RedirectUris = []string{"http://localhost:3000/oauth-callback"}
-				redirectUriConfigModel.TrustCloudIAMRedirectUris = core.BoolPtr(true)
-				redirectUriConfigModel.SetProperty("foo", core.StringPtr("testString"))
+				// Construct an instance of the RedirectURIConfig model
+				redirectURIConfigModel := new(appidmanagementv4.RedirectURIConfig)
+				redirectURIConfigModel.RedirectUris = []string{"http://localhost:3000/oauth-callback"}
+				redirectURIConfigModel.TrustCloudIAMRedirectUris = core.BoolPtr(true)
+				redirectURIConfigModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the UpdateRedirectUrisOptions model
 				updateRedirectUrisOptionsModel := new(appidmanagementv4.UpdateRedirectUrisOptions)
-				updateRedirectUrisOptionsModel.RedirectUrisArray = redirectUriConfigModel
+				updateRedirectUrisOptionsModel.RedirectUrisArray = redirectURIConfigModel
 				updateRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UpdateRedirectUris(updateRedirectUrisOptionsModel)
+				response, operationErr = appIDManagementService.UpdateRedirectUris(updateRedirectUrisOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UpdateRedirectUris with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the RedirectUriConfig model
-				redirectUriConfigModel := new(appidmanagementv4.RedirectUriConfig)
-				redirectUriConfigModel.RedirectUris = []string{"http://localhost:3000/oauth-callback"}
-				redirectUriConfigModel.TrustCloudIAMRedirectUris = core.BoolPtr(true)
-				redirectUriConfigModel.SetProperty("foo", core.StringPtr("testString"))
+				// Construct an instance of the RedirectURIConfig model
+				redirectURIConfigModel := new(appidmanagementv4.RedirectURIConfig)
+				redirectURIConfigModel.RedirectUris = []string{"http://localhost:3000/oauth-callback"}
+				redirectURIConfigModel.TrustCloudIAMRedirectUris = core.BoolPtr(true)
+				redirectURIConfigModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the UpdateRedirectUrisOptions model
 				updateRedirectUrisOptionsModel := new(appidmanagementv4.UpdateRedirectUrisOptions)
-				updateRedirectUrisOptionsModel.RedirectUrisArray = redirectUriConfigModel
+				updateRedirectUrisOptionsModel.RedirectUrisArray = redirectURIConfigModel
 				updateRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UpdateRedirectUris(updateRedirectUrisOptionsModel)
+				response, operationErr := appIDManagementService.UpdateRedirectUris(updateRedirectUrisOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UpdateRedirectUrisOptions model with no property values
 				updateRedirectUrisOptionsModelNew := new(appidmanagementv4.UpdateRedirectUrisOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UpdateRedirectUris(updateRedirectUrisOptionsModelNew)
+				response, operationErr = appIDManagementService.UpdateRedirectUris(updateRedirectUrisOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -5585,26 +5585,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetUserProfilesConfig with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserProfilesConfigOptions model
 				getUserProfilesConfigOptionsModel := new(appidmanagementv4.GetUserProfilesConfigOptions)
 				getUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -5636,14 +5636,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetUserProfilesConfig successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetUserProfilesConfigOptions model
 				getUserProfilesConfigOptionsModel := new(appidmanagementv4.GetUserProfilesConfigOptions)
@@ -5652,13 +5652,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetUserProfilesConfigWithContext(ctx, getUserProfilesConfigOptionsModel)
+				_, _, operationErr := appIDManagementService.GetUserProfilesConfigWithContext(ctx, getUserProfilesConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -5666,7 +5666,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetUserProfilesConfigWithContext(ctx, getUserProfilesConfigOptionsModel)
+				_, _, operationErr = appIDManagementService.GetUserProfilesConfigWithContext(ctx, getUserProfilesConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -5690,16 +5690,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetUserProfilesConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetUserProfilesConfig(nil)
+				result, response, operationErr := appIDManagementService.GetUserProfilesConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -5709,28 +5709,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
+				result, response, operationErr = appIDManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetUserProfilesConfig with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserProfilesConfigOptions model
 				getUserProfilesConfigOptionsModel := new(appidmanagementv4.GetUserProfilesConfigOptions)
 				getUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -5750,20 +5750,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetUserProfilesConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserProfilesConfigOptions model
 				getUserProfilesConfigOptionsModel := new(appidmanagementv4.GetUserProfilesConfigOptions)
 				getUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -5807,16 +5807,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateUserProfilesConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UpdateUserProfilesConfig(nil)
+				response, operationErr := appIDManagementService.UpdateUserProfilesConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -5826,34 +5826,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UpdateUserProfilesConfig(updateUserProfilesConfigOptionsModel)
+				response, operationErr = appIDManagementService.UpdateUserProfilesConfig(updateUserProfilesConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UpdateUserProfilesConfig with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateUserProfilesConfigOptions model
 				updateUserProfilesConfigOptionsModel := new(appidmanagementv4.UpdateUserProfilesConfigOptions)
 				updateUserProfilesConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UpdateUserProfilesConfig(updateUserProfilesConfigOptionsModel)
+				response, operationErr := appIDManagementService.UpdateUserProfilesConfig(updateUserProfilesConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UpdateUserProfilesConfigOptions model with no property values
 				updateUserProfilesConfigOptionsModelNew := new(appidmanagementv4.UpdateUserProfilesConfigOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UpdateUserProfilesConfig(updateUserProfilesConfigOptionsModelNew)
+				response, operationErr = appIDManagementService.UpdateUserProfilesConfig(updateUserProfilesConfigOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -5879,26 +5879,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetThemeText with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeTextOptions model
 				getThemeTextOptionsModel := new(appidmanagementv4.GetThemeTextOptions)
 				getThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetThemeText(getThemeTextOptionsModel)
+				result, response, operationErr := appIDManagementService.GetThemeText(getThemeTextOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetThemeText(getThemeTextOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetThemeText(getThemeTextOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -5930,14 +5930,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetThemeText successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetThemeTextOptions model
 				getThemeTextOptionsModel := new(appidmanagementv4.GetThemeTextOptions)
@@ -5946,13 +5946,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetThemeTextWithContext(ctx, getThemeTextOptionsModel)
+				_, _, operationErr := appIDManagementService.GetThemeTextWithContext(ctx, getThemeTextOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetThemeText(getThemeTextOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetThemeText(getThemeTextOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -5960,7 +5960,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetThemeTextWithContext(ctx, getThemeTextOptionsModel)
+				_, _, operationErr = appIDManagementService.GetThemeTextWithContext(ctx, getThemeTextOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -5984,16 +5984,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetThemeText successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetThemeText(nil)
+				result, response, operationErr := appIDManagementService.GetThemeText(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -6003,28 +6003,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetThemeText(getThemeTextOptionsModel)
+				result, response, operationErr = appIDManagementService.GetThemeText(getThemeTextOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetThemeText with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeTextOptions model
 				getThemeTextOptionsModel := new(appidmanagementv4.GetThemeTextOptions)
 				getThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetThemeText(getThemeTextOptionsModel)
+				result, response, operationErr := appIDManagementService.GetThemeText(getThemeTextOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -6044,20 +6044,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetThemeText successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeTextOptions model
 				getThemeTextOptionsModel := new(appidmanagementv4.GetThemeTextOptions)
 				getThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetThemeText(getThemeTextOptionsModel)
+				result, response, operationErr := appIDManagementService.GetThemeText(getThemeTextOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -6101,16 +6101,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostThemeText successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.PostThemeText(nil)
+				response, operationErr := appIDManagementService.PostThemeText(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -6121,18 +6121,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				postThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.PostThemeText(postThemeTextOptionsModel)
+				response, operationErr = appIDManagementService.PostThemeText(postThemeTextOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke PostThemeText with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostThemeTextOptions model
 				postThemeTextOptionsModel := new(appidmanagementv4.PostThemeTextOptions)
@@ -6140,9 +6140,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				postThemeTextOptionsModel.Footnote = core.StringPtr("Powered by App ID")
 				postThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.PostThemeText(postThemeTextOptionsModel)
+				response, operationErr := appIDManagementService.PostThemeText(postThemeTextOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -6169,26 +6169,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetThemeColor with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeColorOptions model
 				getThemeColorOptionsModel := new(appidmanagementv4.GetThemeColorOptions)
 				getThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetThemeColor(getThemeColorOptionsModel)
+				result, response, operationErr := appIDManagementService.GetThemeColor(getThemeColorOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetThemeColor(getThemeColorOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetThemeColor(getThemeColorOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -6220,14 +6220,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetThemeColor successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetThemeColorOptions model
 				getThemeColorOptionsModel := new(appidmanagementv4.GetThemeColorOptions)
@@ -6236,13 +6236,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetThemeColorWithContext(ctx, getThemeColorOptionsModel)
+				_, _, operationErr := appIDManagementService.GetThemeColorWithContext(ctx, getThemeColorOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetThemeColor(getThemeColorOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetThemeColor(getThemeColorOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -6250,7 +6250,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetThemeColorWithContext(ctx, getThemeColorOptionsModel)
+				_, _, operationErr = appIDManagementService.GetThemeColorWithContext(ctx, getThemeColorOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -6274,16 +6274,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetThemeColor successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetThemeColor(nil)
+				result, response, operationErr := appIDManagementService.GetThemeColor(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -6293,28 +6293,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetThemeColor(getThemeColorOptionsModel)
+				result, response, operationErr = appIDManagementService.GetThemeColor(getThemeColorOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetThemeColor with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeColorOptions model
 				getThemeColorOptionsModel := new(appidmanagementv4.GetThemeColorOptions)
 				getThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetThemeColor(getThemeColorOptionsModel)
+				result, response, operationErr := appIDManagementService.GetThemeColor(getThemeColorOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -6334,20 +6334,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetThemeColor successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeColorOptions model
 				getThemeColorOptionsModel := new(appidmanagementv4.GetThemeColorOptions)
 				getThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetThemeColor(getThemeColorOptionsModel)
+				result, response, operationErr := appIDManagementService.GetThemeColor(getThemeColorOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -6391,16 +6391,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostThemeColor successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.PostThemeColor(nil)
+				response, operationErr := appIDManagementService.PostThemeColor(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -6410,27 +6410,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				postThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.PostThemeColor(postThemeColorOptionsModel)
+				response, operationErr = appIDManagementService.PostThemeColor(postThemeColorOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke PostThemeColor with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostThemeColorOptions model
 				postThemeColorOptionsModel := new(appidmanagementv4.PostThemeColorOptions)
 				postThemeColorOptionsModel.HeaderColor = core.StringPtr("#EEF2F5")
 				postThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.PostThemeColor(postThemeColorOptionsModel)
+				response, operationErr := appIDManagementService.PostThemeColor(postThemeColorOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -6457,26 +6457,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetMedia with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMediaOptions model
 				getMediaOptionsModel := new(appidmanagementv4.GetMediaOptions)
 				getMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetMedia(getMediaOptionsModel)
+				result, response, operationErr := appIDManagementService.GetMedia(getMediaOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetMedia(getMediaOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetMedia(getMediaOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -6508,14 +6508,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetMedia successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetMediaOptions model
 				getMediaOptionsModel := new(appidmanagementv4.GetMediaOptions)
@@ -6524,13 +6524,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetMediaWithContext(ctx, getMediaOptionsModel)
+				_, _, operationErr := appIDManagementService.GetMediaWithContext(ctx, getMediaOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetMedia(getMediaOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetMedia(getMediaOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -6538,7 +6538,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetMediaWithContext(ctx, getMediaOptionsModel)
+				_, _, operationErr = appIDManagementService.GetMediaWithContext(ctx, getMediaOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -6562,16 +6562,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetMedia successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetMedia(nil)
+				result, response, operationErr := appIDManagementService.GetMedia(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -6581,28 +6581,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetMedia(getMediaOptionsModel)
+				result, response, operationErr = appIDManagementService.GetMedia(getMediaOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetMedia with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMediaOptions model
 				getMediaOptionsModel := new(appidmanagementv4.GetMediaOptions)
 				getMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetMedia(getMediaOptionsModel)
+				result, response, operationErr := appIDManagementService.GetMedia(getMediaOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -6622,20 +6622,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetMedia successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMediaOptions model
 				getMediaOptionsModel := new(appidmanagementv4.GetMediaOptions)
 				getMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetMedia(getMediaOptionsModel)
+				result, response, operationErr := appIDManagementService.GetMedia(getMediaOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -6664,16 +6664,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostMedia successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.PostMedia(nil)
+				response, operationErr := appIDManagementService.PostMedia(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -6685,18 +6685,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				postMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.PostMedia(postMediaOptionsModel)
+				response, operationErr = appIDManagementService.PostMedia(postMediaOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke PostMedia with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostMediaOptions model
 				postMediaOptionsModel := new(appidmanagementv4.PostMediaOptions)
@@ -6705,16 +6705,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				postMediaOptionsModel.FileContentType = core.StringPtr("testString")
 				postMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.PostMedia(postMediaOptionsModel)
+				response, operationErr := appIDManagementService.PostMedia(postMediaOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the PostMediaOptions model with no property values
 				postMediaOptionsModelNew := new(appidmanagementv4.PostMediaOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.PostMedia(postMediaOptionsModelNew)
+				response, operationErr = appIDManagementService.PostMedia(postMediaOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -6745,14 +6745,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetSAMLMetadata successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetSAMLMetadataOptions model
 				getSAMLMetadataOptionsModel := new(appidmanagementv4.GetSAMLMetadataOptions)
@@ -6761,13 +6761,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetSAMLMetadataWithContext(ctx, getSAMLMetadataOptionsModel)
+				_, _, operationErr := appIDManagementService.GetSAMLMetadataWithContext(ctx, getSAMLMetadataOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetSAMLMetadata(getSAMLMetadataOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetSAMLMetadata(getSAMLMetadataOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -6775,7 +6775,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetSAMLMetadataWithContext(ctx, getSAMLMetadataOptionsModel)
+				_, _, operationErr = appIDManagementService.GetSAMLMetadataWithContext(ctx, getSAMLMetadataOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -6799,16 +6799,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetSAMLMetadata successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetSAMLMetadata(nil)
+				result, response, operationErr := appIDManagementService.GetSAMLMetadata(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -6818,28 +6818,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getSAMLMetadataOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetSAMLMetadata(getSAMLMetadataOptionsModel)
+				result, response, operationErr = appIDManagementService.GetSAMLMetadata(getSAMLMetadataOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetSAMLMetadata with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLMetadataOptions model
 				getSAMLMetadataOptionsModel := new(appidmanagementv4.GetSAMLMetadataOptions)
 				getSAMLMetadataOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetSAMLMetadata(getSAMLMetadataOptionsModel)
+				result, response, operationErr := appIDManagementService.GetSAMLMetadata(getSAMLMetadataOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -6859,20 +6859,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetSAMLMetadata successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLMetadataOptions model
 				getSAMLMetadataOptionsModel := new(appidmanagementv4.GetSAMLMetadataOptions)
 				getSAMLMetadataOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetSAMLMetadata(getSAMLMetadataOptionsModel)
+				result, response, operationErr := appIDManagementService.GetSAMLMetadata(getSAMLMetadataOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -6901,13 +6901,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetTemplate with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTemplateOptions model
 				getTemplateOptionsModel := new(appidmanagementv4.GetTemplateOptions)
@@ -6915,14 +6915,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getTemplateOptionsModel.Language = core.StringPtr("testString")
 				getTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetTemplate(getTemplateOptionsModel)
+				result, response, operationErr := appIDManagementService.GetTemplate(getTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetTemplate(getTemplateOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetTemplate(getTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -6954,14 +6954,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetTemplate successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetTemplateOptions model
 				getTemplateOptionsModel := new(appidmanagementv4.GetTemplateOptions)
@@ -6972,13 +6972,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetTemplateWithContext(ctx, getTemplateOptionsModel)
+				_, _, operationErr := appIDManagementService.GetTemplateWithContext(ctx, getTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetTemplate(getTemplateOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetTemplate(getTemplateOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -6986,7 +6986,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetTemplateWithContext(ctx, getTemplateOptionsModel)
+				_, _, operationErr = appIDManagementService.GetTemplateWithContext(ctx, getTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -7010,16 +7010,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetTemplate successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetTemplate(nil)
+				result, response, operationErr := appIDManagementService.GetTemplate(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -7031,20 +7031,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetTemplate(getTemplateOptionsModel)
+				result, response, operationErr = appIDManagementService.GetTemplate(getTemplateOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetTemplate with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTemplateOptions model
 				getTemplateOptionsModel := new(appidmanagementv4.GetTemplateOptions)
@@ -7052,9 +7052,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getTemplateOptionsModel.Language = core.StringPtr("testString")
 				getTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetTemplate(getTemplateOptionsModel)
+				result, response, operationErr := appIDManagementService.GetTemplate(getTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -7062,7 +7062,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the GetTemplateOptions model with no property values
 				getTemplateOptionsModelNew := new(appidmanagementv4.GetTemplateOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.GetTemplate(getTemplateOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetTemplate(getTemplateOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -7081,13 +7081,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetTemplate successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTemplateOptions model
 				getTemplateOptionsModel := new(appidmanagementv4.GetTemplateOptions)
@@ -7096,7 +7096,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetTemplate(getTemplateOptionsModel)
+				result, response, operationErr := appIDManagementService.GetTemplate(getTemplateOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -7125,13 +7125,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateTemplate with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateTemplateOptions model
 				updateTemplateOptionsModel := new(appidmanagementv4.UpdateTemplateOptions)
@@ -7143,14 +7143,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateTemplateOptionsModel.PlainTextBody = core.StringPtr("testString")
 				updateTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UpdateTemplate(updateTemplateOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateTemplate(updateTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UpdateTemplate(updateTemplateOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UpdateTemplate(updateTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -7198,14 +7198,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateTemplate successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UpdateTemplateOptions model
 				updateTemplateOptionsModel := new(appidmanagementv4.UpdateTemplateOptions)
@@ -7220,13 +7220,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UpdateTemplateWithContext(ctx, updateTemplateOptionsModel)
+				_, _, operationErr := appIDManagementService.UpdateTemplateWithContext(ctx, updateTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UpdateTemplate(updateTemplateOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UpdateTemplate(updateTemplateOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -7234,7 +7234,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UpdateTemplateWithContext(ctx, updateTemplateOptionsModel)
+				_, _, operationErr = appIDManagementService.UpdateTemplateWithContext(ctx, updateTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -7274,16 +7274,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateTemplate successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UpdateTemplate(nil)
+				result, response, operationErr := appIDManagementService.UpdateTemplate(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -7299,20 +7299,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UpdateTemplate(updateTemplateOptionsModel)
+				result, response, operationErr = appIDManagementService.UpdateTemplate(updateTemplateOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UpdateTemplate with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateTemplateOptions model
 				updateTemplateOptionsModel := new(appidmanagementv4.UpdateTemplateOptions)
@@ -7324,9 +7324,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateTemplateOptionsModel.PlainTextBody = core.StringPtr("testString")
 				updateTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UpdateTemplate(updateTemplateOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateTemplate(updateTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -7334,7 +7334,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the UpdateTemplateOptions model with no property values
 				updateTemplateOptionsModelNew := new(appidmanagementv4.UpdateTemplateOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UpdateTemplate(updateTemplateOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UpdateTemplate(updateTemplateOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -7353,13 +7353,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateTemplate successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateTemplateOptions model
 				updateTemplateOptionsModel := new(appidmanagementv4.UpdateTemplateOptions)
@@ -7372,7 +7372,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UpdateTemplate(updateTemplateOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateTemplate(updateTemplateOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -7400,16 +7400,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke DeleteTemplate successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.DeleteTemplate(nil)
+				response, operationErr := appIDManagementService.DeleteTemplate(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -7420,18 +7420,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				deleteTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.DeleteTemplate(deleteTemplateOptionsModel)
+				response, operationErr = appIDManagementService.DeleteTemplate(deleteTemplateOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke DeleteTemplate with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the DeleteTemplateOptions model
 				deleteTemplateOptionsModel := new(appidmanagementv4.DeleteTemplateOptions)
@@ -7439,16 +7439,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				deleteTemplateOptionsModel.Language = core.StringPtr("testString")
 				deleteTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.DeleteTemplate(deleteTemplateOptionsModel)
+				response, operationErr := appIDManagementService.DeleteTemplate(deleteTemplateOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the DeleteTemplateOptions model with no property values
 				deleteTemplateOptionsModelNew := new(appidmanagementv4.DeleteTemplateOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.DeleteTemplate(deleteTemplateOptionsModelNew)
+				response, operationErr = appIDManagementService.DeleteTemplate(deleteTemplateOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -7474,26 +7474,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetLocalization with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetLocalizationOptions model
 				getLocalizationOptionsModel := new(appidmanagementv4.GetLocalizationOptions)
 				getLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetLocalization(getLocalizationOptionsModel)
+				result, response, operationErr := appIDManagementService.GetLocalization(getLocalizationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetLocalization(getLocalizationOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetLocalization(getLocalizationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -7525,14 +7525,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetLocalization successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetLocalizationOptions model
 				getLocalizationOptionsModel := new(appidmanagementv4.GetLocalizationOptions)
@@ -7541,13 +7541,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetLocalizationWithContext(ctx, getLocalizationOptionsModel)
+				_, _, operationErr := appIDManagementService.GetLocalizationWithContext(ctx, getLocalizationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetLocalization(getLocalizationOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetLocalization(getLocalizationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -7555,7 +7555,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetLocalizationWithContext(ctx, getLocalizationOptionsModel)
+				_, _, operationErr = appIDManagementService.GetLocalizationWithContext(ctx, getLocalizationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -7579,16 +7579,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetLocalization successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetLocalization(nil)
+				result, response, operationErr := appIDManagementService.GetLocalization(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -7598,28 +7598,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetLocalization(getLocalizationOptionsModel)
+				result, response, operationErr = appIDManagementService.GetLocalization(getLocalizationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetLocalization with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetLocalizationOptions model
 				getLocalizationOptionsModel := new(appidmanagementv4.GetLocalizationOptions)
 				getLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetLocalization(getLocalizationOptionsModel)
+				result, response, operationErr := appIDManagementService.GetLocalization(getLocalizationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -7639,20 +7639,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetLocalization successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetLocalizationOptions model
 				getLocalizationOptionsModel := new(appidmanagementv4.GetLocalizationOptions)
 				getLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetLocalization(getLocalizationOptionsModel)
+				result, response, operationErr := appIDManagementService.GetLocalization(getLocalizationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -7696,16 +7696,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateLocalization successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UpdateLocalization(nil)
+				response, operationErr := appIDManagementService.UpdateLocalization(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -7715,27 +7715,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UpdateLocalization(updateLocalizationOptionsModel)
+				response, operationErr = appIDManagementService.UpdateLocalization(updateLocalizationOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UpdateLocalization with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateLocalizationOptions model
 				updateLocalizationOptionsModel := new(appidmanagementv4.UpdateLocalizationOptions)
 				updateLocalizationOptionsModel.Languages = []string{"testString"}
 				updateLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UpdateLocalization(updateLocalizationOptionsModel)
+				response, operationErr := appIDManagementService.UpdateLocalization(updateLocalizationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -7762,26 +7762,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectorySenderDetails with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
 				getCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.GetCloudDirectorySenderDetailsOptions)
 				getCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -7813,14 +7813,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectorySenderDetails successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
 				getCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.GetCloudDirectorySenderDetailsOptions)
@@ -7829,13 +7829,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetCloudDirectorySenderDetailsWithContext(ctx, getCloudDirectorySenderDetailsOptionsModel)
+				_, _, operationErr := appIDManagementService.GetCloudDirectorySenderDetailsWithContext(ctx, getCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -7843,7 +7843,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetCloudDirectorySenderDetailsWithContext(ctx, getCloudDirectorySenderDetailsOptionsModel)
+				_, _, operationErr = appIDManagementService.GetCloudDirectorySenderDetailsWithContext(ctx, getCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -7867,16 +7867,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectorySenderDetails successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetCloudDirectorySenderDetails(nil)
+				result, response, operationErr := appIDManagementService.GetCloudDirectorySenderDetails(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -7886,28 +7886,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
+				result, response, operationErr = appIDManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetCloudDirectorySenderDetails with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
 				getCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.GetCloudDirectorySenderDetailsOptions)
 				getCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -7927,20 +7927,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectorySenderDetails successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
 				getCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.GetCloudDirectorySenderDetailsOptions)
 				getCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -7984,16 +7984,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectorySenderDetails successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.SetCloudDirectorySenderDetails(nil)
+				response, operationErr := appIDManagementService.SetCloudDirectorySenderDetails(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -8019,18 +8019,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.SetCloudDirectorySenderDetails(setCloudDirectorySenderDetailsOptionsModel)
+				response, operationErr = appIDManagementService.SetCloudDirectorySenderDetails(setCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke SetCloudDirectorySenderDetails with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectorySenderDetailsSenderDetailsFrom model
 				cloudDirectorySenderDetailsSenderDetailsFromModel := new(appidmanagementv4.CloudDirectorySenderDetailsSenderDetailsFrom)
@@ -8053,16 +8053,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectorySenderDetailsOptionsModel.SenderDetails = cloudDirectorySenderDetailsSenderDetailsModel
 				setCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.SetCloudDirectorySenderDetails(setCloudDirectorySenderDetailsOptionsModel)
+				response, operationErr := appIDManagementService.SetCloudDirectorySenderDetails(setCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the SetCloudDirectorySenderDetailsOptions model with no property values
 				setCloudDirectorySenderDetailsOptionsModelNew := new(appidmanagementv4.SetCloudDirectorySenderDetailsOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.SetCloudDirectorySenderDetails(setCloudDirectorySenderDetailsOptionsModelNew)
+				response, operationErr = appIDManagementService.SetCloudDirectorySenderDetails(setCloudDirectorySenderDetailsOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -8071,7 +8071,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`GetCloudDirectoryActionURL(getCloudDirectoryActionUrlOptions *GetCloudDirectoryActionUrlOptions) - Operation response error`, func() {
+	Describe(`GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptions *GetCloudDirectoryActionURLOptions) - Operation response error`, func() {
 		tenantID := "testString"
 		getCloudDirectoryActionURLPath := "/management/v4/testString/config/cloud_directory/action_url/on_user_verified"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
@@ -8088,27 +8088,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryActionURL with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the GetCloudDirectoryActionUrlOptions model
-				getCloudDirectoryActionUrlOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionUrlOptions)
-				getCloudDirectoryActionUrlOptionsModel.Action = core.StringPtr("on_user_verified")
-				getCloudDirectoryActionUrlOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the GetCloudDirectoryActionURLOptions model
+				getCloudDirectoryActionURLOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
+				getCloudDirectoryActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
+				getCloudDirectoryActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionUrlOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionUrlOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -8118,7 +8118,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`GetCloudDirectoryActionURL(getCloudDirectoryActionUrlOptions *GetCloudDirectoryActionUrlOptions)`, func() {
+	Describe(`GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptions *GetCloudDirectoryActionURLOptions)`, func() {
 		tenantID := "testString"
 		getCloudDirectoryActionURLPath := "/management/v4/testString/config/cloud_directory/action_url/on_user_verified"
 		Context(`Using mock server endpoint with timeout`, func() {
@@ -8140,30 +8140,30 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryActionURL successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
-				// Construct an instance of the GetCloudDirectoryActionUrlOptions model
-				getCloudDirectoryActionUrlOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionUrlOptions)
-				getCloudDirectoryActionUrlOptionsModel.Action = core.StringPtr("on_user_verified")
-				getCloudDirectoryActionUrlOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the GetCloudDirectoryActionURLOptions model
+				getCloudDirectoryActionURLOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
+				getCloudDirectoryActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
+				getCloudDirectoryActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetCloudDirectoryActionURLWithContext(ctx, getCloudDirectoryActionUrlOptionsModel)
+				_, _, operationErr := appIDManagementService.GetCloudDirectoryActionURLWithContext(ctx, getCloudDirectoryActionURLOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionUrlOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -8171,7 +8171,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetCloudDirectoryActionURLWithContext(ctx, getCloudDirectoryActionUrlOptionsModel)
+				_, _, operationErr = appIDManagementService.GetCloudDirectoryActionURLWithContext(ctx, getCloudDirectoryActionURLOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -8195,57 +8195,57 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryActionURL successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryActionURL(nil)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryActionURL(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
-				// Construct an instance of the GetCloudDirectoryActionUrlOptions model
-				getCloudDirectoryActionUrlOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionUrlOptions)
-				getCloudDirectoryActionUrlOptionsModel.Action = core.StringPtr("on_user_verified")
-				getCloudDirectoryActionUrlOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the GetCloudDirectoryActionURLOptions model
+				getCloudDirectoryActionURLOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
+				getCloudDirectoryActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
+				getCloudDirectoryActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionUrlOptionsModel)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetCloudDirectoryActionURL with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the GetCloudDirectoryActionUrlOptions model
-				getCloudDirectoryActionUrlOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionUrlOptions)
-				getCloudDirectoryActionUrlOptionsModel.Action = core.StringPtr("on_user_verified")
-				getCloudDirectoryActionUrlOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the GetCloudDirectoryActionURLOptions model
+				getCloudDirectoryActionURLOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
+				getCloudDirectoryActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
+				getCloudDirectoryActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionUrlOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
-				// Construct a second instance of the GetCloudDirectoryActionUrlOptions model with no property values
-				getCloudDirectoryActionUrlOptionsModelNew := new(appidmanagementv4.GetCloudDirectoryActionUrlOptions)
+				// Construct a second instance of the GetCloudDirectoryActionURLOptions model with no property values
+				getCloudDirectoryActionURLOptionsModelNew := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionUrlOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -8264,21 +8264,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryActionURL successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the GetCloudDirectoryActionUrlOptions model
-				getCloudDirectoryActionUrlOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionUrlOptions)
-				getCloudDirectoryActionUrlOptionsModel.Action = core.StringPtr("on_user_verified")
-				getCloudDirectoryActionUrlOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the GetCloudDirectoryActionURLOptions model
+				getCloudDirectoryActionURLOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
+				getCloudDirectoryActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
+				getCloudDirectoryActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionUrlOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -8307,13 +8307,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryAction with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryActionOptions model
 				setCloudDirectoryActionOptionsModel := new(appidmanagementv4.SetCloudDirectoryActionOptions)
@@ -8321,14 +8321,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryActionOptionsModel.ActionURL = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -8376,14 +8376,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryAction successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the SetCloudDirectoryActionOptions model
 				setCloudDirectoryActionOptionsModel := new(appidmanagementv4.SetCloudDirectoryActionOptions)
@@ -8394,13 +8394,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.SetCloudDirectoryActionWithContext(ctx, setCloudDirectoryActionOptionsModel)
+				_, _, operationErr := appIDManagementService.SetCloudDirectoryActionWithContext(ctx, setCloudDirectoryActionOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -8408,7 +8408,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.SetCloudDirectoryActionWithContext(ctx, setCloudDirectoryActionOptionsModel)
+				_, _, operationErr = appIDManagementService.SetCloudDirectoryActionWithContext(ctx, setCloudDirectoryActionOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -8448,16 +8448,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryAction successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryAction(nil)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryAction(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -8469,20 +8469,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryActionOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke SetCloudDirectoryAction with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryActionOptions model
 				setCloudDirectoryActionOptionsModel := new(appidmanagementv4.SetCloudDirectoryActionOptions)
@@ -8490,9 +8490,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryActionOptionsModel.ActionURL = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -8500,7 +8500,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the SetCloudDirectoryActionOptions model with no property values
 				setCloudDirectoryActionOptionsModelNew := new(appidmanagementv4.SetCloudDirectoryActionOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModelNew)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -8519,13 +8519,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryAction successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryActionOptions model
 				setCloudDirectoryActionOptionsModel := new(appidmanagementv4.SetCloudDirectoryActionOptions)
@@ -8534,7 +8534,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryActionOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryAction(setCloudDirectoryActionOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -8546,7 +8546,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`DeleteActionURL(deleteActionUrlOptions *DeleteActionUrlOptions)`, func() {
+	Describe(`DeleteActionURL(deleteActionURLOptions *DeleteActionURLOptions)`, func() {
 		tenantID := "testString"
 		deleteActionURLPath := "/management/v4/testString/config/cloud_directory/action_url/on_user_verified"
 		Context(`Using mock server endpoint`, func() {
@@ -8562,53 +8562,53 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke DeleteActionURL successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.DeleteActionURL(nil)
+				response, operationErr := appIDManagementService.DeleteActionURL(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
-				// Construct an instance of the DeleteActionUrlOptions model
-				deleteActionUrlOptionsModel := new(appidmanagementv4.DeleteActionUrlOptions)
-				deleteActionUrlOptionsModel.Action = core.StringPtr("on_user_verified")
-				deleteActionUrlOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the DeleteActionURLOptions model
+				deleteActionURLOptionsModel := new(appidmanagementv4.DeleteActionURLOptions)
+				deleteActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
+				deleteActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.DeleteActionURL(deleteActionUrlOptionsModel)
+				response, operationErr = appIDManagementService.DeleteActionURL(deleteActionURLOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke DeleteActionURL with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the DeleteActionUrlOptions model
-				deleteActionUrlOptionsModel := new(appidmanagementv4.DeleteActionUrlOptions)
-				deleteActionUrlOptionsModel.Action = core.StringPtr("on_user_verified")
-				deleteActionUrlOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the DeleteActionURLOptions model
+				deleteActionURLOptionsModel := new(appidmanagementv4.DeleteActionURLOptions)
+				deleteActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
+				deleteActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.DeleteActionURL(deleteActionUrlOptionsModel)
+				response, operationErr := appIDManagementService.DeleteActionURL(deleteActionURLOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
-				// Construct a second instance of the DeleteActionUrlOptions model with no property values
-				deleteActionUrlOptionsModelNew := new(appidmanagementv4.DeleteActionUrlOptions)
+				// Construct a second instance of the DeleteActionURLOptions model with no property values
+				deleteActionURLOptionsModelNew := new(appidmanagementv4.DeleteActionURLOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.DeleteActionURL(deleteActionUrlOptionsModelNew)
+				response, operationErr = appIDManagementService.DeleteActionURL(deleteActionURLOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -8634,26 +8634,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryPasswordRegex with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
 				getCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.GetCloudDirectoryPasswordRegexOptions)
 				getCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -8685,14 +8685,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryPasswordRegex successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
 				getCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.GetCloudDirectoryPasswordRegexOptions)
@@ -8701,13 +8701,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetCloudDirectoryPasswordRegexWithContext(ctx, getCloudDirectoryPasswordRegexOptionsModel)
+				_, _, operationErr := appIDManagementService.GetCloudDirectoryPasswordRegexWithContext(ctx, getCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -8715,7 +8715,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetCloudDirectoryPasswordRegexWithContext(ctx, getCloudDirectoryPasswordRegexOptionsModel)
+				_, _, operationErr = appIDManagementService.GetCloudDirectoryPasswordRegexWithContext(ctx, getCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -8739,16 +8739,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryPasswordRegex successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryPasswordRegex(nil)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryPasswordRegex(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -8758,28 +8758,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetCloudDirectoryPasswordRegex with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
 				getCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.GetCloudDirectoryPasswordRegexOptions)
 				getCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -8799,20 +8799,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryPasswordRegex successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
 				getCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.GetCloudDirectoryPasswordRegexOptions)
 				getCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -8841,13 +8841,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryPasswordRegex with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
 				setCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.SetCloudDirectoryPasswordRegexOptions)
@@ -8856,14 +8856,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryPasswordRegexOptionsModel.ErrorMessage = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -8911,14 +8911,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryPasswordRegex successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
 				setCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.SetCloudDirectoryPasswordRegexOptions)
@@ -8930,13 +8930,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.SetCloudDirectoryPasswordRegexWithContext(ctx, setCloudDirectoryPasswordRegexOptionsModel)
+				_, _, operationErr := appIDManagementService.SetCloudDirectoryPasswordRegexWithContext(ctx, setCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -8944,7 +8944,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.SetCloudDirectoryPasswordRegexWithContext(ctx, setCloudDirectoryPasswordRegexOptionsModel)
+				_, _, operationErr = appIDManagementService.SetCloudDirectoryPasswordRegexWithContext(ctx, setCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -8984,16 +8984,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryPasswordRegex successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryPasswordRegex(nil)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryPasswordRegex(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -9006,20 +9006,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke SetCloudDirectoryPasswordRegex with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
 				setCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.SetCloudDirectoryPasswordRegexOptions)
@@ -9028,9 +9028,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryPasswordRegexOptionsModel.ErrorMessage = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -9050,13 +9050,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryPasswordRegex successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
 				setCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.SetCloudDirectoryPasswordRegexOptions)
@@ -9066,7 +9066,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -9095,26 +9095,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryEmailDispatcher with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
 				getCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.GetCloudDirectoryEmailDispatcherOptions)
 				getCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -9142,18 +9142,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"provider": "sendgrid", "sendgrid": {"apiKey": "ApiKey"}, "custom": {"url": "URL", "authorization": {"type": "value", "value": "Value", "username": "Username", "password": "Password"}}}`)
+					fmt.Fprintf(res, "%s", `{"provider": "sendgrid", "sendgrid": {"apiKey": "APIKey"}, "custom": {"url": "URL", "authorization": {"type": "value", "value": "Value", "username": "Username", "password": "Password"}}}`)
 				}))
 			})
 			It(`Invoke GetCloudDirectoryEmailDispatcher successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
 				getCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.GetCloudDirectoryEmailDispatcherOptions)
@@ -9162,13 +9162,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetCloudDirectoryEmailDispatcherWithContext(ctx, getCloudDirectoryEmailDispatcherOptionsModel)
+				_, _, operationErr := appIDManagementService.GetCloudDirectoryEmailDispatcherWithContext(ctx, getCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -9176,7 +9176,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetCloudDirectoryEmailDispatcherWithContext(ctx, getCloudDirectoryEmailDispatcherOptionsModel)
+				_, _, operationErr = appIDManagementService.GetCloudDirectoryEmailDispatcherWithContext(ctx, getCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -9196,20 +9196,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"provider": "sendgrid", "sendgrid": {"apiKey": "ApiKey"}, "custom": {"url": "URL", "authorization": {"type": "value", "value": "Value", "username": "Username", "password": "Password"}}}`)
+					fmt.Fprintf(res, "%s", `{"provider": "sendgrid", "sendgrid": {"apiKey": "APIKey"}, "custom": {"url": "URL", "authorization": {"type": "value", "value": "Value", "username": "Username", "password": "Password"}}}`)
 				}))
 			})
 			It(`Invoke GetCloudDirectoryEmailDispatcher successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryEmailDispatcher(nil)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryEmailDispatcher(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -9219,28 +9219,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetCloudDirectoryEmailDispatcher with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
 				getCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.GetCloudDirectoryEmailDispatcherOptions)
 				getCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -9260,20 +9260,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryEmailDispatcher successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
 				getCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.GetCloudDirectoryEmailDispatcherOptions)
 				getCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -9302,17 +9302,17 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryEmailDispatcher with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the EmailDispatcherParamsSendgrid model
 				emailDispatcherParamsSendgridModel := new(appidmanagementv4.EmailDispatcherParamsSendgrid)
-				emailDispatcherParamsSendgridModel.ApiKey = core.StringPtr("testString")
+				emailDispatcherParamsSendgridModel.APIKey = core.StringPtr("testString")
 
 				// Construct an instance of the EmailDispatcherParamsCustomAuthorization model
 				emailDispatcherParamsCustomAuthorizationModel := new(appidmanagementv4.EmailDispatcherParamsCustomAuthorization)
@@ -9333,14 +9333,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryEmailDispatcherOptionsModel.Custom = emailDispatcherParamsCustomModel
 				setCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -9384,22 +9384,22 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"provider": "sendgrid", "sendgrid": {"apiKey": "ApiKey"}, "custom": {"url": "URL", "authorization": {"type": "value", "value": "Value", "username": "Username", "password": "Password"}}}`)
+					fmt.Fprintf(res, "%s", `{"provider": "sendgrid", "sendgrid": {"apiKey": "APIKey"}, "custom": {"url": "URL", "authorization": {"type": "value", "value": "Value", "username": "Username", "password": "Password"}}}`)
 				}))
 			})
 			It(`Invoke SetCloudDirectoryEmailDispatcher successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the EmailDispatcherParamsSendgrid model
 				emailDispatcherParamsSendgridModel := new(appidmanagementv4.EmailDispatcherParamsSendgrid)
-				emailDispatcherParamsSendgridModel.ApiKey = core.StringPtr("testString")
+				emailDispatcherParamsSendgridModel.APIKey = core.StringPtr("testString")
 
 				// Construct an instance of the EmailDispatcherParamsCustomAuthorization model
 				emailDispatcherParamsCustomAuthorizationModel := new(appidmanagementv4.EmailDispatcherParamsCustomAuthorization)
@@ -9423,13 +9423,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.SetCloudDirectoryEmailDispatcherWithContext(ctx, setCloudDirectoryEmailDispatcherOptionsModel)
+				_, _, operationErr := appIDManagementService.SetCloudDirectoryEmailDispatcherWithContext(ctx, setCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -9437,7 +9437,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.SetCloudDirectoryEmailDispatcherWithContext(ctx, setCloudDirectoryEmailDispatcherOptionsModel)
+				_, _, operationErr = appIDManagementService.SetCloudDirectoryEmailDispatcherWithContext(ctx, setCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -9473,27 +9473,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"provider": "sendgrid", "sendgrid": {"apiKey": "ApiKey"}, "custom": {"url": "URL", "authorization": {"type": "value", "value": "Value", "username": "Username", "password": "Password"}}}`)
+					fmt.Fprintf(res, "%s", `{"provider": "sendgrid", "sendgrid": {"apiKey": "APIKey"}, "custom": {"url": "URL", "authorization": {"type": "value", "value": "Value", "username": "Username", "password": "Password"}}}`)
 				}))
 			})
 			It(`Invoke SetCloudDirectoryEmailDispatcher successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryEmailDispatcher(nil)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryEmailDispatcher(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
 				// Construct an instance of the EmailDispatcherParamsSendgrid model
 				emailDispatcherParamsSendgridModel := new(appidmanagementv4.EmailDispatcherParamsSendgrid)
-				emailDispatcherParamsSendgridModel.ApiKey = core.StringPtr("testString")
+				emailDispatcherParamsSendgridModel.APIKey = core.StringPtr("testString")
 
 				// Construct an instance of the EmailDispatcherParamsCustomAuthorization model
 				emailDispatcherParamsCustomAuthorizationModel := new(appidmanagementv4.EmailDispatcherParamsCustomAuthorization)
@@ -9515,24 +9515,24 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke SetCloudDirectoryEmailDispatcher with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the EmailDispatcherParamsSendgrid model
 				emailDispatcherParamsSendgridModel := new(appidmanagementv4.EmailDispatcherParamsSendgrid)
-				emailDispatcherParamsSendgridModel.ApiKey = core.StringPtr("testString")
+				emailDispatcherParamsSendgridModel.APIKey = core.StringPtr("testString")
 
 				// Construct an instance of the EmailDispatcherParamsCustomAuthorization model
 				emailDispatcherParamsCustomAuthorizationModel := new(appidmanagementv4.EmailDispatcherParamsCustomAuthorization)
@@ -9553,9 +9553,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryEmailDispatcherOptionsModel.Custom = emailDispatcherParamsCustomModel
 				setCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -9563,7 +9563,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the SetCloudDirectoryEmailDispatcherOptions model with no property values
 				setCloudDirectoryEmailDispatcherOptionsModelNew := new(appidmanagementv4.SetCloudDirectoryEmailDispatcherOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModelNew)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -9582,17 +9582,17 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryEmailDispatcher successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the EmailDispatcherParamsSendgrid model
 				emailDispatcherParamsSendgridModel := new(appidmanagementv4.EmailDispatcherParamsSendgrid)
-				emailDispatcherParamsSendgridModel.ApiKey = core.StringPtr("testString")
+				emailDispatcherParamsSendgridModel.APIKey = core.StringPtr("testString")
 
 				// Construct an instance of the EmailDispatcherParamsCustomAuthorization model
 				emailDispatcherParamsCustomAuthorizationModel := new(appidmanagementv4.EmailDispatcherParamsCustomAuthorization)
@@ -9614,7 +9614,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -9643,17 +9643,17 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke EmailSettingTest with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsSendgrid model
 				emailSettingsTestParamsEmailSettingsSendgridModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsSendgrid)
-				emailSettingsTestParamsEmailSettingsSendgridModel.ApiKey = core.StringPtr("testString")
+				emailSettingsTestParamsEmailSettingsSendgridModel.APIKey = core.StringPtr("testString")
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsCustomAuthorization model
 				emailSettingsTestParamsEmailSettingsCustomAuthorizationModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsCustomAuthorization)
@@ -9695,14 +9695,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				emailSettingTestOptionsModel.SenderDetails = emailSettingsTestParamsSenderDetailsModel
 				emailSettingTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.EmailSettingTest(emailSettingTestOptionsModel)
+				result, response, operationErr := appIDManagementService.EmailSettingTest(emailSettingTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.EmailSettingTest(emailSettingTestOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.EmailSettingTest(emailSettingTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -9750,18 +9750,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke EmailSettingTest successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsSendgrid model
 				emailSettingsTestParamsEmailSettingsSendgridModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsSendgrid)
-				emailSettingsTestParamsEmailSettingsSendgridModel.ApiKey = core.StringPtr("testString")
+				emailSettingsTestParamsEmailSettingsSendgridModel.APIKey = core.StringPtr("testString")
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsCustomAuthorization model
 				emailSettingsTestParamsEmailSettingsCustomAuthorizationModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsCustomAuthorization)
@@ -9806,13 +9806,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.EmailSettingTestWithContext(ctx, emailSettingTestOptionsModel)
+				_, _, operationErr := appIDManagementService.EmailSettingTestWithContext(ctx, emailSettingTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.EmailSettingTest(emailSettingTestOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.EmailSettingTest(emailSettingTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -9820,7 +9820,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.EmailSettingTestWithContext(ctx, emailSettingTestOptionsModel)
+				_, _, operationErr = appIDManagementService.EmailSettingTestWithContext(ctx, emailSettingTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -9860,23 +9860,23 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke EmailSettingTest successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.EmailSettingTest(nil)
+				result, response, operationErr := appIDManagementService.EmailSettingTest(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsSendgrid model
 				emailSettingsTestParamsEmailSettingsSendgridModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsSendgrid)
-				emailSettingsTestParamsEmailSettingsSendgridModel.ApiKey = core.StringPtr("testString")
+				emailSettingsTestParamsEmailSettingsSendgridModel.APIKey = core.StringPtr("testString")
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsCustomAuthorization model
 				emailSettingsTestParamsEmailSettingsCustomAuthorizationModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsCustomAuthorization)
@@ -9919,24 +9919,24 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				emailSettingTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.EmailSettingTest(emailSettingTestOptionsModel)
+				result, response, operationErr = appIDManagementService.EmailSettingTest(emailSettingTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke EmailSettingTest with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsSendgrid model
 				emailSettingsTestParamsEmailSettingsSendgridModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsSendgrid)
-				emailSettingsTestParamsEmailSettingsSendgridModel.ApiKey = core.StringPtr("testString")
+				emailSettingsTestParamsEmailSettingsSendgridModel.APIKey = core.StringPtr("testString")
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsCustomAuthorization model
 				emailSettingsTestParamsEmailSettingsCustomAuthorizationModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsCustomAuthorization)
@@ -9978,9 +9978,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				emailSettingTestOptionsModel.SenderDetails = emailSettingsTestParamsSenderDetailsModel
 				emailSettingTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.EmailSettingTest(emailSettingTestOptionsModel)
+				result, response, operationErr := appIDManagementService.EmailSettingTest(emailSettingTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -9988,7 +9988,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the EmailSettingTestOptions model with no property values
 				emailSettingTestOptionsModelNew := new(appidmanagementv4.EmailSettingTestOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.EmailSettingTest(emailSettingTestOptionsModelNew)
+				result, response, operationErr = appIDManagementService.EmailSettingTest(emailSettingTestOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -10007,17 +10007,17 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke EmailSettingTest successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsSendgrid model
 				emailSettingsTestParamsEmailSettingsSendgridModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsSendgrid)
-				emailSettingsTestParamsEmailSettingsSendgridModel.ApiKey = core.StringPtr("testString")
+				emailSettingsTestParamsEmailSettingsSendgridModel.APIKey = core.StringPtr("testString")
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsCustomAuthorization model
 				emailSettingsTestParamsEmailSettingsCustomAuthorizationModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsCustomAuthorization)
@@ -10060,7 +10060,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				emailSettingTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.EmailSettingTest(emailSettingTestOptionsModel)
+				result, response, operationErr := appIDManagementService.EmailSettingTest(emailSettingTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -10089,27 +10089,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostEmailDispatcherTest with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostEmailDispatcherTestOptions model
 				postEmailDispatcherTestOptionsModel := new(appidmanagementv4.PostEmailDispatcherTestOptions)
 				postEmailDispatcherTestOptionsModel.Email = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
+				result, response, operationErr := appIDManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -10157,14 +10157,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostEmailDispatcherTest successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the PostEmailDispatcherTestOptions model
 				postEmailDispatcherTestOptionsModel := new(appidmanagementv4.PostEmailDispatcherTestOptions)
@@ -10174,13 +10174,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.PostEmailDispatcherTestWithContext(ctx, postEmailDispatcherTestOptionsModel)
+				_, _, operationErr := appIDManagementService.PostEmailDispatcherTestWithContext(ctx, postEmailDispatcherTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -10188,7 +10188,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.PostEmailDispatcherTestWithContext(ctx, postEmailDispatcherTestOptionsModel)
+				_, _, operationErr = appIDManagementService.PostEmailDispatcherTestWithContext(ctx, postEmailDispatcherTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -10228,16 +10228,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostEmailDispatcherTest successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.PostEmailDispatcherTest(nil)
+				result, response, operationErr := appIDManagementService.PostEmailDispatcherTest(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -10248,29 +10248,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				postEmailDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
+				result, response, operationErr = appIDManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke PostEmailDispatcherTest with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostEmailDispatcherTestOptions model
 				postEmailDispatcherTestOptionsModel := new(appidmanagementv4.PostEmailDispatcherTestOptions)
 				postEmailDispatcherTestOptionsModel.Email = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
+				result, response, operationErr := appIDManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -10278,7 +10278,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the PostEmailDispatcherTestOptions model with no property values
 				postEmailDispatcherTestOptionsModelNew := new(appidmanagementv4.PostEmailDispatcherTestOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModelNew)
+				result, response, operationErr = appIDManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -10297,13 +10297,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostEmailDispatcherTest successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostEmailDispatcherTestOptions model
 				postEmailDispatcherTestOptionsModel := new(appidmanagementv4.PostEmailDispatcherTestOptions)
@@ -10311,7 +10311,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				postEmailDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
+				result, response, operationErr := appIDManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -10323,44 +10323,44 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`PostSmsDispatcherTest(postSmsDispatcherTestOptions *PostSmsDispatcherTestOptions) - Operation response error`, func() {
+	Describe(`PostSMSDispatcherTest(postSMSDispatcherTestOptions *PostSMSDispatcherTestOptions) - Operation response error`, func() {
 		tenantID := "testString"
-		postSmsDispatcherTestPath := "/management/v4/testString/config/cloud_directory/sms_dispatcher/test"
+		postSMSDispatcherTestPath := "/management/v4/testString/config/cloud_directory/sms_dispatcher/test"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(postSmsDispatcherTestPath))
+					Expect(req.URL.EscapedPath()).To(Equal(postSMSDispatcherTestPath))
 					Expect(req.Method).To(Equal("POST"))
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
 					fmt.Fprintf(res, `} this is not valid json {`)
 				}))
 			})
-			It(`Invoke PostSmsDispatcherTest with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke PostSMSDispatcherTest with error: Operation response processing error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the PostSmsDispatcherTestOptions model
-				postSmsDispatcherTestOptionsModel := new(appidmanagementv4.PostSmsDispatcherTestOptions)
-				postSmsDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
-				postSmsDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the PostSMSDispatcherTestOptions model
+				postSMSDispatcherTestOptionsModel := new(appidmanagementv4.PostSMSDispatcherTestOptions)
+				postSMSDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
+				postSMSDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.PostSmsDispatcherTest(postSmsDispatcherTestOptionsModel)
+				result, response, operationErr := appIDManagementService.PostSMSDispatcherTest(postSMSDispatcherTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.PostSmsDispatcherTest(postSmsDispatcherTestOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.PostSMSDispatcherTest(postSMSDispatcherTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -10370,16 +10370,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`PostSmsDispatcherTest(postSmsDispatcherTestOptions *PostSmsDispatcherTestOptions)`, func() {
+	Describe(`PostSMSDispatcherTest(postSMSDispatcherTestOptions *PostSMSDispatcherTestOptions)`, func() {
 		tenantID := "testString"
-		postSmsDispatcherTestPath := "/management/v4/testString/config/cloud_directory/sms_dispatcher/test"
+		postSMSDispatcherTestPath := "/management/v4/testString/config/cloud_directory/sms_dispatcher/test"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(postSmsDispatcherTestPath))
+					Expect(req.URL.EscapedPath()).To(Equal(postSMSDispatcherTestPath))
 					Expect(req.Method).To(Equal("POST"))
 
 					// For gzip-disabled operation, verify Content-Encoding is not set.
@@ -10407,31 +10407,31 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					fmt.Fprintf(res, "%s", `{"confirmationCode": 16, "phoneNumber": "PhoneNumber"}`)
 				}))
 			})
-			It(`Invoke PostSmsDispatcherTest successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke PostSMSDispatcherTest successfully with retries`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
-				// Construct an instance of the PostSmsDispatcherTestOptions model
-				postSmsDispatcherTestOptionsModel := new(appidmanagementv4.PostSmsDispatcherTestOptions)
-				postSmsDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
-				postSmsDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the PostSMSDispatcherTestOptions model
+				postSMSDispatcherTestOptionsModel := new(appidmanagementv4.PostSMSDispatcherTestOptions)
+				postSMSDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
+				postSMSDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.PostSmsDispatcherTestWithContext(ctx, postSmsDispatcherTestOptionsModel)
+				_, _, operationErr := appIDManagementService.PostSMSDispatcherTestWithContext(ctx, postSMSDispatcherTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.PostSmsDispatcherTest(postSmsDispatcherTestOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.PostSMSDispatcherTest(postSMSDispatcherTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -10439,7 +10439,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.PostSmsDispatcherTestWithContext(ctx, postSmsDispatcherTestOptionsModel)
+				_, _, operationErr = appIDManagementService.PostSMSDispatcherTestWithContext(ctx, postSMSDispatcherTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -10453,7 +10453,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(postSmsDispatcherTestPath))
+					Expect(req.URL.EscapedPath()).To(Equal(postSMSDispatcherTestPath))
 					Expect(req.Method).To(Equal("POST"))
 
 					// For gzip-disabled operation, verify Content-Encoding is not set.
@@ -10478,58 +10478,58 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					fmt.Fprintf(res, "%s", `{"confirmationCode": 16, "phoneNumber": "PhoneNumber"}`)
 				}))
 			})
-			It(`Invoke PostSmsDispatcherTest successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke PostSMSDispatcherTest successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.PostSmsDispatcherTest(nil)
+				result, response, operationErr := appIDManagementService.PostSMSDispatcherTest(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
-				// Construct an instance of the PostSmsDispatcherTestOptions model
-				postSmsDispatcherTestOptionsModel := new(appidmanagementv4.PostSmsDispatcherTestOptions)
-				postSmsDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
-				postSmsDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the PostSMSDispatcherTestOptions model
+				postSMSDispatcherTestOptionsModel := new(appidmanagementv4.PostSMSDispatcherTestOptions)
+				postSMSDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
+				postSMSDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.PostSmsDispatcherTest(postSmsDispatcherTestOptionsModel)
+				result, response, operationErr = appIDManagementService.PostSMSDispatcherTest(postSMSDispatcherTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke PostSmsDispatcherTest with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke PostSMSDispatcherTest with error: Operation validation and request error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the PostSmsDispatcherTestOptions model
-				postSmsDispatcherTestOptionsModel := new(appidmanagementv4.PostSmsDispatcherTestOptions)
-				postSmsDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
-				postSmsDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the PostSMSDispatcherTestOptions model
+				postSMSDispatcherTestOptionsModel := new(appidmanagementv4.PostSMSDispatcherTestOptions)
+				postSMSDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
+				postSMSDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.PostSmsDispatcherTest(postSmsDispatcherTestOptionsModel)
+				result, response, operationErr := appIDManagementService.PostSMSDispatcherTest(postSMSDispatcherTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
-				// Construct a second instance of the PostSmsDispatcherTestOptions model with no property values
-				postSmsDispatcherTestOptionsModelNew := new(appidmanagementv4.PostSmsDispatcherTestOptions)
+				// Construct a second instance of the PostSMSDispatcherTestOptions model with no property values
+				postSMSDispatcherTestOptionsModelNew := new(appidmanagementv4.PostSMSDispatcherTestOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.PostSmsDispatcherTest(postSmsDispatcherTestOptionsModelNew)
+				result, response, operationErr = appIDManagementService.PostSMSDispatcherTest(postSMSDispatcherTestOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -10547,22 +10547,22 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					res.WriteHeader(200)
 				}))
 			})
-			It(`Invoke PostSmsDispatcherTest successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke PostSMSDispatcherTest successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the PostSmsDispatcherTestOptions model
-				postSmsDispatcherTestOptionsModel := new(appidmanagementv4.PostSmsDispatcherTestOptions)
-				postSmsDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
-				postSmsDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Construct an instance of the PostSMSDispatcherTestOptions model
+				postSMSDispatcherTestOptionsModel := new(appidmanagementv4.PostSMSDispatcherTestOptions)
+				postSMSDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
+				postSMSDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.PostSmsDispatcherTest(postSmsDispatcherTestOptionsModel)
+				result, response, operationErr := appIDManagementService.PostSMSDispatcherTest(postSMSDispatcherTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -10591,26 +10591,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryAdvancedPasswordManagement with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.GetCloudDirectoryAdvancedPasswordManagementOptions)
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -10642,14 +10642,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryAdvancedPasswordManagement successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.GetCloudDirectoryAdvancedPasswordManagementOptions)
@@ -10658,13 +10658,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetCloudDirectoryAdvancedPasswordManagementWithContext(ctx, getCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				_, _, operationErr := appIDManagementService.GetCloudDirectoryAdvancedPasswordManagementWithContext(ctx, getCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -10672,7 +10672,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetCloudDirectoryAdvancedPasswordManagementWithContext(ctx, getCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				_, _, operationErr = appIDManagementService.GetCloudDirectoryAdvancedPasswordManagementWithContext(ctx, getCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -10696,16 +10696,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryAdvancedPasswordManagement successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryAdvancedPasswordManagement(nil)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryAdvancedPasswordManagement(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -10715,28 +10715,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetCloudDirectoryAdvancedPasswordManagement with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.GetCloudDirectoryAdvancedPasswordManagementOptions)
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -10756,20 +10756,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryAdvancedPasswordManagement successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.GetCloudDirectoryAdvancedPasswordManagementOptions)
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -10798,13 +10798,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryAdvancedPasswordManagement with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuseConfig model
 				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig)
@@ -10861,14 +10861,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.AdvancedPasswordManagement = apmSchemaAdvancedPasswordManagementModel
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -10916,14 +10916,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryAdvancedPasswordManagement successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuseConfig model
 				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig)
@@ -10983,13 +10983,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.SetCloudDirectoryAdvancedPasswordManagementWithContext(ctx, setCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				_, _, operationErr := appIDManagementService.SetCloudDirectoryAdvancedPasswordManagementWithContext(ctx, setCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -10997,7 +10997,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.SetCloudDirectoryAdvancedPasswordManagementWithContext(ctx, setCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				_, _, operationErr = appIDManagementService.SetCloudDirectoryAdvancedPasswordManagementWithContext(ctx, setCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -11037,16 +11037,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryAdvancedPasswordManagement successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryAdvancedPasswordManagement(nil)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryAdvancedPasswordManagement(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -11107,20 +11107,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke SetCloudDirectoryAdvancedPasswordManagement with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuseConfig model
 				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig)
@@ -11177,9 +11177,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.AdvancedPasswordManagement = apmSchemaAdvancedPasswordManagementModel
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -11187,7 +11187,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the SetCloudDirectoryAdvancedPasswordManagementOptions model with no property values
 				setCloudDirectoryAdvancedPasswordManagementOptionsModelNew := new(appidmanagementv4.SetCloudDirectoryAdvancedPasswordManagementOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModelNew)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -11206,13 +11206,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryAdvancedPasswordManagement successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuseConfig model
 				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig)
@@ -11270,7 +11270,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -11298,16 +11298,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetAuditStatus successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.GetAuditStatus(nil)
+				response, operationErr := appIDManagementService.GetAuditStatus(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -11316,26 +11316,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.GetAuditStatus(getAuditStatusOptionsModel)
+				response, operationErr = appIDManagementService.GetAuditStatus(getAuditStatusOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke GetAuditStatus with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetAuditStatusOptions model
 				getAuditStatusOptionsModel := new(appidmanagementv4.GetAuditStatusOptions)
 				getAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.GetAuditStatus(getAuditStatusOptionsModel)
+				response, operationErr := appIDManagementService.GetAuditStatus(getAuditStatusOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -11377,16 +11377,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetAuditStatus successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.SetAuditStatus(nil)
+				response, operationErr := appIDManagementService.SetAuditStatus(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -11396,34 +11396,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.SetAuditStatus(setAuditStatusOptionsModel)
+				response, operationErr = appIDManagementService.SetAuditStatus(setAuditStatusOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke SetAuditStatus with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetAuditStatusOptions model
 				setAuditStatusOptionsModel := new(appidmanagementv4.SetAuditStatusOptions)
 				setAuditStatusOptionsModel.IsActive = core.BoolPtr(true)
 				setAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.SetAuditStatus(setAuditStatusOptionsModel)
+				response, operationErr := appIDManagementService.SetAuditStatus(setAuditStatusOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the SetAuditStatusOptions model with no property values
 				setAuditStatusOptionsModelNew := new(appidmanagementv4.SetAuditStatusOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.SetAuditStatus(setAuditStatusOptionsModelNew)
+				response, operationErr = appIDManagementService.SetAuditStatus(setAuditStatusOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -11449,26 +11449,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListChannels with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListChannelsOptions model
 				listChannelsOptionsModel := new(appidmanagementv4.ListChannelsOptions)
 				listChannelsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.ListChannels(listChannelsOptionsModel)
+				result, response, operationErr := appIDManagementService.ListChannels(listChannelsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.ListChannels(listChannelsOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.ListChannels(listChannelsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -11500,14 +11500,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListChannels successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the ListChannelsOptions model
 				listChannelsOptionsModel := new(appidmanagementv4.ListChannelsOptions)
@@ -11516,13 +11516,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.ListChannelsWithContext(ctx, listChannelsOptionsModel)
+				_, _, operationErr := appIDManagementService.ListChannelsWithContext(ctx, listChannelsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.ListChannels(listChannelsOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.ListChannels(listChannelsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -11530,7 +11530,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.ListChannelsWithContext(ctx, listChannelsOptionsModel)
+				_, _, operationErr = appIDManagementService.ListChannelsWithContext(ctx, listChannelsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -11554,16 +11554,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListChannels successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.ListChannels(nil)
+				result, response, operationErr := appIDManagementService.ListChannels(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -11573,28 +11573,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				listChannelsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.ListChannels(listChannelsOptionsModel)
+				result, response, operationErr = appIDManagementService.ListChannels(listChannelsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke ListChannels with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListChannelsOptions model
 				listChannelsOptionsModel := new(appidmanagementv4.ListChannelsOptions)
 				listChannelsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.ListChannels(listChannelsOptionsModel)
+				result, response, operationErr := appIDManagementService.ListChannels(listChannelsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -11614,20 +11614,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListChannels successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListChannelsOptions model
 				listChannelsOptionsModel := new(appidmanagementv4.ListChannelsOptions)
 				listChannelsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.ListChannels(listChannelsOptionsModel)
+				result, response, operationErr := appIDManagementService.ListChannels(listChannelsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -11656,27 +11656,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetChannel with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetChannelOptions model
 				getChannelOptionsModel := new(appidmanagementv4.GetChannelOptions)
 				getChannelOptionsModel.Channel = core.StringPtr("email")
 				getChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetChannel(getChannelOptionsModel)
+				result, response, operationErr := appIDManagementService.GetChannel(getChannelOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetChannel(getChannelOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetChannel(getChannelOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -11708,14 +11708,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetChannel successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetChannelOptions model
 				getChannelOptionsModel := new(appidmanagementv4.GetChannelOptions)
@@ -11725,13 +11725,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetChannelWithContext(ctx, getChannelOptionsModel)
+				_, _, operationErr := appIDManagementService.GetChannelWithContext(ctx, getChannelOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetChannel(getChannelOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetChannel(getChannelOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -11739,7 +11739,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetChannelWithContext(ctx, getChannelOptionsModel)
+				_, _, operationErr = appIDManagementService.GetChannelWithContext(ctx, getChannelOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -11763,16 +11763,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetChannel successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetChannel(nil)
+				result, response, operationErr := appIDManagementService.GetChannel(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -11783,29 +11783,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetChannel(getChannelOptionsModel)
+				result, response, operationErr = appIDManagementService.GetChannel(getChannelOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetChannel with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetChannelOptions model
 				getChannelOptionsModel := new(appidmanagementv4.GetChannelOptions)
 				getChannelOptionsModel.Channel = core.StringPtr("email")
 				getChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetChannel(getChannelOptionsModel)
+				result, response, operationErr := appIDManagementService.GetChannel(getChannelOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -11813,7 +11813,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the GetChannelOptions model with no property values
 				getChannelOptionsModelNew := new(appidmanagementv4.GetChannelOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.GetChannel(getChannelOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetChannel(getChannelOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -11832,13 +11832,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetChannel successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetChannelOptions model
 				getChannelOptionsModel := new(appidmanagementv4.GetChannelOptions)
@@ -11846,7 +11846,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetChannel(getChannelOptionsModel)
+				result, response, operationErr := appIDManagementService.GetChannel(getChannelOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -11875,13 +11875,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateChannel with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateChannelOptions model
 				updateChannelOptionsModel := new(appidmanagementv4.UpdateChannelOptions)
@@ -11890,14 +11890,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateChannelOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
 				updateChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UpdateChannel(updateChannelOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateChannel(updateChannelOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UpdateChannel(updateChannelOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UpdateChannel(updateChannelOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -11945,14 +11945,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateChannel successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UpdateChannelOptions model
 				updateChannelOptionsModel := new(appidmanagementv4.UpdateChannelOptions)
@@ -11964,13 +11964,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UpdateChannelWithContext(ctx, updateChannelOptionsModel)
+				_, _, operationErr := appIDManagementService.UpdateChannelWithContext(ctx, updateChannelOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UpdateChannel(updateChannelOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UpdateChannel(updateChannelOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -11978,7 +11978,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UpdateChannelWithContext(ctx, updateChannelOptionsModel)
+				_, _, operationErr = appIDManagementService.UpdateChannelWithContext(ctx, updateChannelOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -12018,16 +12018,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateChannel successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UpdateChannel(nil)
+				result, response, operationErr := appIDManagementService.UpdateChannel(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -12040,20 +12040,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UpdateChannel(updateChannelOptionsModel)
+				result, response, operationErr = appIDManagementService.UpdateChannel(updateChannelOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UpdateChannel with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateChannelOptions model
 				updateChannelOptionsModel := new(appidmanagementv4.UpdateChannelOptions)
@@ -12062,9 +12062,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateChannelOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
 				updateChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UpdateChannel(updateChannelOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateChannel(updateChannelOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -12072,7 +12072,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the UpdateChannelOptions model with no property values
 				updateChannelOptionsModelNew := new(appidmanagementv4.UpdateChannelOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UpdateChannel(updateChannelOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UpdateChannel(updateChannelOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -12091,13 +12091,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateChannel successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateChannelOptions model
 				updateChannelOptionsModel := new(appidmanagementv4.UpdateChannelOptions)
@@ -12107,7 +12107,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UpdateChannel(updateChannelOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateChannel(updateChannelOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -12136,27 +12136,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetExtensionConfig with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetExtensionConfigOptions model
 				getExtensionConfigOptionsModel := new(appidmanagementv4.GetExtensionConfigOptions)
 				getExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				getExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -12188,14 +12188,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetExtensionConfig successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetExtensionConfigOptions model
 				getExtensionConfigOptionsModel := new(appidmanagementv4.GetExtensionConfigOptions)
@@ -12205,13 +12205,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetExtensionConfigWithContext(ctx, getExtensionConfigOptionsModel)
+				_, _, operationErr := appIDManagementService.GetExtensionConfigWithContext(ctx, getExtensionConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -12219,7 +12219,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetExtensionConfigWithContext(ctx, getExtensionConfigOptionsModel)
+				_, _, operationErr = appIDManagementService.GetExtensionConfigWithContext(ctx, getExtensionConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -12243,16 +12243,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetExtensionConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetExtensionConfig(nil)
+				result, response, operationErr := appIDManagementService.GetExtensionConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -12263,29 +12263,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
+				result, response, operationErr = appIDManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetExtensionConfig with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetExtensionConfigOptions model
 				getExtensionConfigOptionsModel := new(appidmanagementv4.GetExtensionConfigOptions)
 				getExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				getExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -12293,7 +12293,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the GetExtensionConfigOptions model with no property values
 				getExtensionConfigOptionsModelNew := new(appidmanagementv4.GetExtensionConfigOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.GetExtensionConfig(getExtensionConfigOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetExtensionConfig(getExtensionConfigOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -12312,13 +12312,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetExtensionConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetExtensionConfigOptions model
 				getExtensionConfigOptionsModel := new(appidmanagementv4.GetExtensionConfigOptions)
@@ -12326,7 +12326,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetExtensionConfig(getExtensionConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -12355,13 +12355,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateExtensionConfig with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateExtensionConfigConfig model
 				updateExtensionConfigConfigModel := new(appidmanagementv4.UpdateExtensionConfigConfig)
@@ -12375,14 +12375,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateExtensionConfigOptionsModel.Config = updateExtensionConfigConfigModel
 				updateExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -12430,14 +12430,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateExtensionConfig successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UpdateExtensionConfigConfig model
 				updateExtensionConfigConfigModel := new(appidmanagementv4.UpdateExtensionConfigConfig)
@@ -12454,13 +12454,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UpdateExtensionConfigWithContext(ctx, updateExtensionConfigOptionsModel)
+				_, _, operationErr := appIDManagementService.UpdateExtensionConfigWithContext(ctx, updateExtensionConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -12468,7 +12468,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UpdateExtensionConfigWithContext(ctx, updateExtensionConfigOptionsModel)
+				_, _, operationErr = appIDManagementService.UpdateExtensionConfigWithContext(ctx, updateExtensionConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -12508,16 +12508,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateExtensionConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UpdateExtensionConfig(nil)
+				result, response, operationErr := appIDManagementService.UpdateExtensionConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -12535,20 +12535,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
+				result, response, operationErr = appIDManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UpdateExtensionConfig with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateExtensionConfigConfig model
 				updateExtensionConfigConfigModel := new(appidmanagementv4.UpdateExtensionConfigConfig)
@@ -12562,9 +12562,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateExtensionConfigOptionsModel.Config = updateExtensionConfigConfigModel
 				updateExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -12572,7 +12572,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the UpdateExtensionConfigOptions model with no property values
 				updateExtensionConfigOptionsModelNew := new(appidmanagementv4.UpdateExtensionConfigOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -12591,13 +12591,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateExtensionConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateExtensionConfigConfig model
 				updateExtensionConfigConfigModel := new(appidmanagementv4.UpdateExtensionConfigConfig)
@@ -12612,7 +12612,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateExtensionConfig(updateExtensionConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -12641,13 +12641,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateExtensionActive with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateExtensionActiveOptions model
 				updateExtensionActiveOptionsModel := new(appidmanagementv4.UpdateExtensionActiveOptions)
@@ -12656,14 +12656,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateExtensionActiveOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
 				updateExtensionActiveOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -12711,14 +12711,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateExtensionActive successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UpdateExtensionActiveOptions model
 				updateExtensionActiveOptionsModel := new(appidmanagementv4.UpdateExtensionActiveOptions)
@@ -12730,13 +12730,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UpdateExtensionActiveWithContext(ctx, updateExtensionActiveOptionsModel)
+				_, _, operationErr := appIDManagementService.UpdateExtensionActiveWithContext(ctx, updateExtensionActiveOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -12744,7 +12744,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UpdateExtensionActiveWithContext(ctx, updateExtensionActiveOptionsModel)
+				_, _, operationErr = appIDManagementService.UpdateExtensionActiveWithContext(ctx, updateExtensionActiveOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -12784,16 +12784,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateExtensionActive successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UpdateExtensionActive(nil)
+				result, response, operationErr := appIDManagementService.UpdateExtensionActive(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -12806,20 +12806,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateExtensionActiveOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
+				result, response, operationErr = appIDManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UpdateExtensionActive with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateExtensionActiveOptions model
 				updateExtensionActiveOptionsModel := new(appidmanagementv4.UpdateExtensionActiveOptions)
@@ -12828,9 +12828,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateExtensionActiveOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
 				updateExtensionActiveOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -12838,7 +12838,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the UpdateExtensionActiveOptions model with no property values
 				updateExtensionActiveOptionsModelNew := new(appidmanagementv4.UpdateExtensionActiveOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -12857,13 +12857,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateExtensionActive successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateExtensionActiveOptions model
 				updateExtensionActiveOptionsModel := new(appidmanagementv4.UpdateExtensionActiveOptions)
@@ -12873,7 +12873,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateExtensionActiveOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateExtensionActive(updateExtensionActiveOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -12902,27 +12902,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostExtensionsTest with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostExtensionsTestOptions model
 				postExtensionsTestOptionsModel := new(appidmanagementv4.PostExtensionsTestOptions)
 				postExtensionsTestOptionsModel.Name = core.StringPtr("premfa")
 				postExtensionsTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
+				result, response, operationErr := appIDManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -12954,14 +12954,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostExtensionsTest successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the PostExtensionsTestOptions model
 				postExtensionsTestOptionsModel := new(appidmanagementv4.PostExtensionsTestOptions)
@@ -12971,13 +12971,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.PostExtensionsTestWithContext(ctx, postExtensionsTestOptionsModel)
+				_, _, operationErr := appIDManagementService.PostExtensionsTestWithContext(ctx, postExtensionsTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -12985,7 +12985,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.PostExtensionsTestWithContext(ctx, postExtensionsTestOptionsModel)
+				_, _, operationErr = appIDManagementService.PostExtensionsTestWithContext(ctx, postExtensionsTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -13009,16 +13009,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostExtensionsTest successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.PostExtensionsTest(nil)
+				result, response, operationErr := appIDManagementService.PostExtensionsTest(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -13029,29 +13029,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				postExtensionsTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
+				result, response, operationErr = appIDManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke PostExtensionsTest with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostExtensionsTestOptions model
 				postExtensionsTestOptionsModel := new(appidmanagementv4.PostExtensionsTestOptions)
 				postExtensionsTestOptionsModel.Name = core.StringPtr("premfa")
 				postExtensionsTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
+				result, response, operationErr := appIDManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -13059,7 +13059,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the PostExtensionsTestOptions model with no property values
 				postExtensionsTestOptionsModelNew := new(appidmanagementv4.PostExtensionsTestOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.PostExtensionsTest(postExtensionsTestOptionsModelNew)
+				result, response, operationErr = appIDManagementService.PostExtensionsTest(postExtensionsTestOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -13078,13 +13078,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke PostExtensionsTest successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostExtensionsTestOptions model
 				postExtensionsTestOptionsModel := new(appidmanagementv4.PostExtensionsTestOptions)
@@ -13092,7 +13092,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				postExtensionsTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
+				result, response, operationErr := appIDManagementService.PostExtensionsTest(postExtensionsTestOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -13106,14 +13106,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 	})
 	Describe(`GetMFAConfig(getMFAConfigOptions *GetMFAConfigOptions) - Operation response error`, func() {
 		tenantID := "testString"
-		getMfaConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
+		getMFAConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(getMfaConfigPath))
+					Expect(req.URL.EscapedPath()).To(Equal(getMFAConfigPath))
 					Expect(req.Method).To(Equal("GET"))
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
@@ -13121,26 +13121,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetMFAConfig with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMFAConfigOptions model
-				getMfaConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
-				getMfaConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getMFAConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
+				getMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetMFAConfig(getMfaConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetMFAConfig(getMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetMFAConfig(getMfaConfigOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetMFAConfig(getMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -13152,14 +13152,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 	})
 	Describe(`GetMFAConfig(getMFAConfigOptions *GetMFAConfigOptions)`, func() {
 		tenantID := "testString"
-		getMfaConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
+		getMFAConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(getMfaConfigPath))
+					Expect(req.URL.EscapedPath()).To(Equal(getMFAConfigPath))
 					Expect(req.Method).To(Equal("GET"))
 
 					// Sleep a short time to support a timeout test
@@ -13172,29 +13172,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetMFAConfig successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetMFAConfigOptions model
-				getMfaConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
-				getMfaConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getMFAConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
+				getMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetMFAConfigWithContext(ctx, getMfaConfigOptionsModel)
+				_, _, operationErr := appIDManagementService.GetMFAConfigWithContext(ctx, getMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetMFAConfig(getMfaConfigOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetMFAConfig(getMFAConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -13202,7 +13202,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetMFAConfigWithContext(ctx, getMfaConfigOptionsModel)
+				_, _, operationErr = appIDManagementService.GetMFAConfigWithContext(ctx, getMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -13216,7 +13216,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(getMfaConfigPath))
+					Expect(req.URL.EscapedPath()).To(Equal(getMFAConfigPath))
 					Expect(req.Method).To(Equal("GET"))
 
 					// Set mock response
@@ -13226,47 +13226,47 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetMFAConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetMFAConfig(nil)
+				result, response, operationErr := appIDManagementService.GetMFAConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
 				// Construct an instance of the GetMFAConfigOptions model
-				getMfaConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
-				getMfaConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getMFAConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
+				getMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetMFAConfig(getMfaConfigOptionsModel)
+				result, response, operationErr = appIDManagementService.GetMFAConfig(getMFAConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetMFAConfig with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMFAConfigOptions model
-				getMfaConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
-				getMfaConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getMFAConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
+				getMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetMFAConfig(getMfaConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetMFAConfig(getMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -13286,20 +13286,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetMFAConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMFAConfigOptions model
-				getMfaConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
-				getMfaConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getMFAConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
+				getMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetMFAConfig(getMfaConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.GetMFAConfig(getMFAConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -13313,14 +13313,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 	})
 	Describe(`UpdateMFAConfig(updateMFAConfigOptions *UpdateMFAConfigOptions) - Operation response error`, func() {
 		tenantID := "testString"
-		updateMfaConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
+		updateMFAConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(updateMfaConfigPath))
+					Expect(req.URL.EscapedPath()).To(Equal(updateMFAConfigPath))
 					Expect(req.Method).To(Equal("PUT"))
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
@@ -13328,28 +13328,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateMFAConfig with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateMFAConfigOptions model
-				updateMfaConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
-				updateMfaConfigOptionsModel.IsActive = core.BoolPtr(true)
-				updateMfaConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
-				updateMfaConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				updateMFAConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModel.IsActive = core.BoolPtr(true)
+				updateMFAConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
+				updateMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UpdateMFAConfig(updateMfaConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateMFAConfig(updateMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UpdateMFAConfig(updateMfaConfigOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UpdateMFAConfig(updateMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -13361,14 +13361,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 	})
 	Describe(`UpdateMFAConfig(updateMFAConfigOptions *UpdateMFAConfigOptions)`, func() {
 		tenantID := "testString"
-		updateMfaConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
+		updateMFAConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(updateMfaConfigPath))
+					Expect(req.URL.EscapedPath()).To(Equal(updateMFAConfigPath))
 					Expect(req.Method).To(Equal("PUT"))
 
 					// For gzip-disabled operation, verify Content-Encoding is not set.
@@ -13397,31 +13397,31 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateMFAConfig successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UpdateMFAConfigOptions model
-				updateMfaConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
-				updateMfaConfigOptionsModel.IsActive = core.BoolPtr(true)
-				updateMfaConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
-				updateMfaConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				updateMFAConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModel.IsActive = core.BoolPtr(true)
+				updateMFAConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
+				updateMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UpdateMFAConfigWithContext(ctx, updateMfaConfigOptionsModel)
+				_, _, operationErr := appIDManagementService.UpdateMFAConfigWithContext(ctx, updateMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UpdateMFAConfig(updateMfaConfigOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UpdateMFAConfig(updateMFAConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -13429,7 +13429,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UpdateMFAConfigWithContext(ctx, updateMfaConfigOptionsModel)
+				_, _, operationErr = appIDManagementService.UpdateMFAConfigWithContext(ctx, updateMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -13443,7 +13443,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(updateMfaConfigPath))
+					Expect(req.URL.EscapedPath()).To(Equal(updateMFAConfigPath))
 					Expect(req.Method).To(Equal("PUT"))
 
 					// For gzip-disabled operation, verify Content-Encoding is not set.
@@ -13469,59 +13469,59 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateMFAConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UpdateMFAConfig(nil)
+				result, response, operationErr := appIDManagementService.UpdateMFAConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
 				// Construct an instance of the UpdateMFAConfigOptions model
-				updateMfaConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
-				updateMfaConfigOptionsModel.IsActive = core.BoolPtr(true)
-				updateMfaConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
-				updateMfaConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				updateMFAConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModel.IsActive = core.BoolPtr(true)
+				updateMFAConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
+				updateMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UpdateMFAConfig(updateMfaConfigOptionsModel)
+				result, response, operationErr = appIDManagementService.UpdateMFAConfig(updateMFAConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UpdateMFAConfig with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateMFAConfigOptions model
-				updateMfaConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
-				updateMfaConfigOptionsModel.IsActive = core.BoolPtr(true)
-				updateMfaConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
-				updateMfaConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				updateMFAConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModel.IsActive = core.BoolPtr(true)
+				updateMFAConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
+				updateMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UpdateMFAConfig(updateMfaConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateMFAConfig(updateMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 				// Construct a second instance of the UpdateMFAConfigOptions model with no property values
-				updateMfaConfigOptionsModelNew := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModelNew := new(appidmanagementv4.UpdateMFAConfigOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UpdateMFAConfig(updateMfaConfigOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UpdateMFAConfig(updateMFAConfigOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -13540,22 +13540,22 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateMFAConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateMFAConfigOptions model
-				updateMfaConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
-				updateMfaConfigOptionsModel.IsActive = core.BoolPtr(true)
-				updateMfaConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
-				updateMfaConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				updateMFAConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModel.IsActive = core.BoolPtr(true)
+				updateMFAConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
+				updateMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UpdateMFAConfig(updateMfaConfigOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateMFAConfig(updateMFAConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -13583,16 +13583,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetSSOConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.GetSSOConfig(nil)
+				response, operationErr := appIDManagementService.GetSSOConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -13601,26 +13601,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.GetSSOConfig(getSSOConfigOptionsModel)
+				response, operationErr = appIDManagementService.GetSSOConfig(getSSOConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke GetSSOConfig with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSSOConfigOptions model
 				getSSOConfigOptionsModel := new(appidmanagementv4.GetSSOConfigOptions)
 				getSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.GetSSOConfig(getSSOConfigOptionsModel)
+				response, operationErr := appIDManagementService.GetSSOConfig(getSSOConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -13662,16 +13662,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateSSOConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UpdateSSOConfig(nil)
+				response, operationErr := appIDManagementService.UpdateSSOConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -13683,18 +13683,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UpdateSSOConfig(updateSSOConfigOptionsModel)
+				response, operationErr = appIDManagementService.UpdateSSOConfig(updateSSOConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UpdateSSOConfig with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateSSOConfigOptions model
 				updateSSOConfigOptionsModel := new(appidmanagementv4.UpdateSSOConfigOptions)
@@ -13703,16 +13703,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateSSOConfigOptionsModel.LogoutRedirectUris = []string{"http://localhost:3000/logout-callback"}
 				updateSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UpdateSSOConfig(updateSSOConfigOptionsModel)
+				response, operationErr := appIDManagementService.UpdateSSOConfig(updateSSOConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UpdateSSOConfigOptions model with no property values
 				updateSSOConfigOptionsModelNew := new(appidmanagementv4.UpdateSSOConfigOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UpdateSSOConfig(updateSSOConfigOptionsModelNew)
+				response, operationErr = appIDManagementService.UpdateSSOConfig(updateSSOConfigOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -13737,16 +13737,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetRateLimitConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.GetRateLimitConfig(nil)
+				response, operationErr := appIDManagementService.GetRateLimitConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -13755,26 +13755,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getRateLimitConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.GetRateLimitConfig(getRateLimitConfigOptionsModel)
+				response, operationErr = appIDManagementService.GetRateLimitConfig(getRateLimitConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke GetRateLimitConfig with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRateLimitConfigOptions model
 				getRateLimitConfigOptionsModel := new(appidmanagementv4.GetRateLimitConfigOptions)
 				getRateLimitConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.GetRateLimitConfig(getRateLimitConfigOptionsModel)
+				response, operationErr := appIDManagementService.GetRateLimitConfig(getRateLimitConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -13816,16 +13816,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateRateLimitConfig successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UpdateRateLimitConfig(nil)
+				response, operationErr := appIDManagementService.UpdateRateLimitConfig(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -13836,18 +13836,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateRateLimitConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UpdateRateLimitConfig(updateRateLimitConfigOptionsModel)
+				response, operationErr = appIDManagementService.UpdateRateLimitConfig(updateRateLimitConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UpdateRateLimitConfig with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateRateLimitConfigOptions model
 				updateRateLimitConfigOptionsModel := new(appidmanagementv4.UpdateRateLimitConfigOptions)
@@ -13855,16 +13855,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateRateLimitConfigOptionsModel.SignInLimitPerMinute = core.Int64Ptr(int64(60))
 				updateRateLimitConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UpdateRateLimitConfig(updateRateLimitConfigOptionsModel)
+				response, operationErr := appIDManagementService.UpdateRateLimitConfig(updateRateLimitConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UpdateRateLimitConfigOptions model with no property values
 				updateRateLimitConfigOptionsModelNew := new(appidmanagementv4.UpdateRateLimitConfigOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UpdateRateLimitConfig(updateRateLimitConfigOptionsModelNew)
+				response, operationErr = appIDManagementService.UpdateRateLimitConfig(updateRateLimitConfigOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -13890,26 +13890,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetFacebookIDP with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetFacebookIDPOptions model
 				getFacebookIDPOptionsModel := new(appidmanagementv4.GetFacebookIDPOptions)
 				getFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -13941,14 +13941,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetFacebookIDP successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetFacebookIDPOptions model
 				getFacebookIDPOptionsModel := new(appidmanagementv4.GetFacebookIDPOptions)
@@ -13957,13 +13957,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetFacebookIDPWithContext(ctx, getFacebookIDPOptionsModel)
+				_, _, operationErr := appIDManagementService.GetFacebookIDPWithContext(ctx, getFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -13971,7 +13971,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetFacebookIDPWithContext(ctx, getFacebookIDPOptionsModel)
+				_, _, operationErr = appIDManagementService.GetFacebookIDPWithContext(ctx, getFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -13995,16 +13995,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetFacebookIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetFacebookIDP(nil)
+				result, response, operationErr := appIDManagementService.GetFacebookIDP(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -14014,28 +14014,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
+				result, response, operationErr = appIDManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetFacebookIDP with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetFacebookIDPOptions model
 				getFacebookIDPOptionsModel := new(appidmanagementv4.GetFacebookIDPOptions)
 				getFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -14055,20 +14055,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetFacebookIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetFacebookIDPOptions model
 				getFacebookIDPOptionsModel := new(appidmanagementv4.GetFacebookIDPOptions)
 				getFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -14097,13 +14097,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetFacebookIDP with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the FacebookGoogleConfigParamsConfig model
 				facebookGoogleConfigParamsConfigModel := new(appidmanagementv4.FacebookGoogleConfigParamsConfig)
@@ -14121,14 +14121,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setFacebookIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -14176,14 +14176,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetFacebookIDP successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the FacebookGoogleConfigParamsConfig model
 				facebookGoogleConfigParamsConfigModel := new(appidmanagementv4.FacebookGoogleConfigParamsConfig)
@@ -14204,13 +14204,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.SetFacebookIDPWithContext(ctx, setFacebookIDPOptionsModel)
+				_, _, operationErr := appIDManagementService.SetFacebookIDPWithContext(ctx, setFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -14218,7 +14218,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.SetFacebookIDPWithContext(ctx, setFacebookIDPOptionsModel)
+				_, _, operationErr = appIDManagementService.SetFacebookIDPWithContext(ctx, setFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -14258,16 +14258,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetFacebookIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.SetFacebookIDP(nil)
+				result, response, operationErr := appIDManagementService.SetFacebookIDP(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -14289,20 +14289,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
+				result, response, operationErr = appIDManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke SetFacebookIDP with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the FacebookGoogleConfigParamsConfig model
 				facebookGoogleConfigParamsConfigModel := new(appidmanagementv4.FacebookGoogleConfigParamsConfig)
@@ -14320,9 +14320,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setFacebookIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -14330,7 +14330,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the SetFacebookIDPOptions model with no property values
 				setFacebookIDPOptionsModelNew := new(appidmanagementv4.SetFacebookIDPOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.SetFacebookIDP(setFacebookIDPOptionsModelNew)
+				result, response, operationErr = appIDManagementService.SetFacebookIDP(setFacebookIDPOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -14349,13 +14349,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetFacebookIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the FacebookGoogleConfigParamsConfig model
 				facebookGoogleConfigParamsConfigModel := new(appidmanagementv4.FacebookGoogleConfigParamsConfig)
@@ -14374,7 +14374,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetFacebookIDP(setFacebookIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -14403,26 +14403,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetGoogleIDP with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetGoogleIDPOptions model
 				getGoogleIDPOptionsModel := new(appidmanagementv4.GetGoogleIDPOptions)
 				getGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -14454,14 +14454,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetGoogleIDP successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetGoogleIDPOptions model
 				getGoogleIDPOptionsModel := new(appidmanagementv4.GetGoogleIDPOptions)
@@ -14470,13 +14470,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetGoogleIDPWithContext(ctx, getGoogleIDPOptionsModel)
+				_, _, operationErr := appIDManagementService.GetGoogleIDPWithContext(ctx, getGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -14484,7 +14484,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetGoogleIDPWithContext(ctx, getGoogleIDPOptionsModel)
+				_, _, operationErr = appIDManagementService.GetGoogleIDPWithContext(ctx, getGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -14508,16 +14508,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetGoogleIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetGoogleIDP(nil)
+				result, response, operationErr := appIDManagementService.GetGoogleIDP(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -14527,28 +14527,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
+				result, response, operationErr = appIDManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetGoogleIDP with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetGoogleIDPOptions model
 				getGoogleIDPOptionsModel := new(appidmanagementv4.GetGoogleIDPOptions)
 				getGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -14568,20 +14568,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetGoogleIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetGoogleIDPOptions model
 				getGoogleIDPOptionsModel := new(appidmanagementv4.GetGoogleIDPOptions)
 				getGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -14610,13 +14610,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetGoogleIDP with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the FacebookGoogleConfigParamsConfig model
 				facebookGoogleConfigParamsConfigModel := new(appidmanagementv4.FacebookGoogleConfigParamsConfig)
@@ -14634,14 +14634,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setGoogleIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -14689,14 +14689,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetGoogleIDP successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the FacebookGoogleConfigParamsConfig model
 				facebookGoogleConfigParamsConfigModel := new(appidmanagementv4.FacebookGoogleConfigParamsConfig)
@@ -14717,13 +14717,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.SetGoogleIDPWithContext(ctx, setGoogleIDPOptionsModel)
+				_, _, operationErr := appIDManagementService.SetGoogleIDPWithContext(ctx, setGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -14731,7 +14731,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.SetGoogleIDPWithContext(ctx, setGoogleIDPOptionsModel)
+				_, _, operationErr = appIDManagementService.SetGoogleIDPWithContext(ctx, setGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -14771,16 +14771,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetGoogleIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.SetGoogleIDP(nil)
+				result, response, operationErr := appIDManagementService.SetGoogleIDP(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -14802,20 +14802,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
+				result, response, operationErr = appIDManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke SetGoogleIDP with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the FacebookGoogleConfigParamsConfig model
 				facebookGoogleConfigParamsConfigModel := new(appidmanagementv4.FacebookGoogleConfigParamsConfig)
@@ -14833,9 +14833,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setGoogleIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -14843,7 +14843,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the SetGoogleIDPOptions model with no property values
 				setGoogleIDPOptionsModelNew := new(appidmanagementv4.SetGoogleIDPOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.SetGoogleIDP(setGoogleIDPOptionsModelNew)
+				result, response, operationErr = appIDManagementService.SetGoogleIDP(setGoogleIDPOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -14862,13 +14862,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetGoogleIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the FacebookGoogleConfigParamsConfig model
 				facebookGoogleConfigParamsConfigModel := new(appidmanagementv4.FacebookGoogleConfigParamsConfig)
@@ -14887,7 +14887,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetGoogleIDP(setGoogleIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -14916,26 +14916,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCustomIDP with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCustomIDPOptions model
 				getCustomIDPOptionsModel := new(appidmanagementv4.GetCustomIDPOptions)
 				getCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetCustomIDP(getCustomIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCustomIDP(getCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetCustomIDP(getCustomIDPOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetCustomIDP(getCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -14967,14 +14967,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCustomIDP successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetCustomIDPOptions model
 				getCustomIDPOptionsModel := new(appidmanagementv4.GetCustomIDPOptions)
@@ -14983,13 +14983,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetCustomIDPWithContext(ctx, getCustomIDPOptionsModel)
+				_, _, operationErr := appIDManagementService.GetCustomIDPWithContext(ctx, getCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetCustomIDP(getCustomIDPOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetCustomIDP(getCustomIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -14997,7 +14997,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetCustomIDPWithContext(ctx, getCustomIDPOptionsModel)
+				_, _, operationErr = appIDManagementService.GetCustomIDPWithContext(ctx, getCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -15021,16 +15021,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCustomIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetCustomIDP(nil)
+				result, response, operationErr := appIDManagementService.GetCustomIDP(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -15040,28 +15040,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetCustomIDP(getCustomIDPOptionsModel)
+				result, response, operationErr = appIDManagementService.GetCustomIDP(getCustomIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetCustomIDP with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCustomIDPOptions model
 				getCustomIDPOptionsModel := new(appidmanagementv4.GetCustomIDPOptions)
 				getCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetCustomIDP(getCustomIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCustomIDP(getCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -15081,20 +15081,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCustomIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCustomIDPOptions model
 				getCustomIDPOptionsModel := new(appidmanagementv4.GetCustomIDPOptions)
 				getCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetCustomIDP(getCustomIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCustomIDP(getCustomIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -15123,32 +15123,32 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCustomIDP with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the CustomIdPConfigParamsConfig model
-				customIdPConfigParamsConfigModel := new(appidmanagementv4.CustomIdPConfigParamsConfig)
-				customIdPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
+				// Construct an instance of the CustomIDPConfigParamsConfig model
+				customIDPConfigParamsConfigModel := new(appidmanagementv4.CustomIDPConfigParamsConfig)
+				customIDPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsModel := new(appidmanagementv4.SetCustomIDPOptions)
 				setCustomIDPOptionsModel.IsActive = core.BoolPtr(true)
-				setCustomIDPOptionsModel.Config = customIdPConfigParamsConfigModel
+				setCustomIDPOptionsModel.Config = customIDPConfigParamsConfigModel
 				setCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.SetCustomIDP(setCustomIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCustomIDP(setCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.SetCustomIDP(setCustomIDPOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.SetCustomIDP(setCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -15196,35 +15196,35 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCustomIDP successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
-				// Construct an instance of the CustomIdPConfigParamsConfig model
-				customIdPConfigParamsConfigModel := new(appidmanagementv4.CustomIdPConfigParamsConfig)
-				customIdPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
+				// Construct an instance of the CustomIDPConfigParamsConfig model
+				customIDPConfigParamsConfigModel := new(appidmanagementv4.CustomIDPConfigParamsConfig)
+				customIDPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsModel := new(appidmanagementv4.SetCustomIDPOptions)
 				setCustomIDPOptionsModel.IsActive = core.BoolPtr(true)
-				setCustomIDPOptionsModel.Config = customIdPConfigParamsConfigModel
+				setCustomIDPOptionsModel.Config = customIDPConfigParamsConfigModel
 				setCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.SetCustomIDPWithContext(ctx, setCustomIDPOptionsModel)
+				_, _, operationErr := appIDManagementService.SetCustomIDPWithContext(ctx, setCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.SetCustomIDP(setCustomIDPOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.SetCustomIDP(setCustomIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -15232,7 +15232,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.SetCustomIDPWithContext(ctx, setCustomIDPOptionsModel)
+				_, _, operationErr = appIDManagementService.SetCustomIDPWithContext(ctx, setCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -15272,59 +15272,59 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCustomIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.SetCustomIDP(nil)
+				result, response, operationErr := appIDManagementService.SetCustomIDP(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
-				// Construct an instance of the CustomIdPConfigParamsConfig model
-				customIdPConfigParamsConfigModel := new(appidmanagementv4.CustomIdPConfigParamsConfig)
-				customIdPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
+				// Construct an instance of the CustomIDPConfigParamsConfig model
+				customIDPConfigParamsConfigModel := new(appidmanagementv4.CustomIDPConfigParamsConfig)
+				customIDPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsModel := new(appidmanagementv4.SetCustomIDPOptions)
 				setCustomIDPOptionsModel.IsActive = core.BoolPtr(true)
-				setCustomIDPOptionsModel.Config = customIdPConfigParamsConfigModel
+				setCustomIDPOptionsModel.Config = customIDPConfigParamsConfigModel
 				setCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.SetCustomIDP(setCustomIDPOptionsModel)
+				result, response, operationErr = appIDManagementService.SetCustomIDP(setCustomIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke SetCustomIDP with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the CustomIdPConfigParamsConfig model
-				customIdPConfigParamsConfigModel := new(appidmanagementv4.CustomIdPConfigParamsConfig)
-				customIdPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
+				// Construct an instance of the CustomIDPConfigParamsConfig model
+				customIDPConfigParamsConfigModel := new(appidmanagementv4.CustomIDPConfigParamsConfig)
+				customIDPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsModel := new(appidmanagementv4.SetCustomIDPOptions)
 				setCustomIDPOptionsModel.IsActive = core.BoolPtr(true)
-				setCustomIDPOptionsModel.Config = customIdPConfigParamsConfigModel
+				setCustomIDPOptionsModel.Config = customIDPConfigParamsConfigModel
 				setCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.SetCustomIDP(setCustomIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCustomIDP(setCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -15332,7 +15332,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the SetCustomIDPOptions model with no property values
 				setCustomIDPOptionsModelNew := new(appidmanagementv4.SetCustomIDPOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.SetCustomIDP(setCustomIDPOptionsModelNew)
+				result, response, operationErr = appIDManagementService.SetCustomIDP(setCustomIDPOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -15351,26 +15351,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCustomIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the CustomIdPConfigParamsConfig model
-				customIdPConfigParamsConfigModel := new(appidmanagementv4.CustomIdPConfigParamsConfig)
-				customIdPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
+				// Construct an instance of the CustomIDPConfigParamsConfig model
+				customIDPConfigParamsConfigModel := new(appidmanagementv4.CustomIDPConfigParamsConfig)
+				customIDPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsModel := new(appidmanagementv4.SetCustomIDPOptions)
 				setCustomIDPOptionsModel.IsActive = core.BoolPtr(true)
-				setCustomIDPOptionsModel.Config = customIdPConfigParamsConfigModel
+				setCustomIDPOptionsModel.Config = customIDPConfigParamsConfigModel
 				setCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.SetCustomIDP(setCustomIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCustomIDP(setCustomIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -15399,26 +15399,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryIDP with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
 				getCloudDirectoryIDPOptionsModel := new(appidmanagementv4.GetCloudDirectoryIDPOptions)
 				getCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -15450,14 +15450,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryIDP successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
 				getCloudDirectoryIDPOptionsModel := new(appidmanagementv4.GetCloudDirectoryIDPOptions)
@@ -15466,13 +15466,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetCloudDirectoryIDPWithContext(ctx, getCloudDirectoryIDPOptionsModel)
+				_, _, operationErr := appIDManagementService.GetCloudDirectoryIDPWithContext(ctx, getCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -15480,7 +15480,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetCloudDirectoryIDPWithContext(ctx, getCloudDirectoryIDPOptionsModel)
+				_, _, operationErr = appIDManagementService.GetCloudDirectoryIDPWithContext(ctx, getCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -15504,16 +15504,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryIDP(nil)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryIDP(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -15523,28 +15523,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetCloudDirectoryIDP with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
 				getCloudDirectoryIDPOptionsModel := new(appidmanagementv4.GetCloudDirectoryIDPOptions)
 				getCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -15564,20 +15564,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetCloudDirectoryIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
 				getCloudDirectoryIDPOptionsModel := new(appidmanagementv4.GetCloudDirectoryIDPOptions)
 				getCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -15606,13 +15606,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryIDP with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryConfigParamsInteractionsIdentityConfirmation model
 				cloudDirectoryConfigParamsInteractionsIdentityConfirmationModel := new(appidmanagementv4.CloudDirectoryConfigParamsInteractionsIdentityConfirmation)
@@ -15639,14 +15639,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryIDPOptionsModel.Config = cloudDirectoryConfigParamsModel
 				setCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -15694,14 +15694,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryIDP successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the CloudDirectoryConfigParamsInteractionsIdentityConfirmation model
 				cloudDirectoryConfigParamsInteractionsIdentityConfirmationModel := new(appidmanagementv4.CloudDirectoryConfigParamsInteractionsIdentityConfirmation)
@@ -15731,13 +15731,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.SetCloudDirectoryIDPWithContext(ctx, setCloudDirectoryIDPOptionsModel)
+				_, _, operationErr := appIDManagementService.SetCloudDirectoryIDPWithContext(ctx, setCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -15745,7 +15745,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.SetCloudDirectoryIDPWithContext(ctx, setCloudDirectoryIDPOptionsModel)
+				_, _, operationErr = appIDManagementService.SetCloudDirectoryIDPWithContext(ctx, setCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -15785,16 +15785,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryIDP(nil)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryIDP(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -15825,20 +15825,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke SetCloudDirectoryIDP with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryConfigParamsInteractionsIdentityConfirmation model
 				cloudDirectoryConfigParamsInteractionsIdentityConfirmationModel := new(appidmanagementv4.CloudDirectoryConfigParamsInteractionsIdentityConfirmation)
@@ -15865,9 +15865,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryIDPOptionsModel.Config = cloudDirectoryConfigParamsModel
 				setCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -15875,7 +15875,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the SetCloudDirectoryIDPOptions model with no property values
 				setCloudDirectoryIDPOptionsModelNew := new(appidmanagementv4.SetCloudDirectoryIDPOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModelNew)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -15894,13 +15894,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke SetCloudDirectoryIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryConfigParamsInteractionsIdentityConfirmation model
 				cloudDirectoryConfigParamsInteractionsIdentityConfirmationModel := new(appidmanagementv4.CloudDirectoryConfigParamsInteractionsIdentityConfirmation)
@@ -15928,7 +15928,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				setCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -15940,43 +15940,43 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`GetSAMLIDP(getSAMLIDPOptions *GetSAMLIDPOptions) - Operation response error`, func() {
+	Describe(`GetSamlidp(getSAMLIDPOptions *GetSAMLIDPOptions) - Operation response error`, func() {
 		tenantID := "testString"
-		getSAMLIDPPath := "/management/v4/testString/config/idps/saml"
+		getSamlidpPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(getSAMLIDPPath))
+					Expect(req.URL.EscapedPath()).To(Equal(getSamlidpPath))
 					Expect(req.Method).To(Equal("GET"))
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
 					fmt.Fprintf(res, `} this is not valid json {`)
 				}))
 			})
-			It(`Invoke GetSAMLIDP with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke GetSamlidp with error: Operation response processing error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSAMLIDPOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
-				getSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -15986,16 +15986,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`GetSAMLIDP(getSAMLIDPOptions *GetSAMLIDPOptions)`, func() {
+	Describe(`GetSamlidp(getSAMLIDPOptions *GetSAMLIDPOptions)`, func() {
 		tenantID := "testString"
-		getSAMLIDPPath := "/management/v4/testString/config/idps/saml"
+		getSamlidpPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(getSAMLIDPPath))
+					Expect(req.URL.EscapedPath()).To(Equal(getSamlidpPath))
 					Expect(req.Method).To(Equal("GET"))
 
 					// Sleep a short time to support a timeout test
@@ -16007,30 +16007,30 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"entityID": "EntityID", "signInUrl": "SignInURL", "certificates": ["Certificates"], "displayName": "DisplayName", "authnContext": {"class": ["urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"], "comparison": "exact"}, "signRequest": false, "encryptResponse": false, "includeScoping": false}}`)
 				}))
 			})
-			It(`Invoke GetSAMLIDP successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke GetSamlidp successfully with retries`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSAMLIDPOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
-				getSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetSAMLIDPWithContext(ctx, getSAMLIDPOptionsModel)
+				_, _, operationErr := appIDManagementService.GetSamlidpWithContext(ctx, getSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -16038,7 +16038,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetSAMLIDPWithContext(ctx, getSAMLIDPOptionsModel)
+				_, _, operationErr = appIDManagementService.GetSamlidpWithContext(ctx, getSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -16052,7 +16052,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(getSAMLIDPPath))
+					Expect(req.URL.EscapedPath()).To(Equal(getSamlidpPath))
 					Expect(req.Method).To(Equal("GET"))
 
 					// Set mock response
@@ -16061,48 +16061,48 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"entityID": "EntityID", "signInUrl": "SignInURL", "certificates": ["Certificates"], "displayName": "DisplayName", "authnContext": {"class": ["urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"], "comparison": "exact"}, "signRequest": false, "encryptResponse": false, "includeScoping": false}}`)
 				}))
 			})
-			It(`Invoke GetSAMLIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke GetSamlidp successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetSAMLIDP(nil)
+				result, response, operationErr := appIDManagementService.GetSamlidp(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSAMLIDPOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
-				getSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
+				result, response, operationErr = appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetSAMLIDP with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke GetSamlidp with error: Operation request error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSAMLIDPOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
-				getSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -16121,21 +16121,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					res.WriteHeader(200)
 				}))
 			})
-			It(`Invoke GetSAMLIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke GetSamlidp successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSAMLIDPOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
-				getSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -16147,62 +16147,62 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`SetSAMLIDP(setSAMLIDPOptions *SetSAMLIDPOptions) - Operation response error`, func() {
+	Describe(`SetSamlidp(setSAMLIDPOptions *SetSAMLIDPOptions) - Operation response error`, func() {
 		tenantID := "testString"
-		setSAMLIDPPath := "/management/v4/testString/config/idps/saml"
+		setSamlidpPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(setSAMLIDPPath))
+					Expect(req.URL.EscapedPath()).To(Equal(setSamlidpPath))
 					Expect(req.Method).To(Equal("PUT"))
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
 					fmt.Fprintf(res, `} this is not valid json {`)
 				}))
 			})
-			It(`Invoke SetSAMLIDP with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke SetSamlidp with error: Operation response processing error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SAMLConfigParamsAuthnContext model
-				SAMLConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
-				SAMLConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
-				SAMLConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
+				samlConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
+				samlConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
+				samlConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
 
 				// Construct an instance of the SAMLConfigParams model
-				SAMLConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
-				SAMLConfigParamsModel.EntityID = core.StringPtr("testString")
-				SAMLConfigParamsModel.SignInURL = core.StringPtr("testString")
-				SAMLConfigParamsModel.Certificates = []string{"testString"}
-				SAMLConfigParamsModel.DisplayName = core.StringPtr("testString")
-				SAMLConfigParamsModel.AuthnContext = SAMLConfigParamsAuthnContextModel
-				SAMLConfigParamsModel.SignRequest = core.BoolPtr(false)
-				SAMLConfigParamsModel.EncryptResponse = core.BoolPtr(false)
-				SAMLConfigParamsModel.IncludeScoping = core.BoolPtr(false)
-				SAMLConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
+				samlConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
+				samlConfigParamsModel.EntityID = core.StringPtr("testString")
+				samlConfigParamsModel.SignInURL = core.StringPtr("testString")
+				samlConfigParamsModel.Certificates = []string{"testString"}
+				samlConfigParamsModel.DisplayName = core.StringPtr("testString")
+				samlConfigParamsModel.AuthnContext = samlConfigParamsAuthnContextModel
+				samlConfigParamsModel.SignRequest = core.BoolPtr(false)
+				samlConfigParamsModel.EncryptResponse = core.BoolPtr(false)
+				samlConfigParamsModel.IncludeScoping = core.BoolPtr(false)
+				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSAMLIDPOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
-				setSAMLIDPOptionsModel.IsActive = core.BoolPtr(true)
-				setSAMLIDPOptionsModel.Config = SAMLConfigParamsModel
-				setSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
+				setSamlidpOptionsModel.Config = samlConfigParamsModel
+				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -16212,16 +16212,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`SetSAMLIDP(setSAMLIDPOptions *SetSAMLIDPOptions)`, func() {
+	Describe(`SetSamlidp(setSAMLIDPOptions *SetSAMLIDPOptions)`, func() {
 		tenantID := "testString"
-		setSAMLIDPPath := "/management/v4/testString/config/idps/saml"
+		setSamlidpPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(setSAMLIDPPath))
+					Expect(req.URL.EscapedPath()).To(Equal(setSamlidpPath))
 					Expect(req.Method).To(Equal("PUT"))
 
 					// For gzip-disabled operation, verify Content-Encoding is not set.
@@ -16249,49 +16249,49 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"entityID": "EntityID", "signInUrl": "SignInURL", "certificates": ["Certificates"], "displayName": "DisplayName", "authnContext": {"class": ["urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"], "comparison": "exact"}, "signRequest": false, "encryptResponse": false, "includeScoping": false}, "validation_data": {"certificates": [{"certificate_index": 16, "expiration_timestamp": 19, "warning": "Warning"}]}}`)
 				}))
 			})
-			It(`Invoke SetSAMLIDP successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke SetSamlidp successfully with retries`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the SAMLConfigParamsAuthnContext model
-				SAMLConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
-				SAMLConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
-				SAMLConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
+				samlConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
+				samlConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
+				samlConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
 
 				// Construct an instance of the SAMLConfigParams model
-				SAMLConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
-				SAMLConfigParamsModel.EntityID = core.StringPtr("testString")
-				SAMLConfigParamsModel.SignInURL = core.StringPtr("testString")
-				SAMLConfigParamsModel.Certificates = []string{"testString"}
-				SAMLConfigParamsModel.DisplayName = core.StringPtr("testString")
-				SAMLConfigParamsModel.AuthnContext = SAMLConfigParamsAuthnContextModel
-				SAMLConfigParamsModel.SignRequest = core.BoolPtr(false)
-				SAMLConfigParamsModel.EncryptResponse = core.BoolPtr(false)
-				SAMLConfigParamsModel.IncludeScoping = core.BoolPtr(false)
-				SAMLConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
+				samlConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
+				samlConfigParamsModel.EntityID = core.StringPtr("testString")
+				samlConfigParamsModel.SignInURL = core.StringPtr("testString")
+				samlConfigParamsModel.Certificates = []string{"testString"}
+				samlConfigParamsModel.DisplayName = core.StringPtr("testString")
+				samlConfigParamsModel.AuthnContext = samlConfigParamsAuthnContextModel
+				samlConfigParamsModel.SignRequest = core.BoolPtr(false)
+				samlConfigParamsModel.EncryptResponse = core.BoolPtr(false)
+				samlConfigParamsModel.IncludeScoping = core.BoolPtr(false)
+				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSAMLIDPOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
-				setSAMLIDPOptionsModel.IsActive = core.BoolPtr(true)
-				setSAMLIDPOptionsModel.Config = SAMLConfigParamsModel
-				setSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
+				setSamlidpOptionsModel.Config = samlConfigParamsModel
+				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.SetSAMLIDPWithContext(ctx, setSAMLIDPOptionsModel)
+				_, _, operationErr := appIDManagementService.SetSamlidpWithContext(ctx, setSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -16299,7 +16299,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.SetSAMLIDPWithContext(ctx, setSAMLIDPOptionsModel)
+				_, _, operationErr = appIDManagementService.SetSamlidpWithContext(ctx, setSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -16313,7 +16313,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(setSAMLIDPPath))
+					Expect(req.URL.EscapedPath()).To(Equal(setSamlidpPath))
 					Expect(req.Method).To(Equal("PUT"))
 
 					// For gzip-disabled operation, verify Content-Encoding is not set.
@@ -16338,94 +16338,94 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"entityID": "EntityID", "signInUrl": "SignInURL", "certificates": ["Certificates"], "displayName": "DisplayName", "authnContext": {"class": ["urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"], "comparison": "exact"}, "signRequest": false, "encryptResponse": false, "includeScoping": false}, "validation_data": {"certificates": [{"certificate_index": 16, "expiration_timestamp": 19, "warning": "Warning"}]}}`)
 				}))
 			})
-			It(`Invoke SetSAMLIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke SetSamlidp successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.SetSAMLIDP(nil)
+				result, response, operationErr := appIDManagementService.SetSamlidp(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
 				// Construct an instance of the SAMLConfigParamsAuthnContext model
-				SAMLConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
-				SAMLConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
-				SAMLConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
+				samlConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
+				samlConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
+				samlConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
 
 				// Construct an instance of the SAMLConfigParams model
-				SAMLConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
-				SAMLConfigParamsModel.EntityID = core.StringPtr("testString")
-				SAMLConfigParamsModel.SignInURL = core.StringPtr("testString")
-				SAMLConfigParamsModel.Certificates = []string{"testString"}
-				SAMLConfigParamsModel.DisplayName = core.StringPtr("testString")
-				SAMLConfigParamsModel.AuthnContext = SAMLConfigParamsAuthnContextModel
-				SAMLConfigParamsModel.SignRequest = core.BoolPtr(false)
-				SAMLConfigParamsModel.EncryptResponse = core.BoolPtr(false)
-				SAMLConfigParamsModel.IncludeScoping = core.BoolPtr(false)
-				SAMLConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
+				samlConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
+				samlConfigParamsModel.EntityID = core.StringPtr("testString")
+				samlConfigParamsModel.SignInURL = core.StringPtr("testString")
+				samlConfigParamsModel.Certificates = []string{"testString"}
+				samlConfigParamsModel.DisplayName = core.StringPtr("testString")
+				samlConfigParamsModel.AuthnContext = samlConfigParamsAuthnContextModel
+				samlConfigParamsModel.SignRequest = core.BoolPtr(false)
+				samlConfigParamsModel.EncryptResponse = core.BoolPtr(false)
+				samlConfigParamsModel.IncludeScoping = core.BoolPtr(false)
+				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSAMLIDPOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
-				setSAMLIDPOptionsModel.IsActive = core.BoolPtr(true)
-				setSAMLIDPOptionsModel.Config = SAMLConfigParamsModel
-				setSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
+				setSamlidpOptionsModel.Config = samlConfigParamsModel
+				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
+				result, response, operationErr = appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke SetSAMLIDP with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke SetSamlidp with error: Operation validation and request error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SAMLConfigParamsAuthnContext model
-				SAMLConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
-				SAMLConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
-				SAMLConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
+				samlConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
+				samlConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
+				samlConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
 
 				// Construct an instance of the SAMLConfigParams model
-				SAMLConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
-				SAMLConfigParamsModel.EntityID = core.StringPtr("testString")
-				SAMLConfigParamsModel.SignInURL = core.StringPtr("testString")
-				SAMLConfigParamsModel.Certificates = []string{"testString"}
-				SAMLConfigParamsModel.DisplayName = core.StringPtr("testString")
-				SAMLConfigParamsModel.AuthnContext = SAMLConfigParamsAuthnContextModel
-				SAMLConfigParamsModel.SignRequest = core.BoolPtr(false)
-				SAMLConfigParamsModel.EncryptResponse = core.BoolPtr(false)
-				SAMLConfigParamsModel.IncludeScoping = core.BoolPtr(false)
-				SAMLConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
+				samlConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
+				samlConfigParamsModel.EntityID = core.StringPtr("testString")
+				samlConfigParamsModel.SignInURL = core.StringPtr("testString")
+				samlConfigParamsModel.Certificates = []string{"testString"}
+				samlConfigParamsModel.DisplayName = core.StringPtr("testString")
+				samlConfigParamsModel.AuthnContext = samlConfigParamsAuthnContextModel
+				samlConfigParamsModel.SignRequest = core.BoolPtr(false)
+				samlConfigParamsModel.EncryptResponse = core.BoolPtr(false)
+				samlConfigParamsModel.IncludeScoping = core.BoolPtr(false)
+				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSAMLIDPOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
-				setSAMLIDPOptionsModel.IsActive = core.BoolPtr(true)
-				setSAMLIDPOptionsModel.Config = SAMLConfigParamsModel
-				setSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
+				setSamlidpOptionsModel.Config = samlConfigParamsModel
+				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 				// Construct a second instance of the SetSAMLIDPOptions model with no property values
-				setSAMLIDPOptionsModelNew := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModelNew := new(appidmanagementv4.SetSAMLIDPOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.SetSAMLIDP(setSAMLIDPOptionsModelNew)
+				result, response, operationErr = appIDManagementService.SetSamlidp(setSamlidpOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -16443,40 +16443,40 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					res.WriteHeader(200)
 				}))
 			})
-			It(`Invoke SetSAMLIDP successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			It(`Invoke SetSamlidp successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SAMLConfigParamsAuthnContext model
-				SAMLConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
-				SAMLConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
-				SAMLConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
+				samlConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
+				samlConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
+				samlConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
 
 				// Construct an instance of the SAMLConfigParams model
-				SAMLConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
-				SAMLConfigParamsModel.EntityID = core.StringPtr("testString")
-				SAMLConfigParamsModel.SignInURL = core.StringPtr("testString")
-				SAMLConfigParamsModel.Certificates = []string{"testString"}
-				SAMLConfigParamsModel.DisplayName = core.StringPtr("testString")
-				SAMLConfigParamsModel.AuthnContext = SAMLConfigParamsAuthnContextModel
-				SAMLConfigParamsModel.SignRequest = core.BoolPtr(false)
-				SAMLConfigParamsModel.EncryptResponse = core.BoolPtr(false)
-				SAMLConfigParamsModel.IncludeScoping = core.BoolPtr(false)
-				SAMLConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
+				samlConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
+				samlConfigParamsModel.EntityID = core.StringPtr("testString")
+				samlConfigParamsModel.SignInURL = core.StringPtr("testString")
+				samlConfigParamsModel.Certificates = []string{"testString"}
+				samlConfigParamsModel.DisplayName = core.StringPtr("testString")
+				samlConfigParamsModel.AuthnContext = samlConfigParamsAuthnContextModel
+				samlConfigParamsModel.SignRequest = core.BoolPtr(false)
+				samlConfigParamsModel.EncryptResponse = core.BoolPtr(false)
+				samlConfigParamsModel.IncludeScoping = core.BoolPtr(false)
+				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSAMLIDPOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
-				setSAMLIDPOptionsModel.IsActive = core.BoolPtr(true)
-				setSAMLIDPOptionsModel.Config = SAMLConfigParamsModel
-				setSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
+				setSamlidpOptionsModel.Config = samlConfigParamsModel
+				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
+				result, response, operationErr := appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -16505,26 +16505,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListRoles with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListRolesOptions model
 				listRolesOptionsModel := new(appidmanagementv4.ListRolesOptions)
 				listRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.ListRoles(listRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.ListRoles(listRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.ListRoles(listRolesOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.ListRoles(listRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -16556,14 +16556,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListRoles successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the ListRolesOptions model
 				listRolesOptionsModel := new(appidmanagementv4.ListRolesOptions)
@@ -16572,13 +16572,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.ListRolesWithContext(ctx, listRolesOptionsModel)
+				_, _, operationErr := appIDManagementService.ListRolesWithContext(ctx, listRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.ListRoles(listRolesOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.ListRoles(listRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -16586,7 +16586,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.ListRolesWithContext(ctx, listRolesOptionsModel)
+				_, _, operationErr = appIDManagementService.ListRolesWithContext(ctx, listRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -16610,16 +16610,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListRoles successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.ListRoles(nil)
+				result, response, operationErr := appIDManagementService.ListRoles(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -16629,28 +16629,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				listRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.ListRoles(listRolesOptionsModel)
+				result, response, operationErr = appIDManagementService.ListRoles(listRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke ListRoles with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListRolesOptions model
 				listRolesOptionsModel := new(appidmanagementv4.ListRolesOptions)
 				listRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.ListRoles(listRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.ListRoles(listRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -16670,20 +16670,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke ListRoles successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListRolesOptions model
 				listRolesOptionsModel := new(appidmanagementv4.ListRolesOptions)
 				listRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.ListRoles(listRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.ListRoles(listRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -16712,13 +16712,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CreateRole with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CreateRoleParamsAccessItem model
 				createRoleParamsAccessItemModel := new(appidmanagementv4.CreateRoleParamsAccessItem)
@@ -16732,14 +16732,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				createRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.CreateRole(createRoleOptionsModel)
+				result, response, operationErr := appIDManagementService.CreateRole(createRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.CreateRole(createRoleOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.CreateRole(createRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -16787,14 +16787,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CreateRole successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the CreateRoleParamsAccessItem model
 				createRoleParamsAccessItemModel := new(appidmanagementv4.CreateRoleParamsAccessItem)
@@ -16811,13 +16811,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.CreateRoleWithContext(ctx, createRoleOptionsModel)
+				_, _, operationErr := appIDManagementService.CreateRoleWithContext(ctx, createRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.CreateRole(createRoleOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.CreateRole(createRoleOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -16825,7 +16825,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.CreateRoleWithContext(ctx, createRoleOptionsModel)
+				_, _, operationErr = appIDManagementService.CreateRoleWithContext(ctx, createRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -16865,16 +16865,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CreateRole successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.CreateRole(nil)
+				result, response, operationErr := appIDManagementService.CreateRole(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -16892,20 +16892,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				createRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.CreateRole(createRoleOptionsModel)
+				result, response, operationErr = appIDManagementService.CreateRole(createRoleOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke CreateRole with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CreateRoleParamsAccessItem model
 				createRoleParamsAccessItemModel := new(appidmanagementv4.CreateRoleParamsAccessItem)
@@ -16919,9 +16919,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				createRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.CreateRole(createRoleOptionsModel)
+				result, response, operationErr := appIDManagementService.CreateRole(createRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -16929,7 +16929,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the CreateRoleOptions model with no property values
 				createRoleOptionsModelNew := new(appidmanagementv4.CreateRoleOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.CreateRole(createRoleOptionsModelNew)
+				result, response, operationErr = appIDManagementService.CreateRole(createRoleOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -16948,13 +16948,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke CreateRole successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CreateRoleParamsAccessItem model
 				createRoleParamsAccessItemModel := new(appidmanagementv4.CreateRoleParamsAccessItem)
@@ -16969,7 +16969,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				createRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.CreateRole(createRoleOptionsModel)
+				result, response, operationErr := appIDManagementService.CreateRole(createRoleOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -16998,27 +16998,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetRole with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRoleOptions model
 				getRoleOptionsModel := new(appidmanagementv4.GetRoleOptions)
 				getRoleOptionsModel.RoleID = core.StringPtr("testString")
 				getRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetRole(getRoleOptionsModel)
+				result, response, operationErr := appIDManagementService.GetRole(getRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetRole(getRoleOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetRole(getRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -17050,14 +17050,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetRole successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetRoleOptions model
 				getRoleOptionsModel := new(appidmanagementv4.GetRoleOptions)
@@ -17067,13 +17067,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetRoleWithContext(ctx, getRoleOptionsModel)
+				_, _, operationErr := appIDManagementService.GetRoleWithContext(ctx, getRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetRole(getRoleOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetRole(getRoleOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -17081,7 +17081,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetRoleWithContext(ctx, getRoleOptionsModel)
+				_, _, operationErr = appIDManagementService.GetRoleWithContext(ctx, getRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -17105,16 +17105,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetRole successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetRole(nil)
+				result, response, operationErr := appIDManagementService.GetRole(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -17125,29 +17125,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetRole(getRoleOptionsModel)
+				result, response, operationErr = appIDManagementService.GetRole(getRoleOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetRole with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRoleOptions model
 				getRoleOptionsModel := new(appidmanagementv4.GetRoleOptions)
 				getRoleOptionsModel.RoleID = core.StringPtr("testString")
 				getRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetRole(getRoleOptionsModel)
+				result, response, operationErr := appIDManagementService.GetRole(getRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -17155,7 +17155,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the GetRoleOptions model with no property values
 				getRoleOptionsModelNew := new(appidmanagementv4.GetRoleOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.GetRole(getRoleOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetRole(getRoleOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -17174,13 +17174,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetRole successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRoleOptions model
 				getRoleOptionsModel := new(appidmanagementv4.GetRoleOptions)
@@ -17188,7 +17188,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetRole(getRoleOptionsModel)
+				result, response, operationErr := appIDManagementService.GetRole(getRoleOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -17217,13 +17217,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateRole with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateRoleParamsAccessItem model
 				updateRoleParamsAccessItemModel := new(appidmanagementv4.UpdateRoleParamsAccessItem)
@@ -17238,14 +17238,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				updateRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UpdateRole(updateRoleOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateRole(updateRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UpdateRole(updateRoleOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UpdateRole(updateRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -17293,14 +17293,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateRole successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UpdateRoleParamsAccessItem model
 				updateRoleParamsAccessItemModel := new(appidmanagementv4.UpdateRoleParamsAccessItem)
@@ -17318,13 +17318,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UpdateRoleWithContext(ctx, updateRoleOptionsModel)
+				_, _, operationErr := appIDManagementService.UpdateRoleWithContext(ctx, updateRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UpdateRole(updateRoleOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UpdateRole(updateRoleOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -17332,7 +17332,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UpdateRoleWithContext(ctx, updateRoleOptionsModel)
+				_, _, operationErr = appIDManagementService.UpdateRoleWithContext(ctx, updateRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -17372,16 +17372,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateRole successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UpdateRole(nil)
+				result, response, operationErr := appIDManagementService.UpdateRole(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -17400,20 +17400,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UpdateRole(updateRoleOptionsModel)
+				result, response, operationErr = appIDManagementService.UpdateRole(updateRoleOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UpdateRole with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateRoleParamsAccessItem model
 				updateRoleParamsAccessItemModel := new(appidmanagementv4.UpdateRoleParamsAccessItem)
@@ -17428,9 +17428,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				updateRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UpdateRole(updateRoleOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateRole(updateRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -17438,7 +17438,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the UpdateRoleOptions model with no property values
 				updateRoleOptionsModelNew := new(appidmanagementv4.UpdateRoleOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UpdateRole(updateRoleOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UpdateRole(updateRoleOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -17457,13 +17457,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateRole successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateRoleParamsAccessItem model
 				updateRoleParamsAccessItemModel := new(appidmanagementv4.UpdateRoleParamsAccessItem)
@@ -17479,7 +17479,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UpdateRole(updateRoleOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateRole(updateRoleOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -17507,16 +17507,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke DeleteRole successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.DeleteRole(nil)
+				response, operationErr := appIDManagementService.DeleteRole(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -17526,34 +17526,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				deleteRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.DeleteRole(deleteRoleOptionsModel)
+				response, operationErr = appIDManagementService.DeleteRole(deleteRoleOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke DeleteRole with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the DeleteRoleOptions model
 				deleteRoleOptionsModel := new(appidmanagementv4.DeleteRoleOptions)
 				deleteRoleOptionsModel.RoleID = core.StringPtr("testString")
 				deleteRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.DeleteRole(deleteRoleOptionsModel)
+				response, operationErr := appIDManagementService.DeleteRole(deleteRoleOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the DeleteRoleOptions model with no property values
 				deleteRoleOptionsModelNew := new(appidmanagementv4.DeleteRoleOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.DeleteRole(deleteRoleOptionsModelNew)
+				response, operationErr = appIDManagementService.DeleteRole(deleteRoleOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -17584,13 +17584,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UsersSearchUserProfile with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersSearchUserProfileOptions model
 				usersSearchUserProfileOptionsModel := new(appidmanagementv4.UsersSearchUserProfileOptions)
@@ -17601,14 +17601,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersSearchUserProfileOptionsModel.Count = core.Int64Ptr(int64(0))
 				usersSearchUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
+				result, response, operationErr := appIDManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -17645,14 +17645,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UsersSearchUserProfile successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UsersSearchUserProfileOptions model
 				usersSearchUserProfileOptionsModel := new(appidmanagementv4.UsersSearchUserProfileOptions)
@@ -17666,13 +17666,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UsersSearchUserProfileWithContext(ctx, usersSearchUserProfileOptionsModel)
+				_, _, operationErr := appIDManagementService.UsersSearchUserProfileWithContext(ctx, usersSearchUserProfileOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -17680,7 +17680,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UsersSearchUserProfileWithContext(ctx, usersSearchUserProfileOptionsModel)
+				_, _, operationErr = appIDManagementService.UsersSearchUserProfileWithContext(ctx, usersSearchUserProfileOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -17709,16 +17709,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UsersSearchUserProfile successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UsersSearchUserProfile(nil)
+				result, response, operationErr := appIDManagementService.UsersSearchUserProfile(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -17733,20 +17733,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersSearchUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
+				result, response, operationErr = appIDManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UsersSearchUserProfile with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersSearchUserProfileOptions model
 				usersSearchUserProfileOptionsModel := new(appidmanagementv4.UsersSearchUserProfileOptions)
@@ -17757,9 +17757,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersSearchUserProfileOptionsModel.Count = core.Int64Ptr(int64(0))
 				usersSearchUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
+				result, response, operationErr := appIDManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -17767,7 +17767,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the UsersSearchUserProfileOptions model with no property values
 				usersSearchUserProfileOptionsModelNew := new(appidmanagementv4.UsersSearchUserProfileOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -17786,13 +17786,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UsersSearchUserProfile successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersSearchUserProfileOptions model
 				usersSearchUserProfileOptionsModel := new(appidmanagementv4.UsersSearchUserProfileOptions)
@@ -17804,7 +17804,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersSearchUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
+				result, response, operationErr := appIDManagementService.UsersSearchUserProfile(usersSearchUserProfileOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -17848,16 +17848,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UsersNominateUser successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UsersNominateUser(nil)
+				response, operationErr := appIDManagementService.UsersNominateUser(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -17873,18 +17873,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersNominateUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UsersNominateUser(usersNominateUserOptionsModel)
+				response, operationErr = appIDManagementService.UsersNominateUser(usersNominateUserOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UsersNominateUser with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersNominateUserParamsProfile model
 				usersNominateUserParamsProfileModel := new(appidmanagementv4.UsersNominateUserParamsProfile)
@@ -17897,16 +17897,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersNominateUserOptionsModel.Profile = usersNominateUserParamsProfileModel
 				usersNominateUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UsersNominateUser(usersNominateUserOptionsModel)
+				response, operationErr := appIDManagementService.UsersNominateUser(usersNominateUserOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UsersNominateUserOptions model with no property values
 				usersNominateUserOptionsModelNew := new(appidmanagementv4.UsersNominateUserOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UsersNominateUser(usersNominateUserOptionsModelNew)
+				response, operationErr = appIDManagementService.UsersNominateUser(usersNominateUserOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -17934,13 +17934,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserProfilesExport with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserProfilesExportOptions model
 				userProfilesExportOptionsModel := new(appidmanagementv4.UserProfilesExportOptions)
@@ -17948,14 +17948,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				userProfilesExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				userProfilesExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UserProfilesExport(userProfilesExportOptionsModel)
+				result, response, operationErr := appIDManagementService.UserProfilesExport(userProfilesExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UserProfilesExport(userProfilesExportOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UserProfilesExport(userProfilesExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -17989,14 +17989,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserProfilesExport successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UserProfilesExportOptions model
 				userProfilesExportOptionsModel := new(appidmanagementv4.UserProfilesExportOptions)
@@ -18007,13 +18007,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UserProfilesExportWithContext(ctx, userProfilesExportOptionsModel)
+				_, _, operationErr := appIDManagementService.UserProfilesExportWithContext(ctx, userProfilesExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UserProfilesExport(userProfilesExportOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UserProfilesExport(userProfilesExportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -18021,7 +18021,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UserProfilesExportWithContext(ctx, userProfilesExportOptionsModel)
+				_, _, operationErr = appIDManagementService.UserProfilesExportWithContext(ctx, userProfilesExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -18047,16 +18047,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserProfilesExport successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UserProfilesExport(nil)
+				result, response, operationErr := appIDManagementService.UserProfilesExport(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -18068,20 +18068,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				userProfilesExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UserProfilesExport(userProfilesExportOptionsModel)
+				result, response, operationErr = appIDManagementService.UserProfilesExport(userProfilesExportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UserProfilesExport with error: Operation request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserProfilesExportOptions model
 				userProfilesExportOptionsModel := new(appidmanagementv4.UserProfilesExportOptions)
@@ -18089,9 +18089,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				userProfilesExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				userProfilesExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UserProfilesExport(userProfilesExportOptionsModel)
+				result, response, operationErr := appIDManagementService.UserProfilesExport(userProfilesExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -18111,13 +18111,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserProfilesExport successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserProfilesExportOptions model
 				userProfilesExportOptionsModel := new(appidmanagementv4.UserProfilesExportOptions)
@@ -18126,7 +18126,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				userProfilesExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UserProfilesExport(userProfilesExportOptionsModel)
+				result, response, operationErr := appIDManagementService.UserProfilesExport(userProfilesExportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -18155,13 +18155,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserProfilesImport with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ExportUserProfileUsersItemIdentitiesItem model
 				exportUserProfileUsersItemIdentitiesItemModel := new(appidmanagementv4.ExportUserProfileUsersItemIdentitiesItem)
@@ -18191,14 +18191,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				userProfilesImportOptionsModel.Users = []appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel}
 				userProfilesImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UserProfilesImport(userProfilesImportOptionsModel)
+				result, response, operationErr := appIDManagementService.UserProfilesImport(userProfilesImportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UserProfilesImport(userProfilesImportOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UserProfilesImport(userProfilesImportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -18246,14 +18246,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserProfilesImport successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the ExportUserProfileUsersItemIdentitiesItem model
 				exportUserProfileUsersItemIdentitiesItemModel := new(appidmanagementv4.ExportUserProfileUsersItemIdentitiesItem)
@@ -18286,13 +18286,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UserProfilesImportWithContext(ctx, userProfilesImportOptionsModel)
+				_, _, operationErr := appIDManagementService.UserProfilesImportWithContext(ctx, userProfilesImportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UserProfilesImport(userProfilesImportOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UserProfilesImport(userProfilesImportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -18300,7 +18300,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UserProfilesImportWithContext(ctx, userProfilesImportOptionsModel)
+				_, _, operationErr = appIDManagementService.UserProfilesImportWithContext(ctx, userProfilesImportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -18340,16 +18340,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserProfilesImport successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UserProfilesImport(nil)
+				result, response, operationErr := appIDManagementService.UserProfilesImport(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -18383,20 +18383,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				userProfilesImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UserProfilesImport(userProfilesImportOptionsModel)
+				result, response, operationErr = appIDManagementService.UserProfilesImport(userProfilesImportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UserProfilesImport with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ExportUserProfileUsersItemIdentitiesItem model
 				exportUserProfileUsersItemIdentitiesItemModel := new(appidmanagementv4.ExportUserProfileUsersItemIdentitiesItem)
@@ -18426,9 +18426,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				userProfilesImportOptionsModel.Users = []appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel}
 				userProfilesImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UserProfilesImport(userProfilesImportOptionsModel)
+				result, response, operationErr := appIDManagementService.UserProfilesImport(userProfilesImportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -18436,7 +18436,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the UserProfilesImportOptions model with no property values
 				userProfilesImportOptionsModelNew := new(appidmanagementv4.UserProfilesImportOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UserProfilesImport(userProfilesImportOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UserProfilesImport(userProfilesImportOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -18455,13 +18455,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UserProfilesImport successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ExportUserProfileUsersItemIdentitiesItem model
 				exportUserProfileUsersItemIdentitiesItemModel := new(appidmanagementv4.ExportUserProfileUsersItemIdentitiesItem)
@@ -18492,7 +18492,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				userProfilesImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UserProfilesImport(userProfilesImportOptionsModel)
+				result, response, operationErr := appIDManagementService.UserProfilesImport(userProfilesImportOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -18520,16 +18520,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UsersDeleteUserProfile successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UsersDeleteUserProfile(nil)
+				response, operationErr := appIDManagementService.UsersDeleteUserProfile(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -18539,34 +18539,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersDeleteUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UsersDeleteUserProfile(usersDeleteUserProfileOptionsModel)
+				response, operationErr = appIDManagementService.UsersDeleteUserProfile(usersDeleteUserProfileOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UsersDeleteUserProfile with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersDeleteUserProfileOptions model
 				usersDeleteUserProfileOptionsModel := new(appidmanagementv4.UsersDeleteUserProfileOptions)
 				usersDeleteUserProfileOptionsModel.ID = core.StringPtr("testString")
 				usersDeleteUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UsersDeleteUserProfile(usersDeleteUserProfileOptionsModel)
+				response, operationErr := appIDManagementService.UsersDeleteUserProfile(usersDeleteUserProfileOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UsersDeleteUserProfileOptions model with no property values
 				usersDeleteUserProfileOptionsModelNew := new(appidmanagementv4.UsersDeleteUserProfileOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UsersDeleteUserProfile(usersDeleteUserProfileOptionsModelNew)
+				response, operationErr = appIDManagementService.UsersDeleteUserProfile(usersDeleteUserProfileOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -18591,16 +18591,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UsersRevokeRefreshToken successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UsersRevokeRefreshToken(nil)
+				response, operationErr := appIDManagementService.UsersRevokeRefreshToken(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -18610,34 +18610,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersRevokeRefreshTokenOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UsersRevokeRefreshToken(usersRevokeRefreshTokenOptionsModel)
+				response, operationErr = appIDManagementService.UsersRevokeRefreshToken(usersRevokeRefreshTokenOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UsersRevokeRefreshToken with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersRevokeRefreshTokenOptions model
 				usersRevokeRefreshTokenOptionsModel := new(appidmanagementv4.UsersRevokeRefreshTokenOptions)
 				usersRevokeRefreshTokenOptionsModel.ID = core.StringPtr("testString")
 				usersRevokeRefreshTokenOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UsersRevokeRefreshToken(usersRevokeRefreshTokenOptionsModel)
+				response, operationErr := appIDManagementService.UsersRevokeRefreshToken(usersRevokeRefreshTokenOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UsersRevokeRefreshTokenOptions model with no property values
 				usersRevokeRefreshTokenOptionsModelNew := new(appidmanagementv4.UsersRevokeRefreshTokenOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UsersRevokeRefreshToken(usersRevokeRefreshTokenOptionsModelNew)
+				response, operationErr = appIDManagementService.UsersRevokeRefreshToken(usersRevokeRefreshTokenOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -18662,16 +18662,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UsersGetUserProfile successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UsersGetUserProfile(nil)
+				response, operationErr := appIDManagementService.UsersGetUserProfile(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -18681,34 +18681,34 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersGetUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UsersGetUserProfile(usersGetUserProfileOptionsModel)
+				response, operationErr = appIDManagementService.UsersGetUserProfile(usersGetUserProfileOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UsersGetUserProfile with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersGetUserProfileOptions model
 				usersGetUserProfileOptionsModel := new(appidmanagementv4.UsersGetUserProfileOptions)
 				usersGetUserProfileOptionsModel.ID = core.StringPtr("testString")
 				usersGetUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UsersGetUserProfile(usersGetUserProfileOptionsModel)
+				response, operationErr := appIDManagementService.UsersGetUserProfile(usersGetUserProfileOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UsersGetUserProfileOptions model with no property values
 				usersGetUserProfileOptionsModelNew := new(appidmanagementv4.UsersGetUserProfileOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UsersGetUserProfile(usersGetUserProfileOptionsModelNew)
+				response, operationErr = appIDManagementService.UsersGetUserProfile(usersGetUserProfileOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -18749,16 +18749,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UsersSetUserProfile successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.UsersSetUserProfile(nil)
+				response, operationErr := appIDManagementService.UsersSetUserProfile(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
@@ -18769,18 +18769,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersSetUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UsersSetUserProfile(usersSetUserProfileOptionsModel)
+				response, operationErr = appIDManagementService.UsersSetUserProfile(usersSetUserProfileOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
 			It(`Invoke UsersSetUserProfile with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersSetUserProfileOptions model
 				usersSetUserProfileOptionsModel := new(appidmanagementv4.UsersSetUserProfileOptions)
@@ -18788,16 +18788,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				usersSetUserProfileOptionsModel.Attributes = make(map[string]interface{})
 				usersSetUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UsersSetUserProfile(usersSetUserProfileOptionsModel)
+				response, operationErr := appIDManagementService.UsersSetUserProfile(usersSetUserProfileOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UsersSetUserProfileOptions model with no property values
 				usersSetUserProfileOptionsModelNew := new(appidmanagementv4.UsersSetUserProfileOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UsersSetUserProfile(usersSetUserProfileOptionsModelNew)
+				response, operationErr = appIDManagementService.UsersSetUserProfile(usersSetUserProfileOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -18823,27 +18823,27 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetUserRoles with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserRolesOptions model
 				getUserRolesOptionsModel := new(appidmanagementv4.GetUserRolesOptions)
 				getUserRolesOptionsModel.ID = core.StringPtr("testString")
 				getUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.GetUserRoles(getUserRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.GetUserRoles(getUserRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.GetUserRoles(getUserRolesOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetUserRoles(getUserRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -18875,14 +18875,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetUserRoles successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetUserRolesOptions model
 				getUserRolesOptionsModel := new(appidmanagementv4.GetUserRolesOptions)
@@ -18892,13 +18892,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.GetUserRolesWithContext(ctx, getUserRolesOptionsModel)
+				_, _, operationErr := appIDManagementService.GetUserRolesWithContext(ctx, getUserRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.GetUserRoles(getUserRolesOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetUserRoles(getUserRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -18906,7 +18906,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.GetUserRolesWithContext(ctx, getUserRolesOptionsModel)
+				_, _, operationErr = appIDManagementService.GetUserRolesWithContext(ctx, getUserRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -18930,16 +18930,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetUserRoles successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.GetUserRoles(nil)
+				result, response, operationErr := appIDManagementService.GetUserRoles(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -18950,29 +18950,29 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.GetUserRoles(getUserRolesOptionsModel)
+				result, response, operationErr = appIDManagementService.GetUserRoles(getUserRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke GetUserRoles with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserRolesOptions model
 				getUserRolesOptionsModel := new(appidmanagementv4.GetUserRolesOptions)
 				getUserRolesOptionsModel.ID = core.StringPtr("testString")
 				getUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.GetUserRoles(getUserRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.GetUserRoles(getUserRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -18980,7 +18980,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the GetUserRolesOptions model with no property values
 				getUserRolesOptionsModelNew := new(appidmanagementv4.GetUserRolesOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.GetUserRoles(getUserRolesOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetUserRoles(getUserRolesOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -18999,13 +18999,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke GetUserRoles successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserRolesOptions model
 				getUserRolesOptionsModel := new(appidmanagementv4.GetUserRolesOptions)
@@ -19013,7 +19013,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				getUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.GetUserRoles(getUserRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.GetUserRoles(getUserRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -19042,13 +19042,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateUserRoles with error: Operation response processing error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateUserRolesParamsRoles model
 				updateUserRolesParamsRolesModel := new(appidmanagementv4.UpdateUserRolesParamsRoles)
@@ -19060,14 +19060,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateUserRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				updateUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIdManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
-				appIdManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIdManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -19115,14 +19115,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateUserRoles successfully with retries`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
-				appIdManagementService.EnableRetries(0, 0)
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the UpdateUserRolesParamsRoles model
 				updateUserRolesParamsRolesModel := new(appidmanagementv4.UpdateUserRolesParamsRoles)
@@ -19137,13 +19137,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIdManagementService.UpdateUserRolesWithContext(ctx, updateUserRolesOptionsModel)
+				_, _, operationErr := appIDManagementService.UpdateUserRolesWithContext(ctx, updateUserRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
-				appIdManagementService.DisableRetries()
-				result, response, operationErr := appIdManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -19151,7 +19151,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIdManagementService.UpdateUserRolesWithContext(ctx, updateUserRolesOptionsModel)
+				_, _, operationErr = appIDManagementService.UpdateUserRolesWithContext(ctx, updateUserRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -19191,16 +19191,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateUserRoles successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIdManagementService.UpdateUserRoles(nil)
+				result, response, operationErr := appIDManagementService.UpdateUserRoles(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -19216,20 +19216,20 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIdManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
+				result, response, operationErr = appIDManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
 			It(`Invoke UpdateUserRoles with error: Operation validation and request error`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateUserRolesParamsRoles model
 				updateUserRolesParamsRolesModel := new(appidmanagementv4.UpdateUserRolesParamsRoles)
@@ -19241,9 +19241,9 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateUserRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				updateUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
-				err := appIdManagementService.SetServiceURL("")
+				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIdManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -19251,7 +19251,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct a second instance of the UpdateUserRolesOptions model with no property values
 				updateUserRolesOptionsModelNew := new(appidmanagementv4.UpdateUserRolesOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIdManagementService.UpdateUserRoles(updateUserRolesOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UpdateUserRoles(updateUserRolesOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -19270,13 +19270,13 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				}))
 			})
 			It(`Invoke UpdateUserRoles successfully`, func() {
-				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
 					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
-				Expect(appIdManagementService).ToNot(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateUserRolesParamsRoles model
 				updateUserRolesParamsRolesModel := new(appidmanagementv4.UpdateUserRolesParamsRoles)
@@ -19289,7 +19289,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIdManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateUserRoles(updateUserRolesOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -19304,7 +19304,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 	Describe(`Model constructor tests`, func() {
 		Context(`Using a service client instance`, func() {
 			tenantID := "testString"
-			appIdManagementService, _ := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
+			appIDManagementService, _ := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 				URL:           "http://appidmanagementv4modelgenerator.com",
 				Authenticator: &core.NoAuthAuthenticator{},
 				TenantID: core.StringPtr(tenantID),
@@ -19315,61 +19315,61 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				var preventPasswordWithUsername *appidmanagementv4.ApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername = nil
 				var passwordExpiration *appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpiration = nil
 				var lockOutPolicy *appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicy = nil
-				_, err := appIdManagementService.NewApmSchemaAdvancedPasswordManagement(enabled, passwordReuse, preventPasswordWithUsername, passwordExpiration, lockOutPolicy)
+				_, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagement(enabled, passwordReuse, preventPasswordWithUsername, passwordExpiration, lockOutPolicy)
 				Expect(err).ToNot(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementLockOutPolicy successfully`, func() {
 				enabled := true
-				model, err := appIdManagementService.NewApmSchemaAdvancedPasswordManagementLockOutPolicy(enabled)
+				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementLockOutPolicy(enabled)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig successfully`, func() {
 				lockOutTimeSec := float64(60)
 				numOfAttempts := float64(1)
-				model, err := appIdManagementService.NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig(lockOutTimeSec, numOfAttempts)
+				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig(lockOutTimeSec, numOfAttempts)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval successfully`, func() {
 				enabled := true
-				model, err := appIdManagementService.NewApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval(enabled)
+				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval(enabled)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig successfully`, func() {
 				minHoursToChangePassword := float64(0)
-				model, err := appIdManagementService.NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig(minHoursToChangePassword)
+				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig(minHoursToChangePassword)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementPasswordExpiration successfully`, func() {
 				enabled := true
-				model, err := appIdManagementService.NewApmSchemaAdvancedPasswordManagementPasswordExpiration(enabled)
+				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementPasswordExpiration(enabled)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig successfully`, func() {
 				daysToExpire := float64(1)
-				model, err := appIdManagementService.NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig(daysToExpire)
+				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig(daysToExpire)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementPasswordReuse successfully`, func() {
 				enabled := true
-				model, err := appIdManagementService.NewApmSchemaAdvancedPasswordManagementPasswordReuse(enabled)
+				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementPasswordReuse(enabled)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig successfully`, func() {
 				maxPasswordReuse := float64(1)
-				model, err := appIdManagementService.NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig(maxPasswordReuse)
+				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig(maxPasswordReuse)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername successfully`, func() {
 				enabled := true
-				model, err := appIdManagementService.NewApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername(enabled)
+				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername(enabled)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
@@ -19377,16 +19377,16 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the ChangePasswordOptions model
 				changePasswordOptionsNewPassword := "testString"
 				changePasswordOptionsUUID := "testString"
-				changePasswordOptionsModel := appIdManagementService.NewChangePasswordOptions(changePasswordOptionsNewPassword, changePasswordOptionsUUID)
+				changePasswordOptionsModel := appIDManagementService.NewChangePasswordOptions(changePasswordOptionsNewPassword, changePasswordOptionsUUID)
 				changePasswordOptionsModel.SetNewPassword("testString")
 				changePasswordOptionsModel.SetUUID("testString")
-				changePasswordOptionsModel.SetChangedIpAddress("testString")
+				changePasswordOptionsModel.SetChangedIPAddress("testString")
 				changePasswordOptionsModel.SetLanguage("testString")
 				changePasswordOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(changePasswordOptionsModel).ToNot(BeNil())
 				Expect(changePasswordOptionsModel.NewPassword).To(Equal(core.StringPtr("testString")))
 				Expect(changePasswordOptionsModel.UUID).To(Equal(core.StringPtr("testString")))
-				Expect(changePasswordOptionsModel.ChangedIpAddress).To(Equal(core.StringPtr("testString")))
+				Expect(changePasswordOptionsModel.ChangedIPAddress).To(Equal(core.StringPtr("testString")))
 				Expect(changePasswordOptionsModel.Language).To(Equal(core.StringPtr("testString")))
 				Expect(changePasswordOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -19395,19 +19395,19 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				welcomeEnabled := false
 				resetPasswordEnabled := false
 				resetPasswordNotificationEnable := true
-				_, err := appIdManagementService.NewCloudDirectoryConfigParamsInteractions(identityConfirmation, welcomeEnabled, resetPasswordEnabled, resetPasswordNotificationEnable)
+				_, err := appIDManagementService.NewCloudDirectoryConfigParamsInteractions(identityConfirmation, welcomeEnabled, resetPasswordEnabled, resetPasswordNotificationEnable)
 				Expect(err).ToNot(BeNil())
 			})
 			It(`Invoke NewCloudDirectoryConfigParamsInteractionsIdentityConfirmation successfully`, func() {
 				accessMode := "FULL"
-				model, err := appIdManagementService.NewCloudDirectoryConfigParamsInteractionsIdentityConfirmation(accessMode)
+				model, err := appIDManagementService.NewCloudDirectoryConfigParamsInteractionsIdentityConfirmation(accessMode)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewCloudDirectoryExportOptions successfully`, func() {
 				// Construct an instance of the CloudDirectoryExportOptions model
 				encryptionSecret := "testString"
-				cloudDirectoryExportOptionsModel := appIdManagementService.NewCloudDirectoryExportOptions(encryptionSecret)
+				cloudDirectoryExportOptionsModel := appIDManagementService.NewCloudDirectoryExportOptions(encryptionSecret)
 				cloudDirectoryExportOptionsModel.SetEncryptionSecret("testString")
 				cloudDirectoryExportOptionsModel.SetStartIndex(int64(38))
 				cloudDirectoryExportOptionsModel.SetCount(int64(0))
@@ -19421,7 +19421,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewCloudDirectoryGetUserinfoOptions successfully`, func() {
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
 				userID := "testString"
-				cloudDirectoryGetUserinfoOptionsModel := appIdManagementService.NewCloudDirectoryGetUserinfoOptions(userID)
+				cloudDirectoryGetUserinfoOptionsModel := appIDManagementService.NewCloudDirectoryGetUserinfoOptions(userID)
 				cloudDirectoryGetUserinfoOptionsModel.SetUserID("testString")
 				cloudDirectoryGetUserinfoOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(cloudDirectoryGetUserinfoOptionsModel).ToNot(BeNil())
@@ -19452,7 +19452,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryImportOptions model
 				encryptionSecret := "testString"
 				cloudDirectoryImportOptionsUsers := []appidmanagementv4.ExportUserUsersItem{}
-				cloudDirectoryImportOptionsModel := appIdManagementService.NewCloudDirectoryImportOptions(encryptionSecret, cloudDirectoryImportOptionsUsers)
+				cloudDirectoryImportOptionsModel := appIDManagementService.NewCloudDirectoryImportOptions(encryptionSecret, cloudDirectoryImportOptionsUsers)
 				cloudDirectoryImportOptionsModel.SetEncryptionSecret("testString")
 				cloudDirectoryImportOptionsModel.SetUsers([]appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel})
 				cloudDirectoryImportOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -19464,7 +19464,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewCloudDirectoryRemoveOptions successfully`, func() {
 				// Construct an instance of the CloudDirectoryRemoveOptions model
 				userID := "testString"
-				cloudDirectoryRemoveOptionsModel := appIdManagementService.NewCloudDirectoryRemoveOptions(userID)
+				cloudDirectoryRemoveOptionsModel := appIDManagementService.NewCloudDirectoryRemoveOptions(userID)
 				cloudDirectoryRemoveOptionsModel.SetUserID("testString")
 				cloudDirectoryRemoveOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(cloudDirectoryRemoveOptionsModel).ToNot(BeNil())
@@ -19473,12 +19473,12 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewCloudDirectorySenderDetailsSenderDetails successfully`, func() {
 				var from *appidmanagementv4.CloudDirectorySenderDetailsSenderDetailsFrom = nil
-				_, err := appIdManagementService.NewCloudDirectorySenderDetailsSenderDetails(from)
+				_, err := appIDManagementService.NewCloudDirectorySenderDetailsSenderDetails(from)
 				Expect(err).ToNot(BeNil())
 			})
 			It(`Invoke NewCloudDirectorySenderDetailsSenderDetailsFrom successfully`, func() {
 				email := "testString"
-				model, err := appIdManagementService.NewCloudDirectorySenderDetailsSenderDetailsFrom(email)
+				model, err := appIDManagementService.NewCloudDirectorySenderDetailsSenderDetailsFrom(email)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
@@ -19494,7 +19494,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the CreateCloudDirectoryUserOptions model
 				createCloudDirectoryUserOptionsEmails := []appidmanagementv4.CreateNewUserEmailsItem{}
 				createCloudDirectoryUserOptionsPassword := "userPassword"
-				createCloudDirectoryUserOptionsModel := appIdManagementService.NewCreateCloudDirectoryUserOptions(createCloudDirectoryUserOptionsEmails, createCloudDirectoryUserOptionsPassword)
+				createCloudDirectoryUserOptionsModel := appIDManagementService.NewCreateCloudDirectoryUserOptions(createCloudDirectoryUserOptionsEmails, createCloudDirectoryUserOptionsPassword)
 				createCloudDirectoryUserOptionsModel.SetEmails([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel})
 				createCloudDirectoryUserOptionsModel.SetPassword("userPassword")
 				createCloudDirectoryUserOptionsModel.SetActive(true)
@@ -19509,7 +19509,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewCreateNewUserEmailsItem successfully`, func() {
 				value := "user@mail.com"
-				model, err := appIdManagementService.NewCreateNewUserEmailsItem(value)
+				model, err := appIDManagementService.NewCreateNewUserEmailsItem(value)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
@@ -19525,7 +19525,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsName := "child"
 				createRoleOptionsAccess := []appidmanagementv4.CreateRoleParamsAccessItem{}
-				createRoleOptionsModel := appIdManagementService.NewCreateRoleOptions(createRoleOptionsName, createRoleOptionsAccess)
+				createRoleOptionsModel := appIDManagementService.NewCreateRoleOptions(createRoleOptionsName, createRoleOptionsAccess)
 				createRoleOptionsModel.SetName("child")
 				createRoleOptionsModel.SetAccess([]appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel})
 				createRoleOptionsModel.SetDescription("Limits the available movie options to those that might be more appropriate for younger viewers.")
@@ -19539,24 +19539,24 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewCreateRoleParamsAccessItem successfully`, func() {
 				applicationID := "de33d272-f8a7-4406-8fe8-ab28fd457be5"
 				scopes := []string{"cartoons"}
-				model, err := appIdManagementService.NewCreateRoleParamsAccessItem(applicationID, scopes)
+				model, err := appIDManagementService.NewCreateRoleParamsAccessItem(applicationID, scopes)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
-			It(`Invoke NewDeleteActionUrlOptions successfully`, func() {
-				// Construct an instance of the DeleteActionUrlOptions model
+			It(`Invoke NewDeleteActionURLOptions successfully`, func() {
+				// Construct an instance of the DeleteActionURLOptions model
 				action := "on_user_verified"
-				deleteActionUrlOptionsModel := appIdManagementService.NewDeleteActionUrlOptions(action)
-				deleteActionUrlOptionsModel.SetAction("on_user_verified")
-				deleteActionUrlOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(deleteActionUrlOptionsModel).ToNot(BeNil())
-				Expect(deleteActionUrlOptionsModel.Action).To(Equal(core.StringPtr("on_user_verified")))
-				Expect(deleteActionUrlOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+				deleteActionURLOptionsModel := appIDManagementService.NewDeleteActionURLOptions(action)
+				deleteActionURLOptionsModel.SetAction("on_user_verified")
+				deleteActionURLOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(deleteActionURLOptionsModel).ToNot(BeNil())
+				Expect(deleteActionURLOptionsModel.Action).To(Equal(core.StringPtr("on_user_verified")))
+				Expect(deleteActionURLOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewDeleteApplicationOptions successfully`, func() {
 				// Construct an instance of the DeleteApplicationOptions model
 				clientID := "testString"
-				deleteApplicationOptionsModel := appIdManagementService.NewDeleteApplicationOptions(clientID)
+				deleteApplicationOptionsModel := appIDManagementService.NewDeleteApplicationOptions(clientID)
 				deleteApplicationOptionsModel.SetClientID("testString")
 				deleteApplicationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(deleteApplicationOptionsModel).ToNot(BeNil())
@@ -19566,7 +19566,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewDeleteCloudDirectoryUserOptions successfully`, func() {
 				// Construct an instance of the DeleteCloudDirectoryUserOptions model
 				userID := "testString"
-				deleteCloudDirectoryUserOptionsModel := appIdManagementService.NewDeleteCloudDirectoryUserOptions(userID)
+				deleteCloudDirectoryUserOptionsModel := appIDManagementService.NewDeleteCloudDirectoryUserOptions(userID)
 				deleteCloudDirectoryUserOptionsModel.SetUserID("testString")
 				deleteCloudDirectoryUserOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(deleteCloudDirectoryUserOptionsModel).ToNot(BeNil())
@@ -19576,7 +19576,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewDeleteRoleOptions successfully`, func() {
 				// Construct an instance of the DeleteRoleOptions model
 				roleID := "testString"
-				deleteRoleOptionsModel := appIdManagementService.NewDeleteRoleOptions(roleID)
+				deleteRoleOptionsModel := appIDManagementService.NewDeleteRoleOptions(roleID)
 				deleteRoleOptionsModel.SetRoleID("testString")
 				deleteRoleOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(deleteRoleOptionsModel).ToNot(BeNil())
@@ -19587,7 +19587,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the DeleteTemplateOptions model
 				templateName := "USER_VERIFICATION"
 				language := "testString"
-				deleteTemplateOptionsModel := appIdManagementService.NewDeleteTemplateOptions(templateName, language)
+				deleteTemplateOptionsModel := appIDManagementService.NewDeleteTemplateOptions(templateName, language)
 				deleteTemplateOptionsModel.SetTemplateName("USER_VERIFICATION")
 				deleteTemplateOptionsModel.SetLanguage("testString")
 				deleteTemplateOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -19599,18 +19599,18 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewEmailDispatcherParamsCustom successfully`, func() {
 				url := "testString"
 				var authorization *appidmanagementv4.EmailDispatcherParamsCustomAuthorization = nil
-				_, err := appIdManagementService.NewEmailDispatcherParamsCustom(url, authorization)
+				_, err := appIDManagementService.NewEmailDispatcherParamsCustom(url, authorization)
 				Expect(err).ToNot(BeNil())
 			})
 			It(`Invoke NewEmailDispatcherParamsCustomAuthorization successfully`, func() {
 				typeVar := "value"
-				model, err := appIdManagementService.NewEmailDispatcherParamsCustomAuthorization(typeVar)
+				model, err := appIDManagementService.NewEmailDispatcherParamsCustomAuthorization(typeVar)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewEmailDispatcherParamsSendgrid successfully`, func() {
 				apiKey := "testString"
-				model, err := appIdManagementService.NewEmailDispatcherParamsSendgrid(apiKey)
+				model, err := appIDManagementService.NewEmailDispatcherParamsSendgrid(apiKey)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
@@ -19618,8 +19618,8 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsSendgrid model
 				emailSettingsTestParamsEmailSettingsSendgridModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsSendgrid)
 				Expect(emailSettingsTestParamsEmailSettingsSendgridModel).ToNot(BeNil())
-				emailSettingsTestParamsEmailSettingsSendgridModel.ApiKey = core.StringPtr("testString")
-				Expect(emailSettingsTestParamsEmailSettingsSendgridModel.ApiKey).To(Equal(core.StringPtr("testString")))
+				emailSettingsTestParamsEmailSettingsSendgridModel.APIKey = core.StringPtr("testString")
+				Expect(emailSettingsTestParamsEmailSettingsSendgridModel.APIKey).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the EmailSettingsTestParamsEmailSettingsCustomAuthorization model
 				emailSettingsTestParamsEmailSettingsCustomAuthorizationModel := new(appidmanagementv4.EmailSettingsTestParamsEmailSettingsCustomAuthorization)
@@ -19679,7 +19679,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				emailSettingTestOptionsEmailTo := "testString"
 				var emailSettingTestOptionsEmailSettings *appidmanagementv4.EmailSettingsTestParamsEmailSettings = nil
 				var emailSettingTestOptionsSenderDetails *appidmanagementv4.EmailSettingsTestParamsSenderDetails = nil
-				emailSettingTestOptionsModel := appIdManagementService.NewEmailSettingTestOptions(emailSettingTestOptionsEmailTo, emailSettingTestOptionsEmailSettings, emailSettingTestOptionsSenderDetails)
+				emailSettingTestOptionsModel := appIDManagementService.NewEmailSettingTestOptions(emailSettingTestOptionsEmailTo, emailSettingTestOptionsEmailSettings, emailSettingTestOptionsSenderDetails)
 				emailSettingTestOptionsModel.SetEmailTo("testString")
 				emailSettingTestOptionsModel.SetEmailSettings(emailSettingsTestParamsEmailSettingsModel)
 				emailSettingTestOptionsModel.SetSenderDetails(emailSettingsTestParamsSenderDetailsModel)
@@ -19692,42 +19692,42 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewEmailSettingsTestParamsEmailSettings successfully`, func() {
 				provider := "sendgrid"
-				model, err := appIdManagementService.NewEmailSettingsTestParamsEmailSettings(provider)
+				model, err := appIDManagementService.NewEmailSettingsTestParamsEmailSettings(provider)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewEmailSettingsTestParamsEmailSettingsCustom successfully`, func() {
 				url := "testString"
 				var authorization *appidmanagementv4.EmailSettingsTestParamsEmailSettingsCustomAuthorization = nil
-				_, err := appIdManagementService.NewEmailSettingsTestParamsEmailSettingsCustom(url, authorization)
+				_, err := appIDManagementService.NewEmailSettingsTestParamsEmailSettingsCustom(url, authorization)
 				Expect(err).ToNot(BeNil())
 			})
 			It(`Invoke NewEmailSettingsTestParamsEmailSettingsCustomAuthorization successfully`, func() {
 				typeVar := "value"
-				model, err := appIdManagementService.NewEmailSettingsTestParamsEmailSettingsCustomAuthorization(typeVar)
+				model, err := appIDManagementService.NewEmailSettingsTestParamsEmailSettingsCustomAuthorization(typeVar)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewEmailSettingsTestParamsEmailSettingsSendgrid successfully`, func() {
 				apiKey := "testString"
-				model, err := appIdManagementService.NewEmailSettingsTestParamsEmailSettingsSendgrid(apiKey)
+				model, err := appIDManagementService.NewEmailSettingsTestParamsEmailSettingsSendgrid(apiKey)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewEmailSettingsTestParamsSenderDetails successfully`, func() {
 				var from *appidmanagementv4.EmailSettingsTestParamsSenderDetailsFrom = nil
-				_, err := appIdManagementService.NewEmailSettingsTestParamsSenderDetails(from)
+				_, err := appIDManagementService.NewEmailSettingsTestParamsSenderDetails(from)
 				Expect(err).ToNot(BeNil())
 			})
 			It(`Invoke NewEmailSettingsTestParamsSenderDetailsFrom successfully`, func() {
 				email := "testString"
-				model, err := appIdManagementService.NewEmailSettingsTestParamsSenderDetailsFrom(email)
+				model, err := appIDManagementService.NewEmailSettingsTestParamsSenderDetailsFrom(email)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewEmailSettingsTestParamsSenderDetailsReplyTo successfully`, func() {
 				email := "testString"
-				model, err := appIdManagementService.NewEmailSettingsTestParamsSenderDetailsReplyTo(email)
+				model, err := appIDManagementService.NewEmailSettingsTestParamsSenderDetailsReplyTo(email)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
@@ -19735,7 +19735,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				id := "testString"
 				identities := []appidmanagementv4.ExportUserProfileUsersItemIdentitiesItem{}
 				attributes := map[string]interface{}{"anyKey": "anyValue"}
-				model, err := appIdManagementService.NewExportUserProfileUsersItem(id, identities, attributes)
+				model, err := appIDManagementService.NewExportUserProfileUsersItem(id, identities, attributes)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
@@ -19745,26 +19745,26 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				passwordHashAlg := "testString"
 				var profile *appidmanagementv4.ExportUserUsersItemProfile = nil
 				roles := []string{"testString"}
-				_, err := appIdManagementService.NewExportUserUsersItem(scimUser, passwordHash, passwordHashAlg, profile, roles)
+				_, err := appIDManagementService.NewExportUserUsersItem(scimUser, passwordHash, passwordHashAlg, profile, roles)
 				Expect(err).ToNot(BeNil())
 			})
 			It(`Invoke NewExportUserUsersItemProfile successfully`, func() {
 				attributes := map[string]interface{}{"anyKey": "anyValue"}
-				model, err := appIdManagementService.NewExportUserUsersItemProfile(attributes)
+				model, err := appIDManagementService.NewExportUserUsersItemProfile(attributes)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewFacebookGoogleConfigParamsConfig successfully`, func() {
-				IDPID := "appID"
+				idpID := "appID"
 				secret := "appsecret"
-				model, err := appIdManagementService.NewFacebookGoogleConfigParamsConfig(IDPID, secret)
+				model, err := appIDManagementService.NewFacebookGoogleConfigParamsConfig(idpID, secret)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewForgotPasswordResultOptions successfully`, func() {
 				// Construct an instance of the ForgotPasswordResultOptions model
 				forgotPasswordResultOptionsContext := "testString"
-				forgotPasswordResultOptionsModel := appIdManagementService.NewForgotPasswordResultOptions(forgotPasswordResultOptionsContext)
+				forgotPasswordResultOptionsModel := appIDManagementService.NewForgotPasswordResultOptions(forgotPasswordResultOptionsContext)
 				forgotPasswordResultOptionsModel.SetContext("testString")
 				forgotPasswordResultOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(forgotPasswordResultOptionsModel).ToNot(BeNil())
@@ -19774,7 +19774,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewGetApplicationOptions successfully`, func() {
 				// Construct an instance of the GetApplicationOptions model
 				clientID := "testString"
-				getApplicationOptionsModel := appIdManagementService.NewGetApplicationOptions(clientID)
+				getApplicationOptionsModel := appIDManagementService.NewGetApplicationOptions(clientID)
 				getApplicationOptionsModel.SetClientID("testString")
 				getApplicationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getApplicationOptionsModel).ToNot(BeNil())
@@ -19784,7 +19784,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewGetApplicationRolesOptions successfully`, func() {
 				// Construct an instance of the GetApplicationRolesOptions model
 				clientID := "testString"
-				getApplicationRolesOptionsModel := appIdManagementService.NewGetApplicationRolesOptions(clientID)
+				getApplicationRolesOptionsModel := appIDManagementService.NewGetApplicationRolesOptions(clientID)
 				getApplicationRolesOptionsModel.SetClientID("testString")
 				getApplicationRolesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getApplicationRolesOptionsModel).ToNot(BeNil())
@@ -19794,7 +19794,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewGetApplicationScopesOptions successfully`, func() {
 				// Construct an instance of the GetApplicationScopesOptions model
 				clientID := "testString"
-				getApplicationScopesOptionsModel := appIdManagementService.NewGetApplicationScopesOptions(clientID)
+				getApplicationScopesOptionsModel := appIDManagementService.NewGetApplicationScopesOptions(clientID)
 				getApplicationScopesOptionsModel.SetClientID("testString")
 				getApplicationScopesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getApplicationScopesOptionsModel).ToNot(BeNil())
@@ -19803,7 +19803,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewGetAuditStatusOptions successfully`, func() {
 				// Construct an instance of the GetAuditStatusOptions model
-				getAuditStatusOptionsModel := appIdManagementService.NewGetAuditStatusOptions()
+				getAuditStatusOptionsModel := appIDManagementService.NewGetAuditStatusOptions()
 				getAuditStatusOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getAuditStatusOptionsModel).ToNot(BeNil())
 				Expect(getAuditStatusOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -19811,54 +19811,54 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewGetChannelOptions successfully`, func() {
 				// Construct an instance of the GetChannelOptions model
 				channel := "email"
-				getChannelOptionsModel := appIdManagementService.NewGetChannelOptions(channel)
+				getChannelOptionsModel := appIDManagementService.NewGetChannelOptions(channel)
 				getChannelOptionsModel.SetChannel("email")
 				getChannelOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getChannelOptionsModel).ToNot(BeNil())
 				Expect(getChannelOptionsModel.Channel).To(Equal(core.StringPtr("email")))
 				Expect(getChannelOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
-			It(`Invoke NewGetCloudDirectoryActionUrlOptions successfully`, func() {
-				// Construct an instance of the GetCloudDirectoryActionUrlOptions model
+			It(`Invoke NewGetCloudDirectoryActionURLOptions successfully`, func() {
+				// Construct an instance of the GetCloudDirectoryActionURLOptions model
 				action := "on_user_verified"
-				getCloudDirectoryActionUrlOptionsModel := appIdManagementService.NewGetCloudDirectoryActionUrlOptions(action)
-				getCloudDirectoryActionUrlOptionsModel.SetAction("on_user_verified")
-				getCloudDirectoryActionUrlOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(getCloudDirectoryActionUrlOptionsModel).ToNot(BeNil())
-				Expect(getCloudDirectoryActionUrlOptionsModel.Action).To(Equal(core.StringPtr("on_user_verified")))
-				Expect(getCloudDirectoryActionUrlOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+				getCloudDirectoryActionURLOptionsModel := appIDManagementService.NewGetCloudDirectoryActionURLOptions(action)
+				getCloudDirectoryActionURLOptionsModel.SetAction("on_user_verified")
+				getCloudDirectoryActionURLOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(getCloudDirectoryActionURLOptionsModel).ToNot(BeNil())
+				Expect(getCloudDirectoryActionURLOptionsModel.Action).To(Equal(core.StringPtr("on_user_verified")))
+				Expect(getCloudDirectoryActionURLOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectoryAdvancedPasswordManagementOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
-				getCloudDirectoryAdvancedPasswordManagementOptionsModel := appIdManagementService.NewGetCloudDirectoryAdvancedPasswordManagementOptions()
+				getCloudDirectoryAdvancedPasswordManagementOptionsModel := appIDManagementService.NewGetCloudDirectoryAdvancedPasswordManagementOptions()
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryAdvancedPasswordManagementOptionsModel).ToNot(BeNil())
 				Expect(getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectoryEmailDispatcherOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
-				getCloudDirectoryEmailDispatcherOptionsModel := appIdManagementService.NewGetCloudDirectoryEmailDispatcherOptions()
+				getCloudDirectoryEmailDispatcherOptionsModel := appIDManagementService.NewGetCloudDirectoryEmailDispatcherOptions()
 				getCloudDirectoryEmailDispatcherOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryEmailDispatcherOptionsModel).ToNot(BeNil())
 				Expect(getCloudDirectoryEmailDispatcherOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectoryIDPOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
-				getCloudDirectoryIDPOptionsModel := appIdManagementService.NewGetCloudDirectoryIDPOptions()
+				getCloudDirectoryIDPOptionsModel := appIDManagementService.NewGetCloudDirectoryIDPOptions()
 				getCloudDirectoryIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryIDPOptionsModel).ToNot(BeNil())
 				Expect(getCloudDirectoryIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectoryPasswordRegexOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
-				getCloudDirectoryPasswordRegexOptionsModel := appIdManagementService.NewGetCloudDirectoryPasswordRegexOptions()
+				getCloudDirectoryPasswordRegexOptionsModel := appIDManagementService.NewGetCloudDirectoryPasswordRegexOptions()
 				getCloudDirectoryPasswordRegexOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryPasswordRegexOptionsModel).ToNot(BeNil())
 				Expect(getCloudDirectoryPasswordRegexOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectorySenderDetailsOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
-				getCloudDirectorySenderDetailsOptionsModel := appIdManagementService.NewGetCloudDirectorySenderDetailsOptions()
+				getCloudDirectorySenderDetailsOptionsModel := appIDManagementService.NewGetCloudDirectorySenderDetailsOptions()
 				getCloudDirectorySenderDetailsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectorySenderDetailsOptionsModel).ToNot(BeNil())
 				Expect(getCloudDirectorySenderDetailsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -19866,7 +19866,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewGetCloudDirectoryUserOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryUserOptions model
 				userID := "testString"
-				getCloudDirectoryUserOptionsModel := appIdManagementService.NewGetCloudDirectoryUserOptions(userID)
+				getCloudDirectoryUserOptionsModel := appIDManagementService.NewGetCloudDirectoryUserOptions(userID)
 				getCloudDirectoryUserOptionsModel.SetUserID("testString")
 				getCloudDirectoryUserOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryUserOptionsModel).ToNot(BeNil())
@@ -19875,7 +19875,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewGetCustomIDPOptions successfully`, func() {
 				// Construct an instance of the GetCustomIDPOptions model
-				getCustomIDPOptionsModel := appIdManagementService.NewGetCustomIDPOptions()
+				getCustomIDPOptionsModel := appIDManagementService.NewGetCustomIDPOptions()
 				getCustomIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCustomIDPOptionsModel).ToNot(BeNil())
 				Expect(getCustomIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -19883,7 +19883,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewGetExtensionConfigOptions successfully`, func() {
 				// Construct an instance of the GetExtensionConfigOptions model
 				name := "premfa"
-				getExtensionConfigOptionsModel := appIdManagementService.NewGetExtensionConfigOptions(name)
+				getExtensionConfigOptionsModel := appIDManagementService.NewGetExtensionConfigOptions(name)
 				getExtensionConfigOptionsModel.SetName("premfa")
 				getExtensionConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getExtensionConfigOptionsModel).ToNot(BeNil())
@@ -19892,49 +19892,49 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewGetFacebookIDPOptions successfully`, func() {
 				// Construct an instance of the GetFacebookIDPOptions model
-				getFacebookIDPOptionsModel := appIdManagementService.NewGetFacebookIDPOptions()
+				getFacebookIDPOptionsModel := appIDManagementService.NewGetFacebookIDPOptions()
 				getFacebookIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getFacebookIDPOptionsModel).ToNot(BeNil())
 				Expect(getFacebookIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetGoogleIDPOptions successfully`, func() {
 				// Construct an instance of the GetGoogleIDPOptions model
-				getGoogleIDPOptionsModel := appIdManagementService.NewGetGoogleIDPOptions()
+				getGoogleIDPOptionsModel := appIDManagementService.NewGetGoogleIDPOptions()
 				getGoogleIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getGoogleIDPOptionsModel).ToNot(BeNil())
 				Expect(getGoogleIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetLocalizationOptions successfully`, func() {
 				// Construct an instance of the GetLocalizationOptions model
-				getLocalizationOptionsModel := appIdManagementService.NewGetLocalizationOptions()
+				getLocalizationOptionsModel := appIDManagementService.NewGetLocalizationOptions()
 				getLocalizationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getLocalizationOptionsModel).ToNot(BeNil())
 				Expect(getLocalizationOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetMFAConfigOptions successfully`, func() {
 				// Construct an instance of the GetMFAConfigOptions model
-				getMfaConfigOptionsModel := appIdManagementService.NewGetMFAConfigOptions()
-				getMfaConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(getMfaConfigOptionsModel).ToNot(BeNil())
-				Expect(getMfaConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+				getMFAConfigOptionsModel := appIDManagementService.NewGetMFAConfigOptions()
+				getMFAConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(getMFAConfigOptionsModel).ToNot(BeNil())
+				Expect(getMFAConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetMediaOptions successfully`, func() {
 				// Construct an instance of the GetMediaOptions model
-				getMediaOptionsModel := appIdManagementService.NewGetMediaOptions()
+				getMediaOptionsModel := appIDManagementService.NewGetMediaOptions()
 				getMediaOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getMediaOptionsModel).ToNot(BeNil())
 				Expect(getMediaOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetRateLimitConfigOptions successfully`, func() {
 				// Construct an instance of the GetRateLimitConfigOptions model
-				getRateLimitConfigOptionsModel := appIdManagementService.NewGetRateLimitConfigOptions()
+				getRateLimitConfigOptionsModel := appIDManagementService.NewGetRateLimitConfigOptions()
 				getRateLimitConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getRateLimitConfigOptionsModel).ToNot(BeNil())
 				Expect(getRateLimitConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetRedirectUrisOptions successfully`, func() {
 				// Construct an instance of the GetRedirectUrisOptions model
-				getRedirectUrisOptionsModel := appIdManagementService.NewGetRedirectUrisOptions()
+				getRedirectUrisOptionsModel := appIDManagementService.NewGetRedirectUrisOptions()
 				getRedirectUrisOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getRedirectUrisOptionsModel).ToNot(BeNil())
 				Expect(getRedirectUrisOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -19942,7 +19942,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewGetRoleOptions successfully`, func() {
 				// Construct an instance of the GetRoleOptions model
 				roleID := "testString"
-				getRoleOptionsModel := appIdManagementService.NewGetRoleOptions(roleID)
+				getRoleOptionsModel := appIDManagementService.NewGetRoleOptions(roleID)
 				getRoleOptionsModel.SetRoleID("testString")
 				getRoleOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getRoleOptionsModel).ToNot(BeNil())
@@ -19951,21 +19951,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewGetSSOConfigOptions successfully`, func() {
 				// Construct an instance of the GetSSOConfigOptions model
-				getSSOConfigOptionsModel := appIdManagementService.NewGetSSOConfigOptions()
+				getSSOConfigOptionsModel := appIDManagementService.NewGetSSOConfigOptions()
 				getSSOConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getSSOConfigOptionsModel).ToNot(BeNil())
 				Expect(getSSOConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetSAMLIDPOptions successfully`, func() {
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSAMLIDPOptionsModel := appIdManagementService.NewGetSAMLIDPOptions()
-				getSAMLIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(getSAMLIDPOptionsModel).ToNot(BeNil())
-				Expect(getSAMLIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+				getSamlidpOptionsModel := appIDManagementService.NewGetSAMLIDPOptions()
+				getSamlidpOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(getSamlidpOptionsModel).ToNot(BeNil())
+				Expect(getSamlidpOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetSAMLMetadataOptions successfully`, func() {
 				// Construct an instance of the GetSAMLMetadataOptions model
-				getSAMLMetadataOptionsModel := appIdManagementService.NewGetSAMLMetadataOptions()
+				getSAMLMetadataOptionsModel := appIDManagementService.NewGetSAMLMetadataOptions()
 				getSAMLMetadataOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getSAMLMetadataOptionsModel).ToNot(BeNil())
 				Expect(getSAMLMetadataOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -19974,7 +19974,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the GetTemplateOptions model
 				templateName := "USER_VERIFICATION"
 				language := "testString"
-				getTemplateOptionsModel := appIdManagementService.NewGetTemplateOptions(templateName, language)
+				getTemplateOptionsModel := appIDManagementService.NewGetTemplateOptions(templateName, language)
 				getTemplateOptionsModel.SetTemplateName("USER_VERIFICATION")
 				getTemplateOptionsModel.SetLanguage("testString")
 				getTemplateOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -19985,28 +19985,28 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewGetThemeColorOptions successfully`, func() {
 				// Construct an instance of the GetThemeColorOptions model
-				getThemeColorOptionsModel := appIdManagementService.NewGetThemeColorOptions()
+				getThemeColorOptionsModel := appIDManagementService.NewGetThemeColorOptions()
 				getThemeColorOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getThemeColorOptionsModel).ToNot(BeNil())
 				Expect(getThemeColorOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetThemeTextOptions successfully`, func() {
 				// Construct an instance of the GetThemeTextOptions model
-				getThemeTextOptionsModel := appIdManagementService.NewGetThemeTextOptions()
+				getThemeTextOptionsModel := appIDManagementService.NewGetThemeTextOptions()
 				getThemeTextOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getThemeTextOptionsModel).ToNot(BeNil())
 				Expect(getThemeTextOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetTokensConfigOptions successfully`, func() {
 				// Construct an instance of the GetTokensConfigOptions model
-				getTokensConfigOptionsModel := appIdManagementService.NewGetTokensConfigOptions()
+				getTokensConfigOptionsModel := appIDManagementService.NewGetTokensConfigOptions()
 				getTokensConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getTokensConfigOptionsModel).ToNot(BeNil())
 				Expect(getTokensConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetUserProfilesConfigOptions successfully`, func() {
 				// Construct an instance of the GetUserProfilesConfigOptions model
-				getUserProfilesConfigOptionsModel := appIdManagementService.NewGetUserProfilesConfigOptions()
+				getUserProfilesConfigOptionsModel := appIDManagementService.NewGetUserProfilesConfigOptions()
 				getUserProfilesConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getUserProfilesConfigOptionsModel).ToNot(BeNil())
 				Expect(getUserProfilesConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -20014,7 +20014,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewGetUserRolesOptions successfully`, func() {
 				// Construct an instance of the GetUserRolesOptions model
 				id := "testString"
-				getUserRolesOptionsModel := appIdManagementService.NewGetUserRolesOptions(id)
+				getUserRolesOptionsModel := appIDManagementService.NewGetUserRolesOptions(id)
 				getUserRolesOptionsModel.SetID("testString")
 				getUserRolesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getUserRolesOptionsModel).ToNot(BeNil())
@@ -20024,7 +20024,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewInvalidateUserSSOSessionsOptions successfully`, func() {
 				// Construct an instance of the InvalidateUserSSOSessionsOptions model
 				userID := "testString"
-				invalidateUserSSOSessionsOptionsModel := appIdManagementService.NewInvalidateUserSSOSessionsOptions(userID)
+				invalidateUserSSOSessionsOptionsModel := appIDManagementService.NewInvalidateUserSSOSessionsOptions(userID)
 				invalidateUserSSOSessionsOptionsModel.SetUserID("testString")
 				invalidateUserSSOSessionsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(invalidateUserSSOSessionsOptionsModel).ToNot(BeNil())
@@ -20033,21 +20033,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewListApplicationsOptions successfully`, func() {
 				// Construct an instance of the ListApplicationsOptions model
-				listApplicationsOptionsModel := appIdManagementService.NewListApplicationsOptions()
+				listApplicationsOptionsModel := appIDManagementService.NewListApplicationsOptions()
 				listApplicationsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(listApplicationsOptionsModel).ToNot(BeNil())
 				Expect(listApplicationsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewListChannelsOptions successfully`, func() {
 				// Construct an instance of the ListChannelsOptions model
-				listChannelsOptionsModel := appIdManagementService.NewListChannelsOptions()
+				listChannelsOptionsModel := appIDManagementService.NewListChannelsOptions()
 				listChannelsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(listChannelsOptionsModel).ToNot(BeNil())
 				Expect(listChannelsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewListCloudDirectoryUsersOptions successfully`, func() {
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
-				listCloudDirectoryUsersOptionsModel := appIdManagementService.NewListCloudDirectoryUsersOptions()
+				listCloudDirectoryUsersOptionsModel := appIDManagementService.NewListCloudDirectoryUsersOptions()
 				listCloudDirectoryUsersOptionsModel.SetStartIndex(int64(38))
 				listCloudDirectoryUsersOptionsModel.SetCount(int64(0))
 				listCloudDirectoryUsersOptionsModel.SetQuery("testString")
@@ -20060,7 +20060,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewListRolesOptions successfully`, func() {
 				// Construct an instance of the ListRolesOptions model
-				listRolesOptionsModel := appIdManagementService.NewListRolesOptions()
+				listRolesOptionsModel := appIDManagementService.NewListRolesOptions()
 				listRolesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(listRolesOptionsModel).ToNot(BeNil())
 				Expect(listRolesOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -20068,7 +20068,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewPostEmailDispatcherTestOptions successfully`, func() {
 				// Construct an instance of the PostEmailDispatcherTestOptions model
 				postEmailDispatcherTestOptionsEmail := "testString"
-				postEmailDispatcherTestOptionsModel := appIdManagementService.NewPostEmailDispatcherTestOptions(postEmailDispatcherTestOptionsEmail)
+				postEmailDispatcherTestOptionsModel := appIDManagementService.NewPostEmailDispatcherTestOptions(postEmailDispatcherTestOptionsEmail)
 				postEmailDispatcherTestOptionsModel.SetEmail("testString")
 				postEmailDispatcherTestOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(postEmailDispatcherTestOptionsModel).ToNot(BeNil())
@@ -20078,7 +20078,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewPostExtensionsTestOptions successfully`, func() {
 				// Construct an instance of the PostExtensionsTestOptions model
 				name := "premfa"
-				postExtensionsTestOptionsModel := appIdManagementService.NewPostExtensionsTestOptions(name)
+				postExtensionsTestOptionsModel := appIDManagementService.NewPostExtensionsTestOptions(name)
 				postExtensionsTestOptionsModel.SetName("premfa")
 				postExtensionsTestOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(postExtensionsTestOptionsModel).ToNot(BeNil())
@@ -20089,7 +20089,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the PostMediaOptions model
 				mediaType := "logo"
 				file := CreateMockReader("This is a mock file.")
-				postMediaOptionsModel := appIdManagementService.NewPostMediaOptions(mediaType, file)
+				postMediaOptionsModel := appIDManagementService.NewPostMediaOptions(mediaType, file)
 				postMediaOptionsModel.SetMediaType("logo")
 				postMediaOptionsModel.SetFile(CreateMockReader("This is a mock file."))
 				postMediaOptionsModel.SetFileContentType("testString")
@@ -20100,19 +20100,19 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(postMediaOptionsModel.FileContentType).To(Equal(core.StringPtr("testString")))
 				Expect(postMediaOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
-			It(`Invoke NewPostSmsDispatcherTestOptions successfully`, func() {
-				// Construct an instance of the PostSmsDispatcherTestOptions model
-				postSmsDispatcherTestOptionsPhoneNumber := "+1-999-999-9999"
-				postSmsDispatcherTestOptionsModel := appIdManagementService.NewPostSmsDispatcherTestOptions(postSmsDispatcherTestOptionsPhoneNumber)
-				postSmsDispatcherTestOptionsModel.SetPhoneNumber("+1-999-999-9999")
-				postSmsDispatcherTestOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(postSmsDispatcherTestOptionsModel).ToNot(BeNil())
-				Expect(postSmsDispatcherTestOptionsModel.PhoneNumber).To(Equal(core.StringPtr("+1-999-999-9999")))
-				Expect(postSmsDispatcherTestOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+			It(`Invoke NewPostSMSDispatcherTestOptions successfully`, func() {
+				// Construct an instance of the PostSMSDispatcherTestOptions model
+				postSMSDispatcherTestOptionsPhoneNumber := "+1-999-999-9999"
+				postSMSDispatcherTestOptionsModel := appIDManagementService.NewPostSMSDispatcherTestOptions(postSMSDispatcherTestOptionsPhoneNumber)
+				postSMSDispatcherTestOptionsModel.SetPhoneNumber("+1-999-999-9999")
+				postSMSDispatcherTestOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(postSMSDispatcherTestOptionsModel).ToNot(BeNil())
+				Expect(postSMSDispatcherTestOptionsModel.PhoneNumber).To(Equal(core.StringPtr("+1-999-999-9999")))
+				Expect(postSMSDispatcherTestOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewPostThemeColorOptions successfully`, func() {
 				// Construct an instance of the PostThemeColorOptions model
-				postThemeColorOptionsModel := appIdManagementService.NewPostThemeColorOptions()
+				postThemeColorOptionsModel := appIDManagementService.NewPostThemeColorOptions()
 				postThemeColorOptionsModel.SetHeaderColor("#EEF2F5")
 				postThemeColorOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(postThemeColorOptionsModel).ToNot(BeNil())
@@ -20121,7 +20121,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewPostThemeTextOptions successfully`, func() {
 				// Construct an instance of the PostThemeTextOptions model
-				postThemeTextOptionsModel := appIdManagementService.NewPostThemeTextOptions()
+				postThemeTextOptionsModel := appIDManagementService.NewPostThemeTextOptions()
 				postThemeTextOptionsModel.SetTabTitle("Login")
 				postThemeTextOptionsModel.SetFootnote("Powered by App ID")
 				postThemeTextOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20140,7 +20140,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the PutApplicationsRolesOptions model
 				clientID := "testString"
 				var putApplicationsRolesOptionsRoles *appidmanagementv4.UpdateUserRolesParamsRoles = nil
-				putApplicationsRolesOptionsModel := appIdManagementService.NewPutApplicationsRolesOptions(clientID, putApplicationsRolesOptionsRoles)
+				putApplicationsRolesOptionsModel := appIDManagementService.NewPutApplicationsRolesOptions(clientID, putApplicationsRolesOptionsRoles)
 				putApplicationsRolesOptionsModel.SetClientID("testString")
 				putApplicationsRolesOptionsModel.SetRoles(updateUserRolesParamsRolesModel)
 				putApplicationsRolesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20152,7 +20152,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewPutApplicationsScopesOptions successfully`, func() {
 				// Construct an instance of the PutApplicationsScopesOptions model
 				clientID := "testString"
-				putApplicationsScopesOptionsModel := appIdManagementService.NewPutApplicationsScopesOptions(clientID)
+				putApplicationsScopesOptionsModel := appIDManagementService.NewPutApplicationsScopesOptions(clientID)
 				putApplicationsScopesOptionsModel.SetClientID("testString")
 				putApplicationsScopesOptionsModel.SetScopes([]string{"cartoons", "horror", "animated"})
 				putApplicationsScopesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20187,15 +20187,15 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(refreshTokenConfigParamsModel.Enabled).To(Equal(core.BoolPtr(true)))
 
 				// Construct an instance of the PutTokensConfigOptions model
-				putTokensConfigOptionsModel := appIdManagementService.NewPutTokensConfigOptions()
-				putTokensConfigOptionsModel.SetIdTokenClaims([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel})
+				putTokensConfigOptionsModel := appIDManagementService.NewPutTokensConfigOptions()
+				putTokensConfigOptionsModel.SetIDTokenClaims([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel})
 				putTokensConfigOptionsModel.SetAccessTokenClaims([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel})
 				putTokensConfigOptionsModel.SetAccess([]appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel})
 				putTokensConfigOptionsModel.SetRefresh([]appidmanagementv4.RefreshTokenConfigParams{*refreshTokenConfigParamsModel})
 				putTokensConfigOptionsModel.SetAnonymousAccess([]appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel})
 				putTokensConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(putTokensConfigOptionsModel).ToNot(BeNil())
-				Expect(putTokensConfigOptionsModel.IdTokenClaims).To(Equal([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}))
+				Expect(putTokensConfigOptionsModel.IDTokenClaims).To(Equal([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}))
 				Expect(putTokensConfigOptionsModel.AccessTokenClaims).To(Equal([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}))
 				Expect(putTokensConfigOptionsModel.Access).To(Equal([]appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}))
 				Expect(putTokensConfigOptionsModel.Refresh).To(Equal([]appidmanagementv4.RefreshTokenConfigParams{*refreshTokenConfigParamsModel}))
@@ -20205,7 +20205,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewRegisterApplicationOptions successfully`, func() {
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsName := "testString"
-				registerApplicationOptionsModel := appIdManagementService.NewRegisterApplicationOptions(registerApplicationOptionsName)
+				registerApplicationOptionsModel := appIDManagementService.NewRegisterApplicationOptions(registerApplicationOptionsName)
 				registerApplicationOptionsModel.SetName("testString")
 				registerApplicationOptionsModel.SetType("testString")
 				registerApplicationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20218,7 +20218,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the ResendNotificationOptions model
 				templateName := "USER_VERIFICATION"
 				resendNotificationOptionsUUID := "testString"
-				resendNotificationOptionsModel := appIdManagementService.NewResendNotificationOptions(templateName, resendNotificationOptionsUUID)
+				resendNotificationOptionsModel := appIDManagementService.NewResendNotificationOptions(templateName, resendNotificationOptionsUUID)
 				resendNotificationOptionsModel.SetTemplateName("USER_VERIFICATION")
 				resendNotificationOptionsModel.SetUUID("testString")
 				resendNotificationOptionsModel.SetLanguage("testString")
@@ -20232,7 +20232,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewSetAuditStatusOptions successfully`, func() {
 				// Construct an instance of the SetAuditStatusOptions model
 				setAuditStatusOptionsIsActive := true
-				setAuditStatusOptionsModel := appIdManagementService.NewSetAuditStatusOptions(setAuditStatusOptionsIsActive)
+				setAuditStatusOptionsModel := appIDManagementService.NewSetAuditStatusOptions(setAuditStatusOptionsIsActive)
 				setAuditStatusOptionsModel.SetIsActive(true)
 				setAuditStatusOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setAuditStatusOptionsModel).ToNot(BeNil())
@@ -20243,7 +20243,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the SetCloudDirectoryActionOptions model
 				action := "on_user_verified"
 				setCloudDirectoryActionOptionsActionURL := "testString"
-				setCloudDirectoryActionOptionsModel := appIdManagementService.NewSetCloudDirectoryActionOptions(action, setCloudDirectoryActionOptionsActionURL)
+				setCloudDirectoryActionOptionsModel := appIDManagementService.NewSetCloudDirectoryActionOptions(action, setCloudDirectoryActionOptionsActionURL)
 				setCloudDirectoryActionOptionsModel.SetAction("on_user_verified")
 				setCloudDirectoryActionOptionsModel.SetActionURL("testString")
 				setCloudDirectoryActionOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20335,7 +20335,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryAdvancedPasswordManagementOptions model
 				var setCloudDirectoryAdvancedPasswordManagementOptionsAdvancedPasswordManagement *appidmanagementv4.ApmSchemaAdvancedPasswordManagement = nil
-				setCloudDirectoryAdvancedPasswordManagementOptionsModel := appIdManagementService.NewSetCloudDirectoryAdvancedPasswordManagementOptions(setCloudDirectoryAdvancedPasswordManagementOptionsAdvancedPasswordManagement)
+				setCloudDirectoryAdvancedPasswordManagementOptionsModel := appIDManagementService.NewSetCloudDirectoryAdvancedPasswordManagementOptions(setCloudDirectoryAdvancedPasswordManagementOptionsAdvancedPasswordManagement)
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.SetAdvancedPasswordManagement(apmSchemaAdvancedPasswordManagementModel)
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setCloudDirectoryAdvancedPasswordManagementOptionsModel).ToNot(BeNil())
@@ -20346,8 +20346,8 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the EmailDispatcherParamsSendgrid model
 				emailDispatcherParamsSendgridModel := new(appidmanagementv4.EmailDispatcherParamsSendgrid)
 				Expect(emailDispatcherParamsSendgridModel).ToNot(BeNil())
-				emailDispatcherParamsSendgridModel.ApiKey = core.StringPtr("testString")
-				Expect(emailDispatcherParamsSendgridModel.ApiKey).To(Equal(core.StringPtr("testString")))
+				emailDispatcherParamsSendgridModel.APIKey = core.StringPtr("testString")
+				Expect(emailDispatcherParamsSendgridModel.APIKey).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the EmailDispatcherParamsCustomAuthorization model
 				emailDispatcherParamsCustomAuthorizationModel := new(appidmanagementv4.EmailDispatcherParamsCustomAuthorization)
@@ -20371,7 +20371,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryEmailDispatcherOptions model
 				setCloudDirectoryEmailDispatcherOptionsProvider := "sendgrid"
-				setCloudDirectoryEmailDispatcherOptionsModel := appIdManagementService.NewSetCloudDirectoryEmailDispatcherOptions(setCloudDirectoryEmailDispatcherOptionsProvider)
+				setCloudDirectoryEmailDispatcherOptionsModel := appIDManagementService.NewSetCloudDirectoryEmailDispatcherOptions(setCloudDirectoryEmailDispatcherOptionsProvider)
 				setCloudDirectoryEmailDispatcherOptionsModel.SetProvider("sendgrid")
 				setCloudDirectoryEmailDispatcherOptionsModel.SetSendgrid(emailDispatcherParamsSendgridModel)
 				setCloudDirectoryEmailDispatcherOptionsModel.SetCustom(emailDispatcherParamsCustomModel)
@@ -20418,7 +20418,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the SetCloudDirectoryIDPOptions model
 				setCloudDirectoryIDPOptionsIsActive := true
 				var setCloudDirectoryIDPOptionsConfig *appidmanagementv4.CloudDirectoryConfigParams = nil
-				setCloudDirectoryIDPOptionsModel := appIdManagementService.NewSetCloudDirectoryIDPOptions(setCloudDirectoryIDPOptionsIsActive, setCloudDirectoryIDPOptionsConfig)
+				setCloudDirectoryIDPOptionsModel := appIDManagementService.NewSetCloudDirectoryIDPOptions(setCloudDirectoryIDPOptionsIsActive, setCloudDirectoryIDPOptionsConfig)
 				setCloudDirectoryIDPOptionsModel.SetIsActive(true)
 				setCloudDirectoryIDPOptionsModel.SetConfig(cloudDirectoryConfigParamsModel)
 				setCloudDirectoryIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20429,7 +20429,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewSetCloudDirectoryPasswordRegexOptions successfully`, func() {
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
-				setCloudDirectoryPasswordRegexOptionsModel := appIdManagementService.NewSetCloudDirectoryPasswordRegexOptions()
+				setCloudDirectoryPasswordRegexOptionsModel := appIDManagementService.NewSetCloudDirectoryPasswordRegexOptions()
 				setCloudDirectoryPasswordRegexOptionsModel.SetRegex("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.SetBase64EncodedRegex("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.SetErrorMessage("testString")
@@ -20469,7 +20469,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectorySenderDetailsOptions model
 				var setCloudDirectorySenderDetailsOptionsSenderDetails *appidmanagementv4.CloudDirectorySenderDetailsSenderDetails = nil
-				setCloudDirectorySenderDetailsOptionsModel := appIdManagementService.NewSetCloudDirectorySenderDetailsOptions(setCloudDirectorySenderDetailsOptionsSenderDetails)
+				setCloudDirectorySenderDetailsOptionsModel := appIDManagementService.NewSetCloudDirectorySenderDetailsOptions(setCloudDirectorySenderDetailsOptionsSenderDetails)
 				setCloudDirectorySenderDetailsOptionsModel.SetSenderDetails(cloudDirectorySenderDetailsSenderDetailsModel)
 				setCloudDirectorySenderDetailsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setCloudDirectorySenderDetailsOptionsModel).ToNot(BeNil())
@@ -20477,21 +20477,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(setCloudDirectorySenderDetailsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewSetCustomIDPOptions successfully`, func() {
-				// Construct an instance of the CustomIdPConfigParamsConfig model
-				customIdPConfigParamsConfigModel := new(appidmanagementv4.CustomIdPConfigParamsConfig)
-				Expect(customIdPConfigParamsConfigModel).ToNot(BeNil())
-				customIdPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
-				Expect(customIdPConfigParamsConfigModel.PublicKey).To(Equal(core.StringPtr("testString")))
+				// Construct an instance of the CustomIDPConfigParamsConfig model
+				customIDPConfigParamsConfigModel := new(appidmanagementv4.CustomIDPConfigParamsConfig)
+				Expect(customIDPConfigParamsConfigModel).ToNot(BeNil())
+				customIDPConfigParamsConfigModel.PublicKey = core.StringPtr("testString")
+				Expect(customIDPConfigParamsConfigModel.PublicKey).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsIsActive := true
-				setCustomIDPOptionsModel := appIdManagementService.NewSetCustomIDPOptions(setCustomIDPOptionsIsActive)
+				setCustomIDPOptionsModel := appIDManagementService.NewSetCustomIDPOptions(setCustomIDPOptionsIsActive)
 				setCustomIDPOptionsModel.SetIsActive(true)
-				setCustomIDPOptionsModel.SetConfig(customIdPConfigParamsConfigModel)
+				setCustomIDPOptionsModel.SetConfig(customIDPConfigParamsConfigModel)
 				setCustomIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setCustomIDPOptionsModel).ToNot(BeNil())
 				Expect(setCustomIDPOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
-				Expect(setCustomIDPOptionsModel.Config).To(Equal(customIdPConfigParamsConfigModel))
+				Expect(setCustomIDPOptionsModel.Config).To(Equal(customIDPConfigParamsConfigModel))
 				Expect(setCustomIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewSetFacebookIDPOptions successfully`, func() {
@@ -20515,8 +20515,8 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(facebookGoogleConfigParamsModel.GetProperty("foo")).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the SetFacebookIDPOptions model
-				var IDP *appidmanagementv4.FacebookGoogleConfigParams = nil
-				setFacebookIDPOptionsModel := appIdManagementService.NewSetFacebookIDPOptions(IDP)
+				var idp *appidmanagementv4.FacebookGoogleConfigParams = nil
+				setFacebookIDPOptionsModel := appIDManagementService.NewSetFacebookIDPOptions(idp)
 				setFacebookIDPOptionsModel.SetIDP(facebookGoogleConfigParamsModel)
 				setFacebookIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setFacebookIDPOptionsModel).ToNot(BeNil())
@@ -20544,8 +20544,8 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(facebookGoogleConfigParamsModel.GetProperty("foo")).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the SetGoogleIDPOptions model
-				var IDP *appidmanagementv4.FacebookGoogleConfigParams = nil
-				setGoogleIDPOptionsModel := appIdManagementService.NewSetGoogleIDPOptions(IDP)
+				var idp *appidmanagementv4.FacebookGoogleConfigParams = nil
+				setGoogleIDPOptionsModel := appIDManagementService.NewSetGoogleIDPOptions(idp)
 				setGoogleIDPOptionsModel.SetIDP(facebookGoogleConfigParamsModel)
 				setGoogleIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setGoogleIDPOptionsModel).ToNot(BeNil())
@@ -20554,51 +20554,51 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewSetSAMLIDPOptions successfully`, func() {
 				// Construct an instance of the SAMLConfigParamsAuthnContext model
-				SAMLConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
-				Expect(SAMLConfigParamsAuthnContextModel).ToNot(BeNil())
-				SAMLConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
-				SAMLConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
-				Expect(SAMLConfigParamsAuthnContextModel.Class).To(Equal([]string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}))
-				Expect(SAMLConfigParamsAuthnContextModel.Comparison).To(Equal(core.StringPtr("exact")))
+				samlConfigParamsAuthnContextModel := new(appidmanagementv4.SAMLConfigParamsAuthnContext)
+				Expect(samlConfigParamsAuthnContextModel).ToNot(BeNil())
+				samlConfigParamsAuthnContextModel.Class = []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}
+				samlConfigParamsAuthnContextModel.Comparison = core.StringPtr("exact")
+				Expect(samlConfigParamsAuthnContextModel.Class).To(Equal([]string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"}))
+				Expect(samlConfigParamsAuthnContextModel.Comparison).To(Equal(core.StringPtr("exact")))
 
 				// Construct an instance of the SAMLConfigParams model
-				SAMLConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
-				Expect(SAMLConfigParamsModel).ToNot(BeNil())
-				SAMLConfigParamsModel.EntityID = core.StringPtr("testString")
-				SAMLConfigParamsModel.SignInURL = core.StringPtr("testString")
-				SAMLConfigParamsModel.Certificates = []string{"testString"}
-				SAMLConfigParamsModel.DisplayName = core.StringPtr("testString")
-				SAMLConfigParamsModel.AuthnContext = SAMLConfigParamsAuthnContextModel
-				SAMLConfigParamsModel.SignRequest = core.BoolPtr(false)
-				SAMLConfigParamsModel.EncryptResponse = core.BoolPtr(false)
-				SAMLConfigParamsModel.IncludeScoping = core.BoolPtr(false)
-				SAMLConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
-				Expect(SAMLConfigParamsModel.EntityID).To(Equal(core.StringPtr("testString")))
-				Expect(SAMLConfigParamsModel.SignInURL).To(Equal(core.StringPtr("testString")))
-				Expect(SAMLConfigParamsModel.Certificates).To(Equal([]string{"testString"}))
-				Expect(SAMLConfigParamsModel.DisplayName).To(Equal(core.StringPtr("testString")))
-				Expect(SAMLConfigParamsModel.AuthnContext).To(Equal(SAMLConfigParamsAuthnContextModel))
-				Expect(SAMLConfigParamsModel.SignRequest).To(Equal(core.BoolPtr(false)))
-				Expect(SAMLConfigParamsModel.EncryptResponse).To(Equal(core.BoolPtr(false)))
-				Expect(SAMLConfigParamsModel.IncludeScoping).To(Equal(core.BoolPtr(false)))
-				Expect(SAMLConfigParamsModel.GetProperties()).ToNot(BeEmpty())
-				Expect(SAMLConfigParamsModel.GetProperty("foo")).To(Equal(core.StringPtr("testString")))
+				samlConfigParamsModel := new(appidmanagementv4.SAMLConfigParams)
+				Expect(samlConfigParamsModel).ToNot(BeNil())
+				samlConfigParamsModel.EntityID = core.StringPtr("testString")
+				samlConfigParamsModel.SignInURL = core.StringPtr("testString")
+				samlConfigParamsModel.Certificates = []string{"testString"}
+				samlConfigParamsModel.DisplayName = core.StringPtr("testString")
+				samlConfigParamsModel.AuthnContext = samlConfigParamsAuthnContextModel
+				samlConfigParamsModel.SignRequest = core.BoolPtr(false)
+				samlConfigParamsModel.EncryptResponse = core.BoolPtr(false)
+				samlConfigParamsModel.IncludeScoping = core.BoolPtr(false)
+				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
+				Expect(samlConfigParamsModel.EntityID).To(Equal(core.StringPtr("testString")))
+				Expect(samlConfigParamsModel.SignInURL).To(Equal(core.StringPtr("testString")))
+				Expect(samlConfigParamsModel.Certificates).To(Equal([]string{"testString"}))
+				Expect(samlConfigParamsModel.DisplayName).To(Equal(core.StringPtr("testString")))
+				Expect(samlConfigParamsModel.AuthnContext).To(Equal(samlConfigParamsAuthnContextModel))
+				Expect(samlConfigParamsModel.SignRequest).To(Equal(core.BoolPtr(false)))
+				Expect(samlConfigParamsModel.EncryptResponse).To(Equal(core.BoolPtr(false)))
+				Expect(samlConfigParamsModel.IncludeScoping).To(Equal(core.BoolPtr(false)))
+				Expect(samlConfigParamsModel.GetProperties()).ToNot(BeEmpty())
+				Expect(samlConfigParamsModel.GetProperty("foo")).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSAMLIDPOptionsIsActive := true
-				setSAMLIDPOptionsModel := appIdManagementService.NewSetSAMLIDPOptions(setSAMLIDPOptionsIsActive)
-				setSAMLIDPOptionsModel.SetIsActive(true)
-				setSAMLIDPOptionsModel.SetConfig(SAMLConfigParamsModel)
-				setSAMLIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(setSAMLIDPOptionsModel).ToNot(BeNil())
-				Expect(setSAMLIDPOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
-				Expect(setSAMLIDPOptionsModel.Config).To(Equal(SAMLConfigParamsModel))
-				Expect(setSAMLIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+				setSamlidpOptionsIsActive := true
+				setSamlidpOptionsModel := appIDManagementService.NewSetSAMLIDPOptions(setSamlidpOptionsIsActive)
+				setSamlidpOptionsModel.SetIsActive(true)
+				setSamlidpOptionsModel.SetConfig(samlConfigParamsModel)
+				setSamlidpOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(setSamlidpOptionsModel).ToNot(BeNil())
+				Expect(setSamlidpOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
+				Expect(setSamlidpOptionsModel.Config).To(Equal(samlConfigParamsModel))
+				Expect(setSamlidpOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewStartForgotPasswordOptions successfully`, func() {
 				// Construct an instance of the StartForgotPasswordOptions model
 				startForgotPasswordOptionsUser := "testString"
-				startForgotPasswordOptionsModel := appIdManagementService.NewStartForgotPasswordOptions(startForgotPasswordOptionsUser)
+				startForgotPasswordOptionsModel := appIDManagementService.NewStartForgotPasswordOptions(startForgotPasswordOptionsUser)
 				startForgotPasswordOptionsModel.SetUser("testString")
 				startForgotPasswordOptionsModel.SetLanguage("testString")
 				startForgotPasswordOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20620,7 +20620,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				shouldCreateProfile := true
 				startSignUpOptionsEmails := []appidmanagementv4.CreateNewUserEmailsItem{}
 				startSignUpOptionsPassword := "userPassword"
-				startSignUpOptionsModel := appIdManagementService.NewStartSignUpOptions(shouldCreateProfile, startSignUpOptionsEmails, startSignUpOptionsPassword)
+				startSignUpOptionsModel := appIDManagementService.NewStartSignUpOptions(shouldCreateProfile, startSignUpOptionsEmails, startSignUpOptionsPassword)
 				startSignUpOptionsModel.SetShouldCreateProfile(true)
 				startSignUpOptionsModel.SetEmails([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel})
 				startSignUpOptionsModel.SetPassword("userPassword")
@@ -20641,7 +20641,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the UpdateApplicationOptions model
 				clientID := "testString"
 				updateApplicationOptionsName := "testString"
-				updateApplicationOptionsModel := appIdManagementService.NewUpdateApplicationOptions(clientID, updateApplicationOptionsName)
+				updateApplicationOptionsModel := appIDManagementService.NewUpdateApplicationOptions(clientID, updateApplicationOptionsName)
 				updateApplicationOptionsModel.SetClientID("testString")
 				updateApplicationOptionsModel.SetName("testString")
 				updateApplicationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20654,7 +20654,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the UpdateChannelOptions model
 				channel := "email"
 				updateChannelOptionsIsActive := true
-				updateChannelOptionsModel := appIdManagementService.NewUpdateChannelOptions(channel, updateChannelOptionsIsActive)
+				updateChannelOptionsModel := appIDManagementService.NewUpdateChannelOptions(channel, updateChannelOptionsIsActive)
 				updateChannelOptionsModel.SetChannel("email")
 				updateChannelOptionsModel.SetIsActive(true)
 				updateChannelOptionsModel.SetConfig(map[string]interface{}{"anyKey": "anyValue"})
@@ -20677,7 +20677,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the UpdateCloudDirectoryUserOptions model
 				userID := "testString"
 				updateCloudDirectoryUserOptionsEmails := []appidmanagementv4.CreateNewUserEmailsItem{}
-				updateCloudDirectoryUserOptionsModel := appIdManagementService.NewUpdateCloudDirectoryUserOptions(userID, updateCloudDirectoryUserOptionsEmails)
+				updateCloudDirectoryUserOptionsModel := appIDManagementService.NewUpdateCloudDirectoryUserOptions(userID, updateCloudDirectoryUserOptionsEmails)
 				updateCloudDirectoryUserOptionsModel.SetUserID("testString")
 				updateCloudDirectoryUserOptionsModel.SetEmails([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel})
 				updateCloudDirectoryUserOptionsModel.SetActive(true)
@@ -20696,7 +20696,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the UpdateExtensionActiveOptions model
 				name := "premfa"
 				updateExtensionActiveOptionsIsActive := true
-				updateExtensionActiveOptionsModel := appIdManagementService.NewUpdateExtensionActiveOptions(name, updateExtensionActiveOptionsIsActive)
+				updateExtensionActiveOptionsModel := appIDManagementService.NewUpdateExtensionActiveOptions(name, updateExtensionActiveOptionsIsActive)
 				updateExtensionActiveOptionsModel.SetName("premfa")
 				updateExtensionActiveOptionsModel.SetIsActive(true)
 				updateExtensionActiveOptionsModel.SetConfig(map[string]interface{}{"anyKey": "anyValue"})
@@ -20719,7 +20719,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the UpdateExtensionConfigOptions model
 				name := "premfa"
 				updateExtensionConfigOptionsIsActive := true
-				updateExtensionConfigOptionsModel := appIdManagementService.NewUpdateExtensionConfigOptions(name, updateExtensionConfigOptionsIsActive)
+				updateExtensionConfigOptionsModel := appIDManagementService.NewUpdateExtensionConfigOptions(name, updateExtensionConfigOptionsIsActive)
 				updateExtensionConfigOptionsModel.SetName("premfa")
 				updateExtensionConfigOptionsModel.SetIsActive(true)
 				updateExtensionConfigOptionsModel.SetConfig(updateExtensionConfigConfigModel)
@@ -20732,7 +20732,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewUpdateLocalizationOptions successfully`, func() {
 				// Construct an instance of the UpdateLocalizationOptions model
-				updateLocalizationOptionsModel := appIdManagementService.NewUpdateLocalizationOptions()
+				updateLocalizationOptionsModel := appIDManagementService.NewUpdateLocalizationOptions()
 				updateLocalizationOptionsModel.SetLanguages([]string{"testString"})
 				updateLocalizationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateLocalizationOptionsModel).ToNot(BeNil())
@@ -20741,21 +20741,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewUpdateMFAConfigOptions successfully`, func() {
 				// Construct an instance of the UpdateMFAConfigOptions model
-				updateMfaConfigOptionsIsActive := true
-				updateMfaConfigOptionsModel := appIdManagementService.NewUpdateMFAConfigOptions(updateMfaConfigOptionsIsActive)
-				updateMfaConfigOptionsModel.SetIsActive(true)
-				updateMfaConfigOptionsModel.SetConfig(map[string]interface{}{"anyKey": "anyValue"})
-				updateMfaConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(updateMfaConfigOptionsModel).ToNot(BeNil())
-				Expect(updateMfaConfigOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
-				Expect(updateMfaConfigOptionsModel.Config).To(Equal(map[string]interface{}{"anyKey": "anyValue"}))
-				Expect(updateMfaConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+				updateMFAConfigOptionsIsActive := true
+				updateMFAConfigOptionsModel := appIDManagementService.NewUpdateMFAConfigOptions(updateMFAConfigOptionsIsActive)
+				updateMFAConfigOptionsModel.SetIsActive(true)
+				updateMFAConfigOptionsModel.SetConfig(map[string]interface{}{"anyKey": "anyValue"})
+				updateMFAConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(updateMFAConfigOptionsModel).ToNot(BeNil())
+				Expect(updateMFAConfigOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
+				Expect(updateMFAConfigOptionsModel.Config).To(Equal(map[string]interface{}{"anyKey": "anyValue"}))
+				Expect(updateMFAConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUpdateRateLimitConfigOptions successfully`, func() {
 				// Construct an instance of the UpdateRateLimitConfigOptions model
 				updateRateLimitConfigOptionsSignUpLimitPerMinute := int64(50)
 				updateRateLimitConfigOptionsSignInLimitPerMinute := int64(60)
-				updateRateLimitConfigOptionsModel := appIdManagementService.NewUpdateRateLimitConfigOptions(updateRateLimitConfigOptionsSignUpLimitPerMinute, updateRateLimitConfigOptionsSignInLimitPerMinute)
+				updateRateLimitConfigOptionsModel := appIDManagementService.NewUpdateRateLimitConfigOptions(updateRateLimitConfigOptionsSignUpLimitPerMinute, updateRateLimitConfigOptionsSignInLimitPerMinute)
 				updateRateLimitConfigOptionsModel.SetSignUpLimitPerMinute(int64(50))
 				updateRateLimitConfigOptionsModel.SetSignInLimitPerMinute(int64(60))
 				updateRateLimitConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20765,24 +20765,24 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(updateRateLimitConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUpdateRedirectUrisOptions successfully`, func() {
-				// Construct an instance of the RedirectUriConfig model
-				redirectUriConfigModel := new(appidmanagementv4.RedirectUriConfig)
-				Expect(redirectUriConfigModel).ToNot(BeNil())
-				redirectUriConfigModel.RedirectUris = []string{"http://localhost:3000/oauth-callback"}
-				redirectUriConfigModel.TrustCloudIAMRedirectUris = core.BoolPtr(true)
-				redirectUriConfigModel.SetProperty("foo", core.StringPtr("testString"))
-				Expect(redirectUriConfigModel.RedirectUris).To(Equal([]string{"http://localhost:3000/oauth-callback"}))
-				Expect(redirectUriConfigModel.TrustCloudIAMRedirectUris).To(Equal(core.BoolPtr(true)))
-				Expect(redirectUriConfigModel.GetProperties()).ToNot(BeEmpty())
-				Expect(redirectUriConfigModel.GetProperty("foo")).To(Equal(core.StringPtr("testString")))
+				// Construct an instance of the RedirectURIConfig model
+				redirectURIConfigModel := new(appidmanagementv4.RedirectURIConfig)
+				Expect(redirectURIConfigModel).ToNot(BeNil())
+				redirectURIConfigModel.RedirectUris = []string{"http://localhost:3000/oauth-callback"}
+				redirectURIConfigModel.TrustCloudIAMRedirectUris = core.BoolPtr(true)
+				redirectURIConfigModel.SetProperty("foo", core.StringPtr("testString"))
+				Expect(redirectURIConfigModel.RedirectUris).To(Equal([]string{"http://localhost:3000/oauth-callback"}))
+				Expect(redirectURIConfigModel.TrustCloudIAMRedirectUris).To(Equal(core.BoolPtr(true)))
+				Expect(redirectURIConfigModel.GetProperties()).ToNot(BeEmpty())
+				Expect(redirectURIConfigModel.GetProperty("foo")).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the UpdateRedirectUrisOptions model
-				var redirectUrisArray *appidmanagementv4.RedirectUriConfig = nil
-				updateRedirectUrisOptionsModel := appIdManagementService.NewUpdateRedirectUrisOptions(redirectUrisArray)
-				updateRedirectUrisOptionsModel.SetRedirectUrisArray(redirectUriConfigModel)
+				var redirectUrisArray *appidmanagementv4.RedirectURIConfig = nil
+				updateRedirectUrisOptionsModel := appIDManagementService.NewUpdateRedirectUrisOptions(redirectUrisArray)
+				updateRedirectUrisOptionsModel.SetRedirectUrisArray(redirectURIConfigModel)
 				updateRedirectUrisOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateRedirectUrisOptionsModel).ToNot(BeNil())
-				Expect(updateRedirectUrisOptionsModel.RedirectUrisArray).To(Equal(redirectUriConfigModel))
+				Expect(updateRedirectUrisOptionsModel.RedirectUrisArray).To(Equal(redirectURIConfigModel))
 				Expect(updateRedirectUrisOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUpdateRoleOptions successfully`, func() {
@@ -20798,7 +20798,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				roleID := "testString"
 				updateRoleOptionsName := "child"
 				updateRoleOptionsAccess := []appidmanagementv4.UpdateRoleParamsAccessItem{}
-				updateRoleOptionsModel := appIdManagementService.NewUpdateRoleOptions(roleID, updateRoleOptionsName, updateRoleOptionsAccess)
+				updateRoleOptionsModel := appIDManagementService.NewUpdateRoleOptions(roleID, updateRoleOptionsName, updateRoleOptionsAccess)
 				updateRoleOptionsModel.SetRoleID("testString")
 				updateRoleOptionsModel.SetName("child")
 				updateRoleOptionsModel.SetAccess([]appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel})
@@ -20814,7 +20814,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewUpdateRoleParamsAccessItem successfully`, func() {
 				applicationID := "de33d272-f8a7-4406-8fe8-ab28fd457be5"
 				scopes := []string{"cartoons", "animated"}
-				model, err := appIdManagementService.NewUpdateRoleParamsAccessItem(applicationID, scopes)
+				model, err := appIDManagementService.NewUpdateRoleParamsAccessItem(applicationID, scopes)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
@@ -20823,7 +20823,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				updateSSOConfigOptionsIsActive := true
 				updateSSOConfigOptionsInactivityTimeoutSeconds := float64(86400)
 				updateSSOConfigOptionsLogoutRedirectUris := []string{"http://localhost:3000/logout-callback"}
-				updateSSOConfigOptionsModel := appIdManagementService.NewUpdateSSOConfigOptions(updateSSOConfigOptionsIsActive, updateSSOConfigOptionsInactivityTimeoutSeconds, updateSSOConfigOptionsLogoutRedirectUris)
+				updateSSOConfigOptionsModel := appIDManagementService.NewUpdateSSOConfigOptions(updateSSOConfigOptionsIsActive, updateSSOConfigOptionsInactivityTimeoutSeconds, updateSSOConfigOptionsLogoutRedirectUris)
 				updateSSOConfigOptionsModel.SetIsActive(true)
 				updateSSOConfigOptionsModel.SetInactivityTimeoutSeconds(float64(86400))
 				updateSSOConfigOptionsModel.SetLogoutRedirectUris([]string{"http://localhost:3000/logout-callback"})
@@ -20839,7 +20839,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				templateName := "USER_VERIFICATION"
 				language := "testString"
 				updateTemplateOptionsSubject := "testString"
-				updateTemplateOptionsModel := appIdManagementService.NewUpdateTemplateOptions(templateName, language, updateTemplateOptionsSubject)
+				updateTemplateOptionsModel := appIDManagementService.NewUpdateTemplateOptions(templateName, language, updateTemplateOptionsSubject)
 				updateTemplateOptionsModel.SetTemplateName("USER_VERIFICATION")
 				updateTemplateOptionsModel.SetLanguage("testString")
 				updateTemplateOptionsModel.SetSubject("testString")
@@ -20859,7 +20859,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewUpdateUserProfilesConfigOptions successfully`, func() {
 				// Construct an instance of the UpdateUserProfilesConfigOptions model
 				updateUserProfilesConfigOptionsIsActive := true
-				updateUserProfilesConfigOptionsModel := appIdManagementService.NewUpdateUserProfilesConfigOptions(updateUserProfilesConfigOptionsIsActive)
+				updateUserProfilesConfigOptionsModel := appIDManagementService.NewUpdateUserProfilesConfigOptions(updateUserProfilesConfigOptionsIsActive)
 				updateUserProfilesConfigOptionsModel.SetIsActive(true)
 				updateUserProfilesConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateUserProfilesConfigOptionsModel).ToNot(BeNil())
@@ -20876,7 +20876,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the UpdateUserRolesOptions model
 				id := "testString"
 				var updateUserRolesOptionsRoles *appidmanagementv4.UpdateUserRolesParamsRoles = nil
-				updateUserRolesOptionsModel := appIdManagementService.NewUpdateUserRolesOptions(id, updateUserRolesOptionsRoles)
+				updateUserRolesOptionsModel := appIDManagementService.NewUpdateUserRolesOptions(id, updateUserRolesOptionsRoles)
 				updateUserRolesOptionsModel.SetID("testString")
 				updateUserRolesOptionsModel.SetRoles(updateUserRolesParamsRolesModel)
 				updateUserRolesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20887,7 +20887,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewUserProfilesExportOptions successfully`, func() {
 				// Construct an instance of the UserProfilesExportOptions model
-				userProfilesExportOptionsModel := appIdManagementService.NewUserProfilesExportOptions()
+				userProfilesExportOptionsModel := appIDManagementService.NewUserProfilesExportOptions()
 				userProfilesExportOptionsModel.SetStartIndex(int64(38))
 				userProfilesExportOptionsModel.SetCount(int64(0))
 				userProfilesExportOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -20942,7 +20942,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 
 				// Construct an instance of the UserProfilesImportOptions model
 				userProfilesImportOptionsUsers := []appidmanagementv4.ExportUserProfileUsersItem{}
-				userProfilesImportOptionsModel := appIdManagementService.NewUserProfilesImportOptions(userProfilesImportOptionsUsers)
+				userProfilesImportOptionsModel := appIDManagementService.NewUserProfilesImportOptions(userProfilesImportOptionsUsers)
 				userProfilesImportOptionsModel.SetUsers([]appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel})
 				userProfilesImportOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(userProfilesImportOptionsModel).ToNot(BeNil())
@@ -20952,7 +20952,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewUserVerificationResultOptions successfully`, func() {
 				// Construct an instance of the UserVerificationResultOptions model
 				userVerificationResultOptionsContext := "testString"
-				userVerificationResultOptionsModel := appIdManagementService.NewUserVerificationResultOptions(userVerificationResultOptionsContext)
+				userVerificationResultOptionsModel := appIDManagementService.NewUserVerificationResultOptions(userVerificationResultOptionsContext)
 				userVerificationResultOptionsModel.SetContext("testString")
 				userVerificationResultOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(userVerificationResultOptionsModel).ToNot(BeNil())
@@ -20962,7 +20962,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewUsersDeleteUserProfileOptions successfully`, func() {
 				// Construct an instance of the UsersDeleteUserProfileOptions model
 				id := "testString"
-				usersDeleteUserProfileOptionsModel := appIdManagementService.NewUsersDeleteUserProfileOptions(id)
+				usersDeleteUserProfileOptionsModel := appIDManagementService.NewUsersDeleteUserProfileOptions(id)
 				usersDeleteUserProfileOptionsModel.SetID("testString")
 				usersDeleteUserProfileOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(usersDeleteUserProfileOptionsModel).ToNot(BeNil())
@@ -20972,7 +20972,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewUsersGetUserProfileOptions successfully`, func() {
 				// Construct an instance of the UsersGetUserProfileOptions model
 				id := "testString"
-				usersGetUserProfileOptionsModel := appIdManagementService.NewUsersGetUserProfileOptions(id)
+				usersGetUserProfileOptionsModel := appIDManagementService.NewUsersGetUserProfileOptions(id)
 				usersGetUserProfileOptionsModel.SetID("testString")
 				usersGetUserProfileOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(usersGetUserProfileOptionsModel).ToNot(BeNil())
@@ -20989,7 +20989,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the UsersNominateUserOptions model
 				usersNominateUserOptionsIDP := "saml"
 				usersNominateUserOptionsIDPIdentity := "appid@ibm.com"
-				usersNominateUserOptionsModel := appIdManagementService.NewUsersNominateUserOptions(usersNominateUserOptionsIDP, usersNominateUserOptionsIDPIdentity)
+				usersNominateUserOptionsModel := appIDManagementService.NewUsersNominateUserOptions(usersNominateUserOptionsIDP, usersNominateUserOptionsIDPIdentity)
 				usersNominateUserOptionsModel.SetIDP("saml")
 				usersNominateUserOptionsModel.SetIDPIdentity("appid@ibm.com")
 				usersNominateUserOptionsModel.SetProfile(usersNominateUserParamsProfileModel)
@@ -21003,7 +21003,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewUsersRevokeRefreshTokenOptions successfully`, func() {
 				// Construct an instance of the UsersRevokeRefreshTokenOptions model
 				id := "testString"
-				usersRevokeRefreshTokenOptionsModel := appIdManagementService.NewUsersRevokeRefreshTokenOptions(id)
+				usersRevokeRefreshTokenOptionsModel := appIDManagementService.NewUsersRevokeRefreshTokenOptions(id)
 				usersRevokeRefreshTokenOptionsModel.SetID("testString")
 				usersRevokeRefreshTokenOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(usersRevokeRefreshTokenOptionsModel).ToNot(BeNil())
@@ -21013,7 +21013,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			It(`Invoke NewUsersSearchUserProfileOptions successfully`, func() {
 				// Construct an instance of the UsersSearchUserProfileOptions model
 				dataScope := "index"
-				usersSearchUserProfileOptionsModel := appIdManagementService.NewUsersSearchUserProfileOptions(dataScope)
+				usersSearchUserProfileOptionsModel := appIDManagementService.NewUsersSearchUserProfileOptions(dataScope)
 				usersSearchUserProfileOptionsModel.SetDataScope("index")
 				usersSearchUserProfileOptionsModel.SetEmail("testString")
 				usersSearchUserProfileOptionsModel.SetID("testString")
@@ -21032,7 +21032,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				// Construct an instance of the UsersSetUserProfileOptions model
 				id := "testString"
 				usersSetUserProfileOptionsAttributes := make(map[string]interface{})
-				usersSetUserProfileOptionsModel := appIdManagementService.NewUsersSetUserProfileOptions(id, usersSetUserProfileOptionsAttributes)
+				usersSetUserProfileOptionsModel := appIDManagementService.NewUsersSetUserProfileOptions(id, usersSetUserProfileOptionsAttributes)
 				usersSetUserProfileOptionsModel.SetID("testString")
 				usersSetUserProfileOptionsModel.SetAttributes(make(map[string]interface{}))
 				usersSetUserProfileOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
@@ -21043,66 +21043,66 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewApmSchema successfully`, func() {
 				var advancedPasswordManagement *appidmanagementv4.ApmSchemaAdvancedPasswordManagement = nil
-				_, err := appIdManagementService.NewApmSchema(advancedPasswordManagement)
+				_, err := appIDManagementService.NewApmSchema(advancedPasswordManagement)
 				Expect(err).ToNot(BeNil())
 			})
 			It(`Invoke NewCloudDirectoryConfigParams successfully`, func() {
 				selfServiceEnabled := true
 				var interactions *appidmanagementv4.CloudDirectoryConfigParamsInteractions = nil
-				_, err := appIdManagementService.NewCloudDirectoryConfigParams(selfServiceEnabled, interactions)
+				_, err := appIDManagementService.NewCloudDirectoryConfigParams(selfServiceEnabled, interactions)
 				Expect(err).ToNot(BeNil())
 			})
 			It(`Invoke NewCloudDirectorySenderDetails successfully`, func() {
 				var senderDetails *appidmanagementv4.CloudDirectorySenderDetailsSenderDetails = nil
-				_, err := appIdManagementService.NewCloudDirectorySenderDetails(senderDetails)
+				_, err := appIDManagementService.NewCloudDirectorySenderDetails(senderDetails)
 				Expect(err).ToNot(BeNil())
 			})
-			It(`Invoke NewCustomIdPConfigParams successfully`, func() {
+			It(`Invoke NewCustomIDPConfigParams successfully`, func() {
 				isActive := true
-				model, err := appIdManagementService.NewCustomIdPConfigParams(isActive)
+				model, err := appIDManagementService.NewCustomIDPConfigParams(isActive)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewEmailDispatcherParams successfully`, func() {
 				provider := "sendgrid"
-				model, err := appIdManagementService.NewEmailDispatcherParams(provider)
+				model, err := appIDManagementService.NewEmailDispatcherParams(provider)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewExportUser successfully`, func() {
 				users := []appidmanagementv4.ExportUserUsersItem{}
-				model, err := appIdManagementService.NewExportUser(users)
+				model, err := appIDManagementService.NewExportUser(users)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewExportUserProfile successfully`, func() {
 				users := []appidmanagementv4.ExportUserProfileUsersItem{}
-				model, err := appIdManagementService.NewExportUserProfile(users)
+				model, err := appIDManagementService.NewExportUserProfile(users)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewExtensionActive successfully`, func() {
 				isActive := true
-				model, err := appIdManagementService.NewExtensionActive(isActive)
+				model, err := appIDManagementService.NewExtensionActive(isActive)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewFacebookGoogleConfigParams successfully`, func() {
 				isActive := true
-				model, err := appIdManagementService.NewFacebookGoogleConfigParams(isActive)
+				model, err := appIDManagementService.NewFacebookGoogleConfigParams(isActive)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewGetLanguages successfully`, func() {
 				languages := []string{"testString"}
-				model, err := appIdManagementService.NewGetLanguages(languages)
+				model, err := appIDManagementService.NewGetLanguages(languages)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewRefreshTokenConfigParams successfully`, func() {
 				expiresIn := float64(72.5)
 				enabled := true
-				model, err := appIdManagementService.NewRefreshTokenConfigParams(expiresIn, enabled)
+				model, err := appIDManagementService.NewRefreshTokenConfigParams(expiresIn, enabled)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
@@ -21110,25 +21110,25 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				entityID := "testString"
 				signInURL := "testString"
 				certificates := []string{"testString"}
-				model, err := appIdManagementService.NewSAMLConfigParams(entityID, signInURL, certificates)
+				model, err := appIDManagementService.NewSAMLConfigParams(entityID, signInURL, certificates)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewTokenClaimMapping successfully`, func() {
 				source := "saml"
-				model, err := appIdManagementService.NewTokenClaimMapping(source)
+				model, err := appIDManagementService.NewTokenClaimMapping(source)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewTokenConfigParams successfully`, func() {
 				expiresIn := float64(72.5)
-				model, err := appIdManagementService.NewTokenConfigParams(expiresIn)
+				model, err := appIDManagementService.NewTokenConfigParams(expiresIn)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewUpdateExtensionConfig successfully`, func() {
 				isActive := true
-				model, err := appIdManagementService.NewUpdateExtensionConfig(isActive)
+				model, err := appIDManagementService.NewUpdateExtensionConfig(isActive)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})
