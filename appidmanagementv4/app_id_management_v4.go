@@ -15,7 +15,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 3.30.0-bd714324-20210406-200538
+ * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-110443
  */
 
 // Package appidmanagementv4 : Operations and models for the AppIdManagementV4 service
@@ -25,12 +25,13 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	common "github.com/IBM/appid-go-sdk/common"
-	"github.com/IBM/go-sdk-core/v5/core"
 	"io"
 	"net/http"
 	"reflect"
 	"time"
+
+	common "github.com/IBM/appid-go-sdk/common"
+	"github.com/IBM/go-sdk-core/v5/core"
 )
 
 // AppIdManagementV4 : You can use the following APIs to configure your instances of IBM Cloud App ID. To define fine
@@ -223,11 +224,13 @@ func (appIdManagement *AppIdManagementV4) ListApplicationsWithContext(ctx contex
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApplicationsList)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApplicationsList)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -294,11 +297,13 @@ func (appIdManagement *AppIdManagementV4) RegisterApplicationWithContext(ctx con
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApplication)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApplication)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -353,11 +358,13 @@ func (appIdManagement *AppIdManagementV4) GetApplicationWithContext(ctx context.
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApplication)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApplication)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -422,11 +429,13 @@ func (appIdManagement *AppIdManagementV4) UpdateApplicationWithContext(ctx conte
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApplication)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApplication)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -530,11 +539,13 @@ func (appIdManagement *AppIdManagementV4) GetApplicationScopesWithContext(ctx co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetScopesForApplication)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetScopesForApplication)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -600,11 +611,13 @@ func (appIdManagement *AppIdManagementV4) PutApplicationsScopesWithContext(ctx c
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetScopesForApplication)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetScopesForApplication)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -659,11 +672,13 @@ func (appIdManagement *AppIdManagementV4) GetApplicationRolesWithContext(ctx con
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUserRolesResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUserRolesResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -728,11 +743,13 @@ func (appIdManagement *AppIdManagementV4) PutApplicationsRolesWithContext(ctx co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalAssignRoleToUser)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalAssignRoleToUser)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -793,11 +810,13 @@ func (appIdManagement *AppIdManagementV4) ListCloudDirectoryUsersWithContext(ctx
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUsersList)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUsersList)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -1155,11 +1174,13 @@ func (appIdManagement *AppIdManagementV4) CloudDirectoryExportWithContext(ctx co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalExportUser)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalExportUser)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -1226,11 +1247,13 @@ func (appIdManagement *AppIdManagementV4) CloudDirectoryImportWithContext(ctx co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalImportResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalImportResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -1286,11 +1309,13 @@ func (appIdManagement *AppIdManagementV4) CloudDirectoryGetUserinfoWithContext(c
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUserAndProfile)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUserAndProfile)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -1429,11 +1454,13 @@ func (appIdManagement *AppIdManagementV4) UserVerificationResultWithContext(ctx 
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalConfirmationResultOK)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalConfirmationResultOK)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -1562,11 +1589,13 @@ func (appIdManagement *AppIdManagementV4) ForgotPasswordResultWithContext(ctx co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalConfirmationResultOK)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalConfirmationResultOK)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -1706,11 +1735,13 @@ func (appIdManagement *AppIdManagementV4) ResendNotificationWithContext(ctx cont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalResendNotificationResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalResendNotificationResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -1812,11 +1843,13 @@ func (appIdManagement *AppIdManagementV4) GetTokensConfigWithContext(ctx context
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalTokensConfigResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalTokensConfigResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -1895,11 +1928,13 @@ func (appIdManagement *AppIdManagementV4) PutTokensConfigWithContext(ctx context
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalTokensConfigResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalTokensConfigResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -1950,11 +1985,13 @@ func (appIdManagement *AppIdManagementV4) GetRedirectUrisWithContext(ctx context
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRedirectUriResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRedirectUriResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -2061,11 +2098,13 @@ func (appIdManagement *AppIdManagementV4) GetUserProfilesConfigWithContext(ctx c
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUserProfilesConfigResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUserProfilesConfigResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -2176,11 +2215,13 @@ func (appIdManagement *AppIdManagementV4) GetThemeTextWithContext(ctx context.Co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetThemeTextResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetThemeTextResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -2293,11 +2334,13 @@ func (appIdManagement *AppIdManagementV4) GetThemeColorWithContext(ctx context.C
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetThemeColorResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetThemeColorResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -2407,11 +2450,13 @@ func (appIdManagement *AppIdManagementV4) GetMediaWithContext(ctx context.Contex
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetMediaResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetMediaResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -2568,11 +2613,13 @@ func (appIdManagement *AppIdManagementV4) GetTemplateWithContext(ctx context.Con
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetTemplate)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetTemplate)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -2648,11 +2695,13 @@ func (appIdManagement *AppIdManagementV4) UpdateTemplateWithContext(ctx context.
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetTemplate)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetTemplate)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -2753,11 +2802,13 @@ func (appIdManagement *AppIdManagementV4) GetLocalizationWithContext(ctx context
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetLanguages)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetLanguages)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -2862,11 +2913,13 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectorySenderDetailsWithCont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCloudDirectorySenderDetails)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCloudDirectorySenderDetails)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -2981,11 +3034,13 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryActionURLWithContext(
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalActionUrlResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalActionUrlResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3051,11 +3106,13 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryActionWithContext(ctx
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalActionUrlResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalActionUrlResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3156,11 +3213,13 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryPasswordRegexWithCont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalPasswordRegexConfigParamsGet)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalPasswordRegexConfigParamsGet)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3234,11 +3293,13 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryPasswordRegexWithCont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalPasswordRegexConfigParamsGet)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalPasswordRegexConfigParamsGet)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3288,11 +3349,13 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryEmailDispatcherWithCo
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalEmailDispatcherParams)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalEmailDispatcherParams)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3365,11 +3428,13 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryEmailDispatcherWithCo
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalEmailDispatcherParams)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalEmailDispatcherParams)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3439,11 +3504,13 @@ func (appIdManagement *AppIdManagementV4) EmailSettingTestWithContext(ctx contex
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRespEmailSettingsTest)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRespEmailSettingsTest)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3507,11 +3574,13 @@ func (appIdManagement *AppIdManagementV4) PostEmailDispatcherTestWithContext(ctx
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRespCustomEmailDisParams)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRespCustomEmailDisParams)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3575,11 +3644,13 @@ func (appIdManagement *AppIdManagementV4) PostSmsDispatcherTestWithContext(ctx c
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRespSMSDisParams)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRespSMSDisParams)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3629,11 +3700,13 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryAdvancedPasswordManag
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApmSchema)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApmSchema)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3698,11 +3771,13 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryAdvancedPasswordManag
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApmSchema)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalApmSchema)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3857,11 +3932,13 @@ func (appIdManagement *AppIdManagementV4) ListChannelsWithContext(ctx context.Co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalMfaChannelsList)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalMfaChannelsList)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3916,11 +3993,13 @@ func (appIdManagement *AppIdManagementV4) GetChannelWithContext(ctx context.Cont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetSMSChannel)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetSMSChannel)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -3988,11 +4067,13 @@ func (appIdManagement *AppIdManagementV4) UpdateChannelWithContext(ctx context.C
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetSMSChannel)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetSMSChannel)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -4048,11 +4129,13 @@ func (appIdManagement *AppIdManagementV4) GetExtensionConfigWithContext(ctx cont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUpdateExtensionConfig)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUpdateExtensionConfig)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -4121,11 +4204,13 @@ func (appIdManagement *AppIdManagementV4) UpdateExtensionConfigWithContext(ctx c
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUpdateExtensionConfig)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUpdateExtensionConfig)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -4194,11 +4279,13 @@ func (appIdManagement *AppIdManagementV4) UpdateExtensionActiveWithContext(ctx c
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalExtensionActive)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalExtensionActive)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -4254,11 +4341,13 @@ func (appIdManagement *AppIdManagementV4) PostExtensionsTestWithContext(ctx cont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalExtensionTest)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalExtensionTest)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -4308,11 +4397,13 @@ func (appIdManagement *AppIdManagementV4) GetMFAConfigWithContext(ctx context.Co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetMFAConfiguration)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetMFAConfiguration)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -4379,11 +4470,13 @@ func (appIdManagement *AppIdManagementV4) UpdateMFAConfigWithContext(ctx context
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetMFAConfiguration)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetMFAConfiguration)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -4605,15 +4698,15 @@ func (appIdManagement *AppIdManagementV4) UpdateRateLimitConfigWithContext(ctx c
 	return
 }
 
-// GetFacebookIdp : Get Facebook IDP configuration
+// GetFacebookIDP : Get Facebook IDP configuration
 // Returns the Facebook identity provider configuration.
-func (appIdManagement *AppIdManagementV4) GetFacebookIdp(getFacebookIdpOptions *GetFacebookIdpOptions) (result *FacebookConfigParams, response *core.DetailedResponse, err error) {
-	return appIdManagement.GetFacebookIdpWithContext(context.Background(), getFacebookIdpOptions)
+func (appIdManagement *AppIdManagementV4) GetFacebookIDP(getFacebookIDPOptions *GetFacebookIDPOptions) (result *FacebookConfigParams, response *core.DetailedResponse, err error) {
+	return appIdManagement.GetFacebookIDPWithContext(context.Background(), getFacebookIDPOptions)
 }
 
-// GetFacebookIdpWithContext is an alternate form of the GetFacebookIdp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetFacebookIdpWithContext(ctx context.Context, getFacebookIdpOptions *GetFacebookIdpOptions) (result *FacebookConfigParams, response *core.DetailedResponse, err error) {
-	err = core.ValidateStruct(getFacebookIdpOptions, "getFacebookIdpOptions")
+// GetFacebookIDPWithContext is an alternate form of the GetFacebookIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) GetFacebookIDPWithContext(ctx context.Context, getFacebookIDPOptions *GetFacebookIDPOptions) (result *FacebookConfigParams, response *core.DetailedResponse, err error) {
+	err = core.ValidateStruct(getFacebookIDPOptions, "getFacebookIDPOptions")
 	if err != nil {
 		return
 	}
@@ -4630,11 +4723,11 @@ func (appIdManagement *AppIdManagementV4) GetFacebookIdpWithContext(ctx context.
 		return
 	}
 
-	for headerName, headerValue := range getFacebookIdpOptions.Headers {
+	for headerName, headerValue := range getFacebookIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetFacebookIdp")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetFacebookIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -4650,30 +4743,32 @@ func (appIdManagement *AppIdManagementV4) GetFacebookIdpWithContext(ctx context.
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalFacebookConfigParams)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalFacebookConfigParams)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
 
-// SetFacebookIdp : Update Facebook IDP configuration
+// SetFacebookIDP : Update Facebook IDP configuration
 // Configure Facebook to set up a single sign-on experience for your users. By using Facebook, users are able to sign in
 // with credentials with which they are already familiar. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-social#facebook" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetFacebookIdp(setFacebookIdpOptions *SetFacebookIdpOptions) (result *FacebookConfigParamsPUT, response *core.DetailedResponse, err error) {
-	return appIdManagement.SetFacebookIdpWithContext(context.Background(), setFacebookIdpOptions)
+func (appIdManagement *AppIdManagementV4) SetFacebookIDP(setFacebookIDPOptions *SetFacebookIDPOptions) (result *FacebookConfigParamsPUT, response *core.DetailedResponse, err error) {
+	return appIdManagement.SetFacebookIDPWithContext(context.Background(), setFacebookIDPOptions)
 }
 
-// SetFacebookIdpWithContext is an alternate form of the SetFacebookIdp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetFacebookIdpWithContext(ctx context.Context, setFacebookIdpOptions *SetFacebookIdpOptions) (result *FacebookConfigParamsPUT, response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(setFacebookIdpOptions, "setFacebookIdpOptions cannot be nil")
+// SetFacebookIDPWithContext is an alternate form of the SetFacebookIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) SetFacebookIDPWithContext(ctx context.Context, setFacebookIDPOptions *SetFacebookIDPOptions) (result *FacebookConfigParamsPUT, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(setFacebookIDPOptions, "setFacebookIDPOptions cannot be nil")
 	if err != nil {
 		return
 	}
-	err = core.ValidateStruct(setFacebookIdpOptions, "setFacebookIdpOptions")
+	err = core.ValidateStruct(setFacebookIDPOptions, "setFacebookIDPOptions")
 	if err != nil {
 		return
 	}
@@ -4690,18 +4785,18 @@ func (appIdManagement *AppIdManagementV4) SetFacebookIdpWithContext(ctx context.
 		return
 	}
 
-	for headerName, headerValue := range setFacebookIdpOptions.Headers {
+	for headerName, headerValue := range setFacebookIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetFacebookIdp")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetFacebookIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
 	builder.AddHeader("Content-Type", "application/json")
 
-	_, err = builder.SetBodyContentJSON(setFacebookIdpOptions.Idp)
+	_, err = builder.SetBodyContentJSON(setFacebookIDPOptions.IDP)
 	if err != nil {
 		return
 	}
@@ -4716,24 +4811,26 @@ func (appIdManagement *AppIdManagementV4) SetFacebookIdpWithContext(ctx context.
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalFacebookConfigParamsPUT)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalFacebookConfigParamsPUT)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
 
-// GetGoogleIdp : Get Google IDP configuration
+// GetGoogleIDP : Get Google IDP configuration
 // Returns the Google identity provider configuration.
-func (appIdManagement *AppIdManagementV4) GetGoogleIdp(getGoogleIdpOptions *GetGoogleIdpOptions) (result *GoogleConfigParams, response *core.DetailedResponse, err error) {
-	return appIdManagement.GetGoogleIdpWithContext(context.Background(), getGoogleIdpOptions)
+func (appIdManagement *AppIdManagementV4) GetGoogleIDP(getGoogleIDPOptions *GetGoogleIDPOptions) (result *GoogleConfigParams, response *core.DetailedResponse, err error) {
+	return appIdManagement.GetGoogleIDPWithContext(context.Background(), getGoogleIDPOptions)
 }
 
-// GetGoogleIdpWithContext is an alternate form of the GetGoogleIdp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetGoogleIdpWithContext(ctx context.Context, getGoogleIdpOptions *GetGoogleIdpOptions) (result *GoogleConfigParams, response *core.DetailedResponse, err error) {
-	err = core.ValidateStruct(getGoogleIdpOptions, "getGoogleIdpOptions")
+// GetGoogleIDPWithContext is an alternate form of the GetGoogleIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) GetGoogleIDPWithContext(ctx context.Context, getGoogleIDPOptions *GetGoogleIDPOptions) (result *GoogleConfigParams, response *core.DetailedResponse, err error) {
+	err = core.ValidateStruct(getGoogleIDPOptions, "getGoogleIDPOptions")
 	if err != nil {
 		return
 	}
@@ -4750,11 +4847,11 @@ func (appIdManagement *AppIdManagementV4) GetGoogleIdpWithContext(ctx context.Co
 		return
 	}
 
-	for headerName, headerValue := range getGoogleIdpOptions.Headers {
+	for headerName, headerValue := range getGoogleIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetGoogleIdp")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetGoogleIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -4770,30 +4867,32 @@ func (appIdManagement *AppIdManagementV4) GetGoogleIdpWithContext(ctx context.Co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGoogleConfigParams)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGoogleConfigParams)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
 
-// SetGoogleIdp : Update Google IDP configuration
+// SetGoogleIDP : Update Google IDP configuration
 // Configure Google to set up a single sign-on experience for your users. By using Google, users are able to sign in
 // with credentials with which they are already familiar. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-social#google" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetGoogleIdp(setGoogleIdpOptions *SetGoogleIdpOptions) (result *GoogleConfigParamsPUT, response *core.DetailedResponse, err error) {
-	return appIdManagement.SetGoogleIdpWithContext(context.Background(), setGoogleIdpOptions)
+func (appIdManagement *AppIdManagementV4) SetGoogleIDP(setGoogleIDPOptions *SetGoogleIDPOptions) (result *GoogleConfigParamsPUT, response *core.DetailedResponse, err error) {
+	return appIdManagement.SetGoogleIDPWithContext(context.Background(), setGoogleIDPOptions)
 }
 
-// SetGoogleIdpWithContext is an alternate form of the SetGoogleIdp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetGoogleIdpWithContext(ctx context.Context, setGoogleIdpOptions *SetGoogleIdpOptions) (result *GoogleConfigParamsPUT, response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(setGoogleIdpOptions, "setGoogleIdpOptions cannot be nil")
+// SetGoogleIDPWithContext is an alternate form of the SetGoogleIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) SetGoogleIDPWithContext(ctx context.Context, setGoogleIDPOptions *SetGoogleIDPOptions) (result *GoogleConfigParamsPUT, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(setGoogleIDPOptions, "setGoogleIDPOptions cannot be nil")
 	if err != nil {
 		return
 	}
-	err = core.ValidateStruct(setGoogleIdpOptions, "setGoogleIdpOptions")
+	err = core.ValidateStruct(setGoogleIDPOptions, "setGoogleIDPOptions")
 	if err != nil {
 		return
 	}
@@ -4810,18 +4909,18 @@ func (appIdManagement *AppIdManagementV4) SetGoogleIdpWithContext(ctx context.Co
 		return
 	}
 
-	for headerName, headerValue := range setGoogleIdpOptions.Headers {
+	for headerName, headerValue := range setGoogleIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetGoogleIdp")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetGoogleIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
 	builder.AddHeader("Content-Type", "application/json")
 
-	_, err = builder.SetBodyContentJSON(setGoogleIdpOptions.Idp)
+	_, err = builder.SetBodyContentJSON(setGoogleIDPOptions.IDP)
 	if err != nil {
 		return
 	}
@@ -4836,23 +4935,25 @@ func (appIdManagement *AppIdManagementV4) SetGoogleIdpWithContext(ctx context.Co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGoogleConfigParamsPUT)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGoogleConfigParamsPUT)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
 
-// GetCustomIdp : Returns the Custom identity configuration
-func (appIdManagement *AppIdManagementV4) GetCustomIdp(getCustomIdpOptions *GetCustomIdpOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
-	return appIdManagement.GetCustomIdpWithContext(context.Background(), getCustomIdpOptions)
+// GetCustomIDP : Returns the Custom identity configuration
+func (appIdManagement *AppIdManagementV4) GetCustomIDP(getCustomIDPOptions *GetCustomIDPOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
+	return appIdManagement.GetCustomIDPWithContext(context.Background(), getCustomIDPOptions)
 }
 
-// GetCustomIdpWithContext is an alternate form of the GetCustomIdp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetCustomIdpWithContext(ctx context.Context, getCustomIdpOptions *GetCustomIdpOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
-	err = core.ValidateStruct(getCustomIdpOptions, "getCustomIdpOptions")
+// GetCustomIDPWithContext is an alternate form of the GetCustomIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) GetCustomIDPWithContext(ctx context.Context, getCustomIDPOptions *GetCustomIDPOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
+	err = core.ValidateStruct(getCustomIDPOptions, "getCustomIDPOptions")
 	if err != nil {
 		return
 	}
@@ -4869,11 +4970,11 @@ func (appIdManagement *AppIdManagementV4) GetCustomIdpWithContext(ctx context.Co
 		return
 	}
 
-	for headerName, headerValue := range getCustomIdpOptions.Headers {
+	for headerName, headerValue := range getCustomIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetCustomIdp")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetCustomIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -4889,28 +4990,30 @@ func (appIdManagement *AppIdManagementV4) GetCustomIdpWithContext(ctx context.Co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCustomIdPConfigParams)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCustomIdPConfigParams)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
 
-// SetCustomIdp : Update or change the configuration of the Custom identity
+// SetCustomIDP : Update or change the configuration of the Custom identity
 // Configure App ID Custom identity to allow users to sign-in using your own identity provider.
-func (appIdManagement *AppIdManagementV4) SetCustomIdp(setCustomIdpOptions *SetCustomIdpOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
-	return appIdManagement.SetCustomIdpWithContext(context.Background(), setCustomIdpOptions)
+func (appIdManagement *AppIdManagementV4) SetCustomIDP(setCustomIDPOptions *SetCustomIDPOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
+	return appIdManagement.SetCustomIDPWithContext(context.Background(), setCustomIDPOptions)
 }
 
-// SetCustomIdpWithContext is an alternate form of the SetCustomIdp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetCustomIdpWithContext(ctx context.Context, setCustomIdpOptions *SetCustomIdpOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(setCustomIdpOptions, "setCustomIdpOptions cannot be nil")
+// SetCustomIDPWithContext is an alternate form of the SetCustomIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) SetCustomIDPWithContext(ctx context.Context, setCustomIDPOptions *SetCustomIDPOptions) (result *CustomIdPConfigParams, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(setCustomIDPOptions, "setCustomIDPOptions cannot be nil")
 	if err != nil {
 		return
 	}
-	err = core.ValidateStruct(setCustomIdpOptions, "setCustomIdpOptions")
+	err = core.ValidateStruct(setCustomIDPOptions, "setCustomIDPOptions")
 	if err != nil {
 		return
 	}
@@ -4927,11 +5030,11 @@ func (appIdManagement *AppIdManagementV4) SetCustomIdpWithContext(ctx context.Co
 		return
 	}
 
-	for headerName, headerValue := range setCustomIdpOptions.Headers {
+	for headerName, headerValue := range setCustomIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetCustomIdp")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetCustomIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -4939,11 +5042,11 @@ func (appIdManagement *AppIdManagementV4) SetCustomIdpWithContext(ctx context.Co
 	builder.AddHeader("Content-Type", "application/json")
 
 	body := make(map[string]interface{})
-	if setCustomIdpOptions.IsActive != nil {
-		body["isActive"] = setCustomIdpOptions.IsActive
+	if setCustomIDPOptions.IsActive != nil {
+		body["isActive"] = setCustomIDPOptions.IsActive
 	}
-	if setCustomIdpOptions.Config != nil {
-		body["config"] = setCustomIdpOptions.Config
+	if setCustomIDPOptions.Config != nil {
+		body["config"] = setCustomIDPOptions.Config
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -4960,25 +5063,27 @@ func (appIdManagement *AppIdManagementV4) SetCustomIdpWithContext(ctx context.Co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCustomIdPConfigParams)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCustomIdPConfigParams)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
 
-// GetCloudDirectoryIdp : Get Cloud Directory IDP configuration
+// GetCloudDirectoryIDP : Get Cloud Directory IDP configuration
 // Returns the Cloud Directory identity provider configuration. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryIdp(getCloudDirectoryIdpOptions *GetCloudDirectoryIdpOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
-	return appIdManagement.GetCloudDirectoryIdpWithContext(context.Background(), getCloudDirectoryIdpOptions)
+func (appIdManagement *AppIdManagementV4) GetCloudDirectoryIDP(getCloudDirectoryIDPOptions *GetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
+	return appIdManagement.GetCloudDirectoryIDPWithContext(context.Background(), getCloudDirectoryIDPOptions)
 }
 
-// GetCloudDirectoryIdpWithContext is an alternate form of the GetCloudDirectoryIdp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetCloudDirectoryIdpWithContext(ctx context.Context, getCloudDirectoryIdpOptions *GetCloudDirectoryIdpOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
-	err = core.ValidateStruct(getCloudDirectoryIdpOptions, "getCloudDirectoryIdpOptions")
+// GetCloudDirectoryIDPWithContext is an alternate form of the GetCloudDirectoryIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) GetCloudDirectoryIDPWithContext(ctx context.Context, getCloudDirectoryIDPOptions *GetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateStruct(getCloudDirectoryIDPOptions, "getCloudDirectoryIDPOptions")
 	if err != nil {
 		return
 	}
@@ -4995,11 +5100,11 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryIdpWithContext(ctx co
 		return
 	}
 
-	for headerName, headerValue := range getCloudDirectoryIdpOptions.Headers {
+	for headerName, headerValue := range getCloudDirectoryIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetCloudDirectoryIdp")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetCloudDirectoryIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -5015,30 +5120,32 @@ func (appIdManagement *AppIdManagementV4) GetCloudDirectoryIdpWithContext(ctx co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCloudDirectoryResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCloudDirectoryResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
 
-// SetCloudDirectoryIdp : Update Cloud Directory IDP configuration
+// SetCloudDirectoryIDP : Update Cloud Directory IDP configuration
 // Configure Cloud Directory to set up a single sign-on experience for your users. With Cloud Directory users can use
 // their email and a password of their choice to log in to your applications. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIdp(setCloudDirectoryIdpOptions *SetCloudDirectoryIdpOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
-	return appIdManagement.SetCloudDirectoryIdpWithContext(context.Background(), setCloudDirectoryIdpOptions)
+func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIDP(setCloudDirectoryIDPOptions *SetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
+	return appIdManagement.SetCloudDirectoryIDPWithContext(context.Background(), setCloudDirectoryIDPOptions)
 }
 
-// SetCloudDirectoryIdpWithContext is an alternate form of the SetCloudDirectoryIdp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIdpWithContext(ctx context.Context, setCloudDirectoryIdpOptions *SetCloudDirectoryIdpOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(setCloudDirectoryIdpOptions, "setCloudDirectoryIdpOptions cannot be nil")
+// SetCloudDirectoryIDPWithContext is an alternate form of the SetCloudDirectoryIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIDPWithContext(ctx context.Context, setCloudDirectoryIDPOptions *SetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(setCloudDirectoryIDPOptions, "setCloudDirectoryIDPOptions cannot be nil")
 	if err != nil {
 		return
 	}
-	err = core.ValidateStruct(setCloudDirectoryIdpOptions, "setCloudDirectoryIdpOptions")
+	err = core.ValidateStruct(setCloudDirectoryIDPOptions, "setCloudDirectoryIDPOptions")
 	if err != nil {
 		return
 	}
@@ -5055,11 +5162,11 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIdpWithContext(ctx co
 		return
 	}
 
-	for headerName, headerValue := range setCloudDirectoryIdpOptions.Headers {
+	for headerName, headerValue := range setCloudDirectoryIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetCloudDirectoryIdp")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetCloudDirectoryIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -5067,11 +5174,11 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIdpWithContext(ctx co
 	builder.AddHeader("Content-Type", "application/json")
 
 	body := make(map[string]interface{})
-	if setCloudDirectoryIdpOptions.IsActive != nil {
-		body["isActive"] = setCloudDirectoryIdpOptions.IsActive
+	if setCloudDirectoryIDPOptions.IsActive != nil {
+		body["isActive"] = setCloudDirectoryIDPOptions.IsActive
 	}
-	if setCloudDirectoryIdpOptions.Config != nil {
-		body["config"] = setCloudDirectoryIdpOptions.Config
+	if setCloudDirectoryIDPOptions.Config != nil {
+		body["config"] = setCloudDirectoryIDPOptions.Config
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -5088,25 +5195,27 @@ func (appIdManagement *AppIdManagementV4) SetCloudDirectoryIdpWithContext(ctx co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCloudDirectoryResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCloudDirectoryResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
 
-// GetSamlIdp : Get SAML IDP configuration
+// GetSamlIDP : Get SAML IDP configuration
 // Returns the SAML identity provider configuration, including status and credentials. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-enterprise" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) GetSamlIdp(getSamlIdpOptions *GetSamlIdpOptions) (result *SamlResponse, response *core.DetailedResponse, err error) {
-	return appIdManagement.GetSamlIdpWithContext(context.Background(), getSamlIdpOptions)
+func (appIdManagement *AppIdManagementV4) GetSamlIDP(getSamlIDPOptions *GetSamlIDPOptions) (result *SamlResponse, response *core.DetailedResponse, err error) {
+	return appIdManagement.GetSamlIDPWithContext(context.Background(), getSamlIDPOptions)
 }
 
-// GetSamlIdpWithContext is an alternate form of the GetSamlIdp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) GetSamlIdpWithContext(ctx context.Context, getSamlIdpOptions *GetSamlIdpOptions) (result *SamlResponse, response *core.DetailedResponse, err error) {
-	err = core.ValidateStruct(getSamlIdpOptions, "getSamlIdpOptions")
+// GetSamlIDPWithContext is an alternate form of the GetSamlIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) GetSamlIDPWithContext(ctx context.Context, getSamlIDPOptions *GetSamlIDPOptions) (result *SamlResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateStruct(getSamlIDPOptions, "getSamlIDPOptions")
 	if err != nil {
 		return
 	}
@@ -5123,11 +5232,11 @@ func (appIdManagement *AppIdManagementV4) GetSamlIdpWithContext(ctx context.Cont
 		return
 	}
 
-	for headerName, headerValue := range getSamlIdpOptions.Headers {
+	for headerName, headerValue := range getSamlIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetSamlIdp")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "GetSamlIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -5143,29 +5252,31 @@ func (appIdManagement *AppIdManagementV4) GetSamlIdpWithContext(ctx context.Cont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSamlResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSamlResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
 
-// SetSamlIdp : Update SAML IDP configuration
+// SetSamlIDP : Update SAML IDP configuration
 // Configure SAML to set up a single sign-on experience for your users. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-enterprise" target="_blank">Learn more</a>.
-func (appIdManagement *AppIdManagementV4) SetSamlIdp(setSamlIdpOptions *SetSamlIdpOptions) (result *SamlResponseWithValidationData, response *core.DetailedResponse, err error) {
-	return appIdManagement.SetSamlIdpWithContext(context.Background(), setSamlIdpOptions)
+func (appIdManagement *AppIdManagementV4) SetSamlIDP(setSamlIDPOptions *SetSamlIDPOptions) (result *SamlResponseWithValidationData, response *core.DetailedResponse, err error) {
+	return appIdManagement.SetSamlIDPWithContext(context.Background(), setSamlIDPOptions)
 }
 
-// SetSamlIdpWithContext is an alternate form of the SetSamlIdp method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SetSamlIdpWithContext(ctx context.Context, setSamlIdpOptions *SetSamlIdpOptions) (result *SamlResponseWithValidationData, response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(setSamlIdpOptions, "setSamlIdpOptions cannot be nil")
+// SetSamlIDPWithContext is an alternate form of the SetSamlIDP method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) SetSamlIDPWithContext(ctx context.Context, setSamlIDPOptions *SetSamlIDPOptions) (result *SamlResponseWithValidationData, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(setSamlIDPOptions, "setSamlIDPOptions cannot be nil")
 	if err != nil {
 		return
 	}
-	err = core.ValidateStruct(setSamlIdpOptions, "setSamlIdpOptions")
+	err = core.ValidateStruct(setSamlIDPOptions, "setSamlIDPOptions")
 	if err != nil {
 		return
 	}
@@ -5182,11 +5293,11 @@ func (appIdManagement *AppIdManagementV4) SetSamlIdpWithContext(ctx context.Cont
 		return
 	}
 
-	for headerName, headerValue := range setSamlIdpOptions.Headers {
+	for headerName, headerValue := range setSamlIDPOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetSamlIdp")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SetSamlIDP")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -5194,11 +5305,11 @@ func (appIdManagement *AppIdManagementV4) SetSamlIdpWithContext(ctx context.Cont
 	builder.AddHeader("Content-Type", "application/json")
 
 	body := make(map[string]interface{})
-	if setSamlIdpOptions.IsActive != nil {
-		body["isActive"] = setSamlIdpOptions.IsActive
+	if setSamlIDPOptions.IsActive != nil {
+		body["isActive"] = setSamlIDPOptions.IsActive
 	}
-	if setSamlIdpOptions.Config != nil {
-		body["config"] = setSamlIdpOptions.Config
+	if setSamlIDPOptions.Config != nil {
+		body["config"] = setSamlIDPOptions.Config
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -5215,11 +5326,13 @@ func (appIdManagement *AppIdManagementV4) SetSamlIdpWithContext(ctx context.Cont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSamlResponseWithValidationData)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSamlResponseWithValidationData)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -5269,11 +5382,13 @@ func (appIdManagement *AppIdManagementV4) ListRolesWithContext(ctx context.Conte
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRolesList)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalRolesList)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -5343,11 +5458,13 @@ func (appIdManagement *AppIdManagementV4) CreateRoleWithContext(ctx context.Cont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCreateRolesResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCreateRolesResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -5402,11 +5519,13 @@ func (appIdManagement *AppIdManagementV4) GetRoleWithContext(ctx context.Context
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetRoleResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetRoleResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -5477,11 +5596,13 @@ func (appIdManagement *AppIdManagementV4) UpdateRoleWithContext(ctx context.Cont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUpdateRolesResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUpdateRolesResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -5599,11 +5720,13 @@ func (appIdManagement *AppIdManagementV4) UsersSearchUserProfileWithContext(ctx 
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUserSearchResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUserSearchResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -5650,11 +5773,11 @@ func (appIdManagement *AppIdManagementV4) UsersNominateUserWithContext(ctx conte
 	builder.AddHeader("Content-Type", "application/json")
 
 	body := make(map[string]interface{})
-	if usersNominateUserOptions.Idp != nil {
-		body["idp"] = usersNominateUserOptions.Idp
+	if usersNominateUserOptions.IDP != nil {
+		body["idp"] = usersNominateUserOptions.IDP
 	}
-	if usersNominateUserOptions.IdpIdentity != nil {
-		body["idp-identity"] = usersNominateUserOptions.IdpIdentity
+	if usersNominateUserOptions.IDPIdentity != nil {
+		body["idp-identity"] = usersNominateUserOptions.IDPIdentity
 	}
 	if usersNominateUserOptions.Profile != nil {
 		body["profile"] = usersNominateUserOptions.Profile
@@ -5726,11 +5849,13 @@ func (appIdManagement *AppIdManagementV4) UserProfilesExportWithContext(ctx cont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalExportUserProfile)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalExportUserProfile)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -5794,11 +5919,13 @@ func (appIdManagement *AppIdManagementV4) UserProfilesImportWithContext(ctx cont
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalImportProfilesResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalImportProfilesResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -6064,11 +6191,13 @@ func (appIdManagement *AppIdManagementV4) GetUserRolesWithContext(ctx context.Co
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUserRolesResponse)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUserRolesResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -6133,11 +6262,13 @@ func (appIdManagement *AppIdManagementV4) UpdateUserRolesWithContext(ctx context
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalAssignRoleToUser)
-	if err != nil {
-		return
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalAssignRoleToUser)
+		if err != nil {
+			return
+		}
+		response.Result = result
 	}
-	response.Result = result
 
 	return
 }
@@ -7703,9 +7834,9 @@ type ExportUserProfileUsersItem struct {
 
 	PreferredUsername *string `json:"preferred_username,omitempty"`
 
-	Idp *string `json:"idp,omitempty"`
+	IDP *string `json:"idp,omitempty"`
 
-	HashedIdpID *string `json:"hashedIdpId,omitempty"`
+	HashedIDPID *string `json:"hashedIdpId,omitempty"`
 
 	HashedEmail *string `json:"hashedEmail,omitempty"`
 
@@ -7762,11 +7893,11 @@ func UnmarshalExportUserProfileUsersItem(m map[string]json.RawMessage, result in
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalPrimitive(m, "idp", &obj.Idp)
+	err = core.UnmarshalPrimitive(m, "idp", &obj.IDP)
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalPrimitive(m, "hashedIdpId", &obj.HashedIdpID)
+	err = core.UnmarshalPrimitive(m, "hashedIdpId", &obj.HashedIDPID)
 	if err != nil {
 		return
 	}
@@ -7788,7 +7919,7 @@ type ExportUserProfileUsersItemIdentitiesItem struct {
 
 	ID *string `json:"id,omitempty"`
 
-	IdpUserInfo interface{} `json:"idpUserInfo,omitempty"`
+	IDPUserInfo interface{} `json:"idpUserInfo,omitempty"`
 
 	// Allows users to set arbitrary properties
 	additionalProperties map[string]interface{}
@@ -7826,8 +7957,8 @@ func (o *ExportUserProfileUsersItemIdentitiesItem) MarshalJSON() (buffer []byte,
 	if o.ID != nil {
 		m["id"] = o.ID
 	}
-	if o.IdpUserInfo != nil {
-		m["idpUserInfo"] = o.IdpUserInfo
+	if o.IDPUserInfo != nil {
+		m["idpUserInfo"] = o.IDPUserInfo
 	}
 	buffer, err = json.Marshal(m)
 	return
@@ -7846,7 +7977,7 @@ func UnmarshalExportUserProfileUsersItemIdentitiesItem(m map[string]json.RawMess
 		return
 	}
 	delete(m, "id")
-	err = core.UnmarshalPrimitive(m, "idpUserInfo", &obj.IdpUserInfo)
+	err = core.UnmarshalPrimitive(m, "idpUserInfo", &obj.IDPUserInfo)
 	if err != nil {
 		return
 	}
@@ -7944,7 +8075,7 @@ func UnmarshalExportUserUsersItemProfile(m map[string]json.RawMessage, result in
 
 // FacebookConfigParamsConfig : FacebookConfigParamsConfig struct
 type FacebookConfigParamsConfig struct {
-	IdpID *string `json:"idpId" validate:"required"`
+	IDPID *string `json:"idpId" validate:"required"`
 
 	Secret *string `json:"secret" validate:"required"`
 }
@@ -7952,7 +8083,7 @@ type FacebookConfigParamsConfig struct {
 // UnmarshalFacebookConfigParamsConfig unmarshals an instance of FacebookConfigParamsConfig from the specified map of raw messages.
 func UnmarshalFacebookConfigParamsConfig(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(FacebookConfigParamsConfig)
-	err = core.UnmarshalPrimitive(m, "idpId", &obj.IdpID)
+	err = core.UnmarshalPrimitive(m, "idpId", &obj.IDPID)
 	if err != nil {
 		return
 	}
@@ -7966,7 +8097,7 @@ func UnmarshalFacebookConfigParamsConfig(m map[string]json.RawMessage, result in
 
 // FacebookConfigParamsPUTConfig : FacebookConfigParamsPUTConfig struct
 type FacebookConfigParamsPUTConfig struct {
-	IdpID *string `json:"idpId" validate:"required"`
+	IDPID *string `json:"idpId" validate:"required"`
 
 	Secret *string `json:"secret" validate:"required"`
 }
@@ -7974,7 +8105,7 @@ type FacebookConfigParamsPUTConfig struct {
 // UnmarshalFacebookConfigParamsPUTConfig unmarshals an instance of FacebookConfigParamsPUTConfig from the specified map of raw messages.
 func UnmarshalFacebookConfigParamsPUTConfig(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(FacebookConfigParamsPUTConfig)
-	err = core.UnmarshalPrimitive(m, "idpId", &obj.IdpID)
+	err = core.UnmarshalPrimitive(m, "idpId", &obj.IDPID)
 	if err != nil {
 		return
 	}
@@ -7988,15 +8119,15 @@ func UnmarshalFacebookConfigParamsPUTConfig(m map[string]json.RawMessage, result
 
 // FacebookGoogleConfigParamsConfig : FacebookGoogleConfigParamsConfig struct
 type FacebookGoogleConfigParamsConfig struct {
-	IdpID *string `json:"idpId" validate:"required"`
+	IDPID *string `json:"idpId" validate:"required"`
 
 	Secret *string `json:"secret" validate:"required"`
 }
 
 // NewFacebookGoogleConfigParamsConfig : Instantiate FacebookGoogleConfigParamsConfig (Generic Model Constructor)
-func (*AppIdManagementV4) NewFacebookGoogleConfigParamsConfig(idpID string, secret string) (model *FacebookGoogleConfigParamsConfig, err error) {
+func (*AppIdManagementV4) NewFacebookGoogleConfigParamsConfig(iDPID string, secret string) (model *FacebookGoogleConfigParamsConfig, err error) {
 	model = &FacebookGoogleConfigParamsConfig{
-		IdpID: core.StringPtr(idpID),
+		IDPID: core.StringPtr(iDPID),
 		Secret: core.StringPtr(secret),
 	}
 	err = core.ValidateStruct(model, "required parameters")
@@ -8006,7 +8137,7 @@ func (*AppIdManagementV4) NewFacebookGoogleConfigParamsConfig(idpID string, secr
 // UnmarshalFacebookGoogleConfigParamsConfig unmarshals an instance of FacebookGoogleConfigParamsConfig from the specified map of raw messages.
 func UnmarshalFacebookGoogleConfigParamsConfig(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(FacebookGoogleConfigParamsConfig)
-	err = core.UnmarshalPrimitive(m, "idpId", &obj.IdpID)
+	err = core.UnmarshalPrimitive(m, "idpId", &obj.IDPID)
 	if err != nil {
 		return
 	}
@@ -8256,20 +8387,20 @@ func (options *GetCloudDirectoryEmailDispatcherOptions) SetHeaders(param map[str
 	return options
 }
 
-// GetCloudDirectoryIdpOptions : The GetCloudDirectoryIdp options.
-type GetCloudDirectoryIdpOptions struct {
+// GetCloudDirectoryIDPOptions : The GetCloudDirectoryIDP options.
+type GetCloudDirectoryIDPOptions struct {
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewGetCloudDirectoryIdpOptions : Instantiate GetCloudDirectoryIdpOptions
-func (*AppIdManagementV4) NewGetCloudDirectoryIdpOptions() *GetCloudDirectoryIdpOptions {
-	return &GetCloudDirectoryIdpOptions{}
+// NewGetCloudDirectoryIDPOptions : Instantiate GetCloudDirectoryIDPOptions
+func (*AppIdManagementV4) NewGetCloudDirectoryIDPOptions() *GetCloudDirectoryIDPOptions {
+	return &GetCloudDirectoryIDPOptions{}
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *GetCloudDirectoryIdpOptions) SetHeaders(param map[string]string) *GetCloudDirectoryIdpOptions {
+func (options *GetCloudDirectoryIDPOptions) SetHeaders(param map[string]string) *GetCloudDirectoryIDPOptions {
 	options.Headers = param
 	return options
 }
@@ -8338,20 +8469,20 @@ func (options *GetCloudDirectoryUserOptions) SetHeaders(param map[string]string)
 	return options
 }
 
-// GetCustomIdpOptions : The GetCustomIdp options.
-type GetCustomIdpOptions struct {
+// GetCustomIDPOptions : The GetCustomIDP options.
+type GetCustomIDPOptions struct {
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewGetCustomIdpOptions : Instantiate GetCustomIdpOptions
-func (*AppIdManagementV4) NewGetCustomIdpOptions() *GetCustomIdpOptions {
-	return &GetCustomIdpOptions{}
+// NewGetCustomIDPOptions : Instantiate GetCustomIDPOptions
+func (*AppIdManagementV4) NewGetCustomIDPOptions() *GetCustomIDPOptions {
+	return &GetCustomIDPOptions{}
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *GetCustomIdpOptions) SetHeaders(param map[string]string) *GetCustomIdpOptions {
+func (options *GetCustomIDPOptions) SetHeaders(param map[string]string) *GetCustomIDPOptions {
 	options.Headers = param
 	return options
 }
@@ -8391,38 +8522,38 @@ func (options *GetExtensionConfigOptions) SetHeaders(param map[string]string) *G
 	return options
 }
 
-// GetFacebookIdpOptions : The GetFacebookIdp options.
-type GetFacebookIdpOptions struct {
+// GetFacebookIDPOptions : The GetFacebookIDP options.
+type GetFacebookIDPOptions struct {
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewGetFacebookIdpOptions : Instantiate GetFacebookIdpOptions
-func (*AppIdManagementV4) NewGetFacebookIdpOptions() *GetFacebookIdpOptions {
-	return &GetFacebookIdpOptions{}
+// NewGetFacebookIDPOptions : Instantiate GetFacebookIDPOptions
+func (*AppIdManagementV4) NewGetFacebookIDPOptions() *GetFacebookIDPOptions {
+	return &GetFacebookIDPOptions{}
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *GetFacebookIdpOptions) SetHeaders(param map[string]string) *GetFacebookIdpOptions {
+func (options *GetFacebookIDPOptions) SetHeaders(param map[string]string) *GetFacebookIDPOptions {
 	options.Headers = param
 	return options
 }
 
-// GetGoogleIdpOptions : The GetGoogleIdp options.
-type GetGoogleIdpOptions struct {
+// GetGoogleIDPOptions : The GetGoogleIDP options.
+type GetGoogleIDPOptions struct {
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewGetGoogleIdpOptions : Instantiate GetGoogleIdpOptions
-func (*AppIdManagementV4) NewGetGoogleIdpOptions() *GetGoogleIdpOptions {
-	return &GetGoogleIdpOptions{}
+// NewGetGoogleIDPOptions : Instantiate GetGoogleIDPOptions
+func (*AppIdManagementV4) NewGetGoogleIDPOptions() *GetGoogleIDPOptions {
+	return &GetGoogleIDPOptions{}
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *GetGoogleIdpOptions) SetHeaders(param map[string]string) *GetGoogleIdpOptions {
+func (options *GetGoogleIDPOptions) SetHeaders(param map[string]string) *GetGoogleIDPOptions {
 	options.Headers = param
 	return options
 }
@@ -8635,20 +8766,20 @@ func (options *GetSSOConfigOptions) SetHeaders(param map[string]string) *GetSSOC
 	return options
 }
 
-// GetSamlIdpOptions : The GetSamlIdp options.
-type GetSamlIdpOptions struct {
+// GetSamlIDPOptions : The GetSamlIDP options.
+type GetSamlIDPOptions struct {
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewGetSamlIdpOptions : Instantiate GetSamlIdpOptions
-func (*AppIdManagementV4) NewGetSamlIdpOptions() *GetSamlIdpOptions {
-	return &GetSamlIdpOptions{}
+// NewGetSamlIDPOptions : Instantiate GetSamlIDPOptions
+func (*AppIdManagementV4) NewGetSamlIDPOptions() *GetSamlIDPOptions {
+	return &GetSamlIDPOptions{}
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *GetSamlIdpOptions) SetHeaders(param map[string]string) *GetSamlIdpOptions {
+func (options *GetSamlIDPOptions) SetHeaders(param map[string]string) *GetSamlIDPOptions {
 	options.Headers = param
 	return options
 }
@@ -8820,7 +8951,7 @@ type GetUserAndProfileIdentitiesItem struct {
 
 	ID *string `json:"id,omitempty"`
 
-	IdpUserInfo interface{} `json:"idpUserInfo,omitempty"`
+	IDPUserInfo interface{} `json:"idpUserInfo,omitempty"`
 }
 
 // UnmarshalGetUserAndProfileIdentitiesItem unmarshals an instance of GetUserAndProfileIdentitiesItem from the specified map of raw messages.
@@ -8834,7 +8965,7 @@ func UnmarshalGetUserAndProfileIdentitiesItem(m map[string]json.RawMessage, resu
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalPrimitive(m, "idpUserInfo", &obj.IdpUserInfo)
+	err = core.UnmarshalPrimitive(m, "idpUserInfo", &obj.IDPUserInfo)
 	if err != nil {
 		return
 	}
@@ -8929,7 +9060,7 @@ func UnmarshalGetUserRolesResponseRolesItem(m map[string]json.RawMessage, result
 
 // GoogleConfigParamsConfig : GoogleConfigParamsConfig struct
 type GoogleConfigParamsConfig struct {
-	IdpID *string `json:"idpId" validate:"required"`
+	IDPID *string `json:"idpId" validate:"required"`
 
 	Secret *string `json:"secret" validate:"required"`
 }
@@ -8937,7 +9068,7 @@ type GoogleConfigParamsConfig struct {
 // UnmarshalGoogleConfigParamsConfig unmarshals an instance of GoogleConfigParamsConfig from the specified map of raw messages.
 func UnmarshalGoogleConfigParamsConfig(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(GoogleConfigParamsConfig)
-	err = core.UnmarshalPrimitive(m, "idpId", &obj.IdpID)
+	err = core.UnmarshalPrimitive(m, "idpId", &obj.IDPID)
 	if err != nil {
 		return
 	}
@@ -8951,7 +9082,7 @@ func UnmarshalGoogleConfigParamsConfig(m map[string]json.RawMessage, result inte
 
 // GoogleConfigParamsPUTConfig : GoogleConfigParamsPUTConfig struct
 type GoogleConfigParamsPUTConfig struct {
-	IdpID *string `json:"idpId" validate:"required"`
+	IDPID *string `json:"idpId" validate:"required"`
 
 	Secret *string `json:"secret" validate:"required"`
 }
@@ -8959,7 +9090,7 @@ type GoogleConfigParamsPUTConfig struct {
 // UnmarshalGoogleConfigParamsPUTConfig unmarshals an instance of GoogleConfigParamsPUTConfig from the specified map of raw messages.
 func UnmarshalGoogleConfigParamsPUTConfig(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(GoogleConfigParamsPUTConfig)
-	err = core.UnmarshalPrimitive(m, "idpId", &obj.IdpID)
+	err = core.UnmarshalPrimitive(m, "idpId", &obj.IDPID)
 	if err != nil {
 		return
 	}
@@ -8975,7 +9106,7 @@ func UnmarshalGoogleConfigParamsPUTConfig(m map[string]json.RawMessage, result i
 type ImportProfilesResponseFailReasonsItem struct {
 	OriginalID *string `json:"originalId,omitempty"`
 
-	Idp *string `json:"idp,omitempty"`
+	IDP *string `json:"idp,omitempty"`
 
 	Error interface{} `json:"error,omitempty"`
 }
@@ -8987,7 +9118,7 @@ func UnmarshalImportProfilesResponseFailReasonsItem(m map[string]json.RawMessage
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalPrimitive(m, "idp", &obj.Idp)
+	err = core.UnmarshalPrimitive(m, "idp", &obj.IDP)
 	if err != nil {
 		return
 	}
@@ -9981,8 +10112,8 @@ func (options *SetCloudDirectoryEmailDispatcherOptions) SetHeaders(param map[str
 	return options
 }
 
-// SetCloudDirectoryIdpOptions : The SetCloudDirectoryIdp options.
-type SetCloudDirectoryIdpOptions struct {
+// SetCloudDirectoryIDPOptions : The SetCloudDirectoryIDP options.
+type SetCloudDirectoryIDPOptions struct {
 	IsActive *bool `validate:"required"`
 
 	Config *CloudDirectoryConfigParams `validate:"required"`
@@ -9991,28 +10122,28 @@ type SetCloudDirectoryIdpOptions struct {
 	Headers map[string]string
 }
 
-// NewSetCloudDirectoryIdpOptions : Instantiate SetCloudDirectoryIdpOptions
-func (*AppIdManagementV4) NewSetCloudDirectoryIdpOptions(isActive bool, config *CloudDirectoryConfigParams) *SetCloudDirectoryIdpOptions {
-	return &SetCloudDirectoryIdpOptions{
+// NewSetCloudDirectoryIDPOptions : Instantiate SetCloudDirectoryIDPOptions
+func (*AppIdManagementV4) NewSetCloudDirectoryIDPOptions(isActive bool, config *CloudDirectoryConfigParams) *SetCloudDirectoryIDPOptions {
+	return &SetCloudDirectoryIDPOptions{
 		IsActive: core.BoolPtr(isActive),
 		Config: config,
 	}
 }
 
 // SetIsActive : Allow user to set IsActive
-func (options *SetCloudDirectoryIdpOptions) SetIsActive(isActive bool) *SetCloudDirectoryIdpOptions {
+func (options *SetCloudDirectoryIDPOptions) SetIsActive(isActive bool) *SetCloudDirectoryIDPOptions {
 	options.IsActive = core.BoolPtr(isActive)
 	return options
 }
 
 // SetConfig : Allow user to set Config
-func (options *SetCloudDirectoryIdpOptions) SetConfig(config *CloudDirectoryConfigParams) *SetCloudDirectoryIdpOptions {
+func (options *SetCloudDirectoryIDPOptions) SetConfig(config *CloudDirectoryConfigParams) *SetCloudDirectoryIDPOptions {
 	options.Config = config
 	return options
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *SetCloudDirectoryIdpOptions) SetHeaders(param map[string]string) *SetCloudDirectoryIdpOptions {
+func (options *SetCloudDirectoryIDPOptions) SetHeaders(param map[string]string) *SetCloudDirectoryIDPOptions {
 	options.Headers = param
 	return options
 }
@@ -10085,8 +10216,8 @@ func (options *SetCloudDirectorySenderDetailsOptions) SetHeaders(param map[strin
 	return options
 }
 
-// SetCustomIdpOptions : The SetCustomIdp options.
-type SetCustomIdpOptions struct {
+// SetCustomIDPOptions : The SetCustomIDP options.
+type SetCustomIDPOptions struct {
 	IsActive *bool `validate:"required"`
 
 	Config *CustomIdPConfigParamsConfig
@@ -10095,91 +10226,91 @@ type SetCustomIdpOptions struct {
 	Headers map[string]string
 }
 
-// NewSetCustomIdpOptions : Instantiate SetCustomIdpOptions
-func (*AppIdManagementV4) NewSetCustomIdpOptions(isActive bool) *SetCustomIdpOptions {
-	return &SetCustomIdpOptions{
+// NewSetCustomIDPOptions : Instantiate SetCustomIDPOptions
+func (*AppIdManagementV4) NewSetCustomIDPOptions(isActive bool) *SetCustomIDPOptions {
+	return &SetCustomIDPOptions{
 		IsActive: core.BoolPtr(isActive),
 	}
 }
 
 // SetIsActive : Allow user to set IsActive
-func (options *SetCustomIdpOptions) SetIsActive(isActive bool) *SetCustomIdpOptions {
+func (options *SetCustomIDPOptions) SetIsActive(isActive bool) *SetCustomIDPOptions {
 	options.IsActive = core.BoolPtr(isActive)
 	return options
 }
 
 // SetConfig : Allow user to set Config
-func (options *SetCustomIdpOptions) SetConfig(config *CustomIdPConfigParamsConfig) *SetCustomIdpOptions {
+func (options *SetCustomIDPOptions) SetConfig(config *CustomIdPConfigParamsConfig) *SetCustomIDPOptions {
 	options.Config = config
 	return options
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *SetCustomIdpOptions) SetHeaders(param map[string]string) *SetCustomIdpOptions {
+func (options *SetCustomIDPOptions) SetHeaders(param map[string]string) *SetCustomIDPOptions {
 	options.Headers = param
 	return options
 }
 
-// SetFacebookIdpOptions : The SetFacebookIdp options.
-type SetFacebookIdpOptions struct {
+// SetFacebookIDPOptions : The SetFacebookIDP options.
+type SetFacebookIDPOptions struct {
 	// The identity provider configuration as a JSON object. If the configuration is not set, IBM default credentials are
 	// used.
-	Idp *FacebookGoogleConfigParams `validate:"required"`
+	IDP *FacebookGoogleConfigParams `validate:"required"`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewSetFacebookIdpOptions : Instantiate SetFacebookIdpOptions
-func (*AppIdManagementV4) NewSetFacebookIdpOptions(idp *FacebookGoogleConfigParams) *SetFacebookIdpOptions {
-	return &SetFacebookIdpOptions{
-		Idp: idp,
+// NewSetFacebookIDPOptions : Instantiate SetFacebookIDPOptions
+func (*AppIdManagementV4) NewSetFacebookIDPOptions(iDP *FacebookGoogleConfigParams) *SetFacebookIDPOptions {
+	return &SetFacebookIDPOptions{
+		IDP: iDP,
 	}
 }
 
-// SetIdp : Allow user to set Idp
-func (options *SetFacebookIdpOptions) SetIdp(idp *FacebookGoogleConfigParams) *SetFacebookIdpOptions {
-	options.Idp = idp
+// SetIDP : Allow user to set IDP
+func (options *SetFacebookIDPOptions) SetIDP(iDP *FacebookGoogleConfigParams) *SetFacebookIDPOptions {
+	options.IDP = iDP
 	return options
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *SetFacebookIdpOptions) SetHeaders(param map[string]string) *SetFacebookIdpOptions {
+func (options *SetFacebookIDPOptions) SetHeaders(param map[string]string) *SetFacebookIDPOptions {
 	options.Headers = param
 	return options
 }
 
-// SetGoogleIdpOptions : The SetGoogleIdp options.
-type SetGoogleIdpOptions struct {
+// SetGoogleIDPOptions : The SetGoogleIDP options.
+type SetGoogleIDPOptions struct {
 	// The identity provider configuration as a JSON object. If the configuration is not set, IBM default credentials are
 	// used.
-	Idp *FacebookGoogleConfigParams `validate:"required"`
+	IDP *FacebookGoogleConfigParams `validate:"required"`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
-// NewSetGoogleIdpOptions : Instantiate SetGoogleIdpOptions
-func (*AppIdManagementV4) NewSetGoogleIdpOptions(idp *FacebookGoogleConfigParams) *SetGoogleIdpOptions {
-	return &SetGoogleIdpOptions{
-		Idp: idp,
+// NewSetGoogleIDPOptions : Instantiate SetGoogleIDPOptions
+func (*AppIdManagementV4) NewSetGoogleIDPOptions(iDP *FacebookGoogleConfigParams) *SetGoogleIDPOptions {
+	return &SetGoogleIDPOptions{
+		IDP: iDP,
 	}
 }
 
-// SetIdp : Allow user to set Idp
-func (options *SetGoogleIdpOptions) SetIdp(idp *FacebookGoogleConfigParams) *SetGoogleIdpOptions {
-	options.Idp = idp
+// SetIDP : Allow user to set IDP
+func (options *SetGoogleIDPOptions) SetIDP(iDP *FacebookGoogleConfigParams) *SetGoogleIDPOptions {
+	options.IDP = iDP
 	return options
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *SetGoogleIdpOptions) SetHeaders(param map[string]string) *SetGoogleIdpOptions {
+func (options *SetGoogleIDPOptions) SetHeaders(param map[string]string) *SetGoogleIDPOptions {
 	options.Headers = param
 	return options
 }
 
-// SetSamlIdpOptions : The SetSamlIdp options.
-type SetSamlIdpOptions struct {
+// SetSamlIDPOptions : The SetSamlIDP options.
+type SetSamlIDPOptions struct {
 	IsActive *bool `validate:"required"`
 
 	Config *SamlConfigParams
@@ -10188,27 +10319,27 @@ type SetSamlIdpOptions struct {
 	Headers map[string]string
 }
 
-// NewSetSamlIdpOptions : Instantiate SetSamlIdpOptions
-func (*AppIdManagementV4) NewSetSamlIdpOptions(isActive bool) *SetSamlIdpOptions {
-	return &SetSamlIdpOptions{
+// NewSetSamlIDPOptions : Instantiate SetSamlIDPOptions
+func (*AppIdManagementV4) NewSetSamlIDPOptions(isActive bool) *SetSamlIDPOptions {
+	return &SetSamlIDPOptions{
 		IsActive: core.BoolPtr(isActive),
 	}
 }
 
 // SetIsActive : Allow user to set IsActive
-func (options *SetSamlIdpOptions) SetIsActive(isActive bool) *SetSamlIdpOptions {
+func (options *SetSamlIDPOptions) SetIsActive(isActive bool) *SetSamlIDPOptions {
 	options.IsActive = core.BoolPtr(isActive)
 	return options
 }
 
 // SetConfig : Allow user to set Config
-func (options *SetSamlIdpOptions) SetConfig(config *SamlConfigParams) *SetSamlIdpOptions {
+func (options *SetSamlIDPOptions) SetConfig(config *SamlConfigParams) *SetSamlIDPOptions {
 	options.Config = config
 	return options
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *SetSamlIdpOptions) SetHeaders(param map[string]string) *SetSamlIdpOptions {
+func (options *SetSamlIDPOptions) SetHeaders(param map[string]string) *SetSamlIDPOptions {
 	options.Headers = param
 	return options
 }
@@ -11157,7 +11288,7 @@ func UnmarshalUserSearchResponseRequestOptions(m map[string]json.RawMessage, res
 type UserSearchResponseUsersItem struct {
 	ID *string `json:"id,omitempty"`
 
-	Idp *string `json:"idp,omitempty"`
+	IDP *string `json:"idp,omitempty"`
 
 	Email *string `json:"email,omitempty"`
 }
@@ -11169,7 +11300,7 @@ func UnmarshalUserSearchResponseUsersItem(m map[string]json.RawMessage, result i
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalPrimitive(m, "idp", &obj.Idp)
+	err = core.UnmarshalPrimitive(m, "idp", &obj.IDP)
 	if err != nil {
 		return
 	}
@@ -11297,9 +11428,9 @@ func UnmarshalUsersList(m map[string]json.RawMessage, result interface{}) (err e
 
 // UsersNominateUserOptions : The UsersNominateUser options.
 type UsersNominateUserOptions struct {
-	Idp *string `validate:"required"`
+	IDP *string `validate:"required"`
 
-	IdpIdentity *string `validate:"required"`
+	IDPIdentity *string `validate:"required"`
 
 	Profile *UsersNominateUserParamsProfile
 
@@ -11307,33 +11438,33 @@ type UsersNominateUserOptions struct {
 	Headers map[string]string
 }
 
-// Constants associated with the UsersNominateUserOptions.Idp property.
+// Constants associated with the UsersNominateUserOptions.IDP property.
 const (
-	UsersNominateUserOptions_Idp_AppidCustom = "appid_custom"
-	UsersNominateUserOptions_Idp_CloudDirectory = "cloud_directory"
-	UsersNominateUserOptions_Idp_Facebook = "facebook"
-	UsersNominateUserOptions_Idp_Google = "google"
-	UsersNominateUserOptions_Idp_Ibmid = "ibmid"
-	UsersNominateUserOptions_Idp_Saml = "saml"
+	UsersNominateUserOptions_IDP_AppidCustom = "appid_custom"
+	UsersNominateUserOptions_IDP_CloudDirectory = "cloud_directory"
+	UsersNominateUserOptions_IDP_Facebook = "facebook"
+	UsersNominateUserOptions_IDP_Google = "google"
+	UsersNominateUserOptions_IDP_Ibmid = "ibmid"
+	UsersNominateUserOptions_IDP_Saml = "saml"
 )
 
 // NewUsersNominateUserOptions : Instantiate UsersNominateUserOptions
-func (*AppIdManagementV4) NewUsersNominateUserOptions(idp string, idpIdentity string) *UsersNominateUserOptions {
+func (*AppIdManagementV4) NewUsersNominateUserOptions(iDP string, iDPIdentity string) *UsersNominateUserOptions {
 	return &UsersNominateUserOptions{
-		Idp: core.StringPtr(idp),
-		IdpIdentity: core.StringPtr(idpIdentity),
+		IDP: core.StringPtr(iDP),
+		IDPIdentity: core.StringPtr(iDPIdentity),
 	}
 }
 
-// SetIdp : Allow user to set Idp
-func (options *UsersNominateUserOptions) SetIdp(idp string) *UsersNominateUserOptions {
-	options.Idp = core.StringPtr(idp)
+// SetIDP : Allow user to set IDP
+func (options *UsersNominateUserOptions) SetIDP(iDP string) *UsersNominateUserOptions {
+	options.IDP = core.StringPtr(iDP)
 	return options
 }
 
-// SetIdpIdentity : Allow user to set IdpIdentity
-func (options *UsersNominateUserOptions) SetIdpIdentity(idpIdentity string) *UsersNominateUserOptions {
-	options.IdpIdentity = core.StringPtr(idpIdentity)
+// SetIDPIdentity : Allow user to set IDPIdentity
+func (options *UsersNominateUserOptions) SetIDPIdentity(iDPIdentity string) *UsersNominateUserOptions {
+	options.IDPIdentity = core.StringPtr(iDPIdentity)
 	return options
 }
 
