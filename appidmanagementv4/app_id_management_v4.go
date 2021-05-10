@@ -15,7 +15,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-115948
+ * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-120747
  */
 
 // Package appidmanagementv4 : Operations and models for the AppIdManagementV4 service
@@ -1065,16 +1065,16 @@ func (appIdManagement *AppIdManagementV4) DeleteCloudDirectoryUserWithContext(ct
 	return
 }
 
-// SsoLogoutFromAllApps : Invalidate all SSO sessions
+// SSOLogoutFromAllApps : Invalidate all SSO sessions
 // Invalidate all the user's SSO sessions. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cd-sso#ending-all-sessions-for-a-user" target="_blank">Learn
 // more</a>.
-func (appIdManagement *AppIdManagementV4) SsoLogoutFromAllApps(ssoLogoutFromAllAppsOptions *SsoLogoutFromAllAppsOptions) (response *core.DetailedResponse, err error) {
-	return appIdManagement.SsoLogoutFromAllAppsWithContext(context.Background(), ssoLogoutFromAllAppsOptions)
+func (appIdManagement *AppIdManagementV4) SSOLogoutFromAllApps(ssoLogoutFromAllAppsOptions *SSOLogoutFromAllAppsOptions) (response *core.DetailedResponse, err error) {
+	return appIdManagement.SSOLogoutFromAllAppsWithContext(context.Background(), ssoLogoutFromAllAppsOptions)
 }
 
-// SsoLogoutFromAllAppsWithContext is an alternate form of the SsoLogoutFromAllApps method which supports a Context parameter
-func (appIdManagement *AppIdManagementV4) SsoLogoutFromAllAppsWithContext(ctx context.Context, ssoLogoutFromAllAppsOptions *SsoLogoutFromAllAppsOptions) (response *core.DetailedResponse, err error) {
+// SSOLogoutFromAllAppsWithContext is an alternate form of the SSOLogoutFromAllApps method which supports a Context parameter
+func (appIdManagement *AppIdManagementV4) SSOLogoutFromAllAppsWithContext(ctx context.Context, ssoLogoutFromAllAppsOptions *SSOLogoutFromAllAppsOptions) (response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(ssoLogoutFromAllAppsOptions, "ssoLogoutFromAllAppsOptions cannot be nil")
 	if err != nil {
 		return
@@ -1086,7 +1086,7 @@ func (appIdManagement *AppIdManagementV4) SsoLogoutFromAllAppsWithContext(ctx co
 
 	pathParamsMap := map[string]string{
 		"tenantId": *appIdManagement.TenantID,
-		"userId": *ssoLogoutFromAllAppsOptions.UserID,
+		"userId": *sSOLogoutFromAllAppsOptions.UserID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -1101,7 +1101,7 @@ func (appIdManagement *AppIdManagementV4) SsoLogoutFromAllAppsWithContext(ctx co
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SsoLogoutFromAllApps")
+	sdkHeaders := common.GetSdkHeaders("app_id_management", "V4", "SSOLogoutFromAllApps")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
@@ -10344,8 +10344,8 @@ func (options *SetSAMLIDPOptions) SetHeaders(param map[string]string) *SetSAMLID
 	return options
 }
 
-// SsoLogoutFromAllAppsOptions : The SsoLogoutFromAllApps options.
-type SsoLogoutFromAllAppsOptions struct {
+// SSOLogoutFromAllAppsOptions : The SSOLogoutFromAllApps options.
+type SSOLogoutFromAllAppsOptions struct {
 	// The ID assigned to a user when they sign in by using Cloud Directory.
 	UserID *string `validate:"required,ne="`
 
@@ -10353,21 +10353,21 @@ type SsoLogoutFromAllAppsOptions struct {
 	Headers map[string]string
 }
 
-// NewSsoLogoutFromAllAppsOptions : Instantiate SsoLogoutFromAllAppsOptions
-func (*AppIdManagementV4) NewSsoLogoutFromAllAppsOptions(userID string) *SsoLogoutFromAllAppsOptions {
-	return &SsoLogoutFromAllAppsOptions{
+// NewSSOLogoutFromAllAppsOptions : Instantiate SSOLogoutFromAllAppsOptions
+func (*AppIdManagementV4) NewSSOLogoutFromAllAppsOptions(userID string) *SSOLogoutFromAllAppsOptions {
+	return &SSOLogoutFromAllAppsOptions{
 		UserID: core.StringPtr(userID),
 	}
 }
 
 // SetUserID : Allow user to set UserID
-func (options *SsoLogoutFromAllAppsOptions) SetUserID(userID string) *SsoLogoutFromAllAppsOptions {
+func (options *SSOLogoutFromAllAppsOptions) SetUserID(userID string) *SSOLogoutFromAllAppsOptions {
 	options.UserID = core.StringPtr(userID)
 	return options
 }
 
 // SetHeaders : Allow user to set Headers
-func (options *SsoLogoutFromAllAppsOptions) SetHeaders(param map[string]string) *SsoLogoutFromAllAppsOptions {
+func (options *SSOLogoutFromAllAppsOptions) SetHeaders(param map[string]string) *SSOLogoutFromAllAppsOptions {
 	options.Headers = param
 	return options
 }

@@ -2739,7 +2739,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`SsoLogoutFromAllApps(ssoLogoutFromAllAppsOptions *SsoLogoutFromAllAppsOptions)`, func() {
+	Describe(`SSOLogoutFromAllApps(ssoLogoutFromAllAppsOptions *SSOLogoutFromAllAppsOptions)`, func() {
 		tenantID := "testString"
 		ssoLogoutFromAllAppsPath := "/management/v4/testString/cloud_directory/Users/testString/sso/logout"
 		Context(`Using mock server endpoint`, func() {
@@ -2754,7 +2754,7 @@ var _ = Describe(`AppIdManagementV4`, func() {
 					res.WriteHeader(204)
 				}))
 			})
-			It(`Invoke SsoLogoutFromAllApps successfully`, func() {
+			It(`Invoke SSOLogoutFromAllApps successfully`, func() {
 				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -2764,21 +2764,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(appIdManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIdManagementService.SsoLogoutFromAllApps(nil)
+				response, operationErr := appIdManagementService.SSOLogoutFromAllApps(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 
-				// Construct an instance of the SsoLogoutFromAllAppsOptions model
-				ssoLogoutFromAllAppsOptionsModel := new(appidmanagementv4.SsoLogoutFromAllAppsOptions)
+				// Construct an instance of the SSOLogoutFromAllAppsOptions model
+				ssoLogoutFromAllAppsOptionsModel := new(appidmanagementv4.SSOLogoutFromAllAppsOptions)
 				ssoLogoutFromAllAppsOptionsModel.UserID = core.StringPtr("testString")
 				ssoLogoutFromAllAppsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.SsoLogoutFromAllApps(ssoLogoutFromAllAppsOptionsModel)
+				response, operationErr = appIdManagementService.SSOLogoutFromAllApps(ssoLogoutFromAllAppsOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
-			It(`Invoke SsoLogoutFromAllApps with error: Operation validation and request error`, func() {
+			It(`Invoke SSOLogoutFromAllApps with error: Operation validation and request error`, func() {
 				appIdManagementService, serviceErr := appidmanagementv4.NewAppIdManagementV4(&appidmanagementv4.AppIdManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -2787,21 +2787,21 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(appIdManagementService).ToNot(BeNil())
 
-				// Construct an instance of the SsoLogoutFromAllAppsOptions model
-				ssoLogoutFromAllAppsOptionsModel := new(appidmanagementv4.SsoLogoutFromAllAppsOptions)
+				// Construct an instance of the SSOLogoutFromAllAppsOptions model
+				ssoLogoutFromAllAppsOptionsModel := new(appidmanagementv4.SSOLogoutFromAllAppsOptions)
 				ssoLogoutFromAllAppsOptionsModel.UserID = core.StringPtr("testString")
 				ssoLogoutFromAllAppsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIdManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.SsoLogoutFromAllApps(ssoLogoutFromAllAppsOptionsModel)
+				response, operationErr := appIdManagementService.SSOLogoutFromAllApps(ssoLogoutFromAllAppsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
-				// Construct a second instance of the SsoLogoutFromAllAppsOptions model with no property values
-				ssoLogoutFromAllAppsOptionsModelNew := new(appidmanagementv4.SsoLogoutFromAllAppsOptions)
+				// Construct a second instance of the SSOLogoutFromAllAppsOptions model with no property values
+				ssoLogoutFromAllAppsOptionsModelNew := new(appidmanagementv4.SSOLogoutFromAllAppsOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.SsoLogoutFromAllApps(ssoLogoutFromAllAppsOptionsModelNew)
+				response, operationErr = appIdManagementService.SSOLogoutFromAllApps(ssoLogoutFromAllAppsOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -13569,14 +13569,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 	})
 	Describe(`GetSSOConfig(getSSOConfigOptions *GetSSOConfigOptions)`, func() {
 		tenantID := "testString"
-		getSsoConfigPath := "/management/v4/testString/config/cloud_directory/sso"
+		getSSOConfigPath := "/management/v4/testString/config/cloud_directory/sso"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(getSsoConfigPath))
+					Expect(req.URL.EscapedPath()).To(Equal(getSSOConfigPath))
 					Expect(req.Method).To(Equal("GET"))
 
 					res.WriteHeader(200)
@@ -13597,11 +13597,11 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(response).To(BeNil())
 
 				// Construct an instance of the GetSSOConfigOptions model
-				getSsoConfigOptionsModel := new(appidmanagementv4.GetSSOConfigOptions)
-				getSsoConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSSOConfigOptionsModel := new(appidmanagementv4.GetSSOConfigOptions)
+				getSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.GetSSOConfig(getSsoConfigOptionsModel)
+				response, operationErr = appIdManagementService.GetSSOConfig(getSSOConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
@@ -13615,12 +13615,12 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(appIdManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSSOConfigOptions model
-				getSsoConfigOptionsModel := new(appidmanagementv4.GetSSOConfigOptions)
-				getSsoConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSSOConfigOptionsModel := new(appidmanagementv4.GetSSOConfigOptions)
+				getSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIdManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.GetSSOConfig(getSsoConfigOptionsModel)
+				response, operationErr := appIdManagementService.GetSSOConfig(getSSOConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
@@ -13632,14 +13632,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 	})
 	Describe(`UpdateSSOConfig(updateSSOConfigOptions *UpdateSSOConfigOptions)`, func() {
 		tenantID := "testString"
-		updateSsoConfigPath := "/management/v4/testString/config/cloud_directory/sso"
+		updateSSOConfigPath := "/management/v4/testString/config/cloud_directory/sso"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(updateSsoConfigPath))
+					Expect(req.URL.EscapedPath()).To(Equal(updateSSOConfigPath))
 					Expect(req.Method).To(Equal("PUT"))
 
 					// For gzip-disabled operation, verify Content-Encoding is not set.
@@ -13676,14 +13676,14 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(response).To(BeNil())
 
 				// Construct an instance of the UpdateSSOConfigOptions model
-				updateSsoConfigOptionsModel := new(appidmanagementv4.UpdateSSOConfigOptions)
-				updateSsoConfigOptionsModel.IsActive = core.BoolPtr(true)
-				updateSsoConfigOptionsModel.InactivityTimeoutSeconds = core.Float64Ptr(float64(86400))
-				updateSsoConfigOptionsModel.LogoutRedirectUris = []string{"http://localhost:3000/logout-callback"}
-				updateSsoConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				updateSSOConfigOptionsModel := new(appidmanagementv4.UpdateSSOConfigOptions)
+				updateSSOConfigOptionsModel.IsActive = core.BoolPtr(true)
+				updateSSOConfigOptionsModel.InactivityTimeoutSeconds = core.Float64Ptr(float64(86400))
+				updateSSOConfigOptionsModel.LogoutRedirectUris = []string{"http://localhost:3000/logout-callback"}
+				updateSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIdManagementService.UpdateSSOConfig(updateSsoConfigOptionsModel)
+				response, operationErr = appIdManagementService.UpdateSSOConfig(updateSSOConfigOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
@@ -13697,22 +13697,22 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(appIdManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateSSOConfigOptions model
-				updateSsoConfigOptionsModel := new(appidmanagementv4.UpdateSSOConfigOptions)
-				updateSsoConfigOptionsModel.IsActive = core.BoolPtr(true)
-				updateSsoConfigOptionsModel.InactivityTimeoutSeconds = core.Float64Ptr(float64(86400))
-				updateSsoConfigOptionsModel.LogoutRedirectUris = []string{"http://localhost:3000/logout-callback"}
-				updateSsoConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				updateSSOConfigOptionsModel := new(appidmanagementv4.UpdateSSOConfigOptions)
+				updateSSOConfigOptionsModel.IsActive = core.BoolPtr(true)
+				updateSSOConfigOptionsModel.InactivityTimeoutSeconds = core.Float64Ptr(float64(86400))
+				updateSSOConfigOptionsModel.LogoutRedirectUris = []string{"http://localhost:3000/logout-callback"}
+				updateSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIdManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIdManagementService.UpdateSSOConfig(updateSsoConfigOptionsModel)
+				response, operationErr := appIdManagementService.UpdateSSOConfig(updateSSOConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				// Construct a second instance of the UpdateSSOConfigOptions model with no property values
-				updateSsoConfigOptionsModelNew := new(appidmanagementv4.UpdateSSOConfigOptions)
+				updateSSOConfigOptionsModelNew := new(appidmanagementv4.UpdateSSOConfigOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIdManagementService.UpdateSSOConfig(updateSsoConfigOptionsModelNew)
+				response, operationErr = appIdManagementService.UpdateSSOConfig(updateSSOConfigOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 			})
@@ -19951,10 +19951,10 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewGetSSOConfigOptions successfully`, func() {
 				// Construct an instance of the GetSSOConfigOptions model
-				getSsoConfigOptionsModel := appIdManagementService.NewGetSSOConfigOptions()
-				getSsoConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(getSsoConfigOptionsModel).ToNot(BeNil())
-				Expect(getSsoConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+				getSSOConfigOptionsModel := appIdManagementService.NewGetSSOConfigOptions()
+				getSSOConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(getSSOConfigOptionsModel).ToNot(BeNil())
+				Expect(getSSOConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetSAMLIDPOptions successfully`, func() {
 				// Construct an instance of the GetSAMLIDPOptions model
@@ -20585,10 +20585,10 @@ var _ = Describe(`AppIdManagementV4`, func() {
 				Expect(setSAMLIDPOptionsModel.Config).To(Equal(SAMLConfigParamsModel))
 				Expect(setSAMLIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
-			It(`Invoke NewSsoLogoutFromAllAppsOptions successfully`, func() {
-				// Construct an instance of the SsoLogoutFromAllAppsOptions model
+			It(`Invoke NewSSOLogoutFromAllAppsOptions successfully`, func() {
+				// Construct an instance of the SSOLogoutFromAllAppsOptions model
 				userID := "testString"
-				ssoLogoutFromAllAppsOptionsModel := appIdManagementService.NewSsoLogoutFromAllAppsOptions(userID)
+				ssoLogoutFromAllAppsOptionsModel := appIdManagementService.NewSSOLogoutFromAllAppsOptions(userID)
 				ssoLogoutFromAllAppsOptionsModel.SetUserID("testString")
 				ssoLogoutFromAllAppsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(ssoLogoutFromAllAppsOptionsModel).ToNot(BeNil())
@@ -20820,19 +20820,19 @@ var _ = Describe(`AppIdManagementV4`, func() {
 			})
 			It(`Invoke NewUpdateSSOConfigOptions successfully`, func() {
 				// Construct an instance of the UpdateSSOConfigOptions model
-				updateSsoConfigOptionsIsActive := true
-				updateSsoConfigOptionsInactivityTimeoutSeconds := float64(86400)
-				updateSsoConfigOptionsLogoutRedirectUris := []string{"http://localhost:3000/logout-callback"}
-				updateSsoConfigOptionsModel := appIdManagementService.NewUpdateSSOConfigOptions(updateSsoConfigOptionsIsActive, updateSsoConfigOptionsInactivityTimeoutSeconds, updateSsoConfigOptionsLogoutRedirectUris)
-				updateSsoConfigOptionsModel.SetIsActive(true)
-				updateSsoConfigOptionsModel.SetInactivityTimeoutSeconds(float64(86400))
-				updateSsoConfigOptionsModel.SetLogoutRedirectUris([]string{"http://localhost:3000/logout-callback"})
-				updateSsoConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(updateSsoConfigOptionsModel).ToNot(BeNil())
-				Expect(updateSsoConfigOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
-				Expect(updateSsoConfigOptionsModel.InactivityTimeoutSeconds).To(Equal(core.Float64Ptr(float64(86400))))
-				Expect(updateSsoConfigOptionsModel.LogoutRedirectUris).To(Equal([]string{"http://localhost:3000/logout-callback"}))
-				Expect(updateSsoConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+				updateSSOConfigOptionsIsActive := true
+				updateSSOConfigOptionsInactivityTimeoutSeconds := float64(86400)
+				updateSSOConfigOptionsLogoutRedirectUris := []string{"http://localhost:3000/logout-callback"}
+				updateSSOConfigOptionsModel := appIdManagementService.NewUpdateSSOConfigOptions(updateSSOConfigOptionsIsActive, updateSSOConfigOptionsInactivityTimeoutSeconds, updateSSOConfigOptionsLogoutRedirectUris)
+				updateSSOConfigOptionsModel.SetIsActive(true)
+				updateSSOConfigOptionsModel.SetInactivityTimeoutSeconds(float64(86400))
+				updateSSOConfigOptionsModel.SetLogoutRedirectUris([]string{"http://localhost:3000/logout-callback"})
+				updateSSOConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(updateSSOConfigOptionsModel).ToNot(BeNil())
+				Expect(updateSSOConfigOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
+				Expect(updateSSOConfigOptionsModel.InactivityTimeoutSeconds).To(Equal(core.Float64Ptr(float64(86400))))
+				Expect(updateSSOConfigOptionsModel.LogoutRedirectUris).To(Equal([]string{"http://localhost:3000/logout-callback"}))
+				Expect(updateSSOConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUpdateTemplateOptions successfully`, func() {
 				// Construct an instance of the UpdateTemplateOptions model
