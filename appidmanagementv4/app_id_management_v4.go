@@ -15,7 +15,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-150009
+ * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-153046
  */
 
 // Package appidmanagementv4 : Operations and models for the AppIDManagementV4 service
@@ -46,9 +46,6 @@ import (
 // Version: 4
 type AppIDManagementV4 struct {
 	Service *core.BaseService
-
-	// The service tenantId. The tenantId can be found in the service credentials.
-	TenantID *string
 }
 
 // DefaultServiceURL is the default URL to make service requests to.
@@ -62,9 +59,6 @@ type AppIDManagementV4Options struct {
 	ServiceName   string
 	URL           string
 	Authenticator core.Authenticator
-
-	// The service tenantId. The tenantId can be found in the service credentials.
-	TenantID *string `validate:"required"`
 }
 
 // NewAppIDManagementV4UsingExternalConfig : constructs an instance of AppIDManagementV4 with passed in options and external configuration.
@@ -103,11 +97,6 @@ func NewAppIDManagementV4(options *AppIDManagementV4Options) (service *AppIDMana
 		Authenticator: options.Authenticator,
 	}
 
-	err = core.ValidateStruct(options, "options")
-	if err != nil {
-		return
-	}
-
 	baseService, err := core.NewBaseService(serviceOptions)
 	if err != nil {
 		return
@@ -121,8 +110,7 @@ func NewAppIDManagementV4(options *AppIDManagementV4Options) (service *AppIDMana
 	}
 
 	service = &AppIDManagementV4{
-		Service:  baseService,
-		TenantID: options.TenantID,
+		Service: baseService,
 	}
 
 	return
@@ -187,13 +175,17 @@ func (appIdManagement *AppIDManagementV4) ListApplications(listApplicationsOptio
 
 // ListApplicationsWithContext is an alternate form of the ListApplications method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) ListApplicationsWithContext(ctx context.Context, listApplicationsOptions *ListApplicationsOptions) (result *ApplicationsList, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(listApplicationsOptions, "listApplicationsOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(listApplicationsOptions, "listApplicationsOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *listApplicationsOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -253,7 +245,7 @@ func (appIdManagement *AppIDManagementV4) RegisterApplicationWithContext(ctx con
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *registerApplicationOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -326,7 +318,7 @@ func (appIdManagement *AppIDManagementV4) GetApplicationWithContext(ctx context.
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getApplicationOptions.TenantID,
 		"clientId": *getApplicationOptions.ClientID,
 	}
 
@@ -387,7 +379,7 @@ func (appIdManagement *AppIDManagementV4) UpdateApplicationWithContext(ctx conte
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateApplicationOptions.TenantID,
 		"clientId": *updateApplicationOptions.ClientID,
 	}
 
@@ -458,7 +450,7 @@ func (appIdManagement *AppIDManagementV4) DeleteApplicationWithContext(ctx conte
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *deleteApplicationOptions.TenantID,
 		"clientId": *deleteApplicationOptions.ClientID,
 	}
 
@@ -507,7 +499,7 @@ func (appIdManagement *AppIDManagementV4) GetApplicationScopesWithContext(ctx co
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getApplicationScopesOptions.TenantID,
 		"clientId": *getApplicationScopesOptions.ClientID,
 	}
 
@@ -569,7 +561,7 @@ func (appIdManagement *AppIDManagementV4) PutApplicationsScopesWithContext(ctx c
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *putApplicationsScopesOptions.TenantID,
 		"clientId": *putApplicationsScopesOptions.ClientID,
 	}
 
@@ -640,7 +632,7 @@ func (appIdManagement *AppIDManagementV4) GetApplicationRolesWithContext(ctx con
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getApplicationRolesOptions.TenantID,
 		"clientId": *getApplicationRolesOptions.ClientID,
 	}
 
@@ -701,7 +693,7 @@ func (appIdManagement *AppIDManagementV4) PutApplicationsRolesWithContext(ctx co
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *putApplicationsRolesOptions.TenantID,
 		"clientId": *putApplicationsRolesOptions.ClientID,
 	}
 
@@ -763,13 +755,17 @@ func (appIdManagement *AppIDManagementV4) ListCloudDirectoryUsers(listCloudDirec
 
 // ListCloudDirectoryUsersWithContext is an alternate form of the ListCloudDirectoryUsers method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) ListCloudDirectoryUsersWithContext(ctx context.Context, listCloudDirectoryUsersOptions *ListCloudDirectoryUsersOptions) (result *UsersList, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(listCloudDirectoryUsersOptions, "listCloudDirectoryUsersOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(listCloudDirectoryUsersOptions, "listCloudDirectoryUsersOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *listCloudDirectoryUsersOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -842,7 +838,7 @@ func (appIdManagement *AppIDManagementV4) CreateCloudDirectoryUserWithContext(ct
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *createCloudDirectoryUserOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -911,7 +907,7 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectoryUserWithContext(ctx c
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getCloudDirectoryUserOptions.TenantID,
 		"userId":   *getCloudDirectoryUserOptions.UserID,
 	}
 
@@ -962,7 +958,7 @@ func (appIdManagement *AppIDManagementV4) UpdateCloudDirectoryUserWithContext(ct
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateCloudDirectoryUserOptions.TenantID,
 		"userId":   *updateCloudDirectoryUserOptions.UserID,
 	}
 
@@ -1034,7 +1030,7 @@ func (appIdManagement *AppIDManagementV4) DeleteCloudDirectoryUserWithContext(ct
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *deleteCloudDirectoryUserOptions.TenantID,
 		"userId":   *deleteCloudDirectoryUserOptions.UserID,
 	}
 
@@ -1085,7 +1081,7 @@ func (appIdManagement *AppIDManagementV4) InvalidateUserSSOSessionsWithContext(c
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *invalidateUserSSOSessionsOptions.TenantID,
 		"userId":   *invalidateUserSSOSessionsOptions.UserID,
 	}
 
@@ -1135,7 +1131,7 @@ func (appIdManagement *AppIDManagementV4) CloudDirectoryExportWithContext(ctx co
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *cloudDirectoryExportOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -1204,7 +1200,7 @@ func (appIdManagement *AppIDManagementV4) CloudDirectoryImportWithContext(ctx co
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *cloudDirectoryImportOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -1277,7 +1273,7 @@ func (appIdManagement *AppIDManagementV4) CloudDirectoryGetUserinfoWithContext(c
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *cloudDirectoryGetUserinfoOptions.TenantID,
 		"userId":   *cloudDirectoryGetUserinfoOptions.UserID,
 	}
 
@@ -1339,7 +1335,7 @@ func (appIdManagement *AppIDManagementV4) StartSignUpWithContext(ctx context.Con
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *startSignUpOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -1413,7 +1409,7 @@ func (appIdManagement *AppIDManagementV4) UserVerificationResultWithContext(ctx 
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *userVerificationResultOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -1484,7 +1480,7 @@ func (appIdManagement *AppIDManagementV4) StartForgotPasswordWithContext(ctx con
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *startForgotPasswordOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -1548,7 +1544,7 @@ func (appIdManagement *AppIDManagementV4) ForgotPasswordResultWithContext(ctx co
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *forgotPasswordResultOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -1619,7 +1615,7 @@ func (appIdManagement *AppIDManagementV4) ChangePasswordWithContext(ctx context.
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *changePasswordOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -1689,7 +1685,7 @@ func (appIdManagement *AppIDManagementV4) ResendNotificationWithContext(ctx cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId":     *appIdManagement.TenantID,
+		"tenantId":     *resendNotificationOptions.TenantID,
 		"templateName": *resendNotificationOptions.TemplateName,
 	}
 
@@ -1766,7 +1762,7 @@ func (appIdManagement *AppIDManagementV4) CloudDirectoryRemoveWithContext(ctx co
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *cloudDirectoryRemoveOptions.TenantID,
 		"userId":   *cloudDirectoryRemoveOptions.UserID,
 	}
 
@@ -1806,13 +1802,17 @@ func (appIdManagement *AppIDManagementV4) GetTokensConfig(getTokensConfigOptions
 
 // GetTokensConfigWithContext is an alternate form of the GetTokensConfig method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetTokensConfigWithContext(ctx context.Context, getTokensConfigOptions *GetTokensConfigOptions) (result *TokensConfigResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getTokensConfigOptions, "getTokensConfigOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getTokensConfigOptions, "getTokensConfigOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getTokensConfigOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -1875,7 +1875,7 @@ func (appIdManagement *AppIDManagementV4) PutTokensConfigWithContext(ctx context
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *putTokensConfigOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -1948,13 +1948,17 @@ func (appIdManagement *AppIDManagementV4) GetRedirectUris(getRedirectUrisOptions
 
 // GetRedirectUrisWithContext is an alternate form of the GetRedirectUris method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetRedirectUrisWithContext(ctx context.Context, getRedirectUrisOptions *GetRedirectUrisOptions) (result *RedirectURIResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getRedirectUrisOptions, "getRedirectUrisOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getRedirectUrisOptions, "getRedirectUrisOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getRedirectUrisOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -2015,7 +2019,7 @@ func (appIdManagement *AppIDManagementV4) UpdateRedirectUrisWithContext(ctx cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateRedirectUrisOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -2061,13 +2065,17 @@ func (appIdManagement *AppIDManagementV4) GetUserProfilesConfig(getUserProfilesC
 
 // GetUserProfilesConfigWithContext is an alternate form of the GetUserProfilesConfig method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetUserProfilesConfigWithContext(ctx context.Context, getUserProfilesConfigOptions *GetUserProfilesConfigOptions) (result *GetUserProfilesConfigResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getUserProfilesConfigOptions, "getUserProfilesConfigOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getUserProfilesConfigOptions, "getUserProfilesConfigOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getUserProfilesConfigOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -2129,7 +2137,7 @@ func (appIdManagement *AppIDManagementV4) UpdateUserProfilesConfigWithContext(ct
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateUserProfilesConfigOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -2178,13 +2186,17 @@ func (appIdManagement *AppIDManagementV4) GetThemeText(getThemeTextOptions *GetT
 
 // GetThemeTextWithContext is an alternate form of the GetThemeText method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetThemeTextWithContext(ctx context.Context, getThemeTextOptions *GetThemeTextOptions) (result *GetThemeTextResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getThemeTextOptions, "getThemeTextOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getThemeTextOptions, "getThemeTextOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getThemeTextOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -2245,7 +2257,7 @@ func (appIdManagement *AppIDManagementV4) PostThemeTextWithContext(ctx context.C
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *postThemeTextOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -2297,13 +2309,17 @@ func (appIdManagement *AppIDManagementV4) GetThemeColor(getThemeColorOptions *Ge
 
 // GetThemeColorWithContext is an alternate form of the GetThemeColor method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetThemeColorWithContext(ctx context.Context, getThemeColorOptions *GetThemeColorOptions) (result *GetThemeColorResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getThemeColorOptions, "getThemeColorOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getThemeColorOptions, "getThemeColorOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getThemeColorOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -2364,7 +2380,7 @@ func (appIdManagement *AppIDManagementV4) PostThemeColorWithContext(ctx context.
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *postThemeColorOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -2413,13 +2429,17 @@ func (appIdManagement *AppIDManagementV4) GetMedia(getMediaOptions *GetMediaOpti
 
 // GetMediaWithContext is an alternate form of the GetMedia method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetMediaWithContext(ctx context.Context, getMediaOptions *GetMediaOptions) (result *GetMediaResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getMediaOptions, "getMediaOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getMediaOptions, "getMediaOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getMediaOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -2480,7 +2500,7 @@ func (appIdManagement *AppIDManagementV4) PostMediaWithContext(ctx context.Conte
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *postMediaOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -2524,13 +2544,17 @@ func (appIdManagement *AppIDManagementV4) GetSAMLMetadata(getSAMLMetadataOptions
 
 // GetSAMLMetadataWithContext is an alternate form of the GetSAMLMetadata method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetSAMLMetadataWithContext(ctx context.Context, getSAMLMetadataOptions *GetSAMLMetadataOptions) (result *string, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getSAMLMetadataOptions, "getSAMLMetadataOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getSAMLMetadataOptions, "getSAMLMetadataOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getSAMLMetadataOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -2580,7 +2604,7 @@ func (appIdManagement *AppIDManagementV4) GetTemplateWithContext(ctx context.Con
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId":     *appIdManagement.TenantID,
+		"tenantId":     *getTemplateOptions.TenantID,
 		"templateName": *getTemplateOptions.TemplateName,
 		"language":     *getTemplateOptions.Language,
 	}
@@ -2643,7 +2667,7 @@ func (appIdManagement *AppIDManagementV4) UpdateTemplateWithContext(ctx context.
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId":     *appIdManagement.TenantID,
+		"tenantId":     *updateTemplateOptions.TenantID,
 		"templateName": *updateTemplateOptions.TemplateName,
 		"language":     *updateTemplateOptions.Language,
 	}
@@ -2725,7 +2749,7 @@ func (appIdManagement *AppIDManagementV4) DeleteTemplateWithContext(ctx context.
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId":     *appIdManagement.TenantID,
+		"tenantId":     *deleteTemplateOptions.TenantID,
 		"templateName": *deleteTemplateOptions.TemplateName,
 		"language":     *deleteTemplateOptions.Language,
 	}
@@ -2765,13 +2789,17 @@ func (appIdManagement *AppIDManagementV4) GetLocalization(getLocalizationOptions
 
 // GetLocalizationWithContext is an alternate form of the GetLocalization method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetLocalizationWithContext(ctx context.Context, getLocalizationOptions *GetLocalizationOptions) (result *GetLanguages, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getLocalizationOptions, "getLocalizationOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getLocalizationOptions, "getLocalizationOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getLocalizationOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -2821,13 +2849,17 @@ func (appIdManagement *AppIDManagementV4) UpdateLocalization(updateLocalizationO
 
 // UpdateLocalizationWithContext is an alternate form of the UpdateLocalization method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) UpdateLocalizationWithContext(ctx context.Context, updateLocalizationOptions *UpdateLocalizationOptions) (response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(updateLocalizationOptions, "updateLocalizationOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(updateLocalizationOptions, "updateLocalizationOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateLocalizationOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -2876,13 +2908,17 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectorySenderDetails(getClou
 
 // GetCloudDirectorySenderDetailsWithContext is an alternate form of the GetCloudDirectorySenderDetails method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetCloudDirectorySenderDetailsWithContext(ctx context.Context, getCloudDirectorySenderDetailsOptions *GetCloudDirectorySenderDetailsOptions) (result *CloudDirectorySenderDetails, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getCloudDirectorySenderDetailsOptions, "getCloudDirectorySenderDetailsOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getCloudDirectorySenderDetailsOptions, "getCloudDirectorySenderDetailsOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getCloudDirectorySenderDetailsOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -2943,7 +2979,7 @@ func (appIdManagement *AppIDManagementV4) SetCloudDirectorySenderDetailsWithCont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setCloudDirectorySenderDetailsOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -3002,7 +3038,7 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectoryActionURLWithContext(
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getCloudDirectoryActionURLOptions.TenantID,
 		"action":   *getCloudDirectoryActionURLOptions.Action,
 	}
 
@@ -3064,7 +3100,7 @@ func (appIdManagement *AppIDManagementV4) SetCloudDirectoryActionWithContext(ctx
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setCloudDirectoryActionOptions.TenantID,
 		"action":   *setCloudDirectoryActionOptions.Action,
 	}
 
@@ -3136,7 +3172,7 @@ func (appIdManagement *AppIDManagementV4) DeleteActionURLWithContext(ctx context
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *deleteActionURLOptions.TenantID,
 		"action":   *deleteActionURLOptions.Action,
 	}
 
@@ -3176,13 +3212,17 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectoryPasswordRegex(getClou
 
 // GetCloudDirectoryPasswordRegexWithContext is an alternate form of the GetCloudDirectoryPasswordRegex method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetCloudDirectoryPasswordRegexWithContext(ctx context.Context, getCloudDirectoryPasswordRegexOptions *GetCloudDirectoryPasswordRegexOptions) (result *PasswordRegexConfigParamsGet, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getCloudDirectoryPasswordRegexOptions, "getCloudDirectoryPasswordRegexOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getCloudDirectoryPasswordRegexOptions, "getCloudDirectoryPasswordRegexOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getCloudDirectoryPasswordRegexOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -3246,7 +3286,7 @@ func (appIdManagement *AppIDManagementV4) SetCloudDirectoryPasswordRegexWithCont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setCloudDirectoryPasswordRegexOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -3312,13 +3352,17 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectoryEmailDispatcher(getCl
 
 // GetCloudDirectoryEmailDispatcherWithContext is an alternate form of the GetCloudDirectoryEmailDispatcher method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetCloudDirectoryEmailDispatcherWithContext(ctx context.Context, getCloudDirectoryEmailDispatcherOptions *GetCloudDirectoryEmailDispatcherOptions) (result *EmailDispatcherParams, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getCloudDirectoryEmailDispatcherOptions, "getCloudDirectoryEmailDispatcherOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getCloudDirectoryEmailDispatcherOptions, "getCloudDirectoryEmailDispatcherOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getCloudDirectoryEmailDispatcherOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -3381,7 +3425,7 @@ func (appIdManagement *AppIDManagementV4) SetCloudDirectoryEmailDispatcherWithCo
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setCloudDirectoryEmailDispatcherOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -3457,7 +3501,7 @@ func (appIdManagement *AppIDManagementV4) EmailSettingTestWithContext(ctx contex
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *emailSettingTestOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -3533,7 +3577,7 @@ func (appIdManagement *AppIDManagementV4) PostEmailDispatcherTestWithContext(ctx
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *postEmailDispatcherTestOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -3603,7 +3647,7 @@ func (appIdManagement *AppIDManagementV4) PostSMSDispatcherTestWithContext(ctx c
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *postSMSDispatcherTestOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -3663,13 +3707,17 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectoryAdvancedPasswordManag
 
 // GetCloudDirectoryAdvancedPasswordManagementWithContext is an alternate form of the GetCloudDirectoryAdvancedPasswordManagement method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetCloudDirectoryAdvancedPasswordManagementWithContext(ctx context.Context, getCloudDirectoryAdvancedPasswordManagementOptions *GetCloudDirectoryAdvancedPasswordManagementOptions) (result *ApmSchema, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getCloudDirectoryAdvancedPasswordManagementOptions, "getCloudDirectoryAdvancedPasswordManagementOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getCloudDirectoryAdvancedPasswordManagementOptions, "getCloudDirectoryAdvancedPasswordManagementOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getCloudDirectoryAdvancedPasswordManagementOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -3730,7 +3778,7 @@ func (appIdManagement *AppIDManagementV4) SetCloudDirectoryAdvancedPasswordManag
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setCloudDirectoryAdvancedPasswordManagementOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -3790,13 +3838,17 @@ func (appIdManagement *AppIDManagementV4) GetAuditStatus(getAuditStatusOptions *
 
 // GetAuditStatusWithContext is an alternate form of the GetAuditStatus method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetAuditStatusWithContext(ctx context.Context, getAuditStatusOptions *GetAuditStatusOptions) (response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getAuditStatusOptions, "getAuditStatusOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getAuditStatusOptions, "getAuditStatusOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getAuditStatusOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -3847,7 +3899,7 @@ func (appIdManagement *AppIDManagementV4) SetAuditStatusWithContext(ctx context.
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setAuditStatusOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -3895,13 +3947,17 @@ func (appIdManagement *AppIDManagementV4) ListChannels(listChannelsOptions *List
 
 // ListChannelsWithContext is an alternate form of the ListChannels method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) ListChannelsWithContext(ctx context.Context, listChannelsOptions *ListChannelsOptions) (result *MFAChannelsList, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(listChannelsOptions, "listChannelsOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(listChannelsOptions, "listChannelsOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *listChannelsOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -3961,7 +4017,7 @@ func (appIdManagement *AppIDManagementV4) GetChannelWithContext(ctx context.Cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getChannelOptions.TenantID,
 		"channel":  *getChannelOptions.Channel,
 	}
 
@@ -4022,7 +4078,7 @@ func (appIdManagement *AppIDManagementV4) UpdateChannelWithContext(ctx context.C
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateChannelOptions.TenantID,
 		"channel":  *updateChannelOptions.Channel,
 	}
 
@@ -4097,7 +4153,7 @@ func (appIdManagement *AppIDManagementV4) GetExtensionConfigWithContext(ctx cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getExtensionConfigOptions.TenantID,
 		"name":     *getExtensionConfigOptions.Name,
 	}
 
@@ -4159,7 +4215,7 @@ func (appIdManagement *AppIDManagementV4) UpdateExtensionConfigWithContext(ctx c
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateExtensionConfigOptions.TenantID,
 		"name":     *updateExtensionConfigOptions.Name,
 	}
 
@@ -4234,7 +4290,7 @@ func (appIdManagement *AppIDManagementV4) UpdateExtensionActiveWithContext(ctx c
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateExtensionActiveOptions.TenantID,
 		"name":     *updateExtensionActiveOptions.Name,
 	}
 
@@ -4309,7 +4365,7 @@ func (appIdManagement *AppIDManagementV4) PostExtensionsTestWithContext(ctx cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *postExtensionsTestOptions.TenantID,
 		"name":     *postExtensionsTestOptions.Name,
 	}
 
@@ -4360,13 +4416,17 @@ func (appIdManagement *AppIDManagementV4) GetMFAConfig(getMFAConfigOptions *GetM
 
 // GetMFAConfigWithContext is an alternate form of the GetMFAConfig method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetMFAConfigWithContext(ctx context.Context, getMFAConfigOptions *GetMFAConfigOptions) (result *GetMFAConfiguration, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getMFAConfigOptions, "getMFAConfigOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getMFAConfigOptions, "getMFAConfigOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getMFAConfigOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -4426,7 +4486,7 @@ func (appIdManagement *AppIDManagementV4) UpdateMFAConfigWithContext(ctx context
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateMFAConfigOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -4489,13 +4549,17 @@ func (appIdManagement *AppIDManagementV4) GetSSOConfig(getSSOConfigOptions *GetS
 
 // GetSSOConfigWithContext is an alternate form of the GetSSOConfig method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetSSOConfigWithContext(ctx context.Context, getSSOConfigOptions *GetSSOConfigOptions) (response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getSSOConfigOptions, "getSSOConfigOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getSSOConfigOptions, "getSSOConfigOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getSSOConfigOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -4544,7 +4608,7 @@ func (appIdManagement *AppIDManagementV4) UpdateSSOConfigWithContext(ctx context
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateSSOConfigOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -4599,13 +4663,17 @@ func (appIdManagement *AppIDManagementV4) GetRateLimitConfig(getRateLimitConfigO
 
 // GetRateLimitConfigWithContext is an alternate form of the GetRateLimitConfig method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetRateLimitConfigWithContext(ctx context.Context, getRateLimitConfigOptions *GetRateLimitConfigOptions) (response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getRateLimitConfigOptions, "getRateLimitConfigOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getRateLimitConfigOptions, "getRateLimitConfigOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getRateLimitConfigOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -4654,7 +4722,7 @@ func (appIdManagement *AppIDManagementV4) UpdateRateLimitConfigWithContext(ctx c
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateRateLimitConfigOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -4706,13 +4774,17 @@ func (appIdManagement *AppIDManagementV4) GetFacebookIDP(getFacebookIDPOptions *
 
 // GetFacebookIDPWithContext is an alternate form of the GetFacebookIDP method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetFacebookIDPWithContext(ctx context.Context, getFacebookIDPOptions *GetFacebookIDPOptions) (result *FacebookConfigParams, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getFacebookIDPOptions, "getFacebookIDPOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getFacebookIDPOptions, "getFacebookIDPOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getFacebookIDPOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -4774,7 +4846,7 @@ func (appIdManagement *AppIDManagementV4) SetFacebookIDPWithContext(ctx context.
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setFacebookIDPOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -4830,13 +4902,17 @@ func (appIdManagement *AppIDManagementV4) GetGoogleIDP(getGoogleIDPOptions *GetG
 
 // GetGoogleIDPWithContext is an alternate form of the GetGoogleIDP method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetGoogleIDPWithContext(ctx context.Context, getGoogleIDPOptions *GetGoogleIDPOptions) (result *GoogleConfigParams, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getGoogleIDPOptions, "getGoogleIDPOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getGoogleIDPOptions, "getGoogleIDPOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getGoogleIDPOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -4898,7 +4974,7 @@ func (appIdManagement *AppIDManagementV4) SetGoogleIDPWithContext(ctx context.Co
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setGoogleIDPOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -4953,13 +5029,17 @@ func (appIdManagement *AppIDManagementV4) GetCustomIDP(getCustomIDPOptions *GetC
 
 // GetCustomIDPWithContext is an alternate form of the GetCustomIDP method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetCustomIDPWithContext(ctx context.Context, getCustomIDPOptions *GetCustomIDPOptions) (result *CustomIDPConfigParams, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getCustomIDPOptions, "getCustomIDPOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getCustomIDPOptions, "getCustomIDPOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getCustomIDPOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -5019,7 +5099,7 @@ func (appIdManagement *AppIDManagementV4) SetCustomIDPWithContext(ctx context.Co
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setCustomIDPOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -5083,13 +5163,17 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectoryIDP(getCloudDirectory
 
 // GetCloudDirectoryIDPWithContext is an alternate form of the GetCloudDirectoryIDP method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetCloudDirectoryIDPWithContext(ctx context.Context, getCloudDirectoryIDPOptions *GetCloudDirectoryIDPOptions) (result *CloudDirectoryResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getCloudDirectoryIDPOptions, "getCloudDirectoryIDPOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getCloudDirectoryIDPOptions, "getCloudDirectoryIDPOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getCloudDirectoryIDPOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -5151,7 +5235,7 @@ func (appIdManagement *AppIDManagementV4) SetCloudDirectoryIDPWithContext(ctx co
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setCloudDirectoryIDPOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -5215,13 +5299,17 @@ func (appIdManagement *AppIDManagementV4) GetSamlidp(getSAMLIDPOptions *GetSAMLI
 
 // GetSamlidpWithContext is an alternate form of the GetSamlidp method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) GetSamlidpWithContext(ctx context.Context, getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getSAMLIDPOptions, "getSAMLIDPOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(getSAMLIDPOptions, "getSAMLIDPOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getSAMLIDPOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -5282,7 +5370,7 @@ func (appIdManagement *AppIDManagementV4) SetSamlidpWithContext(ctx context.Cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *setSAMLIDPOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.PUT)
@@ -5345,13 +5433,17 @@ func (appIdManagement *AppIDManagementV4) ListRoles(listRolesOptions *ListRolesO
 
 // ListRolesWithContext is an alternate form of the ListRoles method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) ListRolesWithContext(ctx context.Context, listRolesOptions *ListRolesOptions) (result *RolesList, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(listRolesOptions, "listRolesOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(listRolesOptions, "listRolesOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *listRolesOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -5411,7 +5503,7 @@ func (appIdManagement *AppIDManagementV4) CreateRoleWithContext(ctx context.Cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *createRoleOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -5487,7 +5579,7 @@ func (appIdManagement *AppIDManagementV4) GetRoleWithContext(ctx context.Context
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getRoleOptions.TenantID,
 		"roleId":   *getRoleOptions.RoleID,
 	}
 
@@ -5548,7 +5640,7 @@ func (appIdManagement *AppIDManagementV4) UpdateRoleWithContext(ctx context.Cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateRoleOptions.TenantID,
 		"roleId":   *updateRoleOptions.RoleID,
 	}
 
@@ -5625,7 +5717,7 @@ func (appIdManagement *AppIDManagementV4) DeleteRoleWithContext(ctx context.Cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *deleteRoleOptions.TenantID,
 		"roleId":   *deleteRoleOptions.RoleID,
 	}
 
@@ -5675,7 +5767,7 @@ func (appIdManagement *AppIDManagementV4) UsersSearchUserProfileWithContext(ctx 
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *usersSearchUserProfileOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -5750,7 +5842,7 @@ func (appIdManagement *AppIDManagementV4) UsersNominateUserWithContext(ctx conte
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *usersNominateUserOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -5805,13 +5897,17 @@ func (appIdManagement *AppIDManagementV4) UserProfilesExport(userProfilesExportO
 
 // UserProfilesExportWithContext is an alternate form of the UserProfilesExport method which supports a Context parameter
 func (appIdManagement *AppIDManagementV4) UserProfilesExportWithContext(ctx context.Context, userProfilesExportOptions *UserProfilesExportOptions) (result *ExportUserProfile, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(userProfilesExportOptions, "userProfilesExportOptions cannot be nil")
+	if err != nil {
+		return
+	}
 	err = core.ValidateStruct(userProfilesExportOptions, "userProfilesExportOptions")
 	if err != nil {
 		return
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *userProfilesExportOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.GET)
@@ -5878,7 +5974,7 @@ func (appIdManagement *AppIDManagementV4) UserProfilesImportWithContext(ctx cont
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *userProfilesImportOptions.TenantID,
 	}
 
 	builder := core.NewRequestBuilder(core.POST)
@@ -5948,7 +6044,7 @@ func (appIdManagement *AppIDManagementV4) UsersDeleteUserProfileWithContext(ctx 
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *usersDeleteUserProfileOptions.TenantID,
 		"id":       *usersDeleteUserProfileOptions.ID,
 	}
 
@@ -5998,7 +6094,7 @@ func (appIdManagement *AppIDManagementV4) UsersRevokeRefreshTokenWithContext(ctx
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *usersRevokeRefreshTokenOptions.TenantID,
 		"id":       *usersRevokeRefreshTokenOptions.ID,
 	}
 
@@ -6048,7 +6144,7 @@ func (appIdManagement *AppIDManagementV4) UsersGetUserProfileWithContext(ctx con
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *usersGetUserProfileOptions.TenantID,
 		"id":       *usersGetUserProfileOptions.ID,
 	}
 
@@ -6099,7 +6195,7 @@ func (appIdManagement *AppIDManagementV4) UsersSetUserProfileWithContext(ctx con
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *usersSetUserProfileOptions.TenantID,
 		"id":       *usersSetUserProfileOptions.ID,
 	}
 
@@ -6159,7 +6255,7 @@ func (appIdManagement *AppIDManagementV4) GetUserRolesWithContext(ctx context.Co
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *getUserRolesOptions.TenantID,
 		"id":       *getUserRolesOptions.ID,
 	}
 
@@ -6220,7 +6316,7 @@ func (appIdManagement *AppIDManagementV4) UpdateUserRolesWithContext(ctx context
 	}
 
 	pathParamsMap := map[string]string{
-		"tenantId": *appIdManagement.TenantID,
+		"tenantId": *updateUserRolesOptions.TenantID,
 		"id":       *updateUserRolesOptions.ID,
 	}
 
@@ -6678,6 +6774,9 @@ func UnmarshalAssignRoleToUserRolesItem(m map[string]json.RawMessage, result int
 
 // ChangePasswordOptions : The ChangePassword options.
 type ChangePasswordOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The new password.
 	NewPassword *string `validate:"required"`
 
@@ -6695,11 +6794,18 @@ type ChangePasswordOptions struct {
 }
 
 // NewChangePasswordOptions : Instantiate ChangePasswordOptions
-func (*AppIDManagementV4) NewChangePasswordOptions(newPassword string, uuid string) *ChangePasswordOptions {
+func (*AppIDManagementV4) NewChangePasswordOptions(tenantID string, newPassword string, uuid string) *ChangePasswordOptions {
 	return &ChangePasswordOptions{
+		TenantID:    core.StringPtr(tenantID),
 		NewPassword: core.StringPtr(newPassword),
 		UUID:        core.StringPtr(uuid),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *ChangePasswordOptions) SetTenantID(tenantID string) *ChangePasswordOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetNewPassword : Allow user to set NewPassword
@@ -6826,6 +6932,9 @@ type CloudDirectoryExportOptions struct {
 	// A custom string that will be use to encrypt and decrypt the users hashed password.
 	EncryptionSecret *string `validate:"required"`
 
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The first result in a set list of results.
 	StartIndex *int64
 
@@ -6837,15 +6946,22 @@ type CloudDirectoryExportOptions struct {
 }
 
 // NewCloudDirectoryExportOptions : Instantiate CloudDirectoryExportOptions
-func (*AppIDManagementV4) NewCloudDirectoryExportOptions(encryptionSecret string) *CloudDirectoryExportOptions {
+func (*AppIDManagementV4) NewCloudDirectoryExportOptions(encryptionSecret string, tenantID string) *CloudDirectoryExportOptions {
 	return &CloudDirectoryExportOptions{
 		EncryptionSecret: core.StringPtr(encryptionSecret),
+		TenantID:         core.StringPtr(tenantID),
 	}
 }
 
 // SetEncryptionSecret : Allow user to set EncryptionSecret
 func (options *CloudDirectoryExportOptions) SetEncryptionSecret(encryptionSecret string) *CloudDirectoryExportOptions {
 	options.EncryptionSecret = core.StringPtr(encryptionSecret)
+	return options
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *CloudDirectoryExportOptions) SetTenantID(tenantID string) *CloudDirectoryExportOptions {
+	options.TenantID = core.StringPtr(tenantID)
 	return options
 }
 
@@ -6869,6 +6985,9 @@ func (options *CloudDirectoryExportOptions) SetHeaders(param map[string]string) 
 
 // CloudDirectoryGetUserinfoOptions : The CloudDirectoryGetUserinfo options.
 type CloudDirectoryGetUserinfoOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The ID assigned to a user when they sign in by using Cloud Directory.
 	UserID *string `validate:"required,ne="`
 
@@ -6877,10 +6996,17 @@ type CloudDirectoryGetUserinfoOptions struct {
 }
 
 // NewCloudDirectoryGetUserinfoOptions : Instantiate CloudDirectoryGetUserinfoOptions
-func (*AppIDManagementV4) NewCloudDirectoryGetUserinfoOptions(userID string) *CloudDirectoryGetUserinfoOptions {
+func (*AppIDManagementV4) NewCloudDirectoryGetUserinfoOptions(tenantID string, userID string) *CloudDirectoryGetUserinfoOptions {
 	return &CloudDirectoryGetUserinfoOptions{
-		UserID: core.StringPtr(userID),
+		TenantID: core.StringPtr(tenantID),
+		UserID:   core.StringPtr(userID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *CloudDirectoryGetUserinfoOptions) SetTenantID(tenantID string) *CloudDirectoryGetUserinfoOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetUserID : Allow user to set UserID
@@ -6900,6 +7026,9 @@ type CloudDirectoryImportOptions struct {
 	// A custom string that will be use to encrypt and decrypt the users hashed password.
 	EncryptionSecret *string `validate:"required"`
 
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	Users []ExportUserUsersItem `validate:"required"`
 
 	// Allows users to set headers on API requests
@@ -6907,9 +7036,10 @@ type CloudDirectoryImportOptions struct {
 }
 
 // NewCloudDirectoryImportOptions : Instantiate CloudDirectoryImportOptions
-func (*AppIDManagementV4) NewCloudDirectoryImportOptions(encryptionSecret string, users []ExportUserUsersItem) *CloudDirectoryImportOptions {
+func (*AppIDManagementV4) NewCloudDirectoryImportOptions(encryptionSecret string, tenantID string, users []ExportUserUsersItem) *CloudDirectoryImportOptions {
 	return &CloudDirectoryImportOptions{
 		EncryptionSecret: core.StringPtr(encryptionSecret),
+		TenantID:         core.StringPtr(tenantID),
 		Users:            users,
 	}
 }
@@ -6917,6 +7047,12 @@ func (*AppIDManagementV4) NewCloudDirectoryImportOptions(encryptionSecret string
 // SetEncryptionSecret : Allow user to set EncryptionSecret
 func (options *CloudDirectoryImportOptions) SetEncryptionSecret(encryptionSecret string) *CloudDirectoryImportOptions {
 	options.EncryptionSecret = core.StringPtr(encryptionSecret)
+	return options
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *CloudDirectoryImportOptions) SetTenantID(tenantID string) *CloudDirectoryImportOptions {
+	options.TenantID = core.StringPtr(tenantID)
 	return options
 }
 
@@ -6934,6 +7070,9 @@ func (options *CloudDirectoryImportOptions) SetHeaders(param map[string]string) 
 
 // CloudDirectoryRemoveOptions : The CloudDirectoryRemove options.
 type CloudDirectoryRemoveOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The ID assigned to a user when they sign in by using Cloud Directory.
 	UserID *string `validate:"required,ne="`
 
@@ -6942,10 +7081,17 @@ type CloudDirectoryRemoveOptions struct {
 }
 
 // NewCloudDirectoryRemoveOptions : Instantiate CloudDirectoryRemoveOptions
-func (*AppIDManagementV4) NewCloudDirectoryRemoveOptions(userID string) *CloudDirectoryRemoveOptions {
+func (*AppIDManagementV4) NewCloudDirectoryRemoveOptions(tenantID string, userID string) *CloudDirectoryRemoveOptions {
 	return &CloudDirectoryRemoveOptions{
-		UserID: core.StringPtr(userID),
+		TenantID: core.StringPtr(tenantID),
+		UserID:   core.StringPtr(userID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *CloudDirectoryRemoveOptions) SetTenantID(tenantID string) *CloudDirectoryRemoveOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetUserID : Allow user to set UserID
@@ -7052,6 +7198,9 @@ func UnmarshalCloudDirectorySenderDetailsSenderDetailsReplyTo(m map[string]json.
 
 // CreateCloudDirectoryUserOptions : The CreateCloudDirectoryUser options.
 type CreateCloudDirectoryUserOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	Emails []CreateNewUserEmailsItem `validate:"required"`
 
 	Password *string `validate:"required"`
@@ -7065,11 +7214,18 @@ type CreateCloudDirectoryUserOptions struct {
 }
 
 // NewCreateCloudDirectoryUserOptions : Instantiate CreateCloudDirectoryUserOptions
-func (*AppIDManagementV4) NewCreateCloudDirectoryUserOptions(emails []CreateNewUserEmailsItem, password string) *CreateCloudDirectoryUserOptions {
+func (*AppIDManagementV4) NewCreateCloudDirectoryUserOptions(tenantID string, emails []CreateNewUserEmailsItem, password string) *CreateCloudDirectoryUserOptions {
 	return &CreateCloudDirectoryUserOptions{
+		TenantID: core.StringPtr(tenantID),
 		Emails:   emails,
 		Password: core.StringPtr(password),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *CreateCloudDirectoryUserOptions) SetTenantID(tenantID string) *CreateCloudDirectoryUserOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetEmails : Allow user to set Emails
@@ -7135,6 +7291,9 @@ func UnmarshalCreateNewUserEmailsItem(m map[string]json.RawMessage, result inter
 
 // CreateRoleOptions : The CreateRole options.
 type CreateRoleOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	Name *string `validate:"required"`
 
 	Access []CreateRoleParamsAccessItem `validate:"required"`
@@ -7146,11 +7305,18 @@ type CreateRoleOptions struct {
 }
 
 // NewCreateRoleOptions : Instantiate CreateRoleOptions
-func (*AppIDManagementV4) NewCreateRoleOptions(name string, access []CreateRoleParamsAccessItem) *CreateRoleOptions {
+func (*AppIDManagementV4) NewCreateRoleOptions(tenantID string, name string, access []CreateRoleParamsAccessItem) *CreateRoleOptions {
 	return &CreateRoleOptions{
-		Name:   core.StringPtr(name),
-		Access: access,
+		TenantID: core.StringPtr(tenantID),
+		Name:     core.StringPtr(name),
+		Access:   access,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *CreateRoleOptions) SetTenantID(tenantID string) *CreateRoleOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetName : Allow user to set Name
@@ -7249,6 +7415,9 @@ func UnmarshalCustomIDPConfigParamsConfig(m map[string]json.RawMessage, result i
 
 // DeleteActionURLOptions : The DeleteActionURL options.
 type DeleteActionURLOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The type of the action. on_user_verified - the URL of your custom user verified page, on_reset_password - the URL of
 	// your custom reset password page.
 	Action *string `validate:"required,ne="`
@@ -7266,10 +7435,17 @@ const (
 )
 
 // NewDeleteActionURLOptions : Instantiate DeleteActionURLOptions
-func (*AppIDManagementV4) NewDeleteActionURLOptions(action string) *DeleteActionURLOptions {
+func (*AppIDManagementV4) NewDeleteActionURLOptions(tenantID string, action string) *DeleteActionURLOptions {
 	return &DeleteActionURLOptions{
-		Action: core.StringPtr(action),
+		TenantID: core.StringPtr(tenantID),
+		Action:   core.StringPtr(action),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *DeleteActionURLOptions) SetTenantID(tenantID string) *DeleteActionURLOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetAction : Allow user to set Action
@@ -7286,6 +7462,9 @@ func (options *DeleteActionURLOptions) SetHeaders(param map[string]string) *Dele
 
 // DeleteApplicationOptions : The DeleteApplication options.
 type DeleteApplicationOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The application clientId.
 	ClientID *string `validate:"required,ne="`
 
@@ -7294,10 +7473,17 @@ type DeleteApplicationOptions struct {
 }
 
 // NewDeleteApplicationOptions : Instantiate DeleteApplicationOptions
-func (*AppIDManagementV4) NewDeleteApplicationOptions(clientID string) *DeleteApplicationOptions {
+func (*AppIDManagementV4) NewDeleteApplicationOptions(tenantID string, clientID string) *DeleteApplicationOptions {
 	return &DeleteApplicationOptions{
+		TenantID: core.StringPtr(tenantID),
 		ClientID: core.StringPtr(clientID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *DeleteApplicationOptions) SetTenantID(tenantID string) *DeleteApplicationOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetClientID : Allow user to set ClientID
@@ -7314,6 +7500,9 @@ func (options *DeleteApplicationOptions) SetHeaders(param map[string]string) *De
 
 // DeleteCloudDirectoryUserOptions : The DeleteCloudDirectoryUser options.
 type DeleteCloudDirectoryUserOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The ID assigned to a user when they sign in by using Cloud Directory.
 	UserID *string `validate:"required,ne="`
 
@@ -7322,10 +7511,17 @@ type DeleteCloudDirectoryUserOptions struct {
 }
 
 // NewDeleteCloudDirectoryUserOptions : Instantiate DeleteCloudDirectoryUserOptions
-func (*AppIDManagementV4) NewDeleteCloudDirectoryUserOptions(userID string) *DeleteCloudDirectoryUserOptions {
+func (*AppIDManagementV4) NewDeleteCloudDirectoryUserOptions(tenantID string, userID string) *DeleteCloudDirectoryUserOptions {
 	return &DeleteCloudDirectoryUserOptions{
-		UserID: core.StringPtr(userID),
+		TenantID: core.StringPtr(tenantID),
+		UserID:   core.StringPtr(userID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *DeleteCloudDirectoryUserOptions) SetTenantID(tenantID string) *DeleteCloudDirectoryUserOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetUserID : Allow user to set UserID
@@ -7342,6 +7538,9 @@ func (options *DeleteCloudDirectoryUserOptions) SetHeaders(param map[string]stri
 
 // DeleteRoleOptions : The DeleteRole options.
 type DeleteRoleOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The role identifier.
 	RoleID *string `validate:"required,ne="`
 
@@ -7350,10 +7549,17 @@ type DeleteRoleOptions struct {
 }
 
 // NewDeleteRoleOptions : Instantiate DeleteRoleOptions
-func (*AppIDManagementV4) NewDeleteRoleOptions(roleID string) *DeleteRoleOptions {
+func (*AppIDManagementV4) NewDeleteRoleOptions(tenantID string, roleID string) *DeleteRoleOptions {
 	return &DeleteRoleOptions{
-		RoleID: core.StringPtr(roleID),
+		TenantID: core.StringPtr(tenantID),
+		RoleID:   core.StringPtr(roleID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *DeleteRoleOptions) SetTenantID(tenantID string) *DeleteRoleOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetRoleID : Allow user to set RoleID
@@ -7370,6 +7576,9 @@ func (options *DeleteRoleOptions) SetHeaders(param map[string]string) *DeleteRol
 
 // DeleteTemplateOptions : The DeleteTemplate options.
 type DeleteTemplateOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED", "RESET_PASSWORD" or
 	// "MFA_VERIFICATION".
 	TemplateName *string `validate:"required,ne="`
@@ -7394,11 +7603,18 @@ const (
 )
 
 // NewDeleteTemplateOptions : Instantiate DeleteTemplateOptions
-func (*AppIDManagementV4) NewDeleteTemplateOptions(templateName string, language string) *DeleteTemplateOptions {
+func (*AppIDManagementV4) NewDeleteTemplateOptions(tenantID string, templateName string, language string) *DeleteTemplateOptions {
 	return &DeleteTemplateOptions{
+		TenantID:     core.StringPtr(tenantID),
 		TemplateName: core.StringPtr(templateName),
 		Language:     core.StringPtr(language),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *DeleteTemplateOptions) SetTenantID(tenantID string) *DeleteTemplateOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetTemplateName : Allow user to set TemplateName
@@ -7528,6 +7744,9 @@ func UnmarshalEmailDispatcherParamsSendgrid(m map[string]json.RawMessage, result
 
 // EmailSettingTestOptions : The EmailSettingTest options.
 type EmailSettingTestOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	EmailTo *string `validate:"required"`
 
 	EmailSettings *EmailSettingsTestParamsEmailSettings `validate:"required"`
@@ -7539,12 +7758,19 @@ type EmailSettingTestOptions struct {
 }
 
 // NewEmailSettingTestOptions : Instantiate EmailSettingTestOptions
-func (*AppIDManagementV4) NewEmailSettingTestOptions(emailTo string, emailSettings *EmailSettingsTestParamsEmailSettings, senderDetails *EmailSettingsTestParamsSenderDetails) *EmailSettingTestOptions {
+func (*AppIDManagementV4) NewEmailSettingTestOptions(tenantID string, emailTo string, emailSettings *EmailSettingsTestParamsEmailSettings, senderDetails *EmailSettingsTestParamsSenderDetails) *EmailSettingTestOptions {
 	return &EmailSettingTestOptions{
+		TenantID:      core.StringPtr(tenantID),
 		EmailTo:       core.StringPtr(emailTo),
 		EmailSettings: emailSettings,
 		SenderDetails: senderDetails,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *EmailSettingTestOptions) SetTenantID(tenantID string) *EmailSettingTestOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetEmailTo : Allow user to set EmailTo
@@ -8151,6 +8377,9 @@ func UnmarshalFacebookGoogleConfigParamsConfig(m map[string]json.RawMessage, res
 
 // ForgotPasswordResultOptions : The ForgotPasswordResult options.
 type ForgotPasswordResultOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The context that will be use to get the forgot password confirmation result.
 	Context *string `validate:"required"`
 
@@ -8159,10 +8388,17 @@ type ForgotPasswordResultOptions struct {
 }
 
 // NewForgotPasswordResultOptions : Instantiate ForgotPasswordResultOptions
-func (*AppIDManagementV4) NewForgotPasswordResultOptions(context string) *ForgotPasswordResultOptions {
+func (*AppIDManagementV4) NewForgotPasswordResultOptions(tenantID string, context string) *ForgotPasswordResultOptions {
 	return &ForgotPasswordResultOptions{
-		Context: core.StringPtr(context),
+		TenantID: core.StringPtr(tenantID),
+		Context:  core.StringPtr(context),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *ForgotPasswordResultOptions) SetTenantID(tenantID string) *ForgotPasswordResultOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetContext : Allow user to set Context
@@ -8179,6 +8415,9 @@ func (options *ForgotPasswordResultOptions) SetHeaders(param map[string]string) 
 
 // GetApplicationOptions : The GetApplication options.
 type GetApplicationOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The application clientId.
 	ClientID *string `validate:"required,ne="`
 
@@ -8187,10 +8426,17 @@ type GetApplicationOptions struct {
 }
 
 // NewGetApplicationOptions : Instantiate GetApplicationOptions
-func (*AppIDManagementV4) NewGetApplicationOptions(clientID string) *GetApplicationOptions {
+func (*AppIDManagementV4) NewGetApplicationOptions(tenantID string, clientID string) *GetApplicationOptions {
 	return &GetApplicationOptions{
+		TenantID: core.StringPtr(tenantID),
 		ClientID: core.StringPtr(clientID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetApplicationOptions) SetTenantID(tenantID string) *GetApplicationOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetClientID : Allow user to set ClientID
@@ -8207,6 +8453,9 @@ func (options *GetApplicationOptions) SetHeaders(param map[string]string) *GetAp
 
 // GetApplicationRolesOptions : The GetApplicationRoles options.
 type GetApplicationRolesOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The application clientId.
 	ClientID *string `validate:"required,ne="`
 
@@ -8215,10 +8464,17 @@ type GetApplicationRolesOptions struct {
 }
 
 // NewGetApplicationRolesOptions : Instantiate GetApplicationRolesOptions
-func (*AppIDManagementV4) NewGetApplicationRolesOptions(clientID string) *GetApplicationRolesOptions {
+func (*AppIDManagementV4) NewGetApplicationRolesOptions(tenantID string, clientID string) *GetApplicationRolesOptions {
 	return &GetApplicationRolesOptions{
+		TenantID: core.StringPtr(tenantID),
 		ClientID: core.StringPtr(clientID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetApplicationRolesOptions) SetTenantID(tenantID string) *GetApplicationRolesOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetClientID : Allow user to set ClientID
@@ -8235,6 +8491,9 @@ func (options *GetApplicationRolesOptions) SetHeaders(param map[string]string) *
 
 // GetApplicationScopesOptions : The GetApplicationScopes options.
 type GetApplicationScopesOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The application clientId.
 	ClientID *string `validate:"required,ne="`
 
@@ -8243,10 +8502,17 @@ type GetApplicationScopesOptions struct {
 }
 
 // NewGetApplicationScopesOptions : Instantiate GetApplicationScopesOptions
-func (*AppIDManagementV4) NewGetApplicationScopesOptions(clientID string) *GetApplicationScopesOptions {
+func (*AppIDManagementV4) NewGetApplicationScopesOptions(tenantID string, clientID string) *GetApplicationScopesOptions {
 	return &GetApplicationScopesOptions{
+		TenantID: core.StringPtr(tenantID),
 		ClientID: core.StringPtr(clientID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetApplicationScopesOptions) SetTenantID(tenantID string) *GetApplicationScopesOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetClientID : Allow user to set ClientID
@@ -8263,14 +8529,24 @@ func (options *GetApplicationScopesOptions) SetHeaders(param map[string]string) 
 
 // GetAuditStatusOptions : The GetAuditStatus options.
 type GetAuditStatusOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetAuditStatusOptions : Instantiate GetAuditStatusOptions
-func (*AppIDManagementV4) NewGetAuditStatusOptions() *GetAuditStatusOptions {
-	return &GetAuditStatusOptions{}
+func (*AppIDManagementV4) NewGetAuditStatusOptions(tenantID string) *GetAuditStatusOptions {
+	return &GetAuditStatusOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetAuditStatusOptions) SetTenantID(tenantID string) *GetAuditStatusOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8281,6 +8557,9 @@ func (options *GetAuditStatusOptions) SetHeaders(param map[string]string) *GetAu
 
 // GetChannelOptions : The GetChannel options.
 type GetChannelOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The MFA channel.
 	Channel *string `validate:"required,ne="`
 
@@ -8296,10 +8575,17 @@ const (
 )
 
 // NewGetChannelOptions : Instantiate GetChannelOptions
-func (*AppIDManagementV4) NewGetChannelOptions(channel string) *GetChannelOptions {
+func (*AppIDManagementV4) NewGetChannelOptions(tenantID string, channel string) *GetChannelOptions {
 	return &GetChannelOptions{
-		Channel: core.StringPtr(channel),
+		TenantID: core.StringPtr(tenantID),
+		Channel:  core.StringPtr(channel),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetChannelOptions) SetTenantID(tenantID string) *GetChannelOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetChannel : Allow user to set Channel
@@ -8316,6 +8602,9 @@ func (options *GetChannelOptions) SetHeaders(param map[string]string) *GetChanne
 
 // GetCloudDirectoryActionURLOptions : The GetCloudDirectoryActionURL options.
 type GetCloudDirectoryActionURLOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The type of the action. on_user_verified - the URL of your custom user verified page, on_reset_password - the URL of
 	// your custom reset password page.
 	Action *string `validate:"required,ne="`
@@ -8333,10 +8622,17 @@ const (
 )
 
 // NewGetCloudDirectoryActionURLOptions : Instantiate GetCloudDirectoryActionURLOptions
-func (*AppIDManagementV4) NewGetCloudDirectoryActionURLOptions(action string) *GetCloudDirectoryActionURLOptions {
+func (*AppIDManagementV4) NewGetCloudDirectoryActionURLOptions(tenantID string, action string) *GetCloudDirectoryActionURLOptions {
 	return &GetCloudDirectoryActionURLOptions{
-		Action: core.StringPtr(action),
+		TenantID: core.StringPtr(tenantID),
+		Action:   core.StringPtr(action),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetCloudDirectoryActionURLOptions) SetTenantID(tenantID string) *GetCloudDirectoryActionURLOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetAction : Allow user to set Action
@@ -8353,14 +8649,24 @@ func (options *GetCloudDirectoryActionURLOptions) SetHeaders(param map[string]st
 
 // GetCloudDirectoryAdvancedPasswordManagementOptions : The GetCloudDirectoryAdvancedPasswordManagement options.
 type GetCloudDirectoryAdvancedPasswordManagementOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetCloudDirectoryAdvancedPasswordManagementOptions : Instantiate GetCloudDirectoryAdvancedPasswordManagementOptions
-func (*AppIDManagementV4) NewGetCloudDirectoryAdvancedPasswordManagementOptions() *GetCloudDirectoryAdvancedPasswordManagementOptions {
-	return &GetCloudDirectoryAdvancedPasswordManagementOptions{}
+func (*AppIDManagementV4) NewGetCloudDirectoryAdvancedPasswordManagementOptions(tenantID string) *GetCloudDirectoryAdvancedPasswordManagementOptions {
+	return &GetCloudDirectoryAdvancedPasswordManagementOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetCloudDirectoryAdvancedPasswordManagementOptions) SetTenantID(tenantID string) *GetCloudDirectoryAdvancedPasswordManagementOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8371,14 +8677,24 @@ func (options *GetCloudDirectoryAdvancedPasswordManagementOptions) SetHeaders(pa
 
 // GetCloudDirectoryEmailDispatcherOptions : The GetCloudDirectoryEmailDispatcher options.
 type GetCloudDirectoryEmailDispatcherOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetCloudDirectoryEmailDispatcherOptions : Instantiate GetCloudDirectoryEmailDispatcherOptions
-func (*AppIDManagementV4) NewGetCloudDirectoryEmailDispatcherOptions() *GetCloudDirectoryEmailDispatcherOptions {
-	return &GetCloudDirectoryEmailDispatcherOptions{}
+func (*AppIDManagementV4) NewGetCloudDirectoryEmailDispatcherOptions(tenantID string) *GetCloudDirectoryEmailDispatcherOptions {
+	return &GetCloudDirectoryEmailDispatcherOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetCloudDirectoryEmailDispatcherOptions) SetTenantID(tenantID string) *GetCloudDirectoryEmailDispatcherOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8389,14 +8705,24 @@ func (options *GetCloudDirectoryEmailDispatcherOptions) SetHeaders(param map[str
 
 // GetCloudDirectoryIDPOptions : The GetCloudDirectoryIDP options.
 type GetCloudDirectoryIDPOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetCloudDirectoryIDPOptions : Instantiate GetCloudDirectoryIDPOptions
-func (*AppIDManagementV4) NewGetCloudDirectoryIDPOptions() *GetCloudDirectoryIDPOptions {
-	return &GetCloudDirectoryIDPOptions{}
+func (*AppIDManagementV4) NewGetCloudDirectoryIDPOptions(tenantID string) *GetCloudDirectoryIDPOptions {
+	return &GetCloudDirectoryIDPOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetCloudDirectoryIDPOptions) SetTenantID(tenantID string) *GetCloudDirectoryIDPOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8407,14 +8733,24 @@ func (options *GetCloudDirectoryIDPOptions) SetHeaders(param map[string]string) 
 
 // GetCloudDirectoryPasswordRegexOptions : The GetCloudDirectoryPasswordRegex options.
 type GetCloudDirectoryPasswordRegexOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetCloudDirectoryPasswordRegexOptions : Instantiate GetCloudDirectoryPasswordRegexOptions
-func (*AppIDManagementV4) NewGetCloudDirectoryPasswordRegexOptions() *GetCloudDirectoryPasswordRegexOptions {
-	return &GetCloudDirectoryPasswordRegexOptions{}
+func (*AppIDManagementV4) NewGetCloudDirectoryPasswordRegexOptions(tenantID string) *GetCloudDirectoryPasswordRegexOptions {
+	return &GetCloudDirectoryPasswordRegexOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetCloudDirectoryPasswordRegexOptions) SetTenantID(tenantID string) *GetCloudDirectoryPasswordRegexOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8425,14 +8761,24 @@ func (options *GetCloudDirectoryPasswordRegexOptions) SetHeaders(param map[strin
 
 // GetCloudDirectorySenderDetailsOptions : The GetCloudDirectorySenderDetails options.
 type GetCloudDirectorySenderDetailsOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetCloudDirectorySenderDetailsOptions : Instantiate GetCloudDirectorySenderDetailsOptions
-func (*AppIDManagementV4) NewGetCloudDirectorySenderDetailsOptions() *GetCloudDirectorySenderDetailsOptions {
-	return &GetCloudDirectorySenderDetailsOptions{}
+func (*AppIDManagementV4) NewGetCloudDirectorySenderDetailsOptions(tenantID string) *GetCloudDirectorySenderDetailsOptions {
+	return &GetCloudDirectorySenderDetailsOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetCloudDirectorySenderDetailsOptions) SetTenantID(tenantID string) *GetCloudDirectorySenderDetailsOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8443,6 +8789,9 @@ func (options *GetCloudDirectorySenderDetailsOptions) SetHeaders(param map[strin
 
 // GetCloudDirectoryUserOptions : The GetCloudDirectoryUser options.
 type GetCloudDirectoryUserOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The ID assigned to a user when they sign in by using Cloud Directory.
 	UserID *string `validate:"required,ne="`
 
@@ -8451,10 +8800,17 @@ type GetCloudDirectoryUserOptions struct {
 }
 
 // NewGetCloudDirectoryUserOptions : Instantiate GetCloudDirectoryUserOptions
-func (*AppIDManagementV4) NewGetCloudDirectoryUserOptions(userID string) *GetCloudDirectoryUserOptions {
+func (*AppIDManagementV4) NewGetCloudDirectoryUserOptions(tenantID string, userID string) *GetCloudDirectoryUserOptions {
 	return &GetCloudDirectoryUserOptions{
-		UserID: core.StringPtr(userID),
+		TenantID: core.StringPtr(tenantID),
+		UserID:   core.StringPtr(userID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetCloudDirectoryUserOptions) SetTenantID(tenantID string) *GetCloudDirectoryUserOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetUserID : Allow user to set UserID
@@ -8471,14 +8827,24 @@ func (options *GetCloudDirectoryUserOptions) SetHeaders(param map[string]string)
 
 // GetCustomIDPOptions : The GetCustomIDP options.
 type GetCustomIDPOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetCustomIDPOptions : Instantiate GetCustomIDPOptions
-func (*AppIDManagementV4) NewGetCustomIDPOptions() *GetCustomIDPOptions {
-	return &GetCustomIDPOptions{}
+func (*AppIDManagementV4) NewGetCustomIDPOptions(tenantID string) *GetCustomIDPOptions {
+	return &GetCustomIDPOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetCustomIDPOptions) SetTenantID(tenantID string) *GetCustomIDPOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8489,6 +8855,9 @@ func (options *GetCustomIDPOptions) SetHeaders(param map[string]string) *GetCust
 
 // GetExtensionConfigOptions : The GetExtensionConfig options.
 type GetExtensionConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The name of the extension.
 	Name *string `validate:"required,ne="`
 
@@ -8504,10 +8873,17 @@ const (
 )
 
 // NewGetExtensionConfigOptions : Instantiate GetExtensionConfigOptions
-func (*AppIDManagementV4) NewGetExtensionConfigOptions(name string) *GetExtensionConfigOptions {
+func (*AppIDManagementV4) NewGetExtensionConfigOptions(tenantID string, name string) *GetExtensionConfigOptions {
 	return &GetExtensionConfigOptions{
-		Name: core.StringPtr(name),
+		TenantID: core.StringPtr(tenantID),
+		Name:     core.StringPtr(name),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetExtensionConfigOptions) SetTenantID(tenantID string) *GetExtensionConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetName : Allow user to set Name
@@ -8524,14 +8900,24 @@ func (options *GetExtensionConfigOptions) SetHeaders(param map[string]string) *G
 
 // GetFacebookIDPOptions : The GetFacebookIDP options.
 type GetFacebookIDPOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetFacebookIDPOptions : Instantiate GetFacebookIDPOptions
-func (*AppIDManagementV4) NewGetFacebookIDPOptions() *GetFacebookIDPOptions {
-	return &GetFacebookIDPOptions{}
+func (*AppIDManagementV4) NewGetFacebookIDPOptions(tenantID string) *GetFacebookIDPOptions {
+	return &GetFacebookIDPOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetFacebookIDPOptions) SetTenantID(tenantID string) *GetFacebookIDPOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8542,14 +8928,24 @@ func (options *GetFacebookIDPOptions) SetHeaders(param map[string]string) *GetFa
 
 // GetGoogleIDPOptions : The GetGoogleIDP options.
 type GetGoogleIDPOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetGoogleIDPOptions : Instantiate GetGoogleIDPOptions
-func (*AppIDManagementV4) NewGetGoogleIDPOptions() *GetGoogleIDPOptions {
-	return &GetGoogleIDPOptions{}
+func (*AppIDManagementV4) NewGetGoogleIDPOptions(tenantID string) *GetGoogleIDPOptions {
+	return &GetGoogleIDPOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetGoogleIDPOptions) SetTenantID(tenantID string) *GetGoogleIDPOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8560,14 +8956,24 @@ func (options *GetGoogleIDPOptions) SetHeaders(param map[string]string) *GetGoog
 
 // GetLocalizationOptions : The GetLocalization options.
 type GetLocalizationOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetLocalizationOptions : Instantiate GetLocalizationOptions
-func (*AppIDManagementV4) NewGetLocalizationOptions() *GetLocalizationOptions {
-	return &GetLocalizationOptions{}
+func (*AppIDManagementV4) NewGetLocalizationOptions(tenantID string) *GetLocalizationOptions {
+	return &GetLocalizationOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetLocalizationOptions) SetTenantID(tenantID string) *GetLocalizationOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8578,14 +8984,24 @@ func (options *GetLocalizationOptions) SetHeaders(param map[string]string) *GetL
 
 // GetMFAConfigOptions : The GetMFAConfig options.
 type GetMFAConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetMFAConfigOptions : Instantiate GetMFAConfigOptions
-func (*AppIDManagementV4) NewGetMFAConfigOptions() *GetMFAConfigOptions {
-	return &GetMFAConfigOptions{}
+func (*AppIDManagementV4) NewGetMFAConfigOptions(tenantID string) *GetMFAConfigOptions {
+	return &GetMFAConfigOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetMFAConfigOptions) SetTenantID(tenantID string) *GetMFAConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8596,14 +9012,24 @@ func (options *GetMFAConfigOptions) SetHeaders(param map[string]string) *GetMFAC
 
 // GetMediaOptions : The GetMedia options.
 type GetMediaOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetMediaOptions : Instantiate GetMediaOptions
-func (*AppIDManagementV4) NewGetMediaOptions() *GetMediaOptions {
-	return &GetMediaOptions{}
+func (*AppIDManagementV4) NewGetMediaOptions(tenantID string) *GetMediaOptions {
+	return &GetMediaOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetMediaOptions) SetTenantID(tenantID string) *GetMediaOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8630,14 +9056,24 @@ func UnmarshalGetMediaResponse(m map[string]json.RawMessage, result interface{})
 
 // GetRateLimitConfigOptions : The GetRateLimitConfig options.
 type GetRateLimitConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetRateLimitConfigOptions : Instantiate GetRateLimitConfigOptions
-func (*AppIDManagementV4) NewGetRateLimitConfigOptions() *GetRateLimitConfigOptions {
-	return &GetRateLimitConfigOptions{}
+func (*AppIDManagementV4) NewGetRateLimitConfigOptions(tenantID string) *GetRateLimitConfigOptions {
+	return &GetRateLimitConfigOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetRateLimitConfigOptions) SetTenantID(tenantID string) *GetRateLimitConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8648,14 +9084,24 @@ func (options *GetRateLimitConfigOptions) SetHeaders(param map[string]string) *G
 
 // GetRedirectUrisOptions : The GetRedirectUris options.
 type GetRedirectUrisOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetRedirectUrisOptions : Instantiate GetRedirectUrisOptions
-func (*AppIDManagementV4) NewGetRedirectUrisOptions() *GetRedirectUrisOptions {
-	return &GetRedirectUrisOptions{}
+func (*AppIDManagementV4) NewGetRedirectUrisOptions(tenantID string) *GetRedirectUrisOptions {
+	return &GetRedirectUrisOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetRedirectUrisOptions) SetTenantID(tenantID string) *GetRedirectUrisOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8666,6 +9112,9 @@ func (options *GetRedirectUrisOptions) SetHeaders(param map[string]string) *GetR
 
 // GetRoleOptions : The GetRole options.
 type GetRoleOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The role identifier.
 	RoleID *string `validate:"required,ne="`
 
@@ -8674,10 +9123,17 @@ type GetRoleOptions struct {
 }
 
 // NewGetRoleOptions : Instantiate GetRoleOptions
-func (*AppIDManagementV4) NewGetRoleOptions(roleID string) *GetRoleOptions {
+func (*AppIDManagementV4) NewGetRoleOptions(tenantID string, roleID string) *GetRoleOptions {
 	return &GetRoleOptions{
-		RoleID: core.StringPtr(roleID),
+		TenantID: core.StringPtr(tenantID),
+		RoleID:   core.StringPtr(roleID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetRoleOptions) SetTenantID(tenantID string) *GetRoleOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetRoleID : Allow user to set RoleID
@@ -8750,14 +9206,24 @@ func UnmarshalGetSMSChannelConfig(m map[string]json.RawMessage, result interface
 
 // GetSSOConfigOptions : The GetSSOConfig options.
 type GetSSOConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetSSOConfigOptions : Instantiate GetSSOConfigOptions
-func (*AppIDManagementV4) NewGetSSOConfigOptions() *GetSSOConfigOptions {
-	return &GetSSOConfigOptions{}
+func (*AppIDManagementV4) NewGetSSOConfigOptions(tenantID string) *GetSSOConfigOptions {
+	return &GetSSOConfigOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetSSOConfigOptions) SetTenantID(tenantID string) *GetSSOConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8768,14 +9234,24 @@ func (options *GetSSOConfigOptions) SetHeaders(param map[string]string) *GetSSOC
 
 // GetSAMLIDPOptions : The GetSAMLIDP options.
 type GetSAMLIDPOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetSAMLIDPOptions : Instantiate GetSAMLIDPOptions
-func (*AppIDManagementV4) NewGetSAMLIDPOptions() *GetSAMLIDPOptions {
-	return &GetSAMLIDPOptions{}
+func (*AppIDManagementV4) NewGetSAMLIDPOptions(tenantID string) *GetSAMLIDPOptions {
+	return &GetSAMLIDPOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetSAMLIDPOptions) SetTenantID(tenantID string) *GetSAMLIDPOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8786,14 +9262,24 @@ func (options *GetSAMLIDPOptions) SetHeaders(param map[string]string) *GetSAMLID
 
 // GetSAMLMetadataOptions : The GetSAMLMetadata options.
 type GetSAMLMetadataOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetSAMLMetadataOptions : Instantiate GetSAMLMetadataOptions
-func (*AppIDManagementV4) NewGetSAMLMetadataOptions() *GetSAMLMetadataOptions {
-	return &GetSAMLMetadataOptions{}
+func (*AppIDManagementV4) NewGetSAMLMetadataOptions(tenantID string) *GetSAMLMetadataOptions {
+	return &GetSAMLMetadataOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetSAMLMetadataOptions) SetTenantID(tenantID string) *GetSAMLMetadataOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8804,6 +9290,9 @@ func (options *GetSAMLMetadataOptions) SetHeaders(param map[string]string) *GetS
 
 // GetTemplateOptions : The GetTemplate options.
 type GetTemplateOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED", "RESET_PASSWORD" or
 	// "MFA_VERIFICATION".
 	TemplateName *string `validate:"required,ne="`
@@ -8828,11 +9317,18 @@ const (
 )
 
 // NewGetTemplateOptions : Instantiate GetTemplateOptions
-func (*AppIDManagementV4) NewGetTemplateOptions(templateName string, language string) *GetTemplateOptions {
+func (*AppIDManagementV4) NewGetTemplateOptions(tenantID string, templateName string, language string) *GetTemplateOptions {
 	return &GetTemplateOptions{
+		TenantID:     core.StringPtr(tenantID),
 		TemplateName: core.StringPtr(templateName),
 		Language:     core.StringPtr(language),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetTemplateOptions) SetTenantID(tenantID string) *GetTemplateOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetTemplateName : Allow user to set TemplateName
@@ -8855,14 +9351,24 @@ func (options *GetTemplateOptions) SetHeaders(param map[string]string) *GetTempl
 
 // GetThemeColorOptions : The GetThemeColor options.
 type GetThemeColorOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetThemeColorOptions : Instantiate GetThemeColorOptions
-func (*AppIDManagementV4) NewGetThemeColorOptions() *GetThemeColorOptions {
-	return &GetThemeColorOptions{}
+func (*AppIDManagementV4) NewGetThemeColorOptions(tenantID string) *GetThemeColorOptions {
+	return &GetThemeColorOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetThemeColorOptions) SetTenantID(tenantID string) *GetThemeColorOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8889,14 +9395,24 @@ func UnmarshalGetThemeColorResponse(m map[string]json.RawMessage, result interfa
 
 // GetThemeTextOptions : The GetThemeText options.
 type GetThemeTextOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetThemeTextOptions : Instantiate GetThemeTextOptions
-func (*AppIDManagementV4) NewGetThemeTextOptions() *GetThemeTextOptions {
-	return &GetThemeTextOptions{}
+func (*AppIDManagementV4) NewGetThemeTextOptions(tenantID string) *GetThemeTextOptions {
+	return &GetThemeTextOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetThemeTextOptions) SetTenantID(tenantID string) *GetThemeTextOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8929,14 +9445,24 @@ func UnmarshalGetThemeTextResponse(m map[string]json.RawMessage, result interfac
 
 // GetTokensConfigOptions : The GetTokensConfig options.
 type GetTokensConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetTokensConfigOptions : Instantiate GetTokensConfigOptions
-func (*AppIDManagementV4) NewGetTokensConfigOptions() *GetTokensConfigOptions {
-	return &GetTokensConfigOptions{}
+func (*AppIDManagementV4) NewGetTokensConfigOptions(tenantID string) *GetTokensConfigOptions {
+	return &GetTokensConfigOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetTokensConfigOptions) SetTenantID(tenantID string) *GetTokensConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -8975,14 +9501,24 @@ func UnmarshalGetUserAndProfileIdentitiesItem(m map[string]json.RawMessage, resu
 
 // GetUserProfilesConfigOptions : The GetUserProfilesConfig options.
 type GetUserProfilesConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewGetUserProfilesConfigOptions : Instantiate GetUserProfilesConfigOptions
-func (*AppIDManagementV4) NewGetUserProfilesConfigOptions() *GetUserProfilesConfigOptions {
-	return &GetUserProfilesConfigOptions{}
+func (*AppIDManagementV4) NewGetUserProfilesConfigOptions(tenantID string) *GetUserProfilesConfigOptions {
+	return &GetUserProfilesConfigOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetUserProfilesConfigOptions) SetTenantID(tenantID string) *GetUserProfilesConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -9009,6 +9545,9 @@ func UnmarshalGetUserProfilesConfigResponse(m map[string]json.RawMessage, result
 
 // GetUserRolesOptions : The GetUserRoles options.
 type GetUserRolesOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The user's identifier ('subject' in identity token) You can search user in <a
 	// href="#!/Users/users_search_user_profile" target="_blank">/users</a>.
 	ID *string `validate:"required,ne="`
@@ -9018,10 +9557,17 @@ type GetUserRolesOptions struct {
 }
 
 // NewGetUserRolesOptions : Instantiate GetUserRolesOptions
-func (*AppIDManagementV4) NewGetUserRolesOptions(id string) *GetUserRolesOptions {
+func (*AppIDManagementV4) NewGetUserRolesOptions(tenantID string, id string) *GetUserRolesOptions {
 	return &GetUserRolesOptions{
-		ID: core.StringPtr(id),
+		TenantID: core.StringPtr(tenantID),
+		ID:       core.StringPtr(id),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *GetUserRolesOptions) SetTenantID(tenantID string) *GetUserRolesOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetID : Allow user to set ID
@@ -9172,6 +9718,9 @@ func UnmarshalImportResponseFailReasonsItem(m map[string]json.RawMessage, result
 
 // InvalidateUserSSOSessionsOptions : The InvalidateUserSSOSessions options.
 type InvalidateUserSSOSessionsOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The ID assigned to a user when they sign in by using Cloud Directory.
 	UserID *string `validate:"required,ne="`
 
@@ -9180,10 +9729,17 @@ type InvalidateUserSSOSessionsOptions struct {
 }
 
 // NewInvalidateUserSSOSessionsOptions : Instantiate InvalidateUserSSOSessionsOptions
-func (*AppIDManagementV4) NewInvalidateUserSSOSessionsOptions(userID string) *InvalidateUserSSOSessionsOptions {
+func (*AppIDManagementV4) NewInvalidateUserSSOSessionsOptions(tenantID string, userID string) *InvalidateUserSSOSessionsOptions {
 	return &InvalidateUserSSOSessionsOptions{
-		UserID: core.StringPtr(userID),
+		TenantID: core.StringPtr(tenantID),
+		UserID:   core.StringPtr(userID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *InvalidateUserSSOSessionsOptions) SetTenantID(tenantID string) *InvalidateUserSSOSessionsOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetUserID : Allow user to set UserID
@@ -9200,14 +9756,24 @@ func (options *InvalidateUserSSOSessionsOptions) SetHeaders(param map[string]str
 
 // ListApplicationsOptions : The ListApplications options.
 type ListApplicationsOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewListApplicationsOptions : Instantiate ListApplicationsOptions
-func (*AppIDManagementV4) NewListApplicationsOptions() *ListApplicationsOptions {
-	return &ListApplicationsOptions{}
+func (*AppIDManagementV4) NewListApplicationsOptions(tenantID string) *ListApplicationsOptions {
+	return &ListApplicationsOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *ListApplicationsOptions) SetTenantID(tenantID string) *ListApplicationsOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -9218,14 +9784,24 @@ func (options *ListApplicationsOptions) SetHeaders(param map[string]string) *Lis
 
 // ListChannelsOptions : The ListChannels options.
 type ListChannelsOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewListChannelsOptions : Instantiate ListChannelsOptions
-func (*AppIDManagementV4) NewListChannelsOptions() *ListChannelsOptions {
-	return &ListChannelsOptions{}
+func (*AppIDManagementV4) NewListChannelsOptions(tenantID string) *ListChannelsOptions {
+	return &ListChannelsOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *ListChannelsOptions) SetTenantID(tenantID string) *ListChannelsOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -9236,6 +9812,9 @@ func (options *ListChannelsOptions) SetHeaders(param map[string]string) *ListCha
 
 // ListCloudDirectoryUsersOptions : The ListCloudDirectoryUsers options.
 type ListCloudDirectoryUsersOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The first result in a set list of results.
 	StartIndex *int64
 
@@ -9250,8 +9829,16 @@ type ListCloudDirectoryUsersOptions struct {
 }
 
 // NewListCloudDirectoryUsersOptions : Instantiate ListCloudDirectoryUsersOptions
-func (*AppIDManagementV4) NewListCloudDirectoryUsersOptions() *ListCloudDirectoryUsersOptions {
-	return &ListCloudDirectoryUsersOptions{}
+func (*AppIDManagementV4) NewListCloudDirectoryUsersOptions(tenantID string) *ListCloudDirectoryUsersOptions {
+	return &ListCloudDirectoryUsersOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *ListCloudDirectoryUsersOptions) SetTenantID(tenantID string) *ListCloudDirectoryUsersOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetStartIndex : Allow user to set StartIndex
@@ -9280,14 +9867,24 @@ func (options *ListCloudDirectoryUsersOptions) SetHeaders(param map[string]strin
 
 // ListRolesOptions : The ListRoles options.
 type ListRolesOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
 }
 
 // NewListRolesOptions : Instantiate ListRolesOptions
-func (*AppIDManagementV4) NewListRolesOptions() *ListRolesOptions {
-	return &ListRolesOptions{}
+func (*AppIDManagementV4) NewListRolesOptions(tenantID string) *ListRolesOptions {
+	return &ListRolesOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *ListRolesOptions) SetTenantID(tenantID string) *ListRolesOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaders : Allow user to set Headers
@@ -9376,6 +9973,9 @@ func UnmarshalMFAChannelsList(m map[string]json.RawMessage, result interface{}) 
 
 // PostEmailDispatcherTestOptions : The PostEmailDispatcherTest options.
 type PostEmailDispatcherTestOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The email address where you want to send your test message.
 	Email *string `validate:"required"`
 
@@ -9384,10 +9984,17 @@ type PostEmailDispatcherTestOptions struct {
 }
 
 // NewPostEmailDispatcherTestOptions : Instantiate PostEmailDispatcherTestOptions
-func (*AppIDManagementV4) NewPostEmailDispatcherTestOptions(email string) *PostEmailDispatcherTestOptions {
+func (*AppIDManagementV4) NewPostEmailDispatcherTestOptions(tenantID string, email string) *PostEmailDispatcherTestOptions {
 	return &PostEmailDispatcherTestOptions{
-		Email: core.StringPtr(email),
+		TenantID: core.StringPtr(tenantID),
+		Email:    core.StringPtr(email),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *PostEmailDispatcherTestOptions) SetTenantID(tenantID string) *PostEmailDispatcherTestOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetEmail : Allow user to set Email
@@ -9404,6 +10011,9 @@ func (options *PostEmailDispatcherTestOptions) SetHeaders(param map[string]strin
 
 // PostExtensionsTestOptions : The PostExtensionsTest options.
 type PostExtensionsTestOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The name of the extension.
 	Name *string `validate:"required,ne="`
 
@@ -9419,10 +10029,17 @@ const (
 )
 
 // NewPostExtensionsTestOptions : Instantiate PostExtensionsTestOptions
-func (*AppIDManagementV4) NewPostExtensionsTestOptions(name string) *PostExtensionsTestOptions {
+func (*AppIDManagementV4) NewPostExtensionsTestOptions(tenantID string, name string) *PostExtensionsTestOptions {
 	return &PostExtensionsTestOptions{
-		Name: core.StringPtr(name),
+		TenantID: core.StringPtr(tenantID),
+		Name:     core.StringPtr(name),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *PostExtensionsTestOptions) SetTenantID(tenantID string) *PostExtensionsTestOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetName : Allow user to set Name
@@ -9439,6 +10056,9 @@ func (options *PostExtensionsTestOptions) SetHeaders(param map[string]string) *P
 
 // PostMediaOptions : The PostMedia options.
 type PostMediaOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The type of media. You can upload JPG or PNG files.
 	MediaType *string `validate:"required"`
 
@@ -9459,11 +10079,18 @@ const (
 )
 
 // NewPostMediaOptions : Instantiate PostMediaOptions
-func (*AppIDManagementV4) NewPostMediaOptions(mediaType string, file io.ReadCloser) *PostMediaOptions {
+func (*AppIDManagementV4) NewPostMediaOptions(tenantID string, mediaType string, file io.ReadCloser) *PostMediaOptions {
 	return &PostMediaOptions{
+		TenantID:  core.StringPtr(tenantID),
 		MediaType: core.StringPtr(mediaType),
 		File:      file,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *PostMediaOptions) SetTenantID(tenantID string) *PostMediaOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetMediaType : Allow user to set MediaType
@@ -9492,6 +10119,9 @@ func (options *PostMediaOptions) SetHeaders(param map[string]string) *PostMediaO
 
 // PostSMSDispatcherTestOptions : The PostSMSDispatcherTest options.
 type PostSMSDispatcherTestOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	PhoneNumber *string `validate:"required"`
 
 	// Allows users to set headers on API requests
@@ -9499,10 +10129,17 @@ type PostSMSDispatcherTestOptions struct {
 }
 
 // NewPostSMSDispatcherTestOptions : Instantiate PostSMSDispatcherTestOptions
-func (*AppIDManagementV4) NewPostSMSDispatcherTestOptions(phoneNumber string) *PostSMSDispatcherTestOptions {
+func (*AppIDManagementV4) NewPostSMSDispatcherTestOptions(tenantID string, phoneNumber string) *PostSMSDispatcherTestOptions {
 	return &PostSMSDispatcherTestOptions{
+		TenantID:    core.StringPtr(tenantID),
 		PhoneNumber: core.StringPtr(phoneNumber),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *PostSMSDispatcherTestOptions) SetTenantID(tenantID string) *PostSMSDispatcherTestOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetPhoneNumber : Allow user to set PhoneNumber
@@ -9519,6 +10156,9 @@ func (options *PostSMSDispatcherTestOptions) SetHeaders(param map[string]string)
 
 // PostThemeColorOptions : The PostThemeColor options.
 type PostThemeColorOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	HeaderColor *string
 
 	// Allows users to set headers on API requests
@@ -9526,8 +10166,16 @@ type PostThemeColorOptions struct {
 }
 
 // NewPostThemeColorOptions : Instantiate PostThemeColorOptions
-func (*AppIDManagementV4) NewPostThemeColorOptions() *PostThemeColorOptions {
-	return &PostThemeColorOptions{}
+func (*AppIDManagementV4) NewPostThemeColorOptions(tenantID string) *PostThemeColorOptions {
+	return &PostThemeColorOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *PostThemeColorOptions) SetTenantID(tenantID string) *PostThemeColorOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetHeaderColor : Allow user to set HeaderColor
@@ -9544,6 +10192,9 @@ func (options *PostThemeColorOptions) SetHeaders(param map[string]string) *PostT
 
 // PostThemeTextOptions : The PostThemeText options.
 type PostThemeTextOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	TabTitle *string
 
 	Footnote *string
@@ -9553,8 +10204,16 @@ type PostThemeTextOptions struct {
 }
 
 // NewPostThemeTextOptions : Instantiate PostThemeTextOptions
-func (*AppIDManagementV4) NewPostThemeTextOptions() *PostThemeTextOptions {
-	return &PostThemeTextOptions{}
+func (*AppIDManagementV4) NewPostThemeTextOptions(tenantID string) *PostThemeTextOptions {
+	return &PostThemeTextOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *PostThemeTextOptions) SetTenantID(tenantID string) *PostThemeTextOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetTabTitle : Allow user to set TabTitle
@@ -9577,6 +10236,9 @@ func (options *PostThemeTextOptions) SetHeaders(param map[string]string) *PostTh
 
 // PutApplicationsRolesOptions : The PutApplicationsRoles options.
 type PutApplicationsRolesOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The application clientId.
 	ClientID *string `validate:"required,ne="`
 
@@ -9587,11 +10249,18 @@ type PutApplicationsRolesOptions struct {
 }
 
 // NewPutApplicationsRolesOptions : Instantiate PutApplicationsRolesOptions
-func (*AppIDManagementV4) NewPutApplicationsRolesOptions(clientID string, roles *UpdateUserRolesParamsRoles) *PutApplicationsRolesOptions {
+func (*AppIDManagementV4) NewPutApplicationsRolesOptions(tenantID string, clientID string, roles *UpdateUserRolesParamsRoles) *PutApplicationsRolesOptions {
 	return &PutApplicationsRolesOptions{
+		TenantID: core.StringPtr(tenantID),
 		ClientID: core.StringPtr(clientID),
 		Roles:    roles,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *PutApplicationsRolesOptions) SetTenantID(tenantID string) *PutApplicationsRolesOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetClientID : Allow user to set ClientID
@@ -9614,6 +10283,9 @@ func (options *PutApplicationsRolesOptions) SetHeaders(param map[string]string) 
 
 // PutApplicationsScopesOptions : The PutApplicationsScopes options.
 type PutApplicationsScopesOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The application clientId.
 	ClientID *string `validate:"required,ne="`
 
@@ -9624,10 +10296,17 @@ type PutApplicationsScopesOptions struct {
 }
 
 // NewPutApplicationsScopesOptions : Instantiate PutApplicationsScopesOptions
-func (*AppIDManagementV4) NewPutApplicationsScopesOptions(clientID string) *PutApplicationsScopesOptions {
+func (*AppIDManagementV4) NewPutApplicationsScopesOptions(tenantID string, clientID string) *PutApplicationsScopesOptions {
 	return &PutApplicationsScopesOptions{
+		TenantID: core.StringPtr(tenantID),
 		ClientID: core.StringPtr(clientID),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *PutApplicationsScopesOptions) SetTenantID(tenantID string) *PutApplicationsScopesOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetClientID : Allow user to set ClientID
@@ -9650,6 +10329,9 @@ func (options *PutApplicationsScopesOptions) SetHeaders(param map[string]string)
 
 // PutTokensConfigOptions : The PutTokensConfig options.
 type PutTokensConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	IDTokenClaims []TokenClaimMapping
 
 	AccessTokenClaims []TokenClaimMapping
@@ -9665,8 +10347,16 @@ type PutTokensConfigOptions struct {
 }
 
 // NewPutTokensConfigOptions : Instantiate PutTokensConfigOptions
-func (*AppIDManagementV4) NewPutTokensConfigOptions() *PutTokensConfigOptions {
-	return &PutTokensConfigOptions{}
+func (*AppIDManagementV4) NewPutTokensConfigOptions(tenantID string) *PutTokensConfigOptions {
+	return &PutTokensConfigOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *PutTokensConfigOptions) SetTenantID(tenantID string) *PutTokensConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIDTokenClaims : Allow user to set IDTokenClaims
@@ -9707,6 +10397,9 @@ func (options *PutTokensConfigOptions) SetHeaders(param map[string]string) *PutT
 
 // RegisterApplicationOptions : The RegisterApplication options.
 type RegisterApplicationOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The application name to be registered. Application name cannot exceed 50 characters.
 	Name *string `validate:"required"`
 
@@ -9718,10 +10411,17 @@ type RegisterApplicationOptions struct {
 }
 
 // NewRegisterApplicationOptions : Instantiate RegisterApplicationOptions
-func (*AppIDManagementV4) NewRegisterApplicationOptions(name string) *RegisterApplicationOptions {
+func (*AppIDManagementV4) NewRegisterApplicationOptions(tenantID string, name string) *RegisterApplicationOptions {
 	return &RegisterApplicationOptions{
-		Name: core.StringPtr(name),
+		TenantID: core.StringPtr(tenantID),
+		Name:     core.StringPtr(name),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *RegisterApplicationOptions) SetTenantID(tenantID string) *RegisterApplicationOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetName : Allow user to set Name
@@ -9744,6 +10444,9 @@ func (options *RegisterApplicationOptions) SetHeaders(param map[string]string) *
 
 // ResendNotificationOptions : The ResendNotification options.
 type ResendNotificationOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED" or "RESET_PASSWORD".
 	TemplateName *string `validate:"required,ne="`
 
@@ -9767,11 +10470,18 @@ const (
 )
 
 // NewResendNotificationOptions : Instantiate ResendNotificationOptions
-func (*AppIDManagementV4) NewResendNotificationOptions(templateName string, uuid string) *ResendNotificationOptions {
+func (*AppIDManagementV4) NewResendNotificationOptions(tenantID string, templateName string, uuid string) *ResendNotificationOptions {
 	return &ResendNotificationOptions{
+		TenantID:     core.StringPtr(tenantID),
 		TemplateName: core.StringPtr(templateName),
 		UUID:         core.StringPtr(uuid),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *ResendNotificationOptions) SetTenantID(tenantID string) *ResendNotificationOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetTemplateName : Allow user to set TemplateName
@@ -9991,6 +10701,9 @@ func UnmarshalSAMLResponseWithValidationDataValidationDataCertificatesItem(m map
 
 // SetAuditStatusOptions : The SetAuditStatus options.
 type SetAuditStatusOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	IsActive *bool `validate:"required"`
 
 	// Allows users to set headers on API requests
@@ -9998,10 +10711,17 @@ type SetAuditStatusOptions struct {
 }
 
 // NewSetAuditStatusOptions : Instantiate SetAuditStatusOptions
-func (*AppIDManagementV4) NewSetAuditStatusOptions(isActive bool) *SetAuditStatusOptions {
+func (*AppIDManagementV4) NewSetAuditStatusOptions(tenantID string, isActive bool) *SetAuditStatusOptions {
 	return &SetAuditStatusOptions{
+		TenantID: core.StringPtr(tenantID),
 		IsActive: core.BoolPtr(isActive),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetAuditStatusOptions) SetTenantID(tenantID string) *SetAuditStatusOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIsActive : Allow user to set IsActive
@@ -10018,6 +10738,9 @@ func (options *SetAuditStatusOptions) SetHeaders(param map[string]string) *SetAu
 
 // SetCloudDirectoryActionOptions : The SetCloudDirectoryAction options.
 type SetCloudDirectoryActionOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The type of the action. on_user_verified - the URL of your custom user verified page, on_reset_password - the URL of
 	// your custom reset password page.
 	Action *string `validate:"required,ne="`
@@ -10038,11 +10761,18 @@ const (
 )
 
 // NewSetCloudDirectoryActionOptions : Instantiate SetCloudDirectoryActionOptions
-func (*AppIDManagementV4) NewSetCloudDirectoryActionOptions(action string, actionURL string) *SetCloudDirectoryActionOptions {
+func (*AppIDManagementV4) NewSetCloudDirectoryActionOptions(tenantID string, action string, actionURL string) *SetCloudDirectoryActionOptions {
 	return &SetCloudDirectoryActionOptions{
+		TenantID:  core.StringPtr(tenantID),
 		Action:    core.StringPtr(action),
 		ActionURL: core.StringPtr(actionURL),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetCloudDirectoryActionOptions) SetTenantID(tenantID string) *SetCloudDirectoryActionOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetAction : Allow user to set Action
@@ -10065,6 +10795,9 @@ func (options *SetCloudDirectoryActionOptions) SetHeaders(param map[string]strin
 
 // SetCloudDirectoryAdvancedPasswordManagementOptions : The SetCloudDirectoryAdvancedPasswordManagement options.
 type SetCloudDirectoryAdvancedPasswordManagementOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	AdvancedPasswordManagement *ApmSchemaAdvancedPasswordManagement `validate:"required"`
 
 	// Allows users to set headers on API requests
@@ -10072,10 +10805,17 @@ type SetCloudDirectoryAdvancedPasswordManagementOptions struct {
 }
 
 // NewSetCloudDirectoryAdvancedPasswordManagementOptions : Instantiate SetCloudDirectoryAdvancedPasswordManagementOptions
-func (*AppIDManagementV4) NewSetCloudDirectoryAdvancedPasswordManagementOptions(advancedPasswordManagement *ApmSchemaAdvancedPasswordManagement) *SetCloudDirectoryAdvancedPasswordManagementOptions {
+func (*AppIDManagementV4) NewSetCloudDirectoryAdvancedPasswordManagementOptions(tenantID string, advancedPasswordManagement *ApmSchemaAdvancedPasswordManagement) *SetCloudDirectoryAdvancedPasswordManagementOptions {
 	return &SetCloudDirectoryAdvancedPasswordManagementOptions{
+		TenantID:                   core.StringPtr(tenantID),
 		AdvancedPasswordManagement: advancedPasswordManagement,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetCloudDirectoryAdvancedPasswordManagementOptions) SetTenantID(tenantID string) *SetCloudDirectoryAdvancedPasswordManagementOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetAdvancedPasswordManagement : Allow user to set AdvancedPasswordManagement
@@ -10092,6 +10832,9 @@ func (options *SetCloudDirectoryAdvancedPasswordManagementOptions) SetHeaders(pa
 
 // SetCloudDirectoryEmailDispatcherOptions : The SetCloudDirectoryEmailDispatcher options.
 type SetCloudDirectoryEmailDispatcherOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	Provider *string `validate:"required"`
 
 	Sendgrid *EmailDispatcherParamsSendgrid
@@ -10110,10 +10853,17 @@ const (
 )
 
 // NewSetCloudDirectoryEmailDispatcherOptions : Instantiate SetCloudDirectoryEmailDispatcherOptions
-func (*AppIDManagementV4) NewSetCloudDirectoryEmailDispatcherOptions(provider string) *SetCloudDirectoryEmailDispatcherOptions {
+func (*AppIDManagementV4) NewSetCloudDirectoryEmailDispatcherOptions(tenantID string, provider string) *SetCloudDirectoryEmailDispatcherOptions {
 	return &SetCloudDirectoryEmailDispatcherOptions{
+		TenantID: core.StringPtr(tenantID),
 		Provider: core.StringPtr(provider),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetCloudDirectoryEmailDispatcherOptions) SetTenantID(tenantID string) *SetCloudDirectoryEmailDispatcherOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetProvider : Allow user to set Provider
@@ -10142,6 +10892,9 @@ func (options *SetCloudDirectoryEmailDispatcherOptions) SetHeaders(param map[str
 
 // SetCloudDirectoryIDPOptions : The SetCloudDirectoryIDP options.
 type SetCloudDirectoryIDPOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	IsActive *bool `validate:"required"`
 
 	Config *CloudDirectoryConfigParams `validate:"required"`
@@ -10151,11 +10904,18 @@ type SetCloudDirectoryIDPOptions struct {
 }
 
 // NewSetCloudDirectoryIDPOptions : Instantiate SetCloudDirectoryIDPOptions
-func (*AppIDManagementV4) NewSetCloudDirectoryIDPOptions(isActive bool, config *CloudDirectoryConfigParams) *SetCloudDirectoryIDPOptions {
+func (*AppIDManagementV4) NewSetCloudDirectoryIDPOptions(tenantID string, isActive bool, config *CloudDirectoryConfigParams) *SetCloudDirectoryIDPOptions {
 	return &SetCloudDirectoryIDPOptions{
+		TenantID: core.StringPtr(tenantID),
 		IsActive: core.BoolPtr(isActive),
 		Config:   config,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetCloudDirectoryIDPOptions) SetTenantID(tenantID string) *SetCloudDirectoryIDPOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIsActive : Allow user to set IsActive
@@ -10178,6 +10938,9 @@ func (options *SetCloudDirectoryIDPOptions) SetHeaders(param map[string]string) 
 
 // SetCloudDirectoryPasswordRegexOptions : The SetCloudDirectoryPasswordRegex options.
 type SetCloudDirectoryPasswordRegexOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	Regex *string
 
 	Base64EncodedRegex *string
@@ -10189,8 +10952,16 @@ type SetCloudDirectoryPasswordRegexOptions struct {
 }
 
 // NewSetCloudDirectoryPasswordRegexOptions : Instantiate SetCloudDirectoryPasswordRegexOptions
-func (*AppIDManagementV4) NewSetCloudDirectoryPasswordRegexOptions() *SetCloudDirectoryPasswordRegexOptions {
-	return &SetCloudDirectoryPasswordRegexOptions{}
+func (*AppIDManagementV4) NewSetCloudDirectoryPasswordRegexOptions(tenantID string) *SetCloudDirectoryPasswordRegexOptions {
+	return &SetCloudDirectoryPasswordRegexOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetCloudDirectoryPasswordRegexOptions) SetTenantID(tenantID string) *SetCloudDirectoryPasswordRegexOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetRegex : Allow user to set Regex
@@ -10219,6 +10990,9 @@ func (options *SetCloudDirectoryPasswordRegexOptions) SetHeaders(param map[strin
 
 // SetCloudDirectorySenderDetailsOptions : The SetCloudDirectorySenderDetails options.
 type SetCloudDirectorySenderDetailsOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	SenderDetails *CloudDirectorySenderDetailsSenderDetails `validate:"required"`
 
 	// Allows users to set headers on API requests
@@ -10226,10 +11000,17 @@ type SetCloudDirectorySenderDetailsOptions struct {
 }
 
 // NewSetCloudDirectorySenderDetailsOptions : Instantiate SetCloudDirectorySenderDetailsOptions
-func (*AppIDManagementV4) NewSetCloudDirectorySenderDetailsOptions(senderDetails *CloudDirectorySenderDetailsSenderDetails) *SetCloudDirectorySenderDetailsOptions {
+func (*AppIDManagementV4) NewSetCloudDirectorySenderDetailsOptions(tenantID string, senderDetails *CloudDirectorySenderDetailsSenderDetails) *SetCloudDirectorySenderDetailsOptions {
 	return &SetCloudDirectorySenderDetailsOptions{
+		TenantID:      core.StringPtr(tenantID),
 		SenderDetails: senderDetails,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetCloudDirectorySenderDetailsOptions) SetTenantID(tenantID string) *SetCloudDirectorySenderDetailsOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetSenderDetails : Allow user to set SenderDetails
@@ -10246,6 +11027,9 @@ func (options *SetCloudDirectorySenderDetailsOptions) SetHeaders(param map[strin
 
 // SetCustomIDPOptions : The SetCustomIDP options.
 type SetCustomIDPOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	IsActive *bool `validate:"required"`
 
 	Config *CustomIDPConfigParamsConfig
@@ -10255,10 +11039,17 @@ type SetCustomIDPOptions struct {
 }
 
 // NewSetCustomIDPOptions : Instantiate SetCustomIDPOptions
-func (*AppIDManagementV4) NewSetCustomIDPOptions(isActive bool) *SetCustomIDPOptions {
+func (*AppIDManagementV4) NewSetCustomIDPOptions(tenantID string, isActive bool) *SetCustomIDPOptions {
 	return &SetCustomIDPOptions{
+		TenantID: core.StringPtr(tenantID),
 		IsActive: core.BoolPtr(isActive),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetCustomIDPOptions) SetTenantID(tenantID string) *SetCustomIDPOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIsActive : Allow user to set IsActive
@@ -10281,6 +11072,9 @@ func (options *SetCustomIDPOptions) SetHeaders(param map[string]string) *SetCust
 
 // SetFacebookIDPOptions : The SetFacebookIDP options.
 type SetFacebookIDPOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The identity provider configuration as a JSON object. If the configuration is not set, IBM default credentials are
 	// used.
 	IDP *FacebookGoogleConfigParams `validate:"required"`
@@ -10290,10 +11084,17 @@ type SetFacebookIDPOptions struct {
 }
 
 // NewSetFacebookIDPOptions : Instantiate SetFacebookIDPOptions
-func (*AppIDManagementV4) NewSetFacebookIDPOptions(idp *FacebookGoogleConfigParams) *SetFacebookIDPOptions {
+func (*AppIDManagementV4) NewSetFacebookIDPOptions(tenantID string, idp *FacebookGoogleConfigParams) *SetFacebookIDPOptions {
 	return &SetFacebookIDPOptions{
-		IDP: idp,
+		TenantID: core.StringPtr(tenantID),
+		IDP:      idp,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetFacebookIDPOptions) SetTenantID(tenantID string) *SetFacebookIDPOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIDP : Allow user to set IDP
@@ -10310,6 +11111,9 @@ func (options *SetFacebookIDPOptions) SetHeaders(param map[string]string) *SetFa
 
 // SetGoogleIDPOptions : The SetGoogleIDP options.
 type SetGoogleIDPOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The identity provider configuration as a JSON object. If the configuration is not set, IBM default credentials are
 	// used.
 	IDP *FacebookGoogleConfigParams `validate:"required"`
@@ -10319,10 +11123,17 @@ type SetGoogleIDPOptions struct {
 }
 
 // NewSetGoogleIDPOptions : Instantiate SetGoogleIDPOptions
-func (*AppIDManagementV4) NewSetGoogleIDPOptions(idp *FacebookGoogleConfigParams) *SetGoogleIDPOptions {
+func (*AppIDManagementV4) NewSetGoogleIDPOptions(tenantID string, idp *FacebookGoogleConfigParams) *SetGoogleIDPOptions {
 	return &SetGoogleIDPOptions{
-		IDP: idp,
+		TenantID: core.StringPtr(tenantID),
+		IDP:      idp,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetGoogleIDPOptions) SetTenantID(tenantID string) *SetGoogleIDPOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIDP : Allow user to set IDP
@@ -10339,6 +11150,9 @@ func (options *SetGoogleIDPOptions) SetHeaders(param map[string]string) *SetGoog
 
 // SetSAMLIDPOptions : The SetSAMLIDP options.
 type SetSAMLIDPOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	IsActive *bool `validate:"required"`
 
 	Config *SAMLConfigParams
@@ -10348,10 +11162,17 @@ type SetSAMLIDPOptions struct {
 }
 
 // NewSetSAMLIDPOptions : Instantiate SetSAMLIDPOptions
-func (*AppIDManagementV4) NewSetSAMLIDPOptions(isActive bool) *SetSAMLIDPOptions {
+func (*AppIDManagementV4) NewSetSAMLIDPOptions(tenantID string, isActive bool) *SetSAMLIDPOptions {
 	return &SetSAMLIDPOptions{
+		TenantID: core.StringPtr(tenantID),
 		IsActive: core.BoolPtr(isActive),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *SetSAMLIDPOptions) SetTenantID(tenantID string) *SetSAMLIDPOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIsActive : Allow user to set IsActive
@@ -10374,6 +11195,9 @@ func (options *SetSAMLIDPOptions) SetHeaders(param map[string]string) *SetSAMLID
 
 // StartForgotPasswordOptions : The StartForgotPassword options.
 type StartForgotPasswordOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The user identitier - email or userName based on the identityField property in <a
 	// href="#!/Identity_Providers/set_cloud_directory_idp" target="_blank"> cloud directory configuration.</a>.
 	User *string `validate:"required"`
@@ -10386,10 +11210,17 @@ type StartForgotPasswordOptions struct {
 }
 
 // NewStartForgotPasswordOptions : Instantiate StartForgotPasswordOptions
-func (*AppIDManagementV4) NewStartForgotPasswordOptions(user string) *StartForgotPasswordOptions {
+func (*AppIDManagementV4) NewStartForgotPasswordOptions(tenantID string, user string) *StartForgotPasswordOptions {
 	return &StartForgotPasswordOptions{
-		User: core.StringPtr(user),
+		TenantID: core.StringPtr(tenantID),
+		User:     core.StringPtr(user),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *StartForgotPasswordOptions) SetTenantID(tenantID string) *StartForgotPasswordOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetUser : Allow user to set User
@@ -10412,6 +11243,9 @@ func (options *StartForgotPasswordOptions) SetHeaders(param map[string]string) *
 
 // StartSignUpOptions : The StartSignUp options.
 type StartSignUpOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// A boolean indication if a profile should be created for the Cloud Directory user.
 	ShouldCreateProfile *bool `validate:"required"`
 
@@ -10431,12 +11265,19 @@ type StartSignUpOptions struct {
 }
 
 // NewStartSignUpOptions : Instantiate StartSignUpOptions
-func (*AppIDManagementV4) NewStartSignUpOptions(shouldCreateProfile bool, emails []CreateNewUserEmailsItem, password string) *StartSignUpOptions {
+func (*AppIDManagementV4) NewStartSignUpOptions(tenantID string, shouldCreateProfile bool, emails []CreateNewUserEmailsItem, password string) *StartSignUpOptions {
 	return &StartSignUpOptions{
+		TenantID:            core.StringPtr(tenantID),
 		ShouldCreateProfile: core.BoolPtr(shouldCreateProfile),
 		Emails:              emails,
 		Password:            core.StringPtr(password),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *StartSignUpOptions) SetTenantID(tenantID string) *StartSignUpOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetShouldCreateProfile : Allow user to set ShouldCreateProfile
@@ -10483,6 +11324,9 @@ func (options *StartSignUpOptions) SetHeaders(param map[string]string) *StartSig
 
 // UpdateApplicationOptions : The UpdateApplication options.
 type UpdateApplicationOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The application clientId.
 	ClientID *string `validate:"required,ne="`
 
@@ -10494,11 +11338,18 @@ type UpdateApplicationOptions struct {
 }
 
 // NewUpdateApplicationOptions : Instantiate UpdateApplicationOptions
-func (*AppIDManagementV4) NewUpdateApplicationOptions(clientID string, name string) *UpdateApplicationOptions {
+func (*AppIDManagementV4) NewUpdateApplicationOptions(tenantID string, clientID string, name string) *UpdateApplicationOptions {
 	return &UpdateApplicationOptions{
+		TenantID: core.StringPtr(tenantID),
 		ClientID: core.StringPtr(clientID),
 		Name:     core.StringPtr(name),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateApplicationOptions) SetTenantID(tenantID string) *UpdateApplicationOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetClientID : Allow user to set ClientID
@@ -10521,6 +11372,9 @@ func (options *UpdateApplicationOptions) SetHeaders(param map[string]string) *Up
 
 // UpdateChannelOptions : The UpdateChannel options.
 type UpdateChannelOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The MFA channel.
 	Channel *string `validate:"required,ne="`
 
@@ -10540,11 +11394,18 @@ const (
 )
 
 // NewUpdateChannelOptions : Instantiate UpdateChannelOptions
-func (*AppIDManagementV4) NewUpdateChannelOptions(channel string, isActive bool) *UpdateChannelOptions {
+func (*AppIDManagementV4) NewUpdateChannelOptions(tenantID string, channel string, isActive bool) *UpdateChannelOptions {
 	return &UpdateChannelOptions{
+		TenantID: core.StringPtr(tenantID),
 		Channel:  core.StringPtr(channel),
 		IsActive: core.BoolPtr(isActive),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateChannelOptions) SetTenantID(tenantID string) *UpdateChannelOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetChannel : Allow user to set Channel
@@ -10573,6 +11434,9 @@ func (options *UpdateChannelOptions) SetHeaders(param map[string]string) *Update
 
 // UpdateCloudDirectoryUserOptions : The UpdateCloudDirectoryUser options.
 type UpdateCloudDirectoryUserOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The ID assigned to a user when they sign in by using Cloud Directory.
 	UserID *string `validate:"required,ne="`
 
@@ -10589,11 +11453,18 @@ type UpdateCloudDirectoryUserOptions struct {
 }
 
 // NewUpdateCloudDirectoryUserOptions : Instantiate UpdateCloudDirectoryUserOptions
-func (*AppIDManagementV4) NewUpdateCloudDirectoryUserOptions(userID string, emails []CreateNewUserEmailsItem) *UpdateCloudDirectoryUserOptions {
+func (*AppIDManagementV4) NewUpdateCloudDirectoryUserOptions(tenantID string, userID string, emails []CreateNewUserEmailsItem) *UpdateCloudDirectoryUserOptions {
 	return &UpdateCloudDirectoryUserOptions{
-		UserID: core.StringPtr(userID),
-		Emails: emails,
+		TenantID: core.StringPtr(tenantID),
+		UserID:   core.StringPtr(userID),
+		Emails:   emails,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateCloudDirectoryUserOptions) SetTenantID(tenantID string) *UpdateCloudDirectoryUserOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetUserID : Allow user to set UserID
@@ -10634,6 +11505,9 @@ func (options *UpdateCloudDirectoryUserOptions) SetHeaders(param map[string]stri
 
 // UpdateExtensionActiveOptions : The UpdateExtensionActive options.
 type UpdateExtensionActiveOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The name of the extension.
 	Name *string `validate:"required,ne="`
 
@@ -10653,11 +11527,18 @@ const (
 )
 
 // NewUpdateExtensionActiveOptions : Instantiate UpdateExtensionActiveOptions
-func (*AppIDManagementV4) NewUpdateExtensionActiveOptions(name string, isActive bool) *UpdateExtensionActiveOptions {
+func (*AppIDManagementV4) NewUpdateExtensionActiveOptions(tenantID string, name string, isActive bool) *UpdateExtensionActiveOptions {
 	return &UpdateExtensionActiveOptions{
+		TenantID: core.StringPtr(tenantID),
 		Name:     core.StringPtr(name),
 		IsActive: core.BoolPtr(isActive),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateExtensionActiveOptions) SetTenantID(tenantID string) *UpdateExtensionActiveOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetName : Allow user to set Name
@@ -10708,6 +11589,9 @@ func UnmarshalUpdateExtensionConfigConfig(m map[string]json.RawMessage, result i
 
 // UpdateExtensionConfigOptions : The UpdateExtensionConfig options.
 type UpdateExtensionConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The name of the extension.
 	Name *string `validate:"required,ne="`
 
@@ -10727,11 +11611,18 @@ const (
 )
 
 // NewUpdateExtensionConfigOptions : Instantiate UpdateExtensionConfigOptions
-func (*AppIDManagementV4) NewUpdateExtensionConfigOptions(name string, isActive bool) *UpdateExtensionConfigOptions {
+func (*AppIDManagementV4) NewUpdateExtensionConfigOptions(tenantID string, name string, isActive bool) *UpdateExtensionConfigOptions {
 	return &UpdateExtensionConfigOptions{
+		TenantID: core.StringPtr(tenantID),
 		Name:     core.StringPtr(name),
 		IsActive: core.BoolPtr(isActive),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateExtensionConfigOptions) SetTenantID(tenantID string) *UpdateExtensionConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetName : Allow user to set Name
@@ -10760,6 +11651,9 @@ func (options *UpdateExtensionConfigOptions) SetHeaders(param map[string]string)
 
 // UpdateLocalizationOptions : The UpdateLocalization options.
 type UpdateLocalizationOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	Languages []string
 
 	// Allows users to set headers on API requests
@@ -10767,8 +11661,16 @@ type UpdateLocalizationOptions struct {
 }
 
 // NewUpdateLocalizationOptions : Instantiate UpdateLocalizationOptions
-func (*AppIDManagementV4) NewUpdateLocalizationOptions() *UpdateLocalizationOptions {
-	return &UpdateLocalizationOptions{}
+func (*AppIDManagementV4) NewUpdateLocalizationOptions(tenantID string) *UpdateLocalizationOptions {
+	return &UpdateLocalizationOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateLocalizationOptions) SetTenantID(tenantID string) *UpdateLocalizationOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetLanguages : Allow user to set Languages
@@ -10785,6 +11687,9 @@ func (options *UpdateLocalizationOptions) SetHeaders(param map[string]string) *U
 
 // UpdateMFAConfigOptions : The UpdateMFAConfig options.
 type UpdateMFAConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	IsActive *bool `validate:"required"`
 
 	Config interface{}
@@ -10794,10 +11699,17 @@ type UpdateMFAConfigOptions struct {
 }
 
 // NewUpdateMFAConfigOptions : Instantiate UpdateMFAConfigOptions
-func (*AppIDManagementV4) NewUpdateMFAConfigOptions(isActive bool) *UpdateMFAConfigOptions {
+func (*AppIDManagementV4) NewUpdateMFAConfigOptions(tenantID string, isActive bool) *UpdateMFAConfigOptions {
 	return &UpdateMFAConfigOptions{
+		TenantID: core.StringPtr(tenantID),
 		IsActive: core.BoolPtr(isActive),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateMFAConfigOptions) SetTenantID(tenantID string) *UpdateMFAConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIsActive : Allow user to set IsActive
@@ -10820,6 +11732,9 @@ func (options *UpdateMFAConfigOptions) SetHeaders(param map[string]string) *Upda
 
 // UpdateRateLimitConfigOptions : The UpdateRateLimitConfig options.
 type UpdateRateLimitConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	SignUpLimitPerMinute *int64 `validate:"required"`
 
 	SignInLimitPerMinute *int64 `validate:"required"`
@@ -10829,11 +11744,18 @@ type UpdateRateLimitConfigOptions struct {
 }
 
 // NewUpdateRateLimitConfigOptions : Instantiate UpdateRateLimitConfigOptions
-func (*AppIDManagementV4) NewUpdateRateLimitConfigOptions(signUpLimitPerMinute int64, signInLimitPerMinute int64) *UpdateRateLimitConfigOptions {
+func (*AppIDManagementV4) NewUpdateRateLimitConfigOptions(tenantID string, signUpLimitPerMinute int64, signInLimitPerMinute int64) *UpdateRateLimitConfigOptions {
 	return &UpdateRateLimitConfigOptions{
+		TenantID:             core.StringPtr(tenantID),
 		SignUpLimitPerMinute: core.Int64Ptr(signUpLimitPerMinute),
 		SignInLimitPerMinute: core.Int64Ptr(signInLimitPerMinute),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateRateLimitConfigOptions) SetTenantID(tenantID string) *UpdateRateLimitConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetSignUpLimitPerMinute : Allow user to set SignUpLimitPerMinute
@@ -10856,6 +11778,9 @@ func (options *UpdateRateLimitConfigOptions) SetHeaders(param map[string]string)
 
 // UpdateRedirectUrisOptions : The UpdateRedirectUris options.
 type UpdateRedirectUrisOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The redirect URIs JSON object. If IBM default credentials are used, the redirect URIs are ignored.
 	RedirectUrisArray *RedirectURIConfig `validate:"required"`
 
@@ -10864,10 +11789,17 @@ type UpdateRedirectUrisOptions struct {
 }
 
 // NewUpdateRedirectUrisOptions : Instantiate UpdateRedirectUrisOptions
-func (*AppIDManagementV4) NewUpdateRedirectUrisOptions(redirectUrisArray *RedirectURIConfig) *UpdateRedirectUrisOptions {
+func (*AppIDManagementV4) NewUpdateRedirectUrisOptions(tenantID string, redirectUrisArray *RedirectURIConfig) *UpdateRedirectUrisOptions {
 	return &UpdateRedirectUrisOptions{
+		TenantID:          core.StringPtr(tenantID),
 		RedirectUrisArray: redirectUrisArray,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateRedirectUrisOptions) SetTenantID(tenantID string) *UpdateRedirectUrisOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetRedirectUrisArray : Allow user to set RedirectUrisArray
@@ -10884,6 +11816,9 @@ func (options *UpdateRedirectUrisOptions) SetHeaders(param map[string]string) *U
 
 // UpdateRoleOptions : The UpdateRole options.
 type UpdateRoleOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The role identifier.
 	RoleID *string `validate:"required,ne="`
 
@@ -10898,12 +11833,19 @@ type UpdateRoleOptions struct {
 }
 
 // NewUpdateRoleOptions : Instantiate UpdateRoleOptions
-func (*AppIDManagementV4) NewUpdateRoleOptions(roleID string, name string, access []UpdateRoleParamsAccessItem) *UpdateRoleOptions {
+func (*AppIDManagementV4) NewUpdateRoleOptions(tenantID string, roleID string, name string, access []UpdateRoleParamsAccessItem) *UpdateRoleOptions {
 	return &UpdateRoleOptions{
-		RoleID: core.StringPtr(roleID),
-		Name:   core.StringPtr(name),
-		Access: access,
+		TenantID: core.StringPtr(tenantID),
+		RoleID:   core.StringPtr(roleID),
+		Name:     core.StringPtr(name),
+		Access:   access,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateRoleOptions) SetTenantID(tenantID string) *UpdateRoleOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetRoleID : Allow user to set RoleID
@@ -10992,6 +11934,9 @@ func UnmarshalUpdateRolesResponseAccessItem(m map[string]json.RawMessage, result
 
 // UpdateSSOConfigOptions : The UpdateSSOConfig options.
 type UpdateSSOConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	IsActive *bool `validate:"required"`
 
 	InactivityTimeoutSeconds *float64 `validate:"required"`
@@ -11003,12 +11948,19 @@ type UpdateSSOConfigOptions struct {
 }
 
 // NewUpdateSSOConfigOptions : Instantiate UpdateSSOConfigOptions
-func (*AppIDManagementV4) NewUpdateSSOConfigOptions(isActive bool, inactivityTimeoutSeconds float64, logoutRedirectUris []string) *UpdateSSOConfigOptions {
+func (*AppIDManagementV4) NewUpdateSSOConfigOptions(tenantID string, isActive bool, inactivityTimeoutSeconds float64, logoutRedirectUris []string) *UpdateSSOConfigOptions {
 	return &UpdateSSOConfigOptions{
+		TenantID:                 core.StringPtr(tenantID),
 		IsActive:                 core.BoolPtr(isActive),
 		InactivityTimeoutSeconds: core.Float64Ptr(inactivityTimeoutSeconds),
 		LogoutRedirectUris:       logoutRedirectUris,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateSSOConfigOptions) SetTenantID(tenantID string) *UpdateSSOConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIsActive : Allow user to set IsActive
@@ -11037,6 +11989,9 @@ func (options *UpdateSSOConfigOptions) SetHeaders(param map[string]string) *Upda
 
 // UpdateTemplateOptions : The UpdateTemplate options.
 type UpdateTemplateOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The type of email template. This can be "USER_VERIFICATION", "WELCOME", "PASSWORD_CHANGED", "RESET_PASSWORD" or
 	// "MFA_VERIFICATION".
 	TemplateName *string `validate:"required,ne="`
@@ -11069,12 +12024,19 @@ const (
 )
 
 // NewUpdateTemplateOptions : Instantiate UpdateTemplateOptions
-func (*AppIDManagementV4) NewUpdateTemplateOptions(templateName string, language string, subject string) *UpdateTemplateOptions {
+func (*AppIDManagementV4) NewUpdateTemplateOptions(tenantID string, templateName string, language string, subject string) *UpdateTemplateOptions {
 	return &UpdateTemplateOptions{
+		TenantID:     core.StringPtr(tenantID),
 		TemplateName: core.StringPtr(templateName),
 		Language:     core.StringPtr(language),
 		Subject:      core.StringPtr(subject),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateTemplateOptions) SetTenantID(tenantID string) *UpdateTemplateOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetTemplateName : Allow user to set TemplateName
@@ -11121,6 +12083,9 @@ func (options *UpdateTemplateOptions) SetHeaders(param map[string]string) *Updat
 
 // UpdateUserProfilesConfigOptions : The UpdateUserProfilesConfig options.
 type UpdateUserProfilesConfigOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	IsActive *bool `validate:"required"`
 
 	// Allows users to set headers on API requests
@@ -11128,10 +12093,17 @@ type UpdateUserProfilesConfigOptions struct {
 }
 
 // NewUpdateUserProfilesConfigOptions : Instantiate UpdateUserProfilesConfigOptions
-func (*AppIDManagementV4) NewUpdateUserProfilesConfigOptions(isActive bool) *UpdateUserProfilesConfigOptions {
+func (*AppIDManagementV4) NewUpdateUserProfilesConfigOptions(tenantID string, isActive bool) *UpdateUserProfilesConfigOptions {
 	return &UpdateUserProfilesConfigOptions{
+		TenantID: core.StringPtr(tenantID),
 		IsActive: core.BoolPtr(isActive),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateUserProfilesConfigOptions) SetTenantID(tenantID string) *UpdateUserProfilesConfigOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIsActive : Allow user to set IsActive
@@ -11148,6 +12120,9 @@ func (options *UpdateUserProfilesConfigOptions) SetHeaders(param map[string]stri
 
 // UpdateUserRolesOptions : The UpdateUserRoles options.
 type UpdateUserRolesOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The user's identifier ('subject' in identity token) You can search user in <a
 	// href="#!/Users/users_search_user_profile" target="_blank">/users</a>.
 	ID *string `validate:"required,ne="`
@@ -11159,11 +12134,18 @@ type UpdateUserRolesOptions struct {
 }
 
 // NewUpdateUserRolesOptions : Instantiate UpdateUserRolesOptions
-func (*AppIDManagementV4) NewUpdateUserRolesOptions(id string, roles *UpdateUserRolesParamsRoles) *UpdateUserRolesOptions {
+func (*AppIDManagementV4) NewUpdateUserRolesOptions(tenantID string, id string, roles *UpdateUserRolesParamsRoles) *UpdateUserRolesOptions {
 	return &UpdateUserRolesOptions{
-		ID:    core.StringPtr(id),
-		Roles: roles,
+		TenantID: core.StringPtr(tenantID),
+		ID:       core.StringPtr(id),
+		Roles:    roles,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UpdateUserRolesOptions) SetTenantID(tenantID string) *UpdateUserRolesOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetID : Allow user to set ID
@@ -11202,6 +12184,9 @@ func UnmarshalUpdateUserRolesParamsRoles(m map[string]json.RawMessage, result in
 
 // UserProfilesExportOptions : The UserProfilesExport options.
 type UserProfilesExportOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The first result in a set list of results.
 	StartIndex *int64
 
@@ -11213,8 +12198,16 @@ type UserProfilesExportOptions struct {
 }
 
 // NewUserProfilesExportOptions : Instantiate UserProfilesExportOptions
-func (*AppIDManagementV4) NewUserProfilesExportOptions() *UserProfilesExportOptions {
-	return &UserProfilesExportOptions{}
+func (*AppIDManagementV4) NewUserProfilesExportOptions(tenantID string) *UserProfilesExportOptions {
+	return &UserProfilesExportOptions{
+		TenantID: core.StringPtr(tenantID),
+	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UserProfilesExportOptions) SetTenantID(tenantID string) *UserProfilesExportOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetStartIndex : Allow user to set StartIndex
@@ -11237,6 +12230,9 @@ func (options *UserProfilesExportOptions) SetHeaders(param map[string]string) *U
 
 // UserProfilesImportOptions : The UserProfilesImport options.
 type UserProfilesImportOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	Users []ExportUserProfileUsersItem `validate:"required"`
 
 	// Allows users to set headers on API requests
@@ -11244,10 +12240,17 @@ type UserProfilesImportOptions struct {
 }
 
 // NewUserProfilesImportOptions : Instantiate UserProfilesImportOptions
-func (*AppIDManagementV4) NewUserProfilesImportOptions(users []ExportUserProfileUsersItem) *UserProfilesImportOptions {
+func (*AppIDManagementV4) NewUserProfilesImportOptions(tenantID string, users []ExportUserProfileUsersItem) *UserProfilesImportOptions {
 	return &UserProfilesImportOptions{
-		Users: users,
+		TenantID: core.StringPtr(tenantID),
+		Users:    users,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UserProfilesImportOptions) SetTenantID(tenantID string) *UserProfilesImportOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetUsers : Allow user to set Users
@@ -11314,6 +12317,9 @@ func UnmarshalUserSearchResponseUsersItem(m map[string]json.RawMessage, result i
 
 // UserVerificationResultOptions : The UserVerificationResult options.
 type UserVerificationResultOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The context that will be use to get the verification result.
 	Context *string `validate:"required"`
 
@@ -11322,10 +12328,17 @@ type UserVerificationResultOptions struct {
 }
 
 // NewUserVerificationResultOptions : Instantiate UserVerificationResultOptions
-func (*AppIDManagementV4) NewUserVerificationResultOptions(context string) *UserVerificationResultOptions {
+func (*AppIDManagementV4) NewUserVerificationResultOptions(tenantID string, context string) *UserVerificationResultOptions {
 	return &UserVerificationResultOptions{
-		Context: core.StringPtr(context),
+		TenantID: core.StringPtr(tenantID),
+		Context:  core.StringPtr(context),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UserVerificationResultOptions) SetTenantID(tenantID string) *UserVerificationResultOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetContext : Allow user to set Context
@@ -11342,6 +12355,9 @@ func (options *UserVerificationResultOptions) SetHeaders(param map[string]string
 
 // UsersDeleteUserProfileOptions : The UsersDeleteUserProfile options.
 type UsersDeleteUserProfileOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The user's identifier ('subject' in identity token) You can search user in <a
 	// href="#!/Users/users_search_user_profile" target="_blank">/users</a>.
 	ID *string `validate:"required,ne="`
@@ -11351,10 +12367,17 @@ type UsersDeleteUserProfileOptions struct {
 }
 
 // NewUsersDeleteUserProfileOptions : Instantiate UsersDeleteUserProfileOptions
-func (*AppIDManagementV4) NewUsersDeleteUserProfileOptions(id string) *UsersDeleteUserProfileOptions {
+func (*AppIDManagementV4) NewUsersDeleteUserProfileOptions(tenantID string, id string) *UsersDeleteUserProfileOptions {
 	return &UsersDeleteUserProfileOptions{
-		ID: core.StringPtr(id),
+		TenantID: core.StringPtr(tenantID),
+		ID:       core.StringPtr(id),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UsersDeleteUserProfileOptions) SetTenantID(tenantID string) *UsersDeleteUserProfileOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetID : Allow user to set ID
@@ -11371,6 +12394,9 @@ func (options *UsersDeleteUserProfileOptions) SetHeaders(param map[string]string
 
 // UsersGetUserProfileOptions : The UsersGetUserProfile options.
 type UsersGetUserProfileOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The user's identifier ('subject' in identity token) You can search user in <a
 	// href="#!/Users/users_search_user_profile" target="_blank">/users</a>.
 	ID *string `validate:"required,ne="`
@@ -11380,10 +12406,17 @@ type UsersGetUserProfileOptions struct {
 }
 
 // NewUsersGetUserProfileOptions : Instantiate UsersGetUserProfileOptions
-func (*AppIDManagementV4) NewUsersGetUserProfileOptions(id string) *UsersGetUserProfileOptions {
+func (*AppIDManagementV4) NewUsersGetUserProfileOptions(tenantID string, id string) *UsersGetUserProfileOptions {
 	return &UsersGetUserProfileOptions{
-		ID: core.StringPtr(id),
+		TenantID: core.StringPtr(tenantID),
+		ID:       core.StringPtr(id),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UsersGetUserProfileOptions) SetTenantID(tenantID string) *UsersGetUserProfileOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetID : Allow user to set ID
@@ -11428,6 +12461,9 @@ func UnmarshalUsersList(m map[string]json.RawMessage, result interface{}) (err e
 
 // UsersNominateUserOptions : The UsersNominateUser options.
 type UsersNominateUserOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	IDP *string `validate:"required"`
 
 	IDPIdentity *string `validate:"required"`
@@ -11449,11 +12485,18 @@ const (
 )
 
 // NewUsersNominateUserOptions : Instantiate UsersNominateUserOptions
-func (*AppIDManagementV4) NewUsersNominateUserOptions(idp string, idpIdentity string) *UsersNominateUserOptions {
+func (*AppIDManagementV4) NewUsersNominateUserOptions(tenantID string, idp string, idpIdentity string) *UsersNominateUserOptions {
 	return &UsersNominateUserOptions{
+		TenantID:    core.StringPtr(tenantID),
 		IDP:         core.StringPtr(idp),
 		IDPIdentity: core.StringPtr(idpIdentity),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UsersNominateUserOptions) SetTenantID(tenantID string) *UsersNominateUserOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetIDP : Allow user to set IDP
@@ -11498,6 +12541,9 @@ func UnmarshalUsersNominateUserParamsProfile(m map[string]json.RawMessage, resul
 
 // UsersRevokeRefreshTokenOptions : The UsersRevokeRefreshToken options.
 type UsersRevokeRefreshTokenOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The user's identifier ('subject' in identity token) You can search user in <a
 	// href="#!/Users/users_search_user_profile" target="_blank">/users</a>.
 	ID *string `validate:"required,ne="`
@@ -11507,10 +12553,17 @@ type UsersRevokeRefreshTokenOptions struct {
 }
 
 // NewUsersRevokeRefreshTokenOptions : Instantiate UsersRevokeRefreshTokenOptions
-func (*AppIDManagementV4) NewUsersRevokeRefreshTokenOptions(id string) *UsersRevokeRefreshTokenOptions {
+func (*AppIDManagementV4) NewUsersRevokeRefreshTokenOptions(tenantID string, id string) *UsersRevokeRefreshTokenOptions {
 	return &UsersRevokeRefreshTokenOptions{
-		ID: core.StringPtr(id),
+		TenantID: core.StringPtr(tenantID),
+		ID:       core.StringPtr(id),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UsersRevokeRefreshTokenOptions) SetTenantID(tenantID string) *UsersRevokeRefreshTokenOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetID : Allow user to set ID
@@ -11527,6 +12580,9 @@ func (options *UsersRevokeRefreshTokenOptions) SetHeaders(param map[string]strin
 
 // UsersSearchUserProfileOptions : The UsersSearchUserProfile options.
 type UsersSearchUserProfileOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// display user data.
 	DataScope *string `validate:"required"`
 
@@ -11554,10 +12610,17 @@ const (
 )
 
 // NewUsersSearchUserProfileOptions : Instantiate UsersSearchUserProfileOptions
-func (*AppIDManagementV4) NewUsersSearchUserProfileOptions(dataScope string) *UsersSearchUserProfileOptions {
+func (*AppIDManagementV4) NewUsersSearchUserProfileOptions(tenantID string, dataScope string) *UsersSearchUserProfileOptions {
 	return &UsersSearchUserProfileOptions{
+		TenantID:  core.StringPtr(tenantID),
 		DataScope: core.StringPtr(dataScope),
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UsersSearchUserProfileOptions) SetTenantID(tenantID string) *UsersSearchUserProfileOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetDataScope : Allow user to set DataScope
@@ -11598,6 +12661,9 @@ func (options *UsersSearchUserProfileOptions) SetHeaders(param map[string]string
 
 // UsersSetUserProfileOptions : The UsersSetUserProfile options.
 type UsersSetUserProfileOptions struct {
+	// The service tenantId. The tenantId can be found in the service credentials.
+	TenantID *string `validate:"required,ne="`
+
 	// The user's identifier ('subject' in identity token) You can search user in <a
 	// href="#!/Users/users_search_user_profile" target="_blank">/users</a>.
 	ID *string `validate:"required,ne="`
@@ -11609,11 +12675,18 @@ type UsersSetUserProfileOptions struct {
 }
 
 // NewUsersSetUserProfileOptions : Instantiate UsersSetUserProfileOptions
-func (*AppIDManagementV4) NewUsersSetUserProfileOptions(id string, attributes map[string]interface{}) *UsersSetUserProfileOptions {
+func (*AppIDManagementV4) NewUsersSetUserProfileOptions(tenantID string, id string, attributes map[string]interface{}) *UsersSetUserProfileOptions {
 	return &UsersSetUserProfileOptions{
+		TenantID:   core.StringPtr(tenantID),
 		ID:         core.StringPtr(id),
 		Attributes: attributes,
 	}
+}
+
+// SetTenantID : Allow user to set TenantID
+func (options *UsersSetUserProfileOptions) SetTenantID(tenantID string) *UsersSetUserProfileOptions {
+	options.TenantID = core.StringPtr(tenantID)
+	return options
 }
 
 // SetID : Allow user to set ID

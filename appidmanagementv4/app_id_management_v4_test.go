@@ -37,27 +37,23 @@ import (
 var _ = Describe(`AppIDManagementV4`, func() {
 	var testServer *httptest.Server
 	Describe(`Service constructor tests`, func() {
-		tenantID := "testString"
 		It(`Instantiate service client`, func() {
 			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 				Authenticator: &core.NoAuthAuthenticator{},
-				TenantID:      core.StringPtr(tenantID),
 			})
 			Expect(appIDManagementService).ToNot(BeNil())
 			Expect(serviceErr).To(BeNil())
 		})
 		It(`Instantiate service client with error: Invalid URL`, func() {
 			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
-				URL:      "{BAD_URL_STRING",
-				TenantID: core.StringPtr(tenantID),
+				URL: "{BAD_URL_STRING",
 			})
 			Expect(appIDManagementService).To(BeNil())
 			Expect(serviceErr).ToNot(BeNil())
 		})
 		It(`Instantiate service client with error: Invalid Auth`, func() {
 			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
-				URL:      "https://appidmanagementv4/api",
-				TenantID: core.StringPtr(tenantID),
+				URL: "https://appidmanagementv4/api",
 				Authenticator: &core.BasicAuthenticator{
 					Username: "",
 					Password: "",
@@ -66,25 +62,18 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			Expect(appIDManagementService).To(BeNil())
 			Expect(serviceErr).ToNot(BeNil())
 		})
-		It(`Instantiate service client with error: Validation Error`, func() {
-			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{})
-			Expect(appIDManagementService).To(BeNil())
-			Expect(serviceErr).ToNot(BeNil())
-		})
 	})
 	Describe(`Service constructor tests using external config`, func() {
-		tenantID := "testString"
 		Context(`Using external config, construct service client instances`, func() {
 			// Map containing environment variables used in testing.
 			var testEnvironment = map[string]string{
-				"APP_ID_MANAGEMENT_URL":       "https://appidmanagementv4/api",
+				"APP_ID_MANAGEMENT_URL": "https://appidmanagementv4/api",
 				"APP_ID_MANAGEMENT_AUTH_TYPE": "noauth",
 			}
 
 			It(`Create service client using external config successfully`, func() {
 				SetTestEnvironment(testEnvironment)
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
-					TenantID: core.StringPtr(tenantID),
 				})
 				Expect(appIDManagementService).ToNot(BeNil())
 				Expect(serviceErr).To(BeNil())
@@ -99,8 +88,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			It(`Create service client using external config and set url from constructor successfully`, func() {
 				SetTestEnvironment(testEnvironment)
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
-					URL:      "https://testService/api",
-					TenantID: core.StringPtr(tenantID),
+					URL: "https://testService/api",
 				})
 				Expect(appIDManagementService).ToNot(BeNil())
 				Expect(serviceErr).To(BeNil())
@@ -116,7 +104,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			It(`Create service client using external config and set url programatically successfully`, func() {
 				SetTestEnvironment(testEnvironment)
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
-					TenantID: core.StringPtr(tenantID),
 				})
 				err := appIDManagementService.SetServiceURL("https://testService/api")
 				Expect(err).To(BeNil())
@@ -135,13 +122,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		Context(`Using external config, construct service client instances with error: Invalid Auth`, func() {
 			// Map containing environment variables used in testing.
 			var testEnvironment = map[string]string{
-				"APP_ID_MANAGEMENT_URL":       "https://appidmanagementv4/api",
+				"APP_ID_MANAGEMENT_URL": "https://appidmanagementv4/api",
 				"APP_ID_MANAGEMENT_AUTH_TYPE": "someOtherAuth",
 			}
 
 			SetTestEnvironment(testEnvironment)
 			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
-				TenantID: core.StringPtr(tenantID),
 			})
 
 			It(`Instantiate service client with error`, func() {
@@ -153,13 +139,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		Context(`Using external config, construct service client instances with error: Invalid URL`, func() {
 			// Map containing environment variables used in testing.
 			var testEnvironment = map[string]string{
-				"APP_ID_MANAGEMENT_AUTH_TYPE": "NOAuth",
+				"APP_ID_MANAGEMENT_AUTH_TYPE":   "NOAuth",
 			}
 
 			SetTestEnvironment(testEnvironment)
 			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
-				URL:      "{BAD_URL_STRING",
-				TenantID: core.StringPtr(tenantID),
+				URL: "{BAD_URL_STRING",
 			})
 
 			It(`Instantiate service client with error`, func() {
@@ -180,7 +165,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ListApplications(listApplicationsOptions *ListApplicationsOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		listApplicationsPath := "/management/v4/testString/applications"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -199,13 +183,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListApplicationsOptions model
 				listApplicationsOptionsModel := new(appidmanagementv4.ListApplicationsOptions)
+				listApplicationsOptionsModel.TenantID = core.StringPtr("testString")
 				listApplicationsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.ListApplications(listApplicationsOptionsModel)
@@ -226,7 +210,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ListApplications(listApplicationsOptions *ListApplicationsOptions)`, func() {
-		tenantID := "testString"
 		listApplicationsPath := "/management/v4/testString/applications"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -250,7 +233,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -258,6 +240,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ListApplicationsOptions model
 				listApplicationsOptionsModel := new(appidmanagementv4.ListApplicationsOptions)
+				listApplicationsOptionsModel.TenantID = core.StringPtr("testString")
 				listApplicationsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -304,7 +287,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -317,6 +299,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ListApplicationsOptions model
 				listApplicationsOptionsModel := new(appidmanagementv4.ListApplicationsOptions)
+				listApplicationsOptionsModel.TenantID = core.StringPtr("testString")
 				listApplicationsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -326,17 +309,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke ListApplications with error: Operation request error`, func() {
+			It(`Invoke ListApplications with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListApplicationsOptions model
 				listApplicationsOptionsModel := new(appidmanagementv4.ListApplicationsOptions)
+				listApplicationsOptionsModel.TenantID = core.StringPtr("testString")
 				listApplicationsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -344,6 +327,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.ListApplications(listApplicationsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the ListApplicationsOptions model with no property values
+				listApplicationsOptionsModelNew := new(appidmanagementv4.ListApplicationsOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.ListApplications(listApplicationsOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -364,13 +354,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListApplicationsOptions model
 				listApplicationsOptionsModel := new(appidmanagementv4.ListApplicationsOptions)
+				listApplicationsOptionsModel.TenantID = core.StringPtr("testString")
 				listApplicationsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -387,7 +377,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`RegisterApplication(registerApplicationOptions *RegisterApplicationOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		registerApplicationPath := "/management/v4/testString/applications"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -406,15 +395,15 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
-				registerApplicationOptionsModel.Name = core.StringPtr("App1")
-				registerApplicationOptionsModel.Type = core.StringPtr("regularwebapp")
+				registerApplicationOptionsModel.TenantID = core.StringPtr("testString")
+				registerApplicationOptionsModel.Name = core.StringPtr("testString")
+				registerApplicationOptionsModel.Type = core.StringPtr("testString")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.RegisterApplication(registerApplicationOptionsModel)
@@ -435,7 +424,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`RegisterApplication(registerApplicationOptions *RegisterApplicationOptions)`, func() {
-		tenantID := "testString"
 		registerApplicationPath := "/management/v4/testString/applications"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -475,7 +463,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -483,8 +470,9 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
-				registerApplicationOptionsModel.Name = core.StringPtr("App1")
-				registerApplicationOptionsModel.Type = core.StringPtr("regularwebapp")
+				registerApplicationOptionsModel.TenantID = core.StringPtr("testString")
+				registerApplicationOptionsModel.Name = core.StringPtr("testString")
+				registerApplicationOptionsModel.Type = core.StringPtr("testString")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -547,7 +535,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -560,8 +547,9 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
-				registerApplicationOptionsModel.Name = core.StringPtr("App1")
-				registerApplicationOptionsModel.Type = core.StringPtr("regularwebapp")
+				registerApplicationOptionsModel.TenantID = core.StringPtr("testString")
+				registerApplicationOptionsModel.Name = core.StringPtr("testString")
+				registerApplicationOptionsModel.Type = core.StringPtr("testString")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -575,15 +563,15 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
-				registerApplicationOptionsModel.Name = core.StringPtr("App1")
-				registerApplicationOptionsModel.Type = core.StringPtr("regularwebapp")
+				registerApplicationOptionsModel.TenantID = core.StringPtr("testString")
+				registerApplicationOptionsModel.Name = core.StringPtr("testString")
+				registerApplicationOptionsModel.Type = core.StringPtr("testString")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -618,15 +606,15 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the RegisterApplicationOptions model
 				registerApplicationOptionsModel := new(appidmanagementv4.RegisterApplicationOptions)
-				registerApplicationOptionsModel.Name = core.StringPtr("App1")
-				registerApplicationOptionsModel.Type = core.StringPtr("regularwebapp")
+				registerApplicationOptionsModel.TenantID = core.StringPtr("testString")
+				registerApplicationOptionsModel.Name = core.StringPtr("testString")
+				registerApplicationOptionsModel.Type = core.StringPtr("testString")
 				registerApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -643,7 +631,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetApplication(getApplicationOptions *GetApplicationOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getApplicationPath := "/management/v4/testString/applications/testString"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -662,13 +649,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationOptions model
 				getApplicationOptionsModel := new(appidmanagementv4.GetApplicationOptions)
+				getApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -690,7 +677,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetApplication(getApplicationOptions *GetApplicationOptions)`, func() {
-		tenantID := "testString"
 		getApplicationPath := "/management/v4/testString/applications/testString"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -714,7 +700,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -722,6 +707,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetApplicationOptions model
 				getApplicationOptionsModel := new(appidmanagementv4.GetApplicationOptions)
+				getApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -769,7 +755,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -782,6 +767,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetApplicationOptions model
 				getApplicationOptionsModel := new(appidmanagementv4.GetApplicationOptions)
+				getApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -796,13 +782,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationOptions model
 				getApplicationOptionsModel := new(appidmanagementv4.GetApplicationOptions)
+				getApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -838,13 +824,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationOptions model
 				getApplicationOptionsModel := new(appidmanagementv4.GetApplicationOptions)
+				getApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -862,7 +848,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateApplication(updateApplicationOptions *UpdateApplicationOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		updateApplicationPath := "/management/v4/testString/applications/testString"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -881,13 +866,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateApplicationOptions model
 				updateApplicationOptionsModel := new(appidmanagementv4.UpdateApplicationOptions)
+				updateApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				updateApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				updateApplicationOptionsModel.Name = core.StringPtr("testString")
 				updateApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -910,7 +895,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateApplication(updateApplicationOptions *UpdateApplicationOptions)`, func() {
-		tenantID := "testString"
 		updateApplicationPath := "/management/v4/testString/applications/testString"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -950,7 +934,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -958,6 +941,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateApplicationOptions model
 				updateApplicationOptionsModel := new(appidmanagementv4.UpdateApplicationOptions)
+				updateApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				updateApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				updateApplicationOptionsModel.Name = core.StringPtr("testString")
 				updateApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -1022,7 +1006,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1035,6 +1018,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateApplicationOptions model
 				updateApplicationOptionsModel := new(appidmanagementv4.UpdateApplicationOptions)
+				updateApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				updateApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				updateApplicationOptionsModel.Name = core.StringPtr("testString")
 				updateApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -1050,13 +1034,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateApplicationOptions model
 				updateApplicationOptionsModel := new(appidmanagementv4.UpdateApplicationOptions)
+				updateApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				updateApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				updateApplicationOptionsModel.Name = core.StringPtr("testString")
 				updateApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -1093,13 +1077,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateApplicationOptions model
 				updateApplicationOptionsModel := new(appidmanagementv4.UpdateApplicationOptions)
+				updateApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				updateApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				updateApplicationOptionsModel.Name = core.StringPtr("testString")
 				updateApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -1118,7 +1102,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`DeleteApplication(deleteApplicationOptions *DeleteApplicationOptions)`, func() {
-		tenantID := "testString"
 		deleteApplicationPath := "/management/v4/testString/applications/testString"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -1136,7 +1119,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1148,6 +1130,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the DeleteApplicationOptions model
 				deleteApplicationOptionsModel := new(appidmanagementv4.DeleteApplicationOptions)
+				deleteApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				deleteApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				deleteApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -1160,13 +1143,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the DeleteApplicationOptions model
 				deleteApplicationOptionsModel := new(appidmanagementv4.DeleteApplicationOptions)
+				deleteApplicationOptionsModel.TenantID = core.StringPtr("testString")
 				deleteApplicationOptionsModel.ClientID = core.StringPtr("testString")
 				deleteApplicationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -1189,7 +1172,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetApplicationScopes(getApplicationScopesOptions *GetApplicationScopesOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getApplicationScopesPath := "/management/v4/testString/applications/testString/scopes"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -1208,13 +1190,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationScopesOptions model
 				getApplicationScopesOptionsModel := new(appidmanagementv4.GetApplicationScopesOptions)
+				getApplicationScopesOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -1236,7 +1218,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetApplicationScopes(getApplicationScopesOptions *GetApplicationScopesOptions)`, func() {
-		tenantID := "testString"
 		getApplicationScopesPath := "/management/v4/testString/applications/testString/scopes"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -1260,7 +1241,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1268,6 +1248,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetApplicationScopesOptions model
 				getApplicationScopesOptionsModel := new(appidmanagementv4.GetApplicationScopesOptions)
+				getApplicationScopesOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -1315,7 +1296,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1328,6 +1308,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetApplicationScopesOptions model
 				getApplicationScopesOptionsModel := new(appidmanagementv4.GetApplicationScopesOptions)
+				getApplicationScopesOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -1342,13 +1323,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationScopesOptions model
 				getApplicationScopesOptionsModel := new(appidmanagementv4.GetApplicationScopesOptions)
+				getApplicationScopesOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -1384,13 +1365,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationScopesOptions model
 				getApplicationScopesOptionsModel := new(appidmanagementv4.GetApplicationScopesOptions)
+				getApplicationScopesOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -1408,7 +1389,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PutApplicationsScopes(putApplicationsScopesOptions *PutApplicationsScopesOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		putApplicationsScopesPath := "/management/v4/testString/applications/testString/scopes"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -1427,13 +1407,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PutApplicationsScopesOptions model
 				putApplicationsScopesOptionsModel := new(appidmanagementv4.PutApplicationsScopesOptions)
+				putApplicationsScopesOptionsModel.TenantID = core.StringPtr("testString")
 				putApplicationsScopesOptionsModel.ClientID = core.StringPtr("testString")
 				putApplicationsScopesOptionsModel.Scopes = []string{"cartoons", "horror", "animated"}
 				putApplicationsScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -1456,7 +1436,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PutApplicationsScopes(putApplicationsScopesOptions *PutApplicationsScopesOptions)`, func() {
-		tenantID := "testString"
 		putApplicationsScopesPath := "/management/v4/testString/applications/testString/scopes"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -1496,7 +1475,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1504,6 +1482,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutApplicationsScopesOptions model
 				putApplicationsScopesOptionsModel := new(appidmanagementv4.PutApplicationsScopesOptions)
+				putApplicationsScopesOptionsModel.TenantID = core.StringPtr("testString")
 				putApplicationsScopesOptionsModel.ClientID = core.StringPtr("testString")
 				putApplicationsScopesOptionsModel.Scopes = []string{"cartoons", "horror", "animated"}
 				putApplicationsScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -1568,7 +1547,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1581,6 +1559,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutApplicationsScopesOptions model
 				putApplicationsScopesOptionsModel := new(appidmanagementv4.PutApplicationsScopesOptions)
+				putApplicationsScopesOptionsModel.TenantID = core.StringPtr("testString")
 				putApplicationsScopesOptionsModel.ClientID = core.StringPtr("testString")
 				putApplicationsScopesOptionsModel.Scopes = []string{"cartoons", "horror", "animated"}
 				putApplicationsScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -1596,13 +1575,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PutApplicationsScopesOptions model
 				putApplicationsScopesOptionsModel := new(appidmanagementv4.PutApplicationsScopesOptions)
+				putApplicationsScopesOptionsModel.TenantID = core.StringPtr("testString")
 				putApplicationsScopesOptionsModel.ClientID = core.StringPtr("testString")
 				putApplicationsScopesOptionsModel.Scopes = []string{"cartoons", "horror", "animated"}
 				putApplicationsScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -1639,13 +1618,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PutApplicationsScopesOptions model
 				putApplicationsScopesOptionsModel := new(appidmanagementv4.PutApplicationsScopesOptions)
+				putApplicationsScopesOptionsModel.TenantID = core.StringPtr("testString")
 				putApplicationsScopesOptionsModel.ClientID = core.StringPtr("testString")
 				putApplicationsScopesOptionsModel.Scopes = []string{"cartoons", "horror", "animated"}
 				putApplicationsScopesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -1664,7 +1643,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetApplicationRoles(getApplicationRolesOptions *GetApplicationRolesOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getApplicationRolesPath := "/management/v4/testString/applications/testString/roles"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -1683,13 +1661,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationRolesOptions model
 				getApplicationRolesOptionsModel := new(appidmanagementv4.GetApplicationRolesOptions)
+				getApplicationRolesOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -1711,7 +1689,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetApplicationRoles(getApplicationRolesOptions *GetApplicationRolesOptions)`, func() {
-		tenantID := "testString"
 		getApplicationRolesPath := "/management/v4/testString/applications/testString/roles"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -1735,7 +1712,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1743,6 +1719,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetApplicationRolesOptions model
 				getApplicationRolesOptionsModel := new(appidmanagementv4.GetApplicationRolesOptions)
+				getApplicationRolesOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -1790,7 +1767,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1803,6 +1779,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetApplicationRolesOptions model
 				getApplicationRolesOptionsModel := new(appidmanagementv4.GetApplicationRolesOptions)
+				getApplicationRolesOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -1817,13 +1794,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationRolesOptions model
 				getApplicationRolesOptionsModel := new(appidmanagementv4.GetApplicationRolesOptions)
+				getApplicationRolesOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -1859,13 +1836,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetApplicationRolesOptions model
 				getApplicationRolesOptionsModel := new(appidmanagementv4.GetApplicationRolesOptions)
+				getApplicationRolesOptionsModel.TenantID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.ClientID = core.StringPtr("testString")
 				getApplicationRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -1883,7 +1860,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PutApplicationsRoles(putApplicationsRolesOptions *PutApplicationsRolesOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		putApplicationsRolesPath := "/management/v4/testString/applications/testString/roles"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -1902,7 +1878,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1913,6 +1888,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutApplicationsRolesOptions model
 				putApplicationsRolesOptionsModel := new(appidmanagementv4.PutApplicationsRolesOptions)
+				putApplicationsRolesOptionsModel.TenantID = core.StringPtr("testString")
 				putApplicationsRolesOptionsModel.ClientID = core.StringPtr("testString")
 				putApplicationsRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				putApplicationsRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -1935,7 +1911,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PutApplicationsRoles(putApplicationsRolesOptions *PutApplicationsRolesOptions)`, func() {
-		tenantID := "testString"
 		putApplicationsRolesPath := "/management/v4/testString/applications/testString/roles"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -1975,7 +1950,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -1987,6 +1961,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutApplicationsRolesOptions model
 				putApplicationsRolesOptionsModel := new(appidmanagementv4.PutApplicationsRolesOptions)
+				putApplicationsRolesOptionsModel.TenantID = core.StringPtr("testString")
 				putApplicationsRolesOptionsModel.ClientID = core.StringPtr("testString")
 				putApplicationsRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				putApplicationsRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -2051,7 +2026,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2068,6 +2042,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutApplicationsRolesOptions model
 				putApplicationsRolesOptionsModel := new(appidmanagementv4.PutApplicationsRolesOptions)
+				putApplicationsRolesOptionsModel.TenantID = core.StringPtr("testString")
 				putApplicationsRolesOptionsModel.ClientID = core.StringPtr("testString")
 				putApplicationsRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				putApplicationsRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -2083,7 +2058,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2094,6 +2068,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutApplicationsRolesOptions model
 				putApplicationsRolesOptionsModel := new(appidmanagementv4.PutApplicationsRolesOptions)
+				putApplicationsRolesOptionsModel.TenantID = core.StringPtr("testString")
 				putApplicationsRolesOptionsModel.ClientID = core.StringPtr("testString")
 				putApplicationsRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				putApplicationsRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -2130,7 +2105,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2141,6 +2115,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutApplicationsRolesOptions model
 				putApplicationsRolesOptionsModel := new(appidmanagementv4.PutApplicationsRolesOptions)
+				putApplicationsRolesOptionsModel.TenantID = core.StringPtr("testString")
 				putApplicationsRolesOptionsModel.ClientID = core.StringPtr("testString")
 				putApplicationsRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				putApplicationsRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -2159,7 +2134,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ListCloudDirectoryUsers(listCloudDirectoryUsersOptions *ListCloudDirectoryUsersOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		listCloudDirectoryUsersPath := "/management/v4/testString/cloud_directory/Users"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -2181,13 +2155,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
 				listCloudDirectoryUsersOptionsModel := new(appidmanagementv4.ListCloudDirectoryUsersOptions)
+				listCloudDirectoryUsersOptionsModel.TenantID = core.StringPtr("testString")
 				listCloudDirectoryUsersOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				listCloudDirectoryUsersOptionsModel.Count = core.Int64Ptr(int64(0))
 				listCloudDirectoryUsersOptionsModel.Query = core.StringPtr("testString")
@@ -2211,7 +2185,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ListCloudDirectoryUsers(listCloudDirectoryUsersOptions *ListCloudDirectoryUsersOptions)`, func() {
-		tenantID := "testString"
 		listCloudDirectoryUsersPath := "/management/v4/testString/cloud_directory/Users"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -2238,7 +2211,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2246,6 +2218,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
 				listCloudDirectoryUsersOptionsModel := new(appidmanagementv4.ListCloudDirectoryUsersOptions)
+				listCloudDirectoryUsersOptionsModel.TenantID = core.StringPtr("testString")
 				listCloudDirectoryUsersOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				listCloudDirectoryUsersOptionsModel.Count = core.Int64Ptr(int64(0))
 				listCloudDirectoryUsersOptionsModel.Query = core.StringPtr("testString")
@@ -2298,7 +2271,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2311,6 +2283,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
 				listCloudDirectoryUsersOptionsModel := new(appidmanagementv4.ListCloudDirectoryUsersOptions)
+				listCloudDirectoryUsersOptionsModel.TenantID = core.StringPtr("testString")
 				listCloudDirectoryUsersOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				listCloudDirectoryUsersOptionsModel.Count = core.Int64Ptr(int64(0))
 				listCloudDirectoryUsersOptionsModel.Query = core.StringPtr("testString")
@@ -2323,17 +2296,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke ListCloudDirectoryUsers with error: Operation request error`, func() {
+			It(`Invoke ListCloudDirectoryUsers with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
 				listCloudDirectoryUsersOptionsModel := new(appidmanagementv4.ListCloudDirectoryUsersOptions)
+				listCloudDirectoryUsersOptionsModel.TenantID = core.StringPtr("testString")
 				listCloudDirectoryUsersOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				listCloudDirectoryUsersOptionsModel.Count = core.Int64Ptr(int64(0))
 				listCloudDirectoryUsersOptionsModel.Query = core.StringPtr("testString")
@@ -2344,6 +2317,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the ListCloudDirectoryUsersOptions model with no property values
+				listCloudDirectoryUsersOptionsModelNew := new(appidmanagementv4.ListCloudDirectoryUsersOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -2364,13 +2344,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
 				listCloudDirectoryUsersOptionsModel := new(appidmanagementv4.ListCloudDirectoryUsersOptions)
+				listCloudDirectoryUsersOptionsModel.TenantID = core.StringPtr("testString")
 				listCloudDirectoryUsersOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				listCloudDirectoryUsersOptionsModel.Count = core.Int64Ptr(int64(0))
 				listCloudDirectoryUsersOptionsModel.Query = core.StringPtr("testString")
@@ -2390,7 +2370,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`CreateCloudDirectoryUser(createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions)`, func() {
-		tenantID := "testString"
 		createCloudDirectoryUserPath := "/management/v4/testString/cloud_directory/Users"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -2424,7 +2403,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2441,6 +2419,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CreateCloudDirectoryUserOptions model
 				createCloudDirectoryUserOptionsModel := new(appidmanagementv4.CreateCloudDirectoryUserOptions)
+				createCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
 				createCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
 				createCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
 				createCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
@@ -2456,7 +2435,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2468,6 +2446,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CreateCloudDirectoryUserOptions model
 				createCloudDirectoryUserOptionsModel := new(appidmanagementv4.CreateCloudDirectoryUserOptions)
+				createCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
 				createCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
 				createCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
 				createCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
@@ -2493,7 +2472,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryUser(getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions)`, func() {
-		tenantID := "testString"
 		getCloudDirectoryUserPath := "/management/v4/testString/cloud_directory/Users/testString"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -2511,7 +2489,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2523,6 +2500,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryUserOptions model
 				getCloudDirectoryUserOptionsModel := new(appidmanagementv4.GetCloudDirectoryUserOptions)
+				getCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
 				getCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -2535,13 +2513,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryUserOptions model
 				getCloudDirectoryUserOptionsModel := new(appidmanagementv4.GetCloudDirectoryUserOptions)
+				getCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
 				getCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -2564,7 +2542,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateCloudDirectoryUser(updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions)`, func() {
-		tenantID := "testString"
 		updateCloudDirectoryUserPath := "/management/v4/testString/cloud_directory/Users/testString"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -2598,7 +2575,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2615,6 +2591,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateCloudDirectoryUserOptions model
 				updateCloudDirectoryUserOptionsModel := new(appidmanagementv4.UpdateCloudDirectoryUserOptions)
+				updateCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
 				updateCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
 				updateCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
 				updateCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
@@ -2631,7 +2608,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2643,6 +2619,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateCloudDirectoryUserOptions model
 				updateCloudDirectoryUserOptionsModel := new(appidmanagementv4.UpdateCloudDirectoryUserOptions)
+				updateCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
 				updateCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
 				updateCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
 				updateCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
@@ -2669,7 +2646,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`DeleteCloudDirectoryUser(deleteCloudDirectoryUserOptions *DeleteCloudDirectoryUserOptions)`, func() {
-		tenantID := "testString"
 		deleteCloudDirectoryUserPath := "/management/v4/testString/cloud_directory/Users/testString"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -2687,7 +2663,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2699,6 +2674,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the DeleteCloudDirectoryUserOptions model
 				deleteCloudDirectoryUserOptionsModel := new(appidmanagementv4.DeleteCloudDirectoryUserOptions)
+				deleteCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
 				deleteCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
 				deleteCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -2711,13 +2687,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the DeleteCloudDirectoryUserOptions model
 				deleteCloudDirectoryUserOptionsModel := new(appidmanagementv4.DeleteCloudDirectoryUserOptions)
+				deleteCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
 				deleteCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
 				deleteCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -2740,7 +2716,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`InvalidateUserSSOSessions(invalidateUserSSOSessionsOptions *InvalidateUserSSOSessionsOptions)`, func() {
-		tenantID := "testString"
 		invalidateUserSSOSessionsPath := "/management/v4/testString/cloud_directory/Users/testString/sso/logout"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -2758,7 +2733,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2770,6 +2744,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the InvalidateUserSSOSessionsOptions model
 				invalidateUserSSOSessionsOptionsModel := new(appidmanagementv4.InvalidateUserSSOSessionsOptions)
+				invalidateUserSSOSessionsOptionsModel.TenantID = core.StringPtr("testString")
 				invalidateUserSSOSessionsOptionsModel.UserID = core.StringPtr("testString")
 				invalidateUserSSOSessionsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -2782,13 +2757,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the InvalidateUserSSOSessionsOptions model
 				invalidateUserSSOSessionsOptionsModel := new(appidmanagementv4.InvalidateUserSSOSessionsOptions)
+				invalidateUserSSOSessionsOptionsModel.TenantID = core.StringPtr("testString")
 				invalidateUserSSOSessionsOptionsModel.UserID = core.StringPtr("testString")
 				invalidateUserSSOSessionsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -2811,7 +2786,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`CloudDirectoryExport(cloudDirectoryExportOptions *CloudDirectoryExportOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		cloudDirectoryExportPath := "/management/v4/testString/cloud_directory/export"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -2833,7 +2807,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2841,6 +2814,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryExportOptions model
 				cloudDirectoryExportOptionsModel := new(appidmanagementv4.CloudDirectoryExportOptions)
 				cloudDirectoryExportOptionsModel.EncryptionSecret = core.StringPtr("testString")
+				cloudDirectoryExportOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryExportOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				cloudDirectoryExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				cloudDirectoryExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -2863,7 +2837,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`CloudDirectoryExport(cloudDirectoryExportOptions *CloudDirectoryExportOptions)`, func() {
-		tenantID := "testString"
 		cloudDirectoryExportPath := "/management/v4/testString/cloud_directory/export"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -2890,7 +2863,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2899,6 +2871,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryExportOptions model
 				cloudDirectoryExportOptionsModel := new(appidmanagementv4.CloudDirectoryExportOptions)
 				cloudDirectoryExportOptionsModel.EncryptionSecret = core.StringPtr("testString")
+				cloudDirectoryExportOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryExportOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				cloudDirectoryExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				cloudDirectoryExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -2950,7 +2923,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2964,6 +2936,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryExportOptions model
 				cloudDirectoryExportOptionsModel := new(appidmanagementv4.CloudDirectoryExportOptions)
 				cloudDirectoryExportOptionsModel.EncryptionSecret = core.StringPtr("testString")
+				cloudDirectoryExportOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryExportOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				cloudDirectoryExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				cloudDirectoryExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -2979,7 +2952,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -2987,6 +2959,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryExportOptions model
 				cloudDirectoryExportOptionsModel := new(appidmanagementv4.CloudDirectoryExportOptions)
 				cloudDirectoryExportOptionsModel.EncryptionSecret = core.StringPtr("testString")
+				cloudDirectoryExportOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryExportOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				cloudDirectoryExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				cloudDirectoryExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -3023,7 +2996,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3031,6 +3003,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryExportOptions model
 				cloudDirectoryExportOptionsModel := new(appidmanagementv4.CloudDirectoryExportOptions)
 				cloudDirectoryExportOptionsModel.EncryptionSecret = core.StringPtr("testString")
+				cloudDirectoryExportOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryExportOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				cloudDirectoryExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				cloudDirectoryExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -3049,7 +3022,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`CloudDirectoryImport(cloudDirectoryImportOptions *CloudDirectoryImportOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		cloudDirectoryImportPath := "/management/v4/testString/cloud_directory/import"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -3069,7 +3041,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3089,6 +3060,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryImportOptions model
 				cloudDirectoryImportOptionsModel := new(appidmanagementv4.CloudDirectoryImportOptions)
 				cloudDirectoryImportOptionsModel.EncryptionSecret = core.StringPtr("testString")
+				cloudDirectoryImportOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryImportOptionsModel.Users = []appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel}
 				cloudDirectoryImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -3110,7 +3082,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`CloudDirectoryImport(cloudDirectoryImportOptions *CloudDirectoryImportOptions)`, func() {
-		tenantID := "testString"
 		cloudDirectoryImportPath := "/management/v4/testString/cloud_directory/import"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -3151,7 +3122,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3172,6 +3142,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryImportOptions model
 				cloudDirectoryImportOptionsModel := new(appidmanagementv4.CloudDirectoryImportOptions)
 				cloudDirectoryImportOptionsModel.EncryptionSecret = core.StringPtr("testString")
+				cloudDirectoryImportOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryImportOptionsModel.Users = []appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel}
 				cloudDirectoryImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -3236,7 +3207,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3262,6 +3232,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryImportOptions model
 				cloudDirectoryImportOptionsModel := new(appidmanagementv4.CloudDirectoryImportOptions)
 				cloudDirectoryImportOptionsModel.EncryptionSecret = core.StringPtr("testString")
+				cloudDirectoryImportOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryImportOptionsModel.Users = []appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel}
 				cloudDirectoryImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -3276,7 +3247,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3296,6 +3266,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryImportOptions model
 				cloudDirectoryImportOptionsModel := new(appidmanagementv4.CloudDirectoryImportOptions)
 				cloudDirectoryImportOptionsModel.EncryptionSecret = core.StringPtr("testString")
+				cloudDirectoryImportOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryImportOptionsModel.Users = []appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel}
 				cloudDirectoryImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -3331,7 +3302,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3351,6 +3321,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the CloudDirectoryImportOptions model
 				cloudDirectoryImportOptionsModel := new(appidmanagementv4.CloudDirectoryImportOptions)
 				cloudDirectoryImportOptionsModel.EncryptionSecret = core.StringPtr("testString")
+				cloudDirectoryImportOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryImportOptionsModel.Users = []appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel}
 				cloudDirectoryImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -3368,7 +3339,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptions *CloudDirectoryGetUserinfoOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		cloudDirectoryGetUserinfoPath := "/management/v4/testString/cloud_directory/testString/userinfo"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -3387,13 +3357,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
 				cloudDirectoryGetUserinfoOptionsModel := new(appidmanagementv4.CloudDirectoryGetUserinfoOptions)
+				cloudDirectoryGetUserinfoOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.UserID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -3415,7 +3385,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptions *CloudDirectoryGetUserinfoOptions)`, func() {
-		tenantID := "testString"
 		cloudDirectoryGetUserinfoPath := "/management/v4/testString/cloud_directory/testString/userinfo"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -3439,7 +3408,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3447,6 +3415,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
 				cloudDirectoryGetUserinfoOptionsModel := new(appidmanagementv4.CloudDirectoryGetUserinfoOptions)
+				cloudDirectoryGetUserinfoOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.UserID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -3494,7 +3463,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3507,6 +3475,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
 				cloudDirectoryGetUserinfoOptionsModel := new(appidmanagementv4.CloudDirectoryGetUserinfoOptions)
+				cloudDirectoryGetUserinfoOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.UserID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -3521,13 +3490,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
 				cloudDirectoryGetUserinfoOptionsModel := new(appidmanagementv4.CloudDirectoryGetUserinfoOptions)
+				cloudDirectoryGetUserinfoOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.UserID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -3563,13 +3532,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
 				cloudDirectoryGetUserinfoOptionsModel := new(appidmanagementv4.CloudDirectoryGetUserinfoOptions)
+				cloudDirectoryGetUserinfoOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.UserID = core.StringPtr("testString")
 				cloudDirectoryGetUserinfoOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -3587,7 +3556,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`StartSignUp(startSignUpOptions *StartSignUpOptions)`, func() {
-		tenantID := "testString"
 		startSignUpPath := "/management/v4/testString/cloud_directory/sign_up"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -3623,7 +3591,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3640,6 +3607,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the StartSignUpOptions model
 				startSignUpOptionsModel := new(appidmanagementv4.StartSignUpOptions)
+				startSignUpOptionsModel.TenantID = core.StringPtr("testString")
 				startSignUpOptionsModel.ShouldCreateProfile = core.BoolPtr(true)
 				startSignUpOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
 				startSignUpOptionsModel.Password = core.StringPtr("userPassword")
@@ -3657,7 +3625,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3669,6 +3636,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the StartSignUpOptions model
 				startSignUpOptionsModel := new(appidmanagementv4.StartSignUpOptions)
+				startSignUpOptionsModel.TenantID = core.StringPtr("testString")
 				startSignUpOptionsModel.ShouldCreateProfile = core.BoolPtr(true)
 				startSignUpOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
 				startSignUpOptionsModel.Password = core.StringPtr("userPassword")
@@ -3696,7 +3664,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UserVerificationResult(userVerificationResultOptions *UserVerificationResultOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		userVerificationResultPath := "/management/v4/testString/cloud_directory/sign_up/confirmation_result"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -3715,13 +3682,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserVerificationResultOptions model
 				userVerificationResultOptionsModel := new(appidmanagementv4.UserVerificationResultOptions)
+				userVerificationResultOptionsModel.TenantID = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Context = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -3743,7 +3710,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UserVerificationResult(userVerificationResultOptions *UserVerificationResultOptions)`, func() {
-		tenantID := "testString"
 		userVerificationResultPath := "/management/v4/testString/cloud_directory/sign_up/confirmation_result"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -3783,7 +3749,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3791,6 +3756,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UserVerificationResultOptions model
 				userVerificationResultOptionsModel := new(appidmanagementv4.UserVerificationResultOptions)
+				userVerificationResultOptionsModel.TenantID = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Context = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -3854,7 +3820,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3867,6 +3832,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UserVerificationResultOptions model
 				userVerificationResultOptionsModel := new(appidmanagementv4.UserVerificationResultOptions)
+				userVerificationResultOptionsModel.TenantID = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Context = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -3881,13 +3847,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserVerificationResultOptions model
 				userVerificationResultOptionsModel := new(appidmanagementv4.UserVerificationResultOptions)
+				userVerificationResultOptionsModel.TenantID = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Context = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -3923,13 +3889,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserVerificationResultOptions model
 				userVerificationResultOptionsModel := new(appidmanagementv4.UserVerificationResultOptions)
+				userVerificationResultOptionsModel.TenantID = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Context = core.StringPtr("testString")
 				userVerificationResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -3947,7 +3913,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`StartForgotPassword(startForgotPasswordOptions *StartForgotPasswordOptions)`, func() {
-		tenantID := "testString"
 		startForgotPasswordPath := "/management/v4/testString/cloud_directory/forgot_password"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -3982,7 +3947,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -3994,6 +3958,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the StartForgotPasswordOptions model
 				startForgotPasswordOptionsModel := new(appidmanagementv4.StartForgotPasswordOptions)
+				startForgotPasswordOptionsModel.TenantID = core.StringPtr("testString")
 				startForgotPasswordOptionsModel.User = core.StringPtr("testString")
 				startForgotPasswordOptionsModel.Language = core.StringPtr("testString")
 				startForgotPasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -4007,13 +3972,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the StartForgotPasswordOptions model
 				startForgotPasswordOptionsModel := new(appidmanagementv4.StartForgotPasswordOptions)
+				startForgotPasswordOptionsModel.TenantID = core.StringPtr("testString")
 				startForgotPasswordOptionsModel.User = core.StringPtr("testString")
 				startForgotPasswordOptionsModel.Language = core.StringPtr("testString")
 				startForgotPasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -4037,7 +4002,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ForgotPasswordResult(forgotPasswordResultOptions *ForgotPasswordResultOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		forgotPasswordResultPath := "/management/v4/testString/cloud_directory/forgot_password/confirmation_result"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -4056,13 +4020,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ForgotPasswordResultOptions model
 				forgotPasswordResultOptionsModel := new(appidmanagementv4.ForgotPasswordResultOptions)
+				forgotPasswordResultOptionsModel.TenantID = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Context = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -4084,7 +4048,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ForgotPasswordResult(forgotPasswordResultOptions *ForgotPasswordResultOptions)`, func() {
-		tenantID := "testString"
 		forgotPasswordResultPath := "/management/v4/testString/cloud_directory/forgot_password/confirmation_result"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -4124,7 +4087,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4132,6 +4094,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ForgotPasswordResultOptions model
 				forgotPasswordResultOptionsModel := new(appidmanagementv4.ForgotPasswordResultOptions)
+				forgotPasswordResultOptionsModel.TenantID = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Context = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -4195,7 +4158,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4208,6 +4170,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ForgotPasswordResultOptions model
 				forgotPasswordResultOptionsModel := new(appidmanagementv4.ForgotPasswordResultOptions)
+				forgotPasswordResultOptionsModel.TenantID = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Context = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -4222,13 +4185,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ForgotPasswordResultOptions model
 				forgotPasswordResultOptionsModel := new(appidmanagementv4.ForgotPasswordResultOptions)
+				forgotPasswordResultOptionsModel.TenantID = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Context = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -4264,13 +4227,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ForgotPasswordResultOptions model
 				forgotPasswordResultOptionsModel := new(appidmanagementv4.ForgotPasswordResultOptions)
+				forgotPasswordResultOptionsModel.TenantID = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Context = core.StringPtr("testString")
 				forgotPasswordResultOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -4288,7 +4251,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ChangePassword(changePasswordOptions *ChangePasswordOptions)`, func() {
-		tenantID := "testString"
 		changePasswordPath := "/management/v4/testString/cloud_directory/change_password"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -4323,7 +4285,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4335,6 +4296,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ChangePasswordOptions model
 				changePasswordOptionsModel := new(appidmanagementv4.ChangePasswordOptions)
+				changePasswordOptionsModel.TenantID = core.StringPtr("testString")
 				changePasswordOptionsModel.NewPassword = core.StringPtr("testString")
 				changePasswordOptionsModel.UUID = core.StringPtr("testString")
 				changePasswordOptionsModel.ChangedIPAddress = core.StringPtr("testString")
@@ -4350,13 +4312,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ChangePasswordOptions model
 				changePasswordOptionsModel := new(appidmanagementv4.ChangePasswordOptions)
+				changePasswordOptionsModel.TenantID = core.StringPtr("testString")
 				changePasswordOptionsModel.NewPassword = core.StringPtr("testString")
 				changePasswordOptionsModel.UUID = core.StringPtr("testString")
 				changePasswordOptionsModel.ChangedIPAddress = core.StringPtr("testString")
@@ -4382,7 +4344,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ResendNotification(resendNotificationOptions *ResendNotificationOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		resendNotificationPath := "/management/v4/testString/cloud_directory/resend/USER_VERIFICATION"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -4402,13 +4363,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ResendNotificationOptions model
 				resendNotificationOptionsModel := new(appidmanagementv4.ResendNotificationOptions)
+				resendNotificationOptionsModel.TenantID = core.StringPtr("testString")
 				resendNotificationOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				resendNotificationOptionsModel.UUID = core.StringPtr("testString")
 				resendNotificationOptionsModel.Language = core.StringPtr("testString")
@@ -4432,7 +4393,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ResendNotification(resendNotificationOptions *ResendNotificationOptions)`, func() {
-		tenantID := "testString"
 		resendNotificationPath := "/management/v4/testString/cloud_directory/resend/USER_VERIFICATION"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -4473,7 +4433,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4481,6 +4440,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ResendNotificationOptions model
 				resendNotificationOptionsModel := new(appidmanagementv4.ResendNotificationOptions)
+				resendNotificationOptionsModel.TenantID = core.StringPtr("testString")
 				resendNotificationOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				resendNotificationOptionsModel.UUID = core.StringPtr("testString")
 				resendNotificationOptionsModel.Language = core.StringPtr("testString")
@@ -4547,7 +4507,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4560,6 +4519,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ResendNotificationOptions model
 				resendNotificationOptionsModel := new(appidmanagementv4.ResendNotificationOptions)
+				resendNotificationOptionsModel.TenantID = core.StringPtr("testString")
 				resendNotificationOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				resendNotificationOptionsModel.UUID = core.StringPtr("testString")
 				resendNotificationOptionsModel.Language = core.StringPtr("testString")
@@ -4576,13 +4536,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ResendNotificationOptions model
 				resendNotificationOptionsModel := new(appidmanagementv4.ResendNotificationOptions)
+				resendNotificationOptionsModel.TenantID = core.StringPtr("testString")
 				resendNotificationOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				resendNotificationOptionsModel.UUID = core.StringPtr("testString")
 				resendNotificationOptionsModel.Language = core.StringPtr("testString")
@@ -4620,13 +4580,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ResendNotificationOptions model
 				resendNotificationOptionsModel := new(appidmanagementv4.ResendNotificationOptions)
+				resendNotificationOptionsModel.TenantID = core.StringPtr("testString")
 				resendNotificationOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				resendNotificationOptionsModel.UUID = core.StringPtr("testString")
 				resendNotificationOptionsModel.Language = core.StringPtr("testString")
@@ -4646,7 +4606,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`CloudDirectoryRemove(cloudDirectoryRemoveOptions *CloudDirectoryRemoveOptions)`, func() {
-		tenantID := "testString"
 		cloudDirectoryRemovePath := "/management/v4/testString/cloud_directory/remove/testString"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -4664,7 +4623,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4676,6 +4634,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CloudDirectoryRemoveOptions model
 				cloudDirectoryRemoveOptionsModel := new(appidmanagementv4.CloudDirectoryRemoveOptions)
+				cloudDirectoryRemoveOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryRemoveOptionsModel.UserID = core.StringPtr("testString")
 				cloudDirectoryRemoveOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -4688,13 +4647,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the CloudDirectoryRemoveOptions model
 				cloudDirectoryRemoveOptionsModel := new(appidmanagementv4.CloudDirectoryRemoveOptions)
+				cloudDirectoryRemoveOptionsModel.TenantID = core.StringPtr("testString")
 				cloudDirectoryRemoveOptionsModel.UserID = core.StringPtr("testString")
 				cloudDirectoryRemoveOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -4717,7 +4676,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetTokensConfig(getTokensConfigOptions *GetTokensConfigOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getTokensConfigPath := "/management/v4/testString/config/tokens"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -4736,13 +4694,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTokensConfigOptions model
 				getTokensConfigOptionsModel := new(appidmanagementv4.GetTokensConfigOptions)
+				getTokensConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetTokensConfig(getTokensConfigOptionsModel)
@@ -4763,7 +4721,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetTokensConfig(getTokensConfigOptions *GetTokensConfigOptions)`, func() {
-		tenantID := "testString"
 		getTokensConfigPath := "/management/v4/testString/config/tokens"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -4787,7 +4744,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4795,6 +4751,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetTokensConfigOptions model
 				getTokensConfigOptionsModel := new(appidmanagementv4.GetTokensConfigOptions)
+				getTokensConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -4841,7 +4798,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4854,6 +4810,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetTokensConfigOptions model
 				getTokensConfigOptionsModel := new(appidmanagementv4.GetTokensConfigOptions)
+				getTokensConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -4863,17 +4820,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetTokensConfig with error: Operation request error`, func() {
+			It(`Invoke GetTokensConfig with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTokensConfigOptions model
 				getTokensConfigOptionsModel := new(appidmanagementv4.GetTokensConfigOptions)
+				getTokensConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -4881,6 +4838,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetTokensConfig(getTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetTokensConfigOptions model with no property values
+				getTokensConfigOptionsModelNew := new(appidmanagementv4.GetTokensConfigOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetTokensConfig(getTokensConfigOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -4901,13 +4865,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTokensConfigOptions model
 				getTokensConfigOptionsModel := new(appidmanagementv4.GetTokensConfigOptions)
+				getTokensConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -4924,7 +4888,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PutTokensConfig(putTokensConfigOptions *PutTokensConfigOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		putTokensConfigPath := "/management/v4/testString/config/tokens"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -4943,7 +4906,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -4965,6 +4927,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutTokensConfigOptions model
 				putTokensConfigOptionsModel := new(appidmanagementv4.PutTokensConfigOptions)
+				putTokensConfigOptionsModel.TenantID = core.StringPtr("testString")
 				putTokensConfigOptionsModel.IDTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
@@ -4990,7 +4953,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PutTokensConfig(putTokensConfigOptions *PutTokensConfigOptions)`, func() {
-		tenantID := "testString"
 		putTokensConfigPath := "/management/v4/testString/config/tokens"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -5030,7 +4992,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5053,6 +5014,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutTokensConfigOptions model
 				putTokensConfigOptionsModel := new(appidmanagementv4.PutTokensConfigOptions)
+				putTokensConfigOptionsModel.TenantID = core.StringPtr("testString")
 				putTokensConfigOptionsModel.IDTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
@@ -5120,7 +5082,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5148,6 +5109,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutTokensConfigOptions model
 				putTokensConfigOptionsModel := new(appidmanagementv4.PutTokensConfigOptions)
+				putTokensConfigOptionsModel.TenantID = core.StringPtr("testString")
 				putTokensConfigOptionsModel.IDTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
@@ -5162,11 +5124,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke PutTokensConfig with error: Operation request error`, func() {
+			It(`Invoke PutTokensConfig with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5188,6 +5149,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutTokensConfigOptions model
 				putTokensConfigOptionsModel := new(appidmanagementv4.PutTokensConfigOptions)
+				putTokensConfigOptionsModel.TenantID = core.StringPtr("testString")
 				putTokensConfigOptionsModel.IDTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
@@ -5200,6 +5162,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.PutTokensConfig(putTokensConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the PutTokensConfigOptions model with no property values
+				putTokensConfigOptionsModelNew := new(appidmanagementv4.PutTokensConfigOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.PutTokensConfig(putTokensConfigOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -5220,7 +5189,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5242,6 +5210,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PutTokensConfigOptions model
 				putTokensConfigOptionsModel := new(appidmanagementv4.PutTokensConfigOptions)
+				putTokensConfigOptionsModel.TenantID = core.StringPtr("testString")
 				putTokensConfigOptionsModel.IDTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
@@ -5263,7 +5232,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetRedirectUris(getRedirectUrisOptions *GetRedirectUrisOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getRedirectUrisPath := "/management/v4/testString/config/redirect_uris"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -5282,13 +5250,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRedirectUrisOptions model
 				getRedirectUrisOptionsModel := new(appidmanagementv4.GetRedirectUrisOptions)
+				getRedirectUrisOptionsModel.TenantID = core.StringPtr("testString")
 				getRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
@@ -5309,7 +5277,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetRedirectUris(getRedirectUrisOptions *GetRedirectUrisOptions)`, func() {
-		tenantID := "testString"
 		getRedirectUrisPath := "/management/v4/testString/config/redirect_uris"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -5333,7 +5300,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5341,6 +5307,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetRedirectUrisOptions model
 				getRedirectUrisOptionsModel := new(appidmanagementv4.GetRedirectUrisOptions)
+				getRedirectUrisOptionsModel.TenantID = core.StringPtr("testString")
 				getRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -5387,7 +5354,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5400,6 +5366,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetRedirectUrisOptions model
 				getRedirectUrisOptionsModel := new(appidmanagementv4.GetRedirectUrisOptions)
+				getRedirectUrisOptionsModel.TenantID = core.StringPtr("testString")
 				getRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -5409,17 +5376,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetRedirectUris with error: Operation request error`, func() {
+			It(`Invoke GetRedirectUris with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRedirectUrisOptions model
 				getRedirectUrisOptionsModel := new(appidmanagementv4.GetRedirectUrisOptions)
+				getRedirectUrisOptionsModel.TenantID = core.StringPtr("testString")
 				getRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -5427,6 +5394,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetRedirectUris(getRedirectUrisOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetRedirectUrisOptions model with no property values
+				getRedirectUrisOptionsModelNew := new(appidmanagementv4.GetRedirectUrisOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetRedirectUris(getRedirectUrisOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -5447,13 +5421,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRedirectUrisOptions model
 				getRedirectUrisOptionsModel := new(appidmanagementv4.GetRedirectUrisOptions)
+				getRedirectUrisOptionsModel.TenantID = core.StringPtr("testString")
 				getRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -5470,7 +5444,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateRedirectUris(updateRedirectUrisOptions *UpdateRedirectUrisOptions)`, func() {
-		tenantID := "testString"
 		updateRedirectUrisPath := "/management/v4/testString/config/redirect_uris"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -5504,7 +5477,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5522,6 +5494,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateRedirectUrisOptions model
 				updateRedirectUrisOptionsModel := new(appidmanagementv4.UpdateRedirectUrisOptions)
+				updateRedirectUrisOptionsModel.TenantID = core.StringPtr("testString")
 				updateRedirectUrisOptionsModel.RedirectUrisArray = redirectURIConfigModel
 				updateRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -5534,7 +5507,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5547,6 +5519,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateRedirectUrisOptions model
 				updateRedirectUrisOptionsModel := new(appidmanagementv4.UpdateRedirectUrisOptions)
+				updateRedirectUrisOptionsModel.TenantID = core.StringPtr("testString")
 				updateRedirectUrisOptionsModel.RedirectUrisArray = redirectURIConfigModel
 				updateRedirectUrisOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -5569,7 +5542,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetUserProfilesConfig(getUserProfilesConfigOptions *GetUserProfilesConfigOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getUserProfilesConfigPath := "/management/v4/testString/config/users_profile"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -5588,13 +5560,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserProfilesConfigOptions model
 				getUserProfilesConfigOptionsModel := new(appidmanagementv4.GetUserProfilesConfigOptions)
+				getUserProfilesConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
@@ -5615,7 +5587,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetUserProfilesConfig(getUserProfilesConfigOptions *GetUserProfilesConfigOptions)`, func() {
-		tenantID := "testString"
 		getUserProfilesConfigPath := "/management/v4/testString/config/users_profile"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -5639,7 +5610,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5647,6 +5617,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetUserProfilesConfigOptions model
 				getUserProfilesConfigOptionsModel := new(appidmanagementv4.GetUserProfilesConfigOptions)
+				getUserProfilesConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -5693,7 +5664,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5706,6 +5676,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetUserProfilesConfigOptions model
 				getUserProfilesConfigOptionsModel := new(appidmanagementv4.GetUserProfilesConfigOptions)
+				getUserProfilesConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -5715,17 +5686,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetUserProfilesConfig with error: Operation request error`, func() {
+			It(`Invoke GetUserProfilesConfig with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserProfilesConfigOptions model
 				getUserProfilesConfigOptionsModel := new(appidmanagementv4.GetUserProfilesConfigOptions)
+				getUserProfilesConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -5733,6 +5704,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetUserProfilesConfigOptions model with no property values
+				getUserProfilesConfigOptionsModelNew := new(appidmanagementv4.GetUserProfilesConfigOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetUserProfilesConfig(getUserProfilesConfigOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -5753,13 +5731,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserProfilesConfigOptions model
 				getUserProfilesConfigOptionsModel := new(appidmanagementv4.GetUserProfilesConfigOptions)
+				getUserProfilesConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -5776,7 +5754,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateUserProfilesConfig(updateUserProfilesConfigOptions *UpdateUserProfilesConfigOptions)`, func() {
-		tenantID := "testString"
 		updateUserProfilesConfigPath := "/management/v4/testString/config/users_profile"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -5810,7 +5787,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5822,6 +5798,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateUserProfilesConfigOptions model
 				updateUserProfilesConfigOptionsModel := new(appidmanagementv4.UpdateUserProfilesConfigOptions)
+				updateUserProfilesConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateUserProfilesConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -5834,13 +5811,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateUserProfilesConfigOptions model
 				updateUserProfilesConfigOptionsModel := new(appidmanagementv4.UpdateUserProfilesConfigOptions)
+				updateUserProfilesConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateUserProfilesConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateUserProfilesConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -5863,7 +5840,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetThemeText(getThemeTextOptions *GetThemeTextOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getThemeTextPath := "/management/v4/testString/config/ui/theme_text"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -5882,13 +5858,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeTextOptions model
 				getThemeTextOptionsModel := new(appidmanagementv4.GetThemeTextOptions)
+				getThemeTextOptionsModel.TenantID = core.StringPtr("testString")
 				getThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetThemeText(getThemeTextOptionsModel)
@@ -5909,7 +5885,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetThemeText(getThemeTextOptions *GetThemeTextOptions)`, func() {
-		tenantID := "testString"
 		getThemeTextPath := "/management/v4/testString/config/ui/theme_text"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -5933,7 +5908,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -5941,6 +5915,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetThemeTextOptions model
 				getThemeTextOptionsModel := new(appidmanagementv4.GetThemeTextOptions)
+				getThemeTextOptionsModel.TenantID = core.StringPtr("testString")
 				getThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -5987,7 +5962,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6000,6 +5974,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetThemeTextOptions model
 				getThemeTextOptionsModel := new(appidmanagementv4.GetThemeTextOptions)
+				getThemeTextOptionsModel.TenantID = core.StringPtr("testString")
 				getThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -6009,17 +5984,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetThemeText with error: Operation request error`, func() {
+			It(`Invoke GetThemeText with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeTextOptions model
 				getThemeTextOptionsModel := new(appidmanagementv4.GetThemeTextOptions)
+				getThemeTextOptionsModel.TenantID = core.StringPtr("testString")
 				getThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -6027,6 +6002,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetThemeText(getThemeTextOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetThemeTextOptions model with no property values
+				getThemeTextOptionsModelNew := new(appidmanagementv4.GetThemeTextOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetThemeText(getThemeTextOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -6047,13 +6029,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeTextOptions model
 				getThemeTextOptionsModel := new(appidmanagementv4.GetThemeTextOptions)
+				getThemeTextOptionsModel.TenantID = core.StringPtr("testString")
 				getThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -6070,7 +6052,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PostThemeText(postThemeTextOptions *PostThemeTextOptions)`, func() {
-		tenantID := "testString"
 		postThemeTextPath := "/management/v4/testString/config/ui/theme_text"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -6104,7 +6085,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6116,6 +6096,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PostThemeTextOptions model
 				postThemeTextOptionsModel := new(appidmanagementv4.PostThemeTextOptions)
+				postThemeTextOptionsModel.TenantID = core.StringPtr("testString")
 				postThemeTextOptionsModel.TabTitle = core.StringPtr("Login")
 				postThemeTextOptionsModel.Footnote = core.StringPtr("Powered by App ID")
 				postThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -6125,17 +6106,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
-			It(`Invoke PostThemeText with error: Operation request error`, func() {
+			It(`Invoke PostThemeText with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostThemeTextOptions model
 				postThemeTextOptionsModel := new(appidmanagementv4.PostThemeTextOptions)
+				postThemeTextOptionsModel.TenantID = core.StringPtr("testString")
 				postThemeTextOptionsModel.TabTitle = core.StringPtr("Login")
 				postThemeTextOptionsModel.Footnote = core.StringPtr("Powered by App ID")
 				postThemeTextOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -6146,6 +6127,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				// Construct a second instance of the PostThemeTextOptions model with no property values
+				postThemeTextOptionsModelNew := new(appidmanagementv4.PostThemeTextOptions)
+				// Invoke operation with invalid model (negative test)
+				response, operationErr = appIDManagementService.PostThemeText(postThemeTextOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -6153,7 +6140,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetThemeColor(getThemeColorOptions *GetThemeColorOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getThemeColorPath := "/management/v4/testString/config/ui/theme_color"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -6172,13 +6158,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeColorOptions model
 				getThemeColorOptionsModel := new(appidmanagementv4.GetThemeColorOptions)
+				getThemeColorOptionsModel.TenantID = core.StringPtr("testString")
 				getThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetThemeColor(getThemeColorOptionsModel)
@@ -6199,7 +6185,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetThemeColor(getThemeColorOptions *GetThemeColorOptions)`, func() {
-		tenantID := "testString"
 		getThemeColorPath := "/management/v4/testString/config/ui/theme_color"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -6223,7 +6208,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6231,6 +6215,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetThemeColorOptions model
 				getThemeColorOptionsModel := new(appidmanagementv4.GetThemeColorOptions)
+				getThemeColorOptionsModel.TenantID = core.StringPtr("testString")
 				getThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -6277,7 +6262,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6290,6 +6274,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetThemeColorOptions model
 				getThemeColorOptionsModel := new(appidmanagementv4.GetThemeColorOptions)
+				getThemeColorOptionsModel.TenantID = core.StringPtr("testString")
 				getThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -6299,17 +6284,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetThemeColor with error: Operation request error`, func() {
+			It(`Invoke GetThemeColor with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeColorOptions model
 				getThemeColorOptionsModel := new(appidmanagementv4.GetThemeColorOptions)
+				getThemeColorOptionsModel.TenantID = core.StringPtr("testString")
 				getThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -6317,6 +6302,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetThemeColor(getThemeColorOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetThemeColorOptions model with no property values
+				getThemeColorOptionsModelNew := new(appidmanagementv4.GetThemeColorOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetThemeColor(getThemeColorOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -6337,13 +6329,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetThemeColorOptions model
 				getThemeColorOptionsModel := new(appidmanagementv4.GetThemeColorOptions)
+				getThemeColorOptionsModel.TenantID = core.StringPtr("testString")
 				getThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -6360,7 +6352,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PostThemeColor(postThemeColorOptions *PostThemeColorOptions)`, func() {
-		tenantID := "testString"
 		postThemeColorPath := "/management/v4/testString/config/ui/theme_color"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -6394,7 +6385,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6406,6 +6396,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PostThemeColorOptions model
 				postThemeColorOptionsModel := new(appidmanagementv4.PostThemeColorOptions)
+				postThemeColorOptionsModel.TenantID = core.StringPtr("testString")
 				postThemeColorOptionsModel.HeaderColor = core.StringPtr("#EEF2F5")
 				postThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -6414,17 +6405,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
-			It(`Invoke PostThemeColor with error: Operation request error`, func() {
+			It(`Invoke PostThemeColor with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostThemeColorOptions model
 				postThemeColorOptionsModel := new(appidmanagementv4.PostThemeColorOptions)
+				postThemeColorOptionsModel.TenantID = core.StringPtr("testString")
 				postThemeColorOptionsModel.HeaderColor = core.StringPtr("#EEF2F5")
 				postThemeColorOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -6434,6 +6425,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				// Construct a second instance of the PostThemeColorOptions model with no property values
+				postThemeColorOptionsModelNew := new(appidmanagementv4.PostThemeColorOptions)
+				// Invoke operation with invalid model (negative test)
+				response, operationErr = appIDManagementService.PostThemeColor(postThemeColorOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -6441,7 +6438,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetMedia(getMediaOptions *GetMediaOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getMediaPath := "/management/v4/testString/config/ui/media"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -6460,13 +6456,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMediaOptions model
 				getMediaOptionsModel := new(appidmanagementv4.GetMediaOptions)
+				getMediaOptionsModel.TenantID = core.StringPtr("testString")
 				getMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetMedia(getMediaOptionsModel)
@@ -6487,7 +6483,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetMedia(getMediaOptions *GetMediaOptions)`, func() {
-		tenantID := "testString"
 		getMediaPath := "/management/v4/testString/config/ui/media"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -6511,7 +6506,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6519,6 +6513,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetMediaOptions model
 				getMediaOptionsModel := new(appidmanagementv4.GetMediaOptions)
+				getMediaOptionsModel.TenantID = core.StringPtr("testString")
 				getMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -6565,7 +6560,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6578,6 +6572,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetMediaOptions model
 				getMediaOptionsModel := new(appidmanagementv4.GetMediaOptions)
+				getMediaOptionsModel.TenantID = core.StringPtr("testString")
 				getMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -6587,17 +6582,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetMedia with error: Operation request error`, func() {
+			It(`Invoke GetMedia with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMediaOptions model
 				getMediaOptionsModel := new(appidmanagementv4.GetMediaOptions)
+				getMediaOptionsModel.TenantID = core.StringPtr("testString")
 				getMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -6605,6 +6600,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetMedia(getMediaOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetMediaOptions model with no property values
+				getMediaOptionsModelNew := new(appidmanagementv4.GetMediaOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetMedia(getMediaOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -6625,13 +6627,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMediaOptions model
 				getMediaOptionsModel := new(appidmanagementv4.GetMediaOptions)
+				getMediaOptionsModel.TenantID = core.StringPtr("testString")
 				getMediaOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -6648,7 +6650,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PostMedia(postMediaOptions *PostMediaOptions)`, func() {
-		tenantID := "testString"
 		postMediaPath := "/management/v4/testString/config/ui/media"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -6667,7 +6668,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6679,6 +6679,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PostMediaOptions model
 				postMediaOptionsModel := new(appidmanagementv4.PostMediaOptions)
+				postMediaOptionsModel.TenantID = core.StringPtr("testString")
 				postMediaOptionsModel.MediaType = core.StringPtr("logo")
 				postMediaOptionsModel.File = CreateMockReader("This is a mock file.")
 				postMediaOptionsModel.FileContentType = core.StringPtr("testString")
@@ -6693,13 +6694,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostMediaOptions model
 				postMediaOptionsModel := new(appidmanagementv4.PostMediaOptions)
+				postMediaOptionsModel.TenantID = core.StringPtr("testString")
 				postMediaOptionsModel.MediaType = core.StringPtr("logo")
 				postMediaOptionsModel.File = CreateMockReader("This is a mock file.")
 				postMediaOptionsModel.FileContentType = core.StringPtr("testString")
@@ -6724,7 +6725,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetSAMLMetadata(getSAMLMetadataOptions *GetSAMLMetadataOptions)`, func() {
-		tenantID := "testString"
 		getSAMLMetadataPath := "/management/v4/testString/config/saml_metadata"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -6748,7 +6748,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6756,6 +6755,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetSAMLMetadataOptions model
 				getSAMLMetadataOptionsModel := new(appidmanagementv4.GetSAMLMetadataOptions)
+				getSAMLMetadataOptionsModel.TenantID = core.StringPtr("testString")
 				getSAMLMetadataOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -6802,7 +6802,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6815,6 +6814,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetSAMLMetadataOptions model
 				getSAMLMetadataOptionsModel := new(appidmanagementv4.GetSAMLMetadataOptions)
+				getSAMLMetadataOptionsModel.TenantID = core.StringPtr("testString")
 				getSAMLMetadataOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -6824,17 +6824,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetSAMLMetadata with error: Operation request error`, func() {
+			It(`Invoke GetSAMLMetadata with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLMetadataOptions model
 				getSAMLMetadataOptionsModel := new(appidmanagementv4.GetSAMLMetadataOptions)
+				getSAMLMetadataOptionsModel.TenantID = core.StringPtr("testString")
 				getSAMLMetadataOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -6842,6 +6842,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetSAMLMetadata(getSAMLMetadataOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetSAMLMetadataOptions model with no property values
+				getSAMLMetadataOptionsModelNew := new(appidmanagementv4.GetSAMLMetadataOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetSAMLMetadata(getSAMLMetadataOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -6862,13 +6869,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLMetadataOptions model
 				getSAMLMetadataOptionsModel := new(appidmanagementv4.GetSAMLMetadataOptions)
+				getSAMLMetadataOptionsModel.TenantID = core.StringPtr("testString")
 				getSAMLMetadataOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -6885,7 +6892,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetTemplate(getTemplateOptions *GetTemplateOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getTemplatePath := "/management/v4/testString/config/cloud_directory/templates/USER_VERIFICATION/testString"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -6904,13 +6910,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTemplateOptions model
 				getTemplateOptionsModel := new(appidmanagementv4.GetTemplateOptions)
+				getTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				getTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				getTemplateOptionsModel.Language = core.StringPtr("testString")
 				getTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -6933,7 +6939,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetTemplate(getTemplateOptions *GetTemplateOptions)`, func() {
-		tenantID := "testString"
 		getTemplatePath := "/management/v4/testString/config/cloud_directory/templates/USER_VERIFICATION/testString"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -6957,7 +6962,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -6965,6 +6969,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetTemplateOptions model
 				getTemplateOptionsModel := new(appidmanagementv4.GetTemplateOptions)
+				getTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				getTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				getTemplateOptionsModel.Language = core.StringPtr("testString")
 				getTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -7013,7 +7018,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7026,6 +7030,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetTemplateOptions model
 				getTemplateOptionsModel := new(appidmanagementv4.GetTemplateOptions)
+				getTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				getTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				getTemplateOptionsModel.Language = core.StringPtr("testString")
 				getTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -7041,13 +7046,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTemplateOptions model
 				getTemplateOptionsModel := new(appidmanagementv4.GetTemplateOptions)
+				getTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				getTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				getTemplateOptionsModel.Language = core.StringPtr("testString")
 				getTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -7084,13 +7089,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetTemplateOptions model
 				getTemplateOptionsModel := new(appidmanagementv4.GetTemplateOptions)
+				getTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				getTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				getTemplateOptionsModel.Language = core.StringPtr("testString")
 				getTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -7109,7 +7114,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateTemplate(updateTemplateOptions *UpdateTemplateOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		updateTemplatePath := "/management/v4/testString/config/cloud_directory/templates/USER_VERIFICATION/testString"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -7128,13 +7132,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateTemplateOptions model
 				updateTemplateOptionsModel := new(appidmanagementv4.UpdateTemplateOptions)
+				updateTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				updateTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				updateTemplateOptionsModel.Language = core.StringPtr("testString")
 				updateTemplateOptionsModel.Subject = core.StringPtr("testString")
@@ -7161,7 +7165,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateTemplate(updateTemplateOptions *UpdateTemplateOptions)`, func() {
-		tenantID := "testString"
 		updateTemplatePath := "/management/v4/testString/config/cloud_directory/templates/USER_VERIFICATION/testString"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -7201,7 +7204,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7209,6 +7211,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateTemplateOptions model
 				updateTemplateOptionsModel := new(appidmanagementv4.UpdateTemplateOptions)
+				updateTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				updateTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				updateTemplateOptionsModel.Language = core.StringPtr("testString")
 				updateTemplateOptionsModel.Subject = core.StringPtr("testString")
@@ -7277,7 +7280,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7290,6 +7292,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateTemplateOptions model
 				updateTemplateOptionsModel := new(appidmanagementv4.UpdateTemplateOptions)
+				updateTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				updateTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				updateTemplateOptionsModel.Language = core.StringPtr("testString")
 				updateTemplateOptionsModel.Subject = core.StringPtr("testString")
@@ -7309,13 +7312,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateTemplateOptions model
 				updateTemplateOptionsModel := new(appidmanagementv4.UpdateTemplateOptions)
+				updateTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				updateTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				updateTemplateOptionsModel.Language = core.StringPtr("testString")
 				updateTemplateOptionsModel.Subject = core.StringPtr("testString")
@@ -7356,13 +7359,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateTemplateOptions model
 				updateTemplateOptionsModel := new(appidmanagementv4.UpdateTemplateOptions)
+				updateTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				updateTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				updateTemplateOptionsModel.Language = core.StringPtr("testString")
 				updateTemplateOptionsModel.Subject = core.StringPtr("testString")
@@ -7385,7 +7388,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`DeleteTemplate(deleteTemplateOptions *DeleteTemplateOptions)`, func() {
-		tenantID := "testString"
 		deleteTemplatePath := "/management/v4/testString/config/cloud_directory/templates/USER_VERIFICATION/testString"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -7403,7 +7405,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7415,6 +7416,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the DeleteTemplateOptions model
 				deleteTemplateOptionsModel := new(appidmanagementv4.DeleteTemplateOptions)
+				deleteTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				deleteTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				deleteTemplateOptionsModel.Language = core.StringPtr("testString")
 				deleteTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -7428,13 +7430,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the DeleteTemplateOptions model
 				deleteTemplateOptionsModel := new(appidmanagementv4.DeleteTemplateOptions)
+				deleteTemplateOptionsModel.TenantID = core.StringPtr("testString")
 				deleteTemplateOptionsModel.TemplateName = core.StringPtr("USER_VERIFICATION")
 				deleteTemplateOptionsModel.Language = core.StringPtr("testString")
 				deleteTemplateOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -7458,7 +7460,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetLocalization(getLocalizationOptions *GetLocalizationOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getLocalizationPath := "/management/v4/testString/config/ui/languages"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -7477,13 +7478,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetLocalizationOptions model
 				getLocalizationOptionsModel := new(appidmanagementv4.GetLocalizationOptions)
+				getLocalizationOptionsModel.TenantID = core.StringPtr("testString")
 				getLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetLocalization(getLocalizationOptionsModel)
@@ -7504,7 +7505,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetLocalization(getLocalizationOptions *GetLocalizationOptions)`, func() {
-		tenantID := "testString"
 		getLocalizationPath := "/management/v4/testString/config/ui/languages"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -7528,7 +7528,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7536,6 +7535,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetLocalizationOptions model
 				getLocalizationOptionsModel := new(appidmanagementv4.GetLocalizationOptions)
+				getLocalizationOptionsModel.TenantID = core.StringPtr("testString")
 				getLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -7582,7 +7582,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7595,6 +7594,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetLocalizationOptions model
 				getLocalizationOptionsModel := new(appidmanagementv4.GetLocalizationOptions)
+				getLocalizationOptionsModel.TenantID = core.StringPtr("testString")
 				getLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -7604,17 +7604,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetLocalization with error: Operation request error`, func() {
+			It(`Invoke GetLocalization with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetLocalizationOptions model
 				getLocalizationOptionsModel := new(appidmanagementv4.GetLocalizationOptions)
+				getLocalizationOptionsModel.TenantID = core.StringPtr("testString")
 				getLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -7622,6 +7622,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetLocalization(getLocalizationOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetLocalizationOptions model with no property values
+				getLocalizationOptionsModelNew := new(appidmanagementv4.GetLocalizationOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetLocalization(getLocalizationOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -7642,13 +7649,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetLocalizationOptions model
 				getLocalizationOptionsModel := new(appidmanagementv4.GetLocalizationOptions)
+				getLocalizationOptionsModel.TenantID = core.StringPtr("testString")
 				getLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -7665,7 +7672,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateLocalization(updateLocalizationOptions *UpdateLocalizationOptions)`, func() {
-		tenantID := "testString"
 		updateLocalizationPath := "/management/v4/testString/config/ui/languages"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -7699,7 +7705,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7711,6 +7716,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateLocalizationOptions model
 				updateLocalizationOptionsModel := new(appidmanagementv4.UpdateLocalizationOptions)
+				updateLocalizationOptionsModel.TenantID = core.StringPtr("testString")
 				updateLocalizationOptionsModel.Languages = []string{"testString"}
 				updateLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -7719,17 +7725,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
-			It(`Invoke UpdateLocalization with error: Operation request error`, func() {
+			It(`Invoke UpdateLocalization with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateLocalizationOptions model
 				updateLocalizationOptionsModel := new(appidmanagementv4.UpdateLocalizationOptions)
+				updateLocalizationOptionsModel.TenantID = core.StringPtr("testString")
 				updateLocalizationOptionsModel.Languages = []string{"testString"}
 				updateLocalizationOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -7739,6 +7745,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				// Construct a second instance of the UpdateLocalizationOptions model with no property values
+				updateLocalizationOptionsModelNew := new(appidmanagementv4.UpdateLocalizationOptions)
+				// Invoke operation with invalid model (negative test)
+				response, operationErr = appIDManagementService.UpdateLocalization(updateLocalizationOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -7746,7 +7758,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptions *GetCloudDirectorySenderDetailsOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getCloudDirectorySenderDetailsPath := "/management/v4/testString/config/cloud_directory/sender_details"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -7765,13 +7776,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
 				getCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.GetCloudDirectorySenderDetailsOptions)
+				getCloudDirectorySenderDetailsOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
@@ -7792,7 +7803,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptions *GetCloudDirectorySenderDetailsOptions)`, func() {
-		tenantID := "testString"
 		getCloudDirectorySenderDetailsPath := "/management/v4/testString/config/cloud_directory/sender_details"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -7816,7 +7826,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7824,6 +7833,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
 				getCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.GetCloudDirectorySenderDetailsOptions)
+				getCloudDirectorySenderDetailsOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -7870,7 +7880,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -7883,6 +7892,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
 				getCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.GetCloudDirectorySenderDetailsOptions)
+				getCloudDirectorySenderDetailsOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -7892,17 +7902,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetCloudDirectorySenderDetails with error: Operation request error`, func() {
+			It(`Invoke GetCloudDirectorySenderDetails with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
 				getCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.GetCloudDirectorySenderDetailsOptions)
+				getCloudDirectorySenderDetailsOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -7910,6 +7920,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetCloudDirectorySenderDetailsOptions model with no property values
+				getCloudDirectorySenderDetailsOptionsModelNew := new(appidmanagementv4.GetCloudDirectorySenderDetailsOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetCloudDirectorySenderDetails(getCloudDirectorySenderDetailsOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -7930,13 +7947,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
 				getCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.GetCloudDirectorySenderDetailsOptions)
+				getCloudDirectorySenderDetailsOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -7953,7 +7970,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectorySenderDetails(setCloudDirectorySenderDetailsOptions *SetCloudDirectorySenderDetailsOptions)`, func() {
-		tenantID := "testString"
 		setCloudDirectorySenderDetailsPath := "/management/v4/testString/config/cloud_directory/sender_details"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -7987,7 +8003,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8015,6 +8030,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectorySenderDetailsOptions model
 				setCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.SetCloudDirectorySenderDetailsOptions)
+				setCloudDirectorySenderDetailsOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectorySenderDetailsOptionsModel.SenderDetails = cloudDirectorySenderDetailsSenderDetailsModel
 				setCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -8027,7 +8043,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8050,6 +8065,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectorySenderDetailsOptions model
 				setCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.SetCloudDirectorySenderDetailsOptions)
+				setCloudDirectorySenderDetailsOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectorySenderDetailsOptionsModel.SenderDetails = cloudDirectorySenderDetailsSenderDetailsModel
 				setCloudDirectorySenderDetailsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -8072,7 +8088,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptions *GetCloudDirectoryActionURLOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getCloudDirectoryActionURLPath := "/management/v4/testString/config/cloud_directory/action_url/on_user_verified"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -8091,13 +8106,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryActionURLOptions model
 				getCloudDirectoryActionURLOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
+				getCloudDirectoryActionURLOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
 				getCloudDirectoryActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -8119,7 +8134,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptions *GetCloudDirectoryActionURLOptions)`, func() {
-		tenantID := "testString"
 		getCloudDirectoryActionURLPath := "/management/v4/testString/config/cloud_directory/action_url/on_user_verified"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -8143,7 +8157,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8151,6 +8164,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryActionURLOptions model
 				getCloudDirectoryActionURLOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
+				getCloudDirectoryActionURLOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
 				getCloudDirectoryActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -8198,7 +8212,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8211,6 +8224,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryActionURLOptions model
 				getCloudDirectoryActionURLOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
+				getCloudDirectoryActionURLOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
 				getCloudDirectoryActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -8225,13 +8239,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryActionURLOptions model
 				getCloudDirectoryActionURLOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
+				getCloudDirectoryActionURLOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
 				getCloudDirectoryActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -8267,13 +8281,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryActionURLOptions model
 				getCloudDirectoryActionURLOptionsModel := new(appidmanagementv4.GetCloudDirectoryActionURLOptions)
+				getCloudDirectoryActionURLOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
 				getCloudDirectoryActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -8291,7 +8305,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectoryAction(setCloudDirectoryActionOptions *SetCloudDirectoryActionOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		setCloudDirectoryActionPath := "/management/v4/testString/config/cloud_directory/action_url/on_user_verified"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -8310,13 +8323,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryActionOptions model
 				setCloudDirectoryActionOptionsModel := new(appidmanagementv4.SetCloudDirectoryActionOptions)
+				setCloudDirectoryActionOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Action = core.StringPtr("on_user_verified")
 				setCloudDirectoryActionOptionsModel.ActionURL = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -8339,7 +8352,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectoryAction(setCloudDirectoryActionOptions *SetCloudDirectoryActionOptions)`, func() {
-		tenantID := "testString"
 		setCloudDirectoryActionPath := "/management/v4/testString/config/cloud_directory/action_url/on_user_verified"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -8379,7 +8391,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8387,6 +8398,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryActionOptions model
 				setCloudDirectoryActionOptionsModel := new(appidmanagementv4.SetCloudDirectoryActionOptions)
+				setCloudDirectoryActionOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Action = core.StringPtr("on_user_verified")
 				setCloudDirectoryActionOptionsModel.ActionURL = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -8451,7 +8463,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8464,6 +8475,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryActionOptions model
 				setCloudDirectoryActionOptionsModel := new(appidmanagementv4.SetCloudDirectoryActionOptions)
+				setCloudDirectoryActionOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Action = core.StringPtr("on_user_verified")
 				setCloudDirectoryActionOptionsModel.ActionURL = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -8479,13 +8491,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryActionOptions model
 				setCloudDirectoryActionOptionsModel := new(appidmanagementv4.SetCloudDirectoryActionOptions)
+				setCloudDirectoryActionOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Action = core.StringPtr("on_user_verified")
 				setCloudDirectoryActionOptionsModel.ActionURL = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -8522,13 +8534,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryActionOptions model
 				setCloudDirectoryActionOptionsModel := new(appidmanagementv4.SetCloudDirectoryActionOptions)
+				setCloudDirectoryActionOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Action = core.StringPtr("on_user_verified")
 				setCloudDirectoryActionOptionsModel.ActionURL = core.StringPtr("testString")
 				setCloudDirectoryActionOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -8547,7 +8559,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`DeleteActionURL(deleteActionURLOptions *DeleteActionURLOptions)`, func() {
-		tenantID := "testString"
 		deleteActionURLPath := "/management/v4/testString/config/cloud_directory/action_url/on_user_verified"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -8565,7 +8576,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8577,6 +8587,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the DeleteActionURLOptions model
 				deleteActionURLOptionsModel := new(appidmanagementv4.DeleteActionURLOptions)
+				deleteActionURLOptionsModel.TenantID = core.StringPtr("testString")
 				deleteActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
 				deleteActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -8589,13 +8600,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the DeleteActionURLOptions model
 				deleteActionURLOptionsModel := new(appidmanagementv4.DeleteActionURLOptions)
+				deleteActionURLOptionsModel.TenantID = core.StringPtr("testString")
 				deleteActionURLOptionsModel.Action = core.StringPtr("on_user_verified")
 				deleteActionURLOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -8618,7 +8629,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptions *GetCloudDirectoryPasswordRegexOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getCloudDirectoryPasswordRegexPath := "/management/v4/testString/config/cloud_directory/password_regex"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -8637,13 +8647,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
 				getCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.GetCloudDirectoryPasswordRegexOptions)
+				getCloudDirectoryPasswordRegexOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
@@ -8664,7 +8674,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptions *GetCloudDirectoryPasswordRegexOptions)`, func() {
-		tenantID := "testString"
 		getCloudDirectoryPasswordRegexPath := "/management/v4/testString/config/cloud_directory/password_regex"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -8688,7 +8697,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8696,6 +8704,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
 				getCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.GetCloudDirectoryPasswordRegexOptions)
+				getCloudDirectoryPasswordRegexOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -8742,7 +8751,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8755,6 +8763,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
 				getCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.GetCloudDirectoryPasswordRegexOptions)
+				getCloudDirectoryPasswordRegexOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -8764,17 +8773,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetCloudDirectoryPasswordRegex with error: Operation request error`, func() {
+			It(`Invoke GetCloudDirectoryPasswordRegex with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
 				getCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.GetCloudDirectoryPasswordRegexOptions)
+				getCloudDirectoryPasswordRegexOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -8782,6 +8791,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetCloudDirectoryPasswordRegexOptions model with no property values
+				getCloudDirectoryPasswordRegexOptionsModelNew := new(appidmanagementv4.GetCloudDirectoryPasswordRegexOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryPasswordRegex(getCloudDirectoryPasswordRegexOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -8802,13 +8818,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
 				getCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.GetCloudDirectoryPasswordRegexOptions)
+				getCloudDirectoryPasswordRegexOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryPasswordRegexOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -8825,7 +8841,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptions *SetCloudDirectoryPasswordRegexOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		setCloudDirectoryPasswordRegexPath := "/management/v4/testString/config/cloud_directory/password_regex"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -8844,13 +8859,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
 				setCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.SetCloudDirectoryPasswordRegexOptions)
+				setCloudDirectoryPasswordRegexOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Regex = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Base64EncodedRegex = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.ErrorMessage = core.StringPtr("testString")
@@ -8874,7 +8889,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptions *SetCloudDirectoryPasswordRegexOptions)`, func() {
-		tenantID := "testString"
 		setCloudDirectoryPasswordRegexPath := "/management/v4/testString/config/cloud_directory/password_regex"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -8914,7 +8928,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -8922,6 +8935,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
 				setCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.SetCloudDirectoryPasswordRegexOptions)
+				setCloudDirectoryPasswordRegexOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Regex = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Base64EncodedRegex = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.ErrorMessage = core.StringPtr("testString")
@@ -8987,7 +9001,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9000,6 +9013,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
 				setCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.SetCloudDirectoryPasswordRegexOptions)
+				setCloudDirectoryPasswordRegexOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Regex = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Base64EncodedRegex = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.ErrorMessage = core.StringPtr("testString")
@@ -9012,17 +9026,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke SetCloudDirectoryPasswordRegex with error: Operation request error`, func() {
+			It(`Invoke SetCloudDirectoryPasswordRegex with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
 				setCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.SetCloudDirectoryPasswordRegexOptions)
+				setCloudDirectoryPasswordRegexOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Regex = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Base64EncodedRegex = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.ErrorMessage = core.StringPtr("testString")
@@ -9033,6 +9047,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the SetCloudDirectoryPasswordRegexOptions model with no property values
+				setCloudDirectoryPasswordRegexOptionsModelNew := new(appidmanagementv4.SetCloudDirectoryPasswordRegexOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -9053,13 +9074,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
 				setCloudDirectoryPasswordRegexOptionsModel := new(appidmanagementv4.SetCloudDirectoryPasswordRegexOptions)
+				setCloudDirectoryPasswordRegexOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Regex = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.Base64EncodedRegex = core.StringPtr("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.ErrorMessage = core.StringPtr("testString")
@@ -9079,7 +9100,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptions *GetCloudDirectoryEmailDispatcherOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getCloudDirectoryEmailDispatcherPath := "/management/v4/testString/config/cloud_directory/email_dispatcher"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -9098,13 +9118,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
 				getCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.GetCloudDirectoryEmailDispatcherOptions)
+				getCloudDirectoryEmailDispatcherOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
@@ -9125,7 +9145,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptions *GetCloudDirectoryEmailDispatcherOptions)`, func() {
-		tenantID := "testString"
 		getCloudDirectoryEmailDispatcherPath := "/management/v4/testString/config/cloud_directory/email_dispatcher"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -9149,7 +9168,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9157,6 +9175,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
 				getCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.GetCloudDirectoryEmailDispatcherOptions)
+				getCloudDirectoryEmailDispatcherOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -9203,7 +9222,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9216,6 +9234,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
 				getCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.GetCloudDirectoryEmailDispatcherOptions)
+				getCloudDirectoryEmailDispatcherOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -9225,17 +9244,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetCloudDirectoryEmailDispatcher with error: Operation request error`, func() {
+			It(`Invoke GetCloudDirectoryEmailDispatcher with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
 				getCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.GetCloudDirectoryEmailDispatcherOptions)
+				getCloudDirectoryEmailDispatcherOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -9243,6 +9262,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetCloudDirectoryEmailDispatcherOptions model with no property values
+				getCloudDirectoryEmailDispatcherOptionsModelNew := new(appidmanagementv4.GetCloudDirectoryEmailDispatcherOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryEmailDispatcher(getCloudDirectoryEmailDispatcherOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -9263,13 +9289,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
 				getCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.GetCloudDirectoryEmailDispatcherOptions)
+				getCloudDirectoryEmailDispatcherOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryEmailDispatcherOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -9286,7 +9312,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptions *SetCloudDirectoryEmailDispatcherOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		setCloudDirectoryEmailDispatcherPath := "/management/v4/testString/config/cloud_directory/email_dispatcher"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -9305,7 +9330,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9328,6 +9352,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryEmailDispatcherOptions model
 				setCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.SetCloudDirectoryEmailDispatcherOptions)
+				setCloudDirectoryEmailDispatcherOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryEmailDispatcherOptionsModel.Provider = core.StringPtr("sendgrid")
 				setCloudDirectoryEmailDispatcherOptionsModel.Sendgrid = emailDispatcherParamsSendgridModel
 				setCloudDirectoryEmailDispatcherOptionsModel.Custom = emailDispatcherParamsCustomModel
@@ -9351,7 +9376,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptions *SetCloudDirectoryEmailDispatcherOptions)`, func() {
-		tenantID := "testString"
 		setCloudDirectoryEmailDispatcherPath := "/management/v4/testString/config/cloud_directory/email_dispatcher"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -9391,7 +9415,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9415,6 +9438,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryEmailDispatcherOptions model
 				setCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.SetCloudDirectoryEmailDispatcherOptions)
+				setCloudDirectoryEmailDispatcherOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryEmailDispatcherOptionsModel.Provider = core.StringPtr("sendgrid")
 				setCloudDirectoryEmailDispatcherOptionsModel.Sendgrid = emailDispatcherParamsSendgridModel
 				setCloudDirectoryEmailDispatcherOptionsModel.Custom = emailDispatcherParamsCustomModel
@@ -9480,7 +9504,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9509,6 +9532,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryEmailDispatcherOptions model
 				setCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.SetCloudDirectoryEmailDispatcherOptions)
+				setCloudDirectoryEmailDispatcherOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryEmailDispatcherOptionsModel.Provider = core.StringPtr("sendgrid")
 				setCloudDirectoryEmailDispatcherOptionsModel.Sendgrid = emailDispatcherParamsSendgridModel
 				setCloudDirectoryEmailDispatcherOptionsModel.Custom = emailDispatcherParamsCustomModel
@@ -9525,7 +9549,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9548,6 +9571,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryEmailDispatcherOptions model
 				setCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.SetCloudDirectoryEmailDispatcherOptions)
+				setCloudDirectoryEmailDispatcherOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryEmailDispatcherOptionsModel.Provider = core.StringPtr("sendgrid")
 				setCloudDirectoryEmailDispatcherOptionsModel.Sendgrid = emailDispatcherParamsSendgridModel
 				setCloudDirectoryEmailDispatcherOptionsModel.Custom = emailDispatcherParamsCustomModel
@@ -9585,7 +9609,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9608,6 +9631,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryEmailDispatcherOptions model
 				setCloudDirectoryEmailDispatcherOptionsModel := new(appidmanagementv4.SetCloudDirectoryEmailDispatcherOptions)
+				setCloudDirectoryEmailDispatcherOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryEmailDispatcherOptionsModel.Provider = core.StringPtr("sendgrid")
 				setCloudDirectoryEmailDispatcherOptionsModel.Sendgrid = emailDispatcherParamsSendgridModel
 				setCloudDirectoryEmailDispatcherOptionsModel.Custom = emailDispatcherParamsCustomModel
@@ -9627,7 +9651,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`EmailSettingTest(emailSettingTestOptions *EmailSettingTestOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		emailSettingTestPath := "/management/v4/testString/config/cloud_directory/email_settings/test"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -9646,7 +9669,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9690,6 +9712,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the EmailSettingTestOptions model
 				emailSettingTestOptionsModel := new(appidmanagementv4.EmailSettingTestOptions)
+				emailSettingTestOptionsModel.TenantID = core.StringPtr("testString")
 				emailSettingTestOptionsModel.EmailTo = core.StringPtr("testString")
 				emailSettingTestOptionsModel.EmailSettings = emailSettingsTestParamsEmailSettingsModel
 				emailSettingTestOptionsModel.SenderDetails = emailSettingsTestParamsSenderDetailsModel
@@ -9713,7 +9736,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`EmailSettingTest(emailSettingTestOptions *EmailSettingTestOptions)`, func() {
-		tenantID := "testString"
 		emailSettingTestPath := "/management/v4/testString/config/cloud_directory/email_settings/test"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -9753,7 +9775,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9798,6 +9819,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the EmailSettingTestOptions model
 				emailSettingTestOptionsModel := new(appidmanagementv4.EmailSettingTestOptions)
+				emailSettingTestOptionsModel.TenantID = core.StringPtr("testString")
 				emailSettingTestOptionsModel.EmailTo = core.StringPtr("testString")
 				emailSettingTestOptionsModel.EmailSettings = emailSettingsTestParamsEmailSettingsModel
 				emailSettingTestOptionsModel.SenderDetails = emailSettingsTestParamsSenderDetailsModel
@@ -9863,7 +9885,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9913,6 +9934,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the EmailSettingTestOptions model
 				emailSettingTestOptionsModel := new(appidmanagementv4.EmailSettingTestOptions)
+				emailSettingTestOptionsModel.TenantID = core.StringPtr("testString")
 				emailSettingTestOptionsModel.EmailTo = core.StringPtr("testString")
 				emailSettingTestOptionsModel.EmailSettings = emailSettingsTestParamsEmailSettingsModel
 				emailSettingTestOptionsModel.SenderDetails = emailSettingsTestParamsSenderDetailsModel
@@ -9929,7 +9951,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -9973,6 +9994,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the EmailSettingTestOptions model
 				emailSettingTestOptionsModel := new(appidmanagementv4.EmailSettingTestOptions)
+				emailSettingTestOptionsModel.TenantID = core.StringPtr("testString")
 				emailSettingTestOptionsModel.EmailTo = core.StringPtr("testString")
 				emailSettingTestOptionsModel.EmailSettings = emailSettingsTestParamsEmailSettingsModel
 				emailSettingTestOptionsModel.SenderDetails = emailSettingsTestParamsSenderDetailsModel
@@ -10010,7 +10032,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10054,6 +10075,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the EmailSettingTestOptions model
 				emailSettingTestOptionsModel := new(appidmanagementv4.EmailSettingTestOptions)
+				emailSettingTestOptionsModel.TenantID = core.StringPtr("testString")
 				emailSettingTestOptionsModel.EmailTo = core.StringPtr("testString")
 				emailSettingTestOptionsModel.EmailSettings = emailSettingsTestParamsEmailSettingsModel
 				emailSettingTestOptionsModel.SenderDetails = emailSettingsTestParamsSenderDetailsModel
@@ -10073,7 +10095,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PostEmailDispatcherTest(postEmailDispatcherTestOptions *PostEmailDispatcherTestOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		postEmailDispatcherTestPath := "/management/v4/testString/config/cloud_directory/email_dispatcher/test"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -10092,13 +10113,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostEmailDispatcherTestOptions model
 				postEmailDispatcherTestOptionsModel := new(appidmanagementv4.PostEmailDispatcherTestOptions)
+				postEmailDispatcherTestOptionsModel.TenantID = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Email = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -10120,7 +10141,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PostEmailDispatcherTest(postEmailDispatcherTestOptions *PostEmailDispatcherTestOptions)`, func() {
-		tenantID := "testString"
 		postEmailDispatcherTestPath := "/management/v4/testString/config/cloud_directory/email_dispatcher/test"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -10160,7 +10180,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10168,6 +10187,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PostEmailDispatcherTestOptions model
 				postEmailDispatcherTestOptionsModel := new(appidmanagementv4.PostEmailDispatcherTestOptions)
+				postEmailDispatcherTestOptionsModel.TenantID = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Email = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -10231,7 +10251,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10244,6 +10263,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PostEmailDispatcherTestOptions model
 				postEmailDispatcherTestOptionsModel := new(appidmanagementv4.PostEmailDispatcherTestOptions)
+				postEmailDispatcherTestOptionsModel.TenantID = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Email = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -10258,13 +10278,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostEmailDispatcherTestOptions model
 				postEmailDispatcherTestOptionsModel := new(appidmanagementv4.PostEmailDispatcherTestOptions)
+				postEmailDispatcherTestOptionsModel.TenantID = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Email = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -10300,13 +10320,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostEmailDispatcherTestOptions model
 				postEmailDispatcherTestOptionsModel := new(appidmanagementv4.PostEmailDispatcherTestOptions)
+				postEmailDispatcherTestOptionsModel.TenantID = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Email = core.StringPtr("testString")
 				postEmailDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -10324,7 +10344,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PostSMSDispatcherTest(postSMSDispatcherTestOptions *PostSMSDispatcherTestOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		postSMSDispatcherTestPath := "/management/v4/testString/config/cloud_directory/sms_dispatcher/test"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -10343,13 +10362,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostSMSDispatcherTestOptions model
 				postSMSDispatcherTestOptionsModel := new(appidmanagementv4.PostSMSDispatcherTestOptions)
+				postSMSDispatcherTestOptionsModel.TenantID = core.StringPtr("testString")
 				postSMSDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
 				postSMSDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -10371,7 +10390,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PostSMSDispatcherTest(postSMSDispatcherTestOptions *PostSMSDispatcherTestOptions)`, func() {
-		tenantID := "testString"
 		postSMSDispatcherTestPath := "/management/v4/testString/config/cloud_directory/sms_dispatcher/test"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -10411,7 +10429,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10419,6 +10436,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PostSMSDispatcherTestOptions model
 				postSMSDispatcherTestOptionsModel := new(appidmanagementv4.PostSMSDispatcherTestOptions)
+				postSMSDispatcherTestOptionsModel.TenantID = core.StringPtr("testString")
 				postSMSDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
 				postSMSDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -10482,7 +10500,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10495,6 +10512,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PostSMSDispatcherTestOptions model
 				postSMSDispatcherTestOptionsModel := new(appidmanagementv4.PostSMSDispatcherTestOptions)
+				postSMSDispatcherTestOptionsModel.TenantID = core.StringPtr("testString")
 				postSMSDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
 				postSMSDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -10509,13 +10527,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostSMSDispatcherTestOptions model
 				postSMSDispatcherTestOptionsModel := new(appidmanagementv4.PostSMSDispatcherTestOptions)
+				postSMSDispatcherTestOptionsModel.TenantID = core.StringPtr("testString")
 				postSMSDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
 				postSMSDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -10551,13 +10569,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostSMSDispatcherTestOptions model
 				postSMSDispatcherTestOptionsModel := new(appidmanagementv4.PostSMSDispatcherTestOptions)
+				postSMSDispatcherTestOptionsModel.TenantID = core.StringPtr("testString")
 				postSMSDispatcherTestOptionsModel.PhoneNumber = core.StringPtr("+1-999-999-9999")
 				postSMSDispatcherTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -10575,7 +10593,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptions *GetCloudDirectoryAdvancedPasswordManagementOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getCloudDirectoryAdvancedPasswordManagementPath := "/management/v4/testString/config/cloud_directory/advanced_password_management"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -10594,13 +10611,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.GetCloudDirectoryAdvancedPasswordManagementOptions)
+				getCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
@@ -10621,7 +10638,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptions *GetCloudDirectoryAdvancedPasswordManagementOptions)`, func() {
-		tenantID := "testString"
 		getCloudDirectoryAdvancedPasswordManagementPath := "/management/v4/testString/config/cloud_directory/advanced_password_management"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -10645,7 +10661,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10653,6 +10668,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.GetCloudDirectoryAdvancedPasswordManagementOptions)
+				getCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -10699,7 +10715,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10712,6 +10727,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.GetCloudDirectoryAdvancedPasswordManagementOptions)
+				getCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -10721,17 +10737,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetCloudDirectoryAdvancedPasswordManagement with error: Operation request error`, func() {
+			It(`Invoke GetCloudDirectoryAdvancedPasswordManagement with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.GetCloudDirectoryAdvancedPasswordManagementOptions)
+				getCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -10739,6 +10755,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model with no property values
+				getCloudDirectoryAdvancedPasswordManagementOptionsModelNew := new(appidmanagementv4.GetCloudDirectoryAdvancedPasswordManagementOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryAdvancedPasswordManagement(getCloudDirectoryAdvancedPasswordManagementOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -10759,13 +10782,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.GetCloudDirectoryAdvancedPasswordManagementOptions)
+				getCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -10782,7 +10805,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptions *SetCloudDirectoryAdvancedPasswordManagementOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		setCloudDirectoryAdvancedPasswordManagementPath := "/management/v4/testString/config/cloud_directory/advanced_password_management"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -10801,7 +10823,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10858,6 +10879,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryAdvancedPasswordManagementOptions model
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.SetCloudDirectoryAdvancedPasswordManagementOptions)
+				setCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.AdvancedPasswordManagement = apmSchemaAdvancedPasswordManagementModel
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -10879,7 +10901,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptions *SetCloudDirectoryAdvancedPasswordManagementOptions)`, func() {
-		tenantID := "testString"
 		setCloudDirectoryAdvancedPasswordManagementPath := "/management/v4/testString/config/cloud_directory/advanced_password_management"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -10919,7 +10940,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -10977,6 +10997,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryAdvancedPasswordManagementOptions model
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.SetCloudDirectoryAdvancedPasswordManagementOptions)
+				setCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.AdvancedPasswordManagement = apmSchemaAdvancedPasswordManagementModel
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -11040,7 +11061,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11103,6 +11123,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryAdvancedPasswordManagementOptions model
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.SetCloudDirectoryAdvancedPasswordManagementOptions)
+				setCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.AdvancedPasswordManagement = apmSchemaAdvancedPasswordManagementModel
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -11117,7 +11138,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11174,6 +11194,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryAdvancedPasswordManagementOptions model
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.SetCloudDirectoryAdvancedPasswordManagementOptions)
+				setCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.AdvancedPasswordManagement = apmSchemaAdvancedPasswordManagementModel
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -11209,7 +11230,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11266,6 +11286,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryAdvancedPasswordManagementOptions model
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel := new(appidmanagementv4.SetCloudDirectoryAdvancedPasswordManagementOptions)
+				setCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.AdvancedPasswordManagement = apmSchemaAdvancedPasswordManagementModel
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -11283,7 +11304,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetAuditStatus(getAuditStatusOptions *GetAuditStatusOptions)`, func() {
-		tenantID := "testString"
 		getAuditStatusPath := "/management/v4/testString/config/capture_runtime_activity"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -11301,7 +11321,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11313,6 +11332,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetAuditStatusOptions model
 				getAuditStatusOptionsModel := new(appidmanagementv4.GetAuditStatusOptions)
+				getAuditStatusOptionsModel.TenantID = core.StringPtr("testString")
 				getAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -11320,17 +11340,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
-			It(`Invoke GetAuditStatus with error: Operation request error`, func() {
+			It(`Invoke GetAuditStatus with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetAuditStatusOptions model
 				getAuditStatusOptionsModel := new(appidmanagementv4.GetAuditStatusOptions)
+				getAuditStatusOptionsModel.TenantID = core.StringPtr("testString")
 				getAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -11339,6 +11359,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				// Construct a second instance of the GetAuditStatusOptions model with no property values
+				getAuditStatusOptionsModelNew := new(appidmanagementv4.GetAuditStatusOptions)
+				// Invoke operation with invalid model (negative test)
+				response, operationErr = appIDManagementService.GetAuditStatus(getAuditStatusOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -11346,7 +11372,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetAuditStatus(setAuditStatusOptions *SetAuditStatusOptions)`, func() {
-		tenantID := "testString"
 		setAuditStatusPath := "/management/v4/testString/config/capture_runtime_activity"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -11380,7 +11405,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11392,6 +11416,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetAuditStatusOptions model
 				setAuditStatusOptionsModel := new(appidmanagementv4.SetAuditStatusOptions)
+				setAuditStatusOptionsModel.TenantID = core.StringPtr("testString")
 				setAuditStatusOptionsModel.IsActive = core.BoolPtr(true)
 				setAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -11404,13 +11429,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the SetAuditStatusOptions model
 				setAuditStatusOptionsModel := new(appidmanagementv4.SetAuditStatusOptions)
+				setAuditStatusOptionsModel.TenantID = core.StringPtr("testString")
 				setAuditStatusOptionsModel.IsActive = core.BoolPtr(true)
 				setAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -11433,7 +11458,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ListChannels(listChannelsOptions *ListChannelsOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		listChannelsPath := "/management/v4/testString/config/cloud_directory/mfa/channels"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -11452,13 +11476,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListChannelsOptions model
 				listChannelsOptionsModel := new(appidmanagementv4.ListChannelsOptions)
+				listChannelsOptionsModel.TenantID = core.StringPtr("testString")
 				listChannelsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.ListChannels(listChannelsOptionsModel)
@@ -11479,7 +11503,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ListChannels(listChannelsOptions *ListChannelsOptions)`, func() {
-		tenantID := "testString"
 		listChannelsPath := "/management/v4/testString/config/cloud_directory/mfa/channels"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -11503,7 +11526,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11511,6 +11533,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ListChannelsOptions model
 				listChannelsOptionsModel := new(appidmanagementv4.ListChannelsOptions)
+				listChannelsOptionsModel.TenantID = core.StringPtr("testString")
 				listChannelsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -11557,7 +11580,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11570,6 +11592,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ListChannelsOptions model
 				listChannelsOptionsModel := new(appidmanagementv4.ListChannelsOptions)
+				listChannelsOptionsModel.TenantID = core.StringPtr("testString")
 				listChannelsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -11579,17 +11602,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke ListChannels with error: Operation request error`, func() {
+			It(`Invoke ListChannels with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListChannelsOptions model
 				listChannelsOptionsModel := new(appidmanagementv4.ListChannelsOptions)
+				listChannelsOptionsModel.TenantID = core.StringPtr("testString")
 				listChannelsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -11597,6 +11620,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.ListChannels(listChannelsOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the ListChannelsOptions model with no property values
+				listChannelsOptionsModelNew := new(appidmanagementv4.ListChannelsOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.ListChannels(listChannelsOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -11617,13 +11647,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListChannelsOptions model
 				listChannelsOptionsModel := new(appidmanagementv4.ListChannelsOptions)
+				listChannelsOptionsModel.TenantID = core.StringPtr("testString")
 				listChannelsOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -11640,7 +11670,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetChannel(getChannelOptions *GetChannelOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getChannelPath := "/management/v4/testString/config/cloud_directory/mfa/channels/email"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -11659,13 +11688,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetChannelOptions model
 				getChannelOptionsModel := new(appidmanagementv4.GetChannelOptions)
+				getChannelOptionsModel.TenantID = core.StringPtr("testString")
 				getChannelOptionsModel.Channel = core.StringPtr("email")
 				getChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -11687,7 +11716,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetChannel(getChannelOptions *GetChannelOptions)`, func() {
-		tenantID := "testString"
 		getChannelPath := "/management/v4/testString/config/cloud_directory/mfa/channels/email"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -11711,7 +11739,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11719,6 +11746,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetChannelOptions model
 				getChannelOptionsModel := new(appidmanagementv4.GetChannelOptions)
+				getChannelOptionsModel.TenantID = core.StringPtr("testString")
 				getChannelOptionsModel.Channel = core.StringPtr("email")
 				getChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -11766,7 +11794,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11779,6 +11806,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetChannelOptions model
 				getChannelOptionsModel := new(appidmanagementv4.GetChannelOptions)
+				getChannelOptionsModel.TenantID = core.StringPtr("testString")
 				getChannelOptionsModel.Channel = core.StringPtr("email")
 				getChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -11793,13 +11821,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetChannelOptions model
 				getChannelOptionsModel := new(appidmanagementv4.GetChannelOptions)
+				getChannelOptionsModel.TenantID = core.StringPtr("testString")
 				getChannelOptionsModel.Channel = core.StringPtr("email")
 				getChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -11835,13 +11863,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetChannelOptions model
 				getChannelOptionsModel := new(appidmanagementv4.GetChannelOptions)
+				getChannelOptionsModel.TenantID = core.StringPtr("testString")
 				getChannelOptionsModel.Channel = core.StringPtr("email")
 				getChannelOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -11859,7 +11887,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateChannel(updateChannelOptions *UpdateChannelOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		updateChannelPath := "/management/v4/testString/config/cloud_directory/mfa/channels/email"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -11878,13 +11905,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateChannelOptions model
 				updateChannelOptionsModel := new(appidmanagementv4.UpdateChannelOptions)
+				updateChannelOptionsModel.TenantID = core.StringPtr("testString")
 				updateChannelOptionsModel.Channel = core.StringPtr("email")
 				updateChannelOptionsModel.IsActive = core.BoolPtr(true)
 				updateChannelOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
@@ -11908,7 +11935,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateChannel(updateChannelOptions *UpdateChannelOptions)`, func() {
-		tenantID := "testString"
 		updateChannelPath := "/management/v4/testString/config/cloud_directory/mfa/channels/email"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -11948,7 +11974,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -11956,6 +11981,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateChannelOptions model
 				updateChannelOptionsModel := new(appidmanagementv4.UpdateChannelOptions)
+				updateChannelOptionsModel.TenantID = core.StringPtr("testString")
 				updateChannelOptionsModel.Channel = core.StringPtr("email")
 				updateChannelOptionsModel.IsActive = core.BoolPtr(true)
 				updateChannelOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
@@ -12021,7 +12047,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12034,6 +12059,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateChannelOptions model
 				updateChannelOptionsModel := new(appidmanagementv4.UpdateChannelOptions)
+				updateChannelOptionsModel.TenantID = core.StringPtr("testString")
 				updateChannelOptionsModel.Channel = core.StringPtr("email")
 				updateChannelOptionsModel.IsActive = core.BoolPtr(true)
 				updateChannelOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
@@ -12050,13 +12076,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateChannelOptions model
 				updateChannelOptionsModel := new(appidmanagementv4.UpdateChannelOptions)
+				updateChannelOptionsModel.TenantID = core.StringPtr("testString")
 				updateChannelOptionsModel.Channel = core.StringPtr("email")
 				updateChannelOptionsModel.IsActive = core.BoolPtr(true)
 				updateChannelOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
@@ -12094,13 +12120,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateChannelOptions model
 				updateChannelOptionsModel := new(appidmanagementv4.UpdateChannelOptions)
+				updateChannelOptionsModel.TenantID = core.StringPtr("testString")
 				updateChannelOptionsModel.Channel = core.StringPtr("email")
 				updateChannelOptionsModel.IsActive = core.BoolPtr(true)
 				updateChannelOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
@@ -12120,7 +12146,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetExtensionConfig(getExtensionConfigOptions *GetExtensionConfigOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getExtensionConfigPath := "/management/v4/testString/config/cloud_directory/mfa/extensions/premfa"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -12139,13 +12164,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetExtensionConfigOptions model
 				getExtensionConfigOptionsModel := new(appidmanagementv4.GetExtensionConfigOptions)
+				getExtensionConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				getExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -12167,7 +12192,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetExtensionConfig(getExtensionConfigOptions *GetExtensionConfigOptions)`, func() {
-		tenantID := "testString"
 		getExtensionConfigPath := "/management/v4/testString/config/cloud_directory/mfa/extensions/premfa"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -12191,7 +12215,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12199,6 +12222,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetExtensionConfigOptions model
 				getExtensionConfigOptionsModel := new(appidmanagementv4.GetExtensionConfigOptions)
+				getExtensionConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				getExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -12246,7 +12270,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12259,6 +12282,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetExtensionConfigOptions model
 				getExtensionConfigOptionsModel := new(appidmanagementv4.GetExtensionConfigOptions)
+				getExtensionConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				getExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -12273,13 +12297,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetExtensionConfigOptions model
 				getExtensionConfigOptionsModel := new(appidmanagementv4.GetExtensionConfigOptions)
+				getExtensionConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				getExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -12315,13 +12339,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetExtensionConfigOptions model
 				getExtensionConfigOptionsModel := new(appidmanagementv4.GetExtensionConfigOptions)
+				getExtensionConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				getExtensionConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -12339,7 +12363,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateExtensionConfig(updateExtensionConfigOptions *UpdateExtensionConfigOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		updateExtensionConfigPath := "/management/v4/testString/config/cloud_directory/mfa/extensions/premfa"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -12358,7 +12381,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12370,6 +12392,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateExtensionConfigOptions model
 				updateExtensionConfigOptionsModel := new(appidmanagementv4.UpdateExtensionConfigOptions)
+				updateExtensionConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				updateExtensionConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateExtensionConfigOptionsModel.Config = updateExtensionConfigConfigModel
@@ -12393,7 +12416,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateExtensionConfig(updateExtensionConfigOptions *UpdateExtensionConfigOptions)`, func() {
-		tenantID := "testString"
 		updateExtensionConfigPath := "/management/v4/testString/config/cloud_directory/mfa/extensions/premfa"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -12433,7 +12455,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12446,6 +12467,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateExtensionConfigOptions model
 				updateExtensionConfigOptionsModel := new(appidmanagementv4.UpdateExtensionConfigOptions)
+				updateExtensionConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				updateExtensionConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateExtensionConfigOptionsModel.Config = updateExtensionConfigConfigModel
@@ -12511,7 +12533,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12529,6 +12550,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateExtensionConfigOptions model
 				updateExtensionConfigOptionsModel := new(appidmanagementv4.UpdateExtensionConfigOptions)
+				updateExtensionConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				updateExtensionConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateExtensionConfigOptionsModel.Config = updateExtensionConfigConfigModel
@@ -12545,7 +12567,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12557,6 +12578,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateExtensionConfigOptions model
 				updateExtensionConfigOptionsModel := new(appidmanagementv4.UpdateExtensionConfigOptions)
+				updateExtensionConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				updateExtensionConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateExtensionConfigOptionsModel.Config = updateExtensionConfigConfigModel
@@ -12594,7 +12616,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12606,6 +12627,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateExtensionConfigOptions model
 				updateExtensionConfigOptionsModel := new(appidmanagementv4.UpdateExtensionConfigOptions)
+				updateExtensionConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateExtensionConfigOptionsModel.Name = core.StringPtr("premfa")
 				updateExtensionConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateExtensionConfigOptionsModel.Config = updateExtensionConfigConfigModel
@@ -12625,7 +12647,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateExtensionActive(updateExtensionActiveOptions *UpdateExtensionActiveOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		updateExtensionActivePath := "/management/v4/testString/config/cloud_directory/mfa/extensions/premfa/active"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -12644,13 +12665,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateExtensionActiveOptions model
 				updateExtensionActiveOptionsModel := new(appidmanagementv4.UpdateExtensionActiveOptions)
+				updateExtensionActiveOptionsModel.TenantID = core.StringPtr("testString")
 				updateExtensionActiveOptionsModel.Name = core.StringPtr("premfa")
 				updateExtensionActiveOptionsModel.IsActive = core.BoolPtr(true)
 				updateExtensionActiveOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
@@ -12674,7 +12695,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateExtensionActive(updateExtensionActiveOptions *UpdateExtensionActiveOptions)`, func() {
-		tenantID := "testString"
 		updateExtensionActivePath := "/management/v4/testString/config/cloud_directory/mfa/extensions/premfa/active"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -12714,7 +12734,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12722,6 +12741,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateExtensionActiveOptions model
 				updateExtensionActiveOptionsModel := new(appidmanagementv4.UpdateExtensionActiveOptions)
+				updateExtensionActiveOptionsModel.TenantID = core.StringPtr("testString")
 				updateExtensionActiveOptionsModel.Name = core.StringPtr("premfa")
 				updateExtensionActiveOptionsModel.IsActive = core.BoolPtr(true)
 				updateExtensionActiveOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
@@ -12787,7 +12807,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12800,6 +12819,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateExtensionActiveOptions model
 				updateExtensionActiveOptionsModel := new(appidmanagementv4.UpdateExtensionActiveOptions)
+				updateExtensionActiveOptionsModel.TenantID = core.StringPtr("testString")
 				updateExtensionActiveOptionsModel.Name = core.StringPtr("premfa")
 				updateExtensionActiveOptionsModel.IsActive = core.BoolPtr(true)
 				updateExtensionActiveOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
@@ -12816,13 +12836,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateExtensionActiveOptions model
 				updateExtensionActiveOptionsModel := new(appidmanagementv4.UpdateExtensionActiveOptions)
+				updateExtensionActiveOptionsModel.TenantID = core.StringPtr("testString")
 				updateExtensionActiveOptionsModel.Name = core.StringPtr("premfa")
 				updateExtensionActiveOptionsModel.IsActive = core.BoolPtr(true)
 				updateExtensionActiveOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
@@ -12860,13 +12880,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateExtensionActiveOptions model
 				updateExtensionActiveOptionsModel := new(appidmanagementv4.UpdateExtensionActiveOptions)
+				updateExtensionActiveOptionsModel.TenantID = core.StringPtr("testString")
 				updateExtensionActiveOptionsModel.Name = core.StringPtr("premfa")
 				updateExtensionActiveOptionsModel.IsActive = core.BoolPtr(true)
 				updateExtensionActiveOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
@@ -12886,7 +12906,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PostExtensionsTest(postExtensionsTestOptions *PostExtensionsTestOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		postExtensionsTestPath := "/management/v4/testString/config/cloud_directory/mfa/extensions/premfa/test"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -12905,13 +12924,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostExtensionsTestOptions model
 				postExtensionsTestOptionsModel := new(appidmanagementv4.PostExtensionsTestOptions)
+				postExtensionsTestOptionsModel.TenantID = core.StringPtr("testString")
 				postExtensionsTestOptionsModel.Name = core.StringPtr("premfa")
 				postExtensionsTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -12933,7 +12952,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`PostExtensionsTest(postExtensionsTestOptions *PostExtensionsTestOptions)`, func() {
-		tenantID := "testString"
 		postExtensionsTestPath := "/management/v4/testString/config/cloud_directory/mfa/extensions/premfa/test"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -12957,7 +12975,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -12965,6 +12982,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PostExtensionsTestOptions model
 				postExtensionsTestOptionsModel := new(appidmanagementv4.PostExtensionsTestOptions)
+				postExtensionsTestOptionsModel.TenantID = core.StringPtr("testString")
 				postExtensionsTestOptionsModel.Name = core.StringPtr("premfa")
 				postExtensionsTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -13012,7 +13030,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13025,6 +13042,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the PostExtensionsTestOptions model
 				postExtensionsTestOptionsModel := new(appidmanagementv4.PostExtensionsTestOptions)
+				postExtensionsTestOptionsModel.TenantID = core.StringPtr("testString")
 				postExtensionsTestOptionsModel.Name = core.StringPtr("premfa")
 				postExtensionsTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -13039,13 +13057,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostExtensionsTestOptions model
 				postExtensionsTestOptionsModel := new(appidmanagementv4.PostExtensionsTestOptions)
+				postExtensionsTestOptionsModel.TenantID = core.StringPtr("testString")
 				postExtensionsTestOptionsModel.Name = core.StringPtr("premfa")
 				postExtensionsTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -13081,13 +13099,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the PostExtensionsTestOptions model
 				postExtensionsTestOptionsModel := new(appidmanagementv4.PostExtensionsTestOptions)
+				postExtensionsTestOptionsModel.TenantID = core.StringPtr("testString")
 				postExtensionsTestOptionsModel.Name = core.StringPtr("premfa")
 				postExtensionsTestOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -13105,7 +13123,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetMFAConfig(getMFAConfigOptions *GetMFAConfigOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getMFAConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -13124,13 +13141,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMFAConfigOptions model
 				getMFAConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
+				getMFAConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetMFAConfig(getMFAConfigOptionsModel)
@@ -13151,7 +13168,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetMFAConfig(getMFAConfigOptions *GetMFAConfigOptions)`, func() {
-		tenantID := "testString"
 		getMFAConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -13175,7 +13191,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13183,6 +13198,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetMFAConfigOptions model
 				getMFAConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
+				getMFAConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -13229,7 +13245,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13242,6 +13257,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetMFAConfigOptions model
 				getMFAConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
+				getMFAConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -13251,17 +13267,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetMFAConfig with error: Operation request error`, func() {
+			It(`Invoke GetMFAConfig with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMFAConfigOptions model
 				getMFAConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
+				getMFAConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -13269,6 +13285,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetMFAConfig(getMFAConfigOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetMFAConfigOptions model with no property values
+				getMFAConfigOptionsModelNew := new(appidmanagementv4.GetMFAConfigOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetMFAConfig(getMFAConfigOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -13289,13 +13312,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetMFAConfigOptions model
 				getMFAConfigOptionsModel := new(appidmanagementv4.GetMFAConfigOptions)
+				getMFAConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -13312,7 +13335,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateMFAConfig(updateMFAConfigOptions *UpdateMFAConfigOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		updateMFAConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -13331,13 +13353,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateMFAConfigOptions model
 				updateMFAConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateMFAConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateMFAConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
 				updateMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -13360,7 +13382,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateMFAConfig(updateMFAConfigOptions *UpdateMFAConfigOptions)`, func() {
-		tenantID := "testString"
 		updateMFAConfigPath := "/management/v4/testString/config/cloud_directory/mfa"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -13400,7 +13421,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13408,6 +13428,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateMFAConfigOptions model
 				updateMFAConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateMFAConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateMFAConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
 				updateMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -13472,7 +13493,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13485,6 +13505,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateMFAConfigOptions model
 				updateMFAConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateMFAConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateMFAConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
 				updateMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -13500,13 +13521,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateMFAConfigOptions model
 				updateMFAConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateMFAConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateMFAConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
 				updateMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -13543,13 +13564,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateMFAConfigOptions model
 				updateMFAConfigOptionsModel := new(appidmanagementv4.UpdateMFAConfigOptions)
+				updateMFAConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateMFAConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateMFAConfigOptionsModel.Config = map[string]interface{}{"anyKey": "anyValue"}
 				updateMFAConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -13568,7 +13589,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetSSOConfig(getSSOConfigOptions *GetSSOConfigOptions)`, func() {
-		tenantID := "testString"
 		getSSOConfigPath := "/management/v4/testString/config/cloud_directory/sso"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -13586,7 +13606,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13598,6 +13617,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetSSOConfigOptions model
 				getSSOConfigOptionsModel := new(appidmanagementv4.GetSSOConfigOptions)
+				getSSOConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -13605,17 +13625,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
-			It(`Invoke GetSSOConfig with error: Operation request error`, func() {
+			It(`Invoke GetSSOConfig with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSSOConfigOptions model
 				getSSOConfigOptionsModel := new(appidmanagementv4.GetSSOConfigOptions)
+				getSSOConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -13624,6 +13644,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				// Construct a second instance of the GetSSOConfigOptions model with no property values
+				getSSOConfigOptionsModelNew := new(appidmanagementv4.GetSSOConfigOptions)
+				// Invoke operation with invalid model (negative test)
+				response, operationErr = appIDManagementService.GetSSOConfig(getSSOConfigOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -13631,7 +13657,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateSSOConfig(updateSSOConfigOptions *UpdateSSOConfigOptions)`, func() {
-		tenantID := "testString"
 		updateSSOConfigPath := "/management/v4/testString/config/cloud_directory/sso"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -13665,7 +13690,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13677,6 +13701,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateSSOConfigOptions model
 				updateSSOConfigOptionsModel := new(appidmanagementv4.UpdateSSOConfigOptions)
+				updateSSOConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateSSOConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateSSOConfigOptionsModel.InactivityTimeoutSeconds = core.Float64Ptr(float64(86400))
 				updateSSOConfigOptionsModel.LogoutRedirectUris = []string{"http://localhost:3000/logout-callback"}
@@ -13691,13 +13716,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateSSOConfigOptions model
 				updateSSOConfigOptionsModel := new(appidmanagementv4.UpdateSSOConfigOptions)
+				updateSSOConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateSSOConfigOptionsModel.IsActive = core.BoolPtr(true)
 				updateSSOConfigOptionsModel.InactivityTimeoutSeconds = core.Float64Ptr(float64(86400))
 				updateSSOConfigOptionsModel.LogoutRedirectUris = []string{"http://localhost:3000/logout-callback"}
@@ -13722,7 +13747,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetRateLimitConfig(getRateLimitConfigOptions *GetRateLimitConfigOptions)`, func() {
-		tenantID := "testString"
 		getRateLimitConfigPath := "/management/v4/testString/config/cloud_directory/rate_limit"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -13740,7 +13764,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13752,6 +13775,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetRateLimitConfigOptions model
 				getRateLimitConfigOptionsModel := new(appidmanagementv4.GetRateLimitConfigOptions)
+				getRateLimitConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getRateLimitConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -13759,17 +13783,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 			})
-			It(`Invoke GetRateLimitConfig with error: Operation request error`, func() {
+			It(`Invoke GetRateLimitConfig with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRateLimitConfigOptions model
 				getRateLimitConfigOptionsModel := new(appidmanagementv4.GetRateLimitConfigOptions)
+				getRateLimitConfigOptionsModel.TenantID = core.StringPtr("testString")
 				getRateLimitConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -13778,6 +13802,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				// Construct a second instance of the GetRateLimitConfigOptions model with no property values
+				getRateLimitConfigOptionsModelNew := new(appidmanagementv4.GetRateLimitConfigOptions)
+				// Invoke operation with invalid model (negative test)
+				response, operationErr = appIDManagementService.GetRateLimitConfig(getRateLimitConfigOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -13785,7 +13815,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateRateLimitConfig(updateRateLimitConfigOptions *UpdateRateLimitConfigOptions)`, func() {
-		tenantID := "testString"
 		updateRateLimitConfigPath := "/management/v4/testString/config/cloud_directory/rate_limit"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -13819,7 +13848,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13831,6 +13859,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateRateLimitConfigOptions model
 				updateRateLimitConfigOptionsModel := new(appidmanagementv4.UpdateRateLimitConfigOptions)
+				updateRateLimitConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateRateLimitConfigOptionsModel.SignUpLimitPerMinute = core.Int64Ptr(int64(50))
 				updateRateLimitConfigOptionsModel.SignInLimitPerMinute = core.Int64Ptr(int64(60))
 				updateRateLimitConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -13844,13 +13873,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UpdateRateLimitConfigOptions model
 				updateRateLimitConfigOptionsModel := new(appidmanagementv4.UpdateRateLimitConfigOptions)
+				updateRateLimitConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateRateLimitConfigOptionsModel.SignUpLimitPerMinute = core.Int64Ptr(int64(50))
 				updateRateLimitConfigOptionsModel.SignInLimitPerMinute = core.Int64Ptr(int64(60))
 				updateRateLimitConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -13874,7 +13903,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetFacebookIDP(getFacebookIDPOptions *GetFacebookIDPOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getFacebookIDPPath := "/management/v4/testString/config/idps/facebook"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -13893,13 +13921,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetFacebookIDPOptions model
 				getFacebookIDPOptionsModel := new(appidmanagementv4.GetFacebookIDPOptions)
+				getFacebookIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
@@ -13920,7 +13948,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetFacebookIDP(getFacebookIDPOptions *GetFacebookIDPOptions)`, func() {
-		tenantID := "testString"
 		getFacebookIDPPath := "/management/v4/testString/config/idps/facebook"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -13944,7 +13971,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -13952,6 +13978,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetFacebookIDPOptions model
 				getFacebookIDPOptionsModel := new(appidmanagementv4.GetFacebookIDPOptions)
+				getFacebookIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -13998,7 +14025,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14011,6 +14037,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetFacebookIDPOptions model
 				getFacebookIDPOptionsModel := new(appidmanagementv4.GetFacebookIDPOptions)
+				getFacebookIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -14020,17 +14047,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetFacebookIDP with error: Operation request error`, func() {
+			It(`Invoke GetFacebookIDP with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetFacebookIDPOptions model
 				getFacebookIDPOptionsModel := new(appidmanagementv4.GetFacebookIDPOptions)
+				getFacebookIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -14038,6 +14065,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetFacebookIDP(getFacebookIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetFacebookIDPOptions model with no property values
+				getFacebookIDPOptionsModelNew := new(appidmanagementv4.GetFacebookIDPOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetFacebookIDP(getFacebookIDPOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -14058,13 +14092,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetFacebookIDPOptions model
 				getFacebookIDPOptionsModel := new(appidmanagementv4.GetFacebookIDPOptions)
+				getFacebookIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -14081,7 +14115,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetFacebookIDP(setFacebookIDPOptions *SetFacebookIDPOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		setFacebookIDPPath := "/management/v4/testString/config/idps/facebook"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -14100,7 +14133,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14118,6 +14150,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetFacebookIDPOptions model
 				setFacebookIDPOptionsModel := new(appidmanagementv4.SetFacebookIDPOptions)
+				setFacebookIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setFacebookIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -14139,7 +14172,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetFacebookIDP(setFacebookIDPOptions *SetFacebookIDPOptions)`, func() {
-		tenantID := "testString"
 		setFacebookIDPPath := "/management/v4/testString/config/idps/facebook"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -14179,7 +14211,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14198,6 +14229,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetFacebookIDPOptions model
 				setFacebookIDPOptionsModel := new(appidmanagementv4.SetFacebookIDPOptions)
+				setFacebookIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setFacebookIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -14261,7 +14293,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14285,6 +14316,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetFacebookIDPOptions model
 				setFacebookIDPOptionsModel := new(appidmanagementv4.SetFacebookIDPOptions)
+				setFacebookIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setFacebookIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -14299,7 +14331,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14317,6 +14348,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetFacebookIDPOptions model
 				setFacebookIDPOptionsModel := new(appidmanagementv4.SetFacebookIDPOptions)
+				setFacebookIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setFacebookIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -14352,7 +14384,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14370,6 +14401,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetFacebookIDPOptions model
 				setFacebookIDPOptionsModel := new(appidmanagementv4.SetFacebookIDPOptions)
+				setFacebookIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setFacebookIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setFacebookIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -14387,7 +14419,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetGoogleIDP(getGoogleIDPOptions *GetGoogleIDPOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getGoogleIDPPath := "/management/v4/testString/config/idps/google"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -14406,13 +14437,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetGoogleIDPOptions model
 				getGoogleIDPOptionsModel := new(appidmanagementv4.GetGoogleIDPOptions)
+				getGoogleIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
@@ -14433,7 +14464,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetGoogleIDP(getGoogleIDPOptions *GetGoogleIDPOptions)`, func() {
-		tenantID := "testString"
 		getGoogleIDPPath := "/management/v4/testString/config/idps/google"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -14457,7 +14487,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14465,6 +14494,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetGoogleIDPOptions model
 				getGoogleIDPOptionsModel := new(appidmanagementv4.GetGoogleIDPOptions)
+				getGoogleIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -14511,7 +14541,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14524,6 +14553,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetGoogleIDPOptions model
 				getGoogleIDPOptionsModel := new(appidmanagementv4.GetGoogleIDPOptions)
+				getGoogleIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -14533,17 +14563,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetGoogleIDP with error: Operation request error`, func() {
+			It(`Invoke GetGoogleIDP with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetGoogleIDPOptions model
 				getGoogleIDPOptionsModel := new(appidmanagementv4.GetGoogleIDPOptions)
+				getGoogleIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -14551,6 +14581,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetGoogleIDP(getGoogleIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetGoogleIDPOptions model with no property values
+				getGoogleIDPOptionsModelNew := new(appidmanagementv4.GetGoogleIDPOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetGoogleIDP(getGoogleIDPOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -14571,13 +14608,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetGoogleIDPOptions model
 				getGoogleIDPOptionsModel := new(appidmanagementv4.GetGoogleIDPOptions)
+				getGoogleIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -14594,7 +14631,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetGoogleIDP(setGoogleIDPOptions *SetGoogleIDPOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		setGoogleIDPPath := "/management/v4/testString/config/idps/google"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -14613,7 +14649,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14631,6 +14666,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetGoogleIDPOptions model
 				setGoogleIDPOptionsModel := new(appidmanagementv4.SetGoogleIDPOptions)
+				setGoogleIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setGoogleIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -14652,7 +14688,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetGoogleIDP(setGoogleIDPOptions *SetGoogleIDPOptions)`, func() {
-		tenantID := "testString"
 		setGoogleIDPPath := "/management/v4/testString/config/idps/google"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -14692,7 +14727,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14711,6 +14745,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetGoogleIDPOptions model
 				setGoogleIDPOptionsModel := new(appidmanagementv4.SetGoogleIDPOptions)
+				setGoogleIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setGoogleIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -14774,7 +14809,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14798,6 +14832,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetGoogleIDPOptions model
 				setGoogleIDPOptionsModel := new(appidmanagementv4.SetGoogleIDPOptions)
+				setGoogleIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setGoogleIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -14812,7 +14847,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14830,6 +14864,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetGoogleIDPOptions model
 				setGoogleIDPOptionsModel := new(appidmanagementv4.SetGoogleIDPOptions)
+				setGoogleIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setGoogleIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -14865,7 +14900,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14883,6 +14917,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetGoogleIDPOptions model
 				setGoogleIDPOptionsModel := new(appidmanagementv4.SetGoogleIDPOptions)
+				setGoogleIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setGoogleIDPOptionsModel.IDP = facebookGoogleConfigParamsModel
 				setGoogleIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -14900,7 +14935,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCustomIDP(getCustomIDPOptions *GetCustomIDPOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getCustomIDPPath := "/management/v4/testString/config/idps/custom"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -14919,13 +14953,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCustomIDPOptions model
 				getCustomIDPOptionsModel := new(appidmanagementv4.GetCustomIDPOptions)
+				getCustomIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetCustomIDP(getCustomIDPOptionsModel)
@@ -14946,7 +14980,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCustomIDP(getCustomIDPOptions *GetCustomIDPOptions)`, func() {
-		tenantID := "testString"
 		getCustomIDPPath := "/management/v4/testString/config/idps/custom"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -14970,7 +15003,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -14978,6 +15010,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCustomIDPOptions model
 				getCustomIDPOptionsModel := new(appidmanagementv4.GetCustomIDPOptions)
+				getCustomIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -15024,7 +15057,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15037,6 +15069,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCustomIDPOptions model
 				getCustomIDPOptionsModel := new(appidmanagementv4.GetCustomIDPOptions)
+				getCustomIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -15046,17 +15079,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetCustomIDP with error: Operation request error`, func() {
+			It(`Invoke GetCustomIDP with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCustomIDPOptions model
 				getCustomIDPOptionsModel := new(appidmanagementv4.GetCustomIDPOptions)
+				getCustomIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -15064,6 +15097,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetCustomIDP(getCustomIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetCustomIDPOptions model with no property values
+				getCustomIDPOptionsModelNew := new(appidmanagementv4.GetCustomIDPOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetCustomIDP(getCustomIDPOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -15084,13 +15124,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCustomIDPOptions model
 				getCustomIDPOptionsModel := new(appidmanagementv4.GetCustomIDPOptions)
+				getCustomIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -15107,7 +15147,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCustomIDP(setCustomIDPOptions *SetCustomIDPOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		setCustomIDPPath := "/management/v4/testString/config/idps/custom"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -15126,7 +15165,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15137,6 +15175,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsModel := new(appidmanagementv4.SetCustomIDPOptions)
+				setCustomIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setCustomIDPOptionsModel.IsActive = core.BoolPtr(true)
 				setCustomIDPOptionsModel.Config = customIDPConfigParamsConfigModel
 				setCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -15159,7 +15198,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCustomIDP(setCustomIDPOptions *SetCustomIDPOptions)`, func() {
-		tenantID := "testString"
 		setCustomIDPPath := "/management/v4/testString/config/idps/custom"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -15199,7 +15237,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15211,6 +15248,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsModel := new(appidmanagementv4.SetCustomIDPOptions)
+				setCustomIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setCustomIDPOptionsModel.IsActive = core.BoolPtr(true)
 				setCustomIDPOptionsModel.Config = customIDPConfigParamsConfigModel
 				setCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -15275,7 +15313,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15292,6 +15329,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsModel := new(appidmanagementv4.SetCustomIDPOptions)
+				setCustomIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setCustomIDPOptionsModel.IsActive = core.BoolPtr(true)
 				setCustomIDPOptionsModel.Config = customIDPConfigParamsConfigModel
 				setCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -15307,7 +15345,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15318,6 +15355,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsModel := new(appidmanagementv4.SetCustomIDPOptions)
+				setCustomIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setCustomIDPOptionsModel.IsActive = core.BoolPtr(true)
 				setCustomIDPOptionsModel.Config = customIDPConfigParamsConfigModel
 				setCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -15354,7 +15392,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15365,6 +15402,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCustomIDPOptions model
 				setCustomIDPOptionsModel := new(appidmanagementv4.SetCustomIDPOptions)
+				setCustomIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setCustomIDPOptionsModel.IsActive = core.BoolPtr(true)
 				setCustomIDPOptionsModel.Config = customIDPConfigParamsConfigModel
 				setCustomIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -15383,7 +15421,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryIDP(getCloudDirectoryIDPOptions *GetCloudDirectoryIDPOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getCloudDirectoryIDPPath := "/management/v4/testString/config/idps/cloud_directory"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -15402,13 +15439,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
 				getCloudDirectoryIDPOptionsModel := new(appidmanagementv4.GetCloudDirectoryIDPOptions)
+				getCloudDirectoryIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
@@ -15429,7 +15466,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetCloudDirectoryIDP(getCloudDirectoryIDPOptions *GetCloudDirectoryIDPOptions)`, func() {
-		tenantID := "testString"
 		getCloudDirectoryIDPPath := "/management/v4/testString/config/idps/cloud_directory"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -15453,7 +15489,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15461,6 +15496,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
 				getCloudDirectoryIDPOptionsModel := new(appidmanagementv4.GetCloudDirectoryIDPOptions)
+				getCloudDirectoryIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -15507,7 +15543,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15520,6 +15555,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
 				getCloudDirectoryIDPOptionsModel := new(appidmanagementv4.GetCloudDirectoryIDPOptions)
+				getCloudDirectoryIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -15529,17 +15565,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetCloudDirectoryIDP with error: Operation request error`, func() {
+			It(`Invoke GetCloudDirectoryIDP with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
 				getCloudDirectoryIDPOptionsModel := new(appidmanagementv4.GetCloudDirectoryIDPOptions)
+				getCloudDirectoryIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -15547,6 +15583,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetCloudDirectoryIDPOptions model with no property values
+				getCloudDirectoryIDPOptionsModelNew := new(appidmanagementv4.GetCloudDirectoryIDPOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryIDP(getCloudDirectoryIDPOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -15567,13 +15610,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
 				getCloudDirectoryIDPOptionsModel := new(appidmanagementv4.GetCloudDirectoryIDPOptions)
+				getCloudDirectoryIDPOptionsModel.TenantID = core.StringPtr("testString")
 				getCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -15590,7 +15633,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectoryIDP(setCloudDirectoryIDPOptions *SetCloudDirectoryIDPOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		setCloudDirectoryIDPPath := "/management/v4/testString/config/idps/cloud_directory"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -15609,7 +15651,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15635,6 +15676,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryIDPOptions model
 				setCloudDirectoryIDPOptionsModel := new(appidmanagementv4.SetCloudDirectoryIDPOptions)
+				setCloudDirectoryIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryIDPOptionsModel.IsActive = core.BoolPtr(true)
 				setCloudDirectoryIDPOptionsModel.Config = cloudDirectoryConfigParamsModel
 				setCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -15657,7 +15699,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetCloudDirectoryIDP(setCloudDirectoryIDPOptions *SetCloudDirectoryIDPOptions)`, func() {
-		tenantID := "testString"
 		setCloudDirectoryIDPPath := "/management/v4/testString/config/idps/cloud_directory"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -15697,7 +15738,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15724,6 +15764,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryIDPOptions model
 				setCloudDirectoryIDPOptionsModel := new(appidmanagementv4.SetCloudDirectoryIDPOptions)
+				setCloudDirectoryIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryIDPOptionsModel.IsActive = core.BoolPtr(true)
 				setCloudDirectoryIDPOptionsModel.Config = cloudDirectoryConfigParamsModel
 				setCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -15788,7 +15829,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15820,6 +15860,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryIDPOptions model
 				setCloudDirectoryIDPOptionsModel := new(appidmanagementv4.SetCloudDirectoryIDPOptions)
+				setCloudDirectoryIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryIDPOptionsModel.IsActive = core.BoolPtr(true)
 				setCloudDirectoryIDPOptionsModel.Config = cloudDirectoryConfigParamsModel
 				setCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -15835,7 +15876,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15861,6 +15901,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryIDPOptions model
 				setCloudDirectoryIDPOptionsModel := new(appidmanagementv4.SetCloudDirectoryIDPOptions)
+				setCloudDirectoryIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryIDPOptionsModel.IsActive = core.BoolPtr(true)
 				setCloudDirectoryIDPOptionsModel.Config = cloudDirectoryConfigParamsModel
 				setCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -15897,7 +15938,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -15923,6 +15963,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetCloudDirectoryIDPOptions model
 				setCloudDirectoryIDPOptionsModel := new(appidmanagementv4.SetCloudDirectoryIDPOptions)
+				setCloudDirectoryIDPOptionsModel.TenantID = core.StringPtr("testString")
 				setCloudDirectoryIDPOptionsModel.IsActive = core.BoolPtr(true)
 				setCloudDirectoryIDPOptionsModel.Config = cloudDirectoryConfigParamsModel
 				setCloudDirectoryIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -15941,7 +15982,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetSamlidp(getSAMLIDPOptions *GetSAMLIDPOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getSamlidpPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -15960,13 +16000,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
 				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSamlidpOptionsModel.TenantID = core.StringPtr("testString")
 				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
@@ -15987,7 +16027,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetSamlidp(getSAMLIDPOptions *GetSAMLIDPOptions)`, func() {
-		tenantID := "testString"
 		getSamlidpPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -16011,7 +16050,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16019,6 +16057,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetSAMLIDPOptions model
 				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSamlidpOptionsModel.TenantID = core.StringPtr("testString")
 				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -16065,7 +16104,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16078,6 +16116,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetSAMLIDPOptions model
 				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSamlidpOptionsModel.TenantID = core.StringPtr("testString")
 				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -16087,17 +16126,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetSamlidp with error: Operation request error`, func() {
+			It(`Invoke GetSamlidp with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
 				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSamlidpOptionsModel.TenantID = core.StringPtr("testString")
 				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -16105,6 +16144,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the GetSAMLIDPOptions model with no property values
+				getSamlidpOptionsModelNew := new(appidmanagementv4.GetSAMLIDPOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.GetSamlidp(getSamlidpOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -16125,13 +16171,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
 				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSamlidpOptionsModel.TenantID = core.StringPtr("testString")
 				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -16148,7 +16194,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetSamlidp(setSAMLIDPOptions *SetSAMLIDPOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		setSamlidpPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -16167,7 +16212,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16191,6 +16235,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetSAMLIDPOptions model
 				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModel.TenantID = core.StringPtr("testString")
 				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
 				setSamlidpOptionsModel.Config = samlConfigParamsModel
 				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -16213,7 +16258,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`SetSamlidp(setSAMLIDPOptions *SetSAMLIDPOptions)`, func() {
-		tenantID := "testString"
 		setSamlidpPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -16253,7 +16297,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16278,6 +16321,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetSAMLIDPOptions model
 				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModel.TenantID = core.StringPtr("testString")
 				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
 				setSamlidpOptionsModel.Config = samlConfigParamsModel
 				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -16342,7 +16386,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16372,6 +16415,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetSAMLIDPOptions model
 				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModel.TenantID = core.StringPtr("testString")
 				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
 				setSamlidpOptionsModel.Config = samlConfigParamsModel
 				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -16387,7 +16431,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16411,6 +16454,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetSAMLIDPOptions model
 				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModel.TenantID = core.StringPtr("testString")
 				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
 				setSamlidpOptionsModel.Config = samlConfigParamsModel
 				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -16447,7 +16491,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16471,6 +16514,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the SetSAMLIDPOptions model
 				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSamlidpOptionsModel.TenantID = core.StringPtr("testString")
 				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
 				setSamlidpOptionsModel.Config = samlConfigParamsModel
 				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -16489,7 +16533,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ListRoles(listRolesOptions *ListRolesOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		listRolesPath := "/management/v4/testString/roles"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -16508,13 +16551,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListRolesOptions model
 				listRolesOptionsModel := new(appidmanagementv4.ListRolesOptions)
+				listRolesOptionsModel.TenantID = core.StringPtr("testString")
 				listRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.ListRoles(listRolesOptionsModel)
@@ -16535,7 +16578,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`ListRoles(listRolesOptions *ListRolesOptions)`, func() {
-		tenantID := "testString"
 		listRolesPath := "/management/v4/testString/roles"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -16559,7 +16601,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16567,6 +16608,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ListRolesOptions model
 				listRolesOptionsModel := new(appidmanagementv4.ListRolesOptions)
+				listRolesOptionsModel.TenantID = core.StringPtr("testString")
 				listRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -16613,7 +16655,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16626,6 +16667,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ListRolesOptions model
 				listRolesOptionsModel := new(appidmanagementv4.ListRolesOptions)
+				listRolesOptionsModel.TenantID = core.StringPtr("testString")
 				listRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -16635,17 +16677,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke ListRoles with error: Operation request error`, func() {
+			It(`Invoke ListRoles with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListRolesOptions model
 				listRolesOptionsModel := new(appidmanagementv4.ListRolesOptions)
+				listRolesOptionsModel.TenantID = core.StringPtr("testString")
 				listRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -16653,6 +16695,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.ListRoles(listRolesOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the ListRolesOptions model with no property values
+				listRolesOptionsModelNew := new(appidmanagementv4.ListRolesOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.ListRoles(listRolesOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -16673,13 +16722,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the ListRolesOptions model
 				listRolesOptionsModel := new(appidmanagementv4.ListRolesOptions)
+				listRolesOptionsModel.TenantID = core.StringPtr("testString")
 				listRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -16696,7 +16745,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`CreateRole(createRoleOptions *CreateRoleOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		createRolePath := "/management/v4/testString/roles"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -16715,7 +16763,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16727,6 +16774,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsModel := new(appidmanagementv4.CreateRoleOptions)
+				createRoleOptionsModel.TenantID = core.StringPtr("testString")
 				createRoleOptionsModel.Name = core.StringPtr("child")
 				createRoleOptionsModel.Access = []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
@@ -16750,7 +16798,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`CreateRole(createRoleOptions *CreateRoleOptions)`, func() {
-		tenantID := "testString"
 		createRolePath := "/management/v4/testString/roles"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -16790,7 +16837,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16803,6 +16849,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsModel := new(appidmanagementv4.CreateRoleOptions)
+				createRoleOptionsModel.TenantID = core.StringPtr("testString")
 				createRoleOptionsModel.Name = core.StringPtr("child")
 				createRoleOptionsModel.Access = []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
@@ -16868,7 +16915,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16886,6 +16932,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsModel := new(appidmanagementv4.CreateRoleOptions)
+				createRoleOptionsModel.TenantID = core.StringPtr("testString")
 				createRoleOptionsModel.Name = core.StringPtr("child")
 				createRoleOptionsModel.Access = []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
@@ -16902,7 +16949,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16914,6 +16960,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsModel := new(appidmanagementv4.CreateRoleOptions)
+				createRoleOptionsModel.TenantID = core.StringPtr("testString")
 				createRoleOptionsModel.Name = core.StringPtr("child")
 				createRoleOptionsModel.Access = []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
@@ -16951,7 +16998,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -16963,6 +17009,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsModel := new(appidmanagementv4.CreateRoleOptions)
+				createRoleOptionsModel.TenantID = core.StringPtr("testString")
 				createRoleOptionsModel.Name = core.StringPtr("child")
 				createRoleOptionsModel.Access = []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
@@ -16982,7 +17029,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetRole(getRoleOptions *GetRoleOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getRolePath := "/management/v4/testString/roles/testString"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -17001,13 +17047,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRoleOptions model
 				getRoleOptionsModel := new(appidmanagementv4.GetRoleOptions)
+				getRoleOptionsModel.TenantID = core.StringPtr("testString")
 				getRoleOptionsModel.RoleID = core.StringPtr("testString")
 				getRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -17029,7 +17075,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetRole(getRoleOptions *GetRoleOptions)`, func() {
-		tenantID := "testString"
 		getRolePath := "/management/v4/testString/roles/testString"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -17053,7 +17098,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17061,6 +17105,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetRoleOptions model
 				getRoleOptionsModel := new(appidmanagementv4.GetRoleOptions)
+				getRoleOptionsModel.TenantID = core.StringPtr("testString")
 				getRoleOptionsModel.RoleID = core.StringPtr("testString")
 				getRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -17108,7 +17153,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17121,6 +17165,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetRoleOptions model
 				getRoleOptionsModel := new(appidmanagementv4.GetRoleOptions)
+				getRoleOptionsModel.TenantID = core.StringPtr("testString")
 				getRoleOptionsModel.RoleID = core.StringPtr("testString")
 				getRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -17135,13 +17180,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRoleOptions model
 				getRoleOptionsModel := new(appidmanagementv4.GetRoleOptions)
+				getRoleOptionsModel.TenantID = core.StringPtr("testString")
 				getRoleOptionsModel.RoleID = core.StringPtr("testString")
 				getRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -17177,13 +17222,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetRoleOptions model
 				getRoleOptionsModel := new(appidmanagementv4.GetRoleOptions)
+				getRoleOptionsModel.TenantID = core.StringPtr("testString")
 				getRoleOptionsModel.RoleID = core.StringPtr("testString")
 				getRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -17201,7 +17246,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateRole(updateRoleOptions *UpdateRoleOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		updateRolePath := "/management/v4/testString/roles/testString"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -17220,7 +17264,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17232,6 +17275,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateRoleOptions model
 				updateRoleOptionsModel := new(appidmanagementv4.UpdateRoleOptions)
+				updateRoleOptionsModel.TenantID = core.StringPtr("testString")
 				updateRoleOptionsModel.RoleID = core.StringPtr("testString")
 				updateRoleOptionsModel.Name = core.StringPtr("child")
 				updateRoleOptionsModel.Access = []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}
@@ -17256,7 +17300,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateRole(updateRoleOptions *UpdateRoleOptions)`, func() {
-		tenantID := "testString"
 		updateRolePath := "/management/v4/testString/roles/testString"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -17296,7 +17339,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17309,6 +17351,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateRoleOptions model
 				updateRoleOptionsModel := new(appidmanagementv4.UpdateRoleOptions)
+				updateRoleOptionsModel.TenantID = core.StringPtr("testString")
 				updateRoleOptionsModel.RoleID = core.StringPtr("testString")
 				updateRoleOptionsModel.Name = core.StringPtr("child")
 				updateRoleOptionsModel.Access = []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}
@@ -17375,7 +17418,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17393,6 +17435,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateRoleOptions model
 				updateRoleOptionsModel := new(appidmanagementv4.UpdateRoleOptions)
+				updateRoleOptionsModel.TenantID = core.StringPtr("testString")
 				updateRoleOptionsModel.RoleID = core.StringPtr("testString")
 				updateRoleOptionsModel.Name = core.StringPtr("child")
 				updateRoleOptionsModel.Access = []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}
@@ -17410,7 +17453,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17422,6 +17464,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateRoleOptions model
 				updateRoleOptionsModel := new(appidmanagementv4.UpdateRoleOptions)
+				updateRoleOptionsModel.TenantID = core.StringPtr("testString")
 				updateRoleOptionsModel.RoleID = core.StringPtr("testString")
 				updateRoleOptionsModel.Name = core.StringPtr("child")
 				updateRoleOptionsModel.Access = []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}
@@ -17460,7 +17503,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17472,6 +17514,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateRoleOptions model
 				updateRoleOptionsModel := new(appidmanagementv4.UpdateRoleOptions)
+				updateRoleOptionsModel.TenantID = core.StringPtr("testString")
 				updateRoleOptionsModel.RoleID = core.StringPtr("testString")
 				updateRoleOptionsModel.Name = core.StringPtr("child")
 				updateRoleOptionsModel.Access = []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}
@@ -17492,7 +17535,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`DeleteRole(deleteRoleOptions *DeleteRoleOptions)`, func() {
-		tenantID := "testString"
 		deleteRolePath := "/management/v4/testString/roles/testString"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -17510,7 +17552,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17522,6 +17563,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the DeleteRoleOptions model
 				deleteRoleOptionsModel := new(appidmanagementv4.DeleteRoleOptions)
+				deleteRoleOptionsModel.TenantID = core.StringPtr("testString")
 				deleteRoleOptionsModel.RoleID = core.StringPtr("testString")
 				deleteRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -17534,13 +17576,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the DeleteRoleOptions model
 				deleteRoleOptionsModel := new(appidmanagementv4.DeleteRoleOptions)
+				deleteRoleOptionsModel.TenantID = core.StringPtr("testString")
 				deleteRoleOptionsModel.RoleID = core.StringPtr("testString")
 				deleteRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -17563,7 +17605,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UsersSearchUserProfile(usersSearchUserProfileOptions *UsersSearchUserProfileOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		usersSearchUserProfilePath := "/management/v4/testString/users"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -17587,13 +17628,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersSearchUserProfileOptions model
 				usersSearchUserProfileOptionsModel := new(appidmanagementv4.UsersSearchUserProfileOptions)
+				usersSearchUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersSearchUserProfileOptionsModel.DataScope = core.StringPtr("index")
 				usersSearchUserProfileOptionsModel.Email = core.StringPtr("testString")
 				usersSearchUserProfileOptionsModel.ID = core.StringPtr("testString")
@@ -17619,7 +17660,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UsersSearchUserProfile(usersSearchUserProfileOptions *UsersSearchUserProfileOptions)`, func() {
-		tenantID := "testString"
 		usersSearchUserProfilePath := "/management/v4/testString/users"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -17648,7 +17688,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17656,6 +17695,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UsersSearchUserProfileOptions model
 				usersSearchUserProfileOptionsModel := new(appidmanagementv4.UsersSearchUserProfileOptions)
+				usersSearchUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersSearchUserProfileOptionsModel.DataScope = core.StringPtr("index")
 				usersSearchUserProfileOptionsModel.Email = core.StringPtr("testString")
 				usersSearchUserProfileOptionsModel.ID = core.StringPtr("testString")
@@ -17712,7 +17752,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17725,6 +17764,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UsersSearchUserProfileOptions model
 				usersSearchUserProfileOptionsModel := new(appidmanagementv4.UsersSearchUserProfileOptions)
+				usersSearchUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersSearchUserProfileOptionsModel.DataScope = core.StringPtr("index")
 				usersSearchUserProfileOptionsModel.Email = core.StringPtr("testString")
 				usersSearchUserProfileOptionsModel.ID = core.StringPtr("testString")
@@ -17743,13 +17783,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersSearchUserProfileOptions model
 				usersSearchUserProfileOptionsModel := new(appidmanagementv4.UsersSearchUserProfileOptions)
+				usersSearchUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersSearchUserProfileOptionsModel.DataScope = core.StringPtr("index")
 				usersSearchUserProfileOptionsModel.Email = core.StringPtr("testString")
 				usersSearchUserProfileOptionsModel.ID = core.StringPtr("testString")
@@ -17789,13 +17829,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersSearchUserProfileOptions model
 				usersSearchUserProfileOptionsModel := new(appidmanagementv4.UsersSearchUserProfileOptions)
+				usersSearchUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersSearchUserProfileOptionsModel.DataScope = core.StringPtr("index")
 				usersSearchUserProfileOptionsModel.Email = core.StringPtr("testString")
 				usersSearchUserProfileOptionsModel.ID = core.StringPtr("testString")
@@ -17817,7 +17857,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UsersNominateUser(usersNominateUserOptions *UsersNominateUserOptions)`, func() {
-		tenantID := "testString"
 		usersNominateUserPath := "/management/v4/testString/users"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -17851,7 +17890,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17867,6 +17905,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UsersNominateUserOptions model
 				usersNominateUserOptionsModel := new(appidmanagementv4.UsersNominateUserOptions)
+				usersNominateUserOptionsModel.TenantID = core.StringPtr("testString")
 				usersNominateUserOptionsModel.IDP = core.StringPtr("saml")
 				usersNominateUserOptionsModel.IDPIdentity = core.StringPtr("appid@ibm.com")
 				usersNominateUserOptionsModel.Profile = usersNominateUserParamsProfileModel
@@ -17881,7 +17920,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -17892,6 +17930,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UsersNominateUserOptions model
 				usersNominateUserOptionsModel := new(appidmanagementv4.UsersNominateUserOptions)
+				usersNominateUserOptionsModel.TenantID = core.StringPtr("testString")
 				usersNominateUserOptionsModel.IDP = core.StringPtr("saml")
 				usersNominateUserOptionsModel.IDPIdentity = core.StringPtr("appid@ibm.com")
 				usersNominateUserOptionsModel.Profile = usersNominateUserParamsProfileModel
@@ -17916,7 +17955,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UserProfilesExport(userProfilesExportOptions *UserProfilesExportOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		userProfilesExportPath := "/management/v4/testString/users/export"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -17937,13 +17975,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserProfilesExportOptions model
 				userProfilesExportOptionsModel := new(appidmanagementv4.UserProfilesExportOptions)
+				userProfilesExportOptionsModel.TenantID = core.StringPtr("testString")
 				userProfilesExportOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				userProfilesExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				userProfilesExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -17966,7 +18004,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UserProfilesExport(userProfilesExportOptions *UserProfilesExportOptions)`, func() {
-		tenantID := "testString"
 		userProfilesExportPath := "/management/v4/testString/users/export"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -17992,7 +18029,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18000,6 +18036,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UserProfilesExportOptions model
 				userProfilesExportOptionsModel := new(appidmanagementv4.UserProfilesExportOptions)
+				userProfilesExportOptionsModel.TenantID = core.StringPtr("testString")
 				userProfilesExportOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				userProfilesExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				userProfilesExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -18050,7 +18087,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18063,6 +18099,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UserProfilesExportOptions model
 				userProfilesExportOptionsModel := new(appidmanagementv4.UserProfilesExportOptions)
+				userProfilesExportOptionsModel.TenantID = core.StringPtr("testString")
 				userProfilesExportOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				userProfilesExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				userProfilesExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -18074,17 +18111,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke UserProfilesExport with error: Operation request error`, func() {
+			It(`Invoke UserProfilesExport with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserProfilesExportOptions model
 				userProfilesExportOptionsModel := new(appidmanagementv4.UserProfilesExportOptions)
+				userProfilesExportOptionsModel.TenantID = core.StringPtr("testString")
 				userProfilesExportOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				userProfilesExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				userProfilesExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -18094,6 +18131,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				result, response, operationErr := appIDManagementService.UserProfilesExport(userProfilesExportOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
+				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+				// Construct a second instance of the UserProfilesExportOptions model with no property values
+				userProfilesExportOptionsModelNew := new(appidmanagementv4.UserProfilesExportOptions)
+				// Invoke operation with invalid model (negative test)
+				result, response, operationErr = appIDManagementService.UserProfilesExport(userProfilesExportOptionsModelNew)
+				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 			})
@@ -18114,13 +18158,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UserProfilesExportOptions model
 				userProfilesExportOptionsModel := new(appidmanagementv4.UserProfilesExportOptions)
+				userProfilesExportOptionsModel.TenantID = core.StringPtr("testString")
 				userProfilesExportOptionsModel.StartIndex = core.Int64Ptr(int64(38))
 				userProfilesExportOptionsModel.Count = core.Int64Ptr(int64(0))
 				userProfilesExportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -18139,7 +18183,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UserProfilesImport(userProfilesImportOptions *UserProfilesImportOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		userProfilesImportPath := "/management/v4/testString/users/import"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -18158,7 +18201,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18188,6 +18230,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UserProfilesImportOptions model
 				userProfilesImportOptionsModel := new(appidmanagementv4.UserProfilesImportOptions)
+				userProfilesImportOptionsModel.TenantID = core.StringPtr("testString")
 				userProfilesImportOptionsModel.Users = []appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel}
 				userProfilesImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -18209,7 +18252,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UserProfilesImport(userProfilesImportOptions *UserProfilesImportOptions)`, func() {
-		tenantID := "testString"
 		userProfilesImportPath := "/management/v4/testString/users/import"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -18249,7 +18291,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18280,6 +18321,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UserProfilesImportOptions model
 				userProfilesImportOptionsModel := new(appidmanagementv4.UserProfilesImportOptions)
+				userProfilesImportOptionsModel.TenantID = core.StringPtr("testString")
 				userProfilesImportOptionsModel.Users = []appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel}
 				userProfilesImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -18343,7 +18385,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18379,6 +18420,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UserProfilesImportOptions model
 				userProfilesImportOptionsModel := new(appidmanagementv4.UserProfilesImportOptions)
+				userProfilesImportOptionsModel.TenantID = core.StringPtr("testString")
 				userProfilesImportOptionsModel.Users = []appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel}
 				userProfilesImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -18393,7 +18435,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18423,6 +18464,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UserProfilesImportOptions model
 				userProfilesImportOptionsModel := new(appidmanagementv4.UserProfilesImportOptions)
+				userProfilesImportOptionsModel.TenantID = core.StringPtr("testString")
 				userProfilesImportOptionsModel.Users = []appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel}
 				userProfilesImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -18458,7 +18500,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18488,6 +18529,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UserProfilesImportOptions model
 				userProfilesImportOptionsModel := new(appidmanagementv4.UserProfilesImportOptions)
+				userProfilesImportOptionsModel.TenantID = core.StringPtr("testString")
 				userProfilesImportOptionsModel.Users = []appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel}
 				userProfilesImportOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -18505,7 +18547,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UsersDeleteUserProfile(usersDeleteUserProfileOptions *UsersDeleteUserProfileOptions)`, func() {
-		tenantID := "testString"
 		usersDeleteUserProfilePath := "/management/v4/testString/users/testString"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -18523,7 +18564,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18535,6 +18575,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UsersDeleteUserProfileOptions model
 				usersDeleteUserProfileOptionsModel := new(appidmanagementv4.UsersDeleteUserProfileOptions)
+				usersDeleteUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersDeleteUserProfileOptionsModel.ID = core.StringPtr("testString")
 				usersDeleteUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -18547,13 +18588,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersDeleteUserProfileOptions model
 				usersDeleteUserProfileOptionsModel := new(appidmanagementv4.UsersDeleteUserProfileOptions)
+				usersDeleteUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersDeleteUserProfileOptionsModel.ID = core.StringPtr("testString")
 				usersDeleteUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -18576,7 +18617,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UsersRevokeRefreshToken(usersRevokeRefreshTokenOptions *UsersRevokeRefreshTokenOptions)`, func() {
-		tenantID := "testString"
 		usersRevokeRefreshTokenPath := "/management/v4/testString/users/testString/revoke_refresh_token"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -18594,7 +18634,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18606,6 +18645,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UsersRevokeRefreshTokenOptions model
 				usersRevokeRefreshTokenOptionsModel := new(appidmanagementv4.UsersRevokeRefreshTokenOptions)
+				usersRevokeRefreshTokenOptionsModel.TenantID = core.StringPtr("testString")
 				usersRevokeRefreshTokenOptionsModel.ID = core.StringPtr("testString")
 				usersRevokeRefreshTokenOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -18618,13 +18658,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersRevokeRefreshTokenOptions model
 				usersRevokeRefreshTokenOptionsModel := new(appidmanagementv4.UsersRevokeRefreshTokenOptions)
+				usersRevokeRefreshTokenOptionsModel.TenantID = core.StringPtr("testString")
 				usersRevokeRefreshTokenOptionsModel.ID = core.StringPtr("testString")
 				usersRevokeRefreshTokenOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -18647,7 +18687,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UsersGetUserProfile(usersGetUserProfileOptions *UsersGetUserProfileOptions)`, func() {
-		tenantID := "testString"
 		usersGetUserProfilePath := "/management/v4/testString/users/testString/profile"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -18665,7 +18704,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18677,6 +18715,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UsersGetUserProfileOptions model
 				usersGetUserProfileOptionsModel := new(appidmanagementv4.UsersGetUserProfileOptions)
+				usersGetUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersGetUserProfileOptionsModel.ID = core.StringPtr("testString")
 				usersGetUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -18689,13 +18728,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersGetUserProfileOptions model
 				usersGetUserProfileOptionsModel := new(appidmanagementv4.UsersGetUserProfileOptions)
+				usersGetUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersGetUserProfileOptionsModel.ID = core.StringPtr("testString")
 				usersGetUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -18718,7 +18757,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UsersSetUserProfile(usersSetUserProfileOptions *UsersSetUserProfileOptions)`, func() {
-		tenantID := "testString"
 		usersSetUserProfilePath := "/management/v4/testString/users/testString/profile"
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
@@ -18752,7 +18790,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18764,6 +18801,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UsersSetUserProfileOptions model
 				usersSetUserProfileOptionsModel := new(appidmanagementv4.UsersSetUserProfileOptions)
+				usersSetUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersSetUserProfileOptionsModel.ID = core.StringPtr("testString")
 				usersSetUserProfileOptionsModel.Attributes = make(map[string]interface{})
 				usersSetUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -18777,13 +18815,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the UsersSetUserProfileOptions model
 				usersSetUserProfileOptionsModel := new(appidmanagementv4.UsersSetUserProfileOptions)
+				usersSetUserProfileOptionsModel.TenantID = core.StringPtr("testString")
 				usersSetUserProfileOptionsModel.ID = core.StringPtr("testString")
 				usersSetUserProfileOptionsModel.Attributes = make(map[string]interface{})
 				usersSetUserProfileOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -18807,7 +18845,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetUserRoles(getUserRolesOptions *GetUserRolesOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		getUserRolesPath := "/management/v4/testString/users/testString/roles"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -18826,13 +18863,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserRolesOptions model
 				getUserRolesOptionsModel := new(appidmanagementv4.GetUserRolesOptions)
+				getUserRolesOptionsModel.TenantID = core.StringPtr("testString")
 				getUserRolesOptionsModel.ID = core.StringPtr("testString")
 				getUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -18854,7 +18891,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`GetUserRoles(getUserRolesOptions *GetUserRolesOptions)`, func() {
-		tenantID := "testString"
 		getUserRolesPath := "/management/v4/testString/users/testString/roles"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -18878,7 +18914,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18886,6 +18921,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetUserRolesOptions model
 				getUserRolesOptionsModel := new(appidmanagementv4.GetUserRolesOptions)
+				getUserRolesOptionsModel.TenantID = core.StringPtr("testString")
 				getUserRolesOptionsModel.ID = core.StringPtr("testString")
 				getUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -18933,7 +18969,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -18946,6 +18981,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the GetUserRolesOptions model
 				getUserRolesOptionsModel := new(appidmanagementv4.GetUserRolesOptions)
+				getUserRolesOptionsModel.TenantID = core.StringPtr("testString")
 				getUserRolesOptionsModel.ID = core.StringPtr("testString")
 				getUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -18960,13 +18996,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserRolesOptions model
 				getUserRolesOptionsModel := new(appidmanagementv4.GetUserRolesOptions)
+				getUserRolesOptionsModel.TenantID = core.StringPtr("testString")
 				getUserRolesOptionsModel.ID = core.StringPtr("testString")
 				getUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -19002,13 +19038,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetUserRolesOptions model
 				getUserRolesOptionsModel := new(appidmanagementv4.GetUserRolesOptions)
+				getUserRolesOptionsModel.TenantID = core.StringPtr("testString")
 				getUserRolesOptionsModel.ID = core.StringPtr("testString")
 				getUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -19026,7 +19062,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateUserRoles(updateUserRolesOptions *UpdateUserRolesOptions) - Operation response error`, func() {
-		tenantID := "testString"
 		updateUserRolesPath := "/management/v4/testString/users/testString/roles"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
@@ -19045,7 +19080,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19056,6 +19090,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateUserRolesOptions model
 				updateUserRolesOptionsModel := new(appidmanagementv4.UpdateUserRolesOptions)
+				updateUserRolesOptionsModel.TenantID = core.StringPtr("testString")
 				updateUserRolesOptionsModel.ID = core.StringPtr("testString")
 				updateUserRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				updateUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -19078,7 +19113,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		})
 	})
 	Describe(`UpdateUserRoles(updateUserRolesOptions *UpdateUserRolesOptions)`, func() {
-		tenantID := "testString"
 		updateUserRolesPath := "/management/v4/testString/users/testString/roles"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
@@ -19118,7 +19152,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19130,6 +19163,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateUserRolesOptions model
 				updateUserRolesOptionsModel := new(appidmanagementv4.UpdateUserRolesOptions)
+				updateUserRolesOptionsModel.TenantID = core.StringPtr("testString")
 				updateUserRolesOptionsModel.ID = core.StringPtr("testString")
 				updateUserRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				updateUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -19194,7 +19228,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19211,6 +19244,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateUserRolesOptions model
 				updateUserRolesOptionsModel := new(appidmanagementv4.UpdateUserRolesOptions)
+				updateUserRolesOptionsModel.TenantID = core.StringPtr("testString")
 				updateUserRolesOptionsModel.ID = core.StringPtr("testString")
 				updateUserRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				updateUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -19226,7 +19260,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19237,6 +19270,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateUserRolesOptions model
 				updateUserRolesOptionsModel := new(appidmanagementv4.UpdateUserRolesOptions)
+				updateUserRolesOptionsModel.TenantID = core.StringPtr("testString")
 				updateUserRolesOptionsModel.ID = core.StringPtr("testString")
 				updateUserRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				updateUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -19273,7 +19307,6 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
-					TenantID:      core.StringPtr(tenantID),
 				})
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -19284,6 +19317,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the UpdateUserRolesOptions model
 				updateUserRolesOptionsModel := new(appidmanagementv4.UpdateUserRolesOptions)
+				updateUserRolesOptionsModel.TenantID = core.StringPtr("testString")
 				updateUserRolesOptionsModel.ID = core.StringPtr("testString")
 				updateUserRolesOptionsModel.Roles = updateUserRolesParamsRolesModel
 				updateUserRolesOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
@@ -19303,11 +19337,9 @@ var _ = Describe(`AppIDManagementV4`, func() {
 	})
 	Describe(`Model constructor tests`, func() {
 		Context(`Using a service client instance`, func() {
-			tenantID := "testString"
 			appIDManagementService, _ := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 				URL:           "http://appidmanagementv4modelgenerator.com",
 				Authenticator: &core.NoAuthAuthenticator{},
-				TenantID:      core.StringPtr(tenantID),
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagement successfully`, func() {
 				enabled := true
@@ -19375,15 +19407,18 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewChangePasswordOptions successfully`, func() {
 				// Construct an instance of the ChangePasswordOptions model
+				tenantID := "testString"
 				changePasswordOptionsNewPassword := "testString"
 				changePasswordOptionsUUID := "testString"
-				changePasswordOptionsModel := appIDManagementService.NewChangePasswordOptions(changePasswordOptionsNewPassword, changePasswordOptionsUUID)
+				changePasswordOptionsModel := appIDManagementService.NewChangePasswordOptions(tenantID, changePasswordOptionsNewPassword, changePasswordOptionsUUID)
+				changePasswordOptionsModel.SetTenantID("testString")
 				changePasswordOptionsModel.SetNewPassword("testString")
 				changePasswordOptionsModel.SetUUID("testString")
 				changePasswordOptionsModel.SetChangedIPAddress("testString")
 				changePasswordOptionsModel.SetLanguage("testString")
 				changePasswordOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(changePasswordOptionsModel).ToNot(BeNil())
+				Expect(changePasswordOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(changePasswordOptionsModel.NewPassword).To(Equal(core.StringPtr("testString")))
 				Expect(changePasswordOptionsModel.UUID).To(Equal(core.StringPtr("testString")))
 				Expect(changePasswordOptionsModel.ChangedIPAddress).To(Equal(core.StringPtr("testString")))
@@ -19407,24 +19442,30 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			It(`Invoke NewCloudDirectoryExportOptions successfully`, func() {
 				// Construct an instance of the CloudDirectoryExportOptions model
 				encryptionSecret := "testString"
-				cloudDirectoryExportOptionsModel := appIDManagementService.NewCloudDirectoryExportOptions(encryptionSecret)
+				tenantID := "testString"
+				cloudDirectoryExportOptionsModel := appIDManagementService.NewCloudDirectoryExportOptions(encryptionSecret, tenantID)
 				cloudDirectoryExportOptionsModel.SetEncryptionSecret("testString")
+				cloudDirectoryExportOptionsModel.SetTenantID("testString")
 				cloudDirectoryExportOptionsModel.SetStartIndex(int64(38))
 				cloudDirectoryExportOptionsModel.SetCount(int64(0))
 				cloudDirectoryExportOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(cloudDirectoryExportOptionsModel).ToNot(BeNil())
 				Expect(cloudDirectoryExportOptionsModel.EncryptionSecret).To(Equal(core.StringPtr("testString")))
+				Expect(cloudDirectoryExportOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(cloudDirectoryExportOptionsModel.StartIndex).To(Equal(core.Int64Ptr(int64(38))))
 				Expect(cloudDirectoryExportOptionsModel.Count).To(Equal(core.Int64Ptr(int64(0))))
 				Expect(cloudDirectoryExportOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewCloudDirectoryGetUserinfoOptions successfully`, func() {
 				// Construct an instance of the CloudDirectoryGetUserinfoOptions model
+				tenantID := "testString"
 				userID := "testString"
-				cloudDirectoryGetUserinfoOptionsModel := appIDManagementService.NewCloudDirectoryGetUserinfoOptions(userID)
+				cloudDirectoryGetUserinfoOptionsModel := appIDManagementService.NewCloudDirectoryGetUserinfoOptions(tenantID, userID)
+				cloudDirectoryGetUserinfoOptionsModel.SetTenantID("testString")
 				cloudDirectoryGetUserinfoOptionsModel.SetUserID("testString")
 				cloudDirectoryGetUserinfoOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(cloudDirectoryGetUserinfoOptionsModel).ToNot(BeNil())
+				Expect(cloudDirectoryGetUserinfoOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(cloudDirectoryGetUserinfoOptionsModel.UserID).To(Equal(core.StringPtr("testString")))
 				Expect(cloudDirectoryGetUserinfoOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -19451,23 +19492,29 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the CloudDirectoryImportOptions model
 				encryptionSecret := "testString"
+				tenantID := "testString"
 				cloudDirectoryImportOptionsUsers := []appidmanagementv4.ExportUserUsersItem{}
-				cloudDirectoryImportOptionsModel := appIDManagementService.NewCloudDirectoryImportOptions(encryptionSecret, cloudDirectoryImportOptionsUsers)
+				cloudDirectoryImportOptionsModel := appIDManagementService.NewCloudDirectoryImportOptions(encryptionSecret, tenantID, cloudDirectoryImportOptionsUsers)
 				cloudDirectoryImportOptionsModel.SetEncryptionSecret("testString")
+				cloudDirectoryImportOptionsModel.SetTenantID("testString")
 				cloudDirectoryImportOptionsModel.SetUsers([]appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel})
 				cloudDirectoryImportOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(cloudDirectoryImportOptionsModel).ToNot(BeNil())
 				Expect(cloudDirectoryImportOptionsModel.EncryptionSecret).To(Equal(core.StringPtr("testString")))
+				Expect(cloudDirectoryImportOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(cloudDirectoryImportOptionsModel.Users).To(Equal([]appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel}))
 				Expect(cloudDirectoryImportOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewCloudDirectoryRemoveOptions successfully`, func() {
 				// Construct an instance of the CloudDirectoryRemoveOptions model
+				tenantID := "testString"
 				userID := "testString"
-				cloudDirectoryRemoveOptionsModel := appIDManagementService.NewCloudDirectoryRemoveOptions(userID)
+				cloudDirectoryRemoveOptionsModel := appIDManagementService.NewCloudDirectoryRemoveOptions(tenantID, userID)
+				cloudDirectoryRemoveOptionsModel.SetTenantID("testString")
 				cloudDirectoryRemoveOptionsModel.SetUserID("testString")
 				cloudDirectoryRemoveOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(cloudDirectoryRemoveOptionsModel).ToNot(BeNil())
+				Expect(cloudDirectoryRemoveOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(cloudDirectoryRemoveOptionsModel.UserID).To(Equal(core.StringPtr("testString")))
 				Expect(cloudDirectoryRemoveOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -19492,15 +19539,18 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(createNewUserEmailsItemModel.Primary).To(Equal(core.BoolPtr(true)))
 
 				// Construct an instance of the CreateCloudDirectoryUserOptions model
+				tenantID := "testString"
 				createCloudDirectoryUserOptionsEmails := []appidmanagementv4.CreateNewUserEmailsItem{}
 				createCloudDirectoryUserOptionsPassword := "userPassword"
-				createCloudDirectoryUserOptionsModel := appIDManagementService.NewCreateCloudDirectoryUserOptions(createCloudDirectoryUserOptionsEmails, createCloudDirectoryUserOptionsPassword)
+				createCloudDirectoryUserOptionsModel := appIDManagementService.NewCreateCloudDirectoryUserOptions(tenantID, createCloudDirectoryUserOptionsEmails, createCloudDirectoryUserOptionsPassword)
+				createCloudDirectoryUserOptionsModel.SetTenantID("testString")
 				createCloudDirectoryUserOptionsModel.SetEmails([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel})
 				createCloudDirectoryUserOptionsModel.SetPassword("userPassword")
 				createCloudDirectoryUserOptionsModel.SetActive(true)
 				createCloudDirectoryUserOptionsModel.SetUserName("myUserName")
 				createCloudDirectoryUserOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(createCloudDirectoryUserOptionsModel).ToNot(BeNil())
+				Expect(createCloudDirectoryUserOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(createCloudDirectoryUserOptionsModel.Emails).To(Equal([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}))
 				Expect(createCloudDirectoryUserOptionsModel.Password).To(Equal(core.StringPtr("userPassword")))
 				Expect(createCloudDirectoryUserOptionsModel.Active).To(Equal(core.BoolPtr(true)))
@@ -19523,14 +19573,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(createRoleParamsAccessItemModel.Scopes).To(Equal([]string{"cartoons"}))
 
 				// Construct an instance of the CreateRoleOptions model
+				tenantID := "testString"
 				createRoleOptionsName := "child"
 				createRoleOptionsAccess := []appidmanagementv4.CreateRoleParamsAccessItem{}
-				createRoleOptionsModel := appIDManagementService.NewCreateRoleOptions(createRoleOptionsName, createRoleOptionsAccess)
+				createRoleOptionsModel := appIDManagementService.NewCreateRoleOptions(tenantID, createRoleOptionsName, createRoleOptionsAccess)
+				createRoleOptionsModel.SetTenantID("testString")
 				createRoleOptionsModel.SetName("child")
 				createRoleOptionsModel.SetAccess([]appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel})
 				createRoleOptionsModel.SetDescription("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				createRoleOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(createRoleOptionsModel).ToNot(BeNil())
+				Expect(createRoleOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(createRoleOptionsModel.Name).To(Equal(core.StringPtr("child")))
 				Expect(createRoleOptionsModel.Access).To(Equal([]appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}))
 				Expect(createRoleOptionsModel.Description).To(Equal(core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")))
@@ -19545,53 +19598,68 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewDeleteActionURLOptions successfully`, func() {
 				// Construct an instance of the DeleteActionURLOptions model
+				tenantID := "testString"
 				action := "on_user_verified"
-				deleteActionURLOptionsModel := appIDManagementService.NewDeleteActionURLOptions(action)
+				deleteActionURLOptionsModel := appIDManagementService.NewDeleteActionURLOptions(tenantID, action)
+				deleteActionURLOptionsModel.SetTenantID("testString")
 				deleteActionURLOptionsModel.SetAction("on_user_verified")
 				deleteActionURLOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(deleteActionURLOptionsModel).ToNot(BeNil())
+				Expect(deleteActionURLOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(deleteActionURLOptionsModel.Action).To(Equal(core.StringPtr("on_user_verified")))
 				Expect(deleteActionURLOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewDeleteApplicationOptions successfully`, func() {
 				// Construct an instance of the DeleteApplicationOptions model
+				tenantID := "testString"
 				clientID := "testString"
-				deleteApplicationOptionsModel := appIDManagementService.NewDeleteApplicationOptions(clientID)
+				deleteApplicationOptionsModel := appIDManagementService.NewDeleteApplicationOptions(tenantID, clientID)
+				deleteApplicationOptionsModel.SetTenantID("testString")
 				deleteApplicationOptionsModel.SetClientID("testString")
 				deleteApplicationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(deleteApplicationOptionsModel).ToNot(BeNil())
+				Expect(deleteApplicationOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(deleteApplicationOptionsModel.ClientID).To(Equal(core.StringPtr("testString")))
 				Expect(deleteApplicationOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewDeleteCloudDirectoryUserOptions successfully`, func() {
 				// Construct an instance of the DeleteCloudDirectoryUserOptions model
+				tenantID := "testString"
 				userID := "testString"
-				deleteCloudDirectoryUserOptionsModel := appIDManagementService.NewDeleteCloudDirectoryUserOptions(userID)
+				deleteCloudDirectoryUserOptionsModel := appIDManagementService.NewDeleteCloudDirectoryUserOptions(tenantID, userID)
+				deleteCloudDirectoryUserOptionsModel.SetTenantID("testString")
 				deleteCloudDirectoryUserOptionsModel.SetUserID("testString")
 				deleteCloudDirectoryUserOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(deleteCloudDirectoryUserOptionsModel).ToNot(BeNil())
+				Expect(deleteCloudDirectoryUserOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(deleteCloudDirectoryUserOptionsModel.UserID).To(Equal(core.StringPtr("testString")))
 				Expect(deleteCloudDirectoryUserOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewDeleteRoleOptions successfully`, func() {
 				// Construct an instance of the DeleteRoleOptions model
+				tenantID := "testString"
 				roleID := "testString"
-				deleteRoleOptionsModel := appIDManagementService.NewDeleteRoleOptions(roleID)
+				deleteRoleOptionsModel := appIDManagementService.NewDeleteRoleOptions(tenantID, roleID)
+				deleteRoleOptionsModel.SetTenantID("testString")
 				deleteRoleOptionsModel.SetRoleID("testString")
 				deleteRoleOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(deleteRoleOptionsModel).ToNot(BeNil())
+				Expect(deleteRoleOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(deleteRoleOptionsModel.RoleID).To(Equal(core.StringPtr("testString")))
 				Expect(deleteRoleOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewDeleteTemplateOptions successfully`, func() {
 				// Construct an instance of the DeleteTemplateOptions model
+				tenantID := "testString"
 				templateName := "USER_VERIFICATION"
 				language := "testString"
-				deleteTemplateOptionsModel := appIDManagementService.NewDeleteTemplateOptions(templateName, language)
+				deleteTemplateOptionsModel := appIDManagementService.NewDeleteTemplateOptions(tenantID, templateName, language)
+				deleteTemplateOptionsModel.SetTenantID("testString")
 				deleteTemplateOptionsModel.SetTemplateName("USER_VERIFICATION")
 				deleteTemplateOptionsModel.SetLanguage("testString")
 				deleteTemplateOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(deleteTemplateOptionsModel).ToNot(BeNil())
+				Expect(deleteTemplateOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(deleteTemplateOptionsModel.TemplateName).To(Equal(core.StringPtr("USER_VERIFICATION")))
 				Expect(deleteTemplateOptionsModel.Language).To(Equal(core.StringPtr("testString")))
 				Expect(deleteTemplateOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -19676,15 +19744,18 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(emailSettingsTestParamsSenderDetailsModel.ReplyTo).To(Equal(emailSettingsTestParamsSenderDetailsReplyToModel))
 
 				// Construct an instance of the EmailSettingTestOptions model
+				tenantID := "testString"
 				emailSettingTestOptionsEmailTo := "testString"
 				var emailSettingTestOptionsEmailSettings *appidmanagementv4.EmailSettingsTestParamsEmailSettings = nil
 				var emailSettingTestOptionsSenderDetails *appidmanagementv4.EmailSettingsTestParamsSenderDetails = nil
-				emailSettingTestOptionsModel := appIDManagementService.NewEmailSettingTestOptions(emailSettingTestOptionsEmailTo, emailSettingTestOptionsEmailSettings, emailSettingTestOptionsSenderDetails)
+				emailSettingTestOptionsModel := appIDManagementService.NewEmailSettingTestOptions(tenantID, emailSettingTestOptionsEmailTo, emailSettingTestOptionsEmailSettings, emailSettingTestOptionsSenderDetails)
+				emailSettingTestOptionsModel.SetTenantID("testString")
 				emailSettingTestOptionsModel.SetEmailTo("testString")
 				emailSettingTestOptionsModel.SetEmailSettings(emailSettingsTestParamsEmailSettingsModel)
 				emailSettingTestOptionsModel.SetSenderDetails(emailSettingsTestParamsSenderDetailsModel)
 				emailSettingTestOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(emailSettingTestOptionsModel).ToNot(BeNil())
+				Expect(emailSettingTestOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(emailSettingTestOptionsModel.EmailTo).To(Equal(core.StringPtr("testString")))
 				Expect(emailSettingTestOptionsModel.EmailSettings).To(Equal(emailSettingsTestParamsEmailSettingsModel))
 				Expect(emailSettingTestOptionsModel.SenderDetails).To(Equal(emailSettingsTestParamsSenderDetailsModel))
@@ -19763,296 +19834,404 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewForgotPasswordResultOptions successfully`, func() {
 				// Construct an instance of the ForgotPasswordResultOptions model
+				tenantID := "testString"
 				forgotPasswordResultOptionsContext := "testString"
-				forgotPasswordResultOptionsModel := appIDManagementService.NewForgotPasswordResultOptions(forgotPasswordResultOptionsContext)
+				forgotPasswordResultOptionsModel := appIDManagementService.NewForgotPasswordResultOptions(tenantID, forgotPasswordResultOptionsContext)
+				forgotPasswordResultOptionsModel.SetTenantID("testString")
 				forgotPasswordResultOptionsModel.SetContext("testString")
 				forgotPasswordResultOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(forgotPasswordResultOptionsModel).ToNot(BeNil())
+				Expect(forgotPasswordResultOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(forgotPasswordResultOptionsModel.Context).To(Equal(core.StringPtr("testString")))
 				Expect(forgotPasswordResultOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetApplicationOptions successfully`, func() {
 				// Construct an instance of the GetApplicationOptions model
+				tenantID := "testString"
 				clientID := "testString"
-				getApplicationOptionsModel := appIDManagementService.NewGetApplicationOptions(clientID)
+				getApplicationOptionsModel := appIDManagementService.NewGetApplicationOptions(tenantID, clientID)
+				getApplicationOptionsModel.SetTenantID("testString")
 				getApplicationOptionsModel.SetClientID("testString")
 				getApplicationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getApplicationOptionsModel).ToNot(BeNil())
+				Expect(getApplicationOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getApplicationOptionsModel.ClientID).To(Equal(core.StringPtr("testString")))
 				Expect(getApplicationOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetApplicationRolesOptions successfully`, func() {
 				// Construct an instance of the GetApplicationRolesOptions model
+				tenantID := "testString"
 				clientID := "testString"
-				getApplicationRolesOptionsModel := appIDManagementService.NewGetApplicationRolesOptions(clientID)
+				getApplicationRolesOptionsModel := appIDManagementService.NewGetApplicationRolesOptions(tenantID, clientID)
+				getApplicationRolesOptionsModel.SetTenantID("testString")
 				getApplicationRolesOptionsModel.SetClientID("testString")
 				getApplicationRolesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getApplicationRolesOptionsModel).ToNot(BeNil())
+				Expect(getApplicationRolesOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getApplicationRolesOptionsModel.ClientID).To(Equal(core.StringPtr("testString")))
 				Expect(getApplicationRolesOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetApplicationScopesOptions successfully`, func() {
 				// Construct an instance of the GetApplicationScopesOptions model
+				tenantID := "testString"
 				clientID := "testString"
-				getApplicationScopesOptionsModel := appIDManagementService.NewGetApplicationScopesOptions(clientID)
+				getApplicationScopesOptionsModel := appIDManagementService.NewGetApplicationScopesOptions(tenantID, clientID)
+				getApplicationScopesOptionsModel.SetTenantID("testString")
 				getApplicationScopesOptionsModel.SetClientID("testString")
 				getApplicationScopesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getApplicationScopesOptionsModel).ToNot(BeNil())
+				Expect(getApplicationScopesOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getApplicationScopesOptionsModel.ClientID).To(Equal(core.StringPtr("testString")))
 				Expect(getApplicationScopesOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetAuditStatusOptions successfully`, func() {
 				// Construct an instance of the GetAuditStatusOptions model
-				getAuditStatusOptionsModel := appIDManagementService.NewGetAuditStatusOptions()
+				tenantID := "testString"
+				getAuditStatusOptionsModel := appIDManagementService.NewGetAuditStatusOptions(tenantID)
+				getAuditStatusOptionsModel.SetTenantID("testString")
 				getAuditStatusOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getAuditStatusOptionsModel).ToNot(BeNil())
+				Expect(getAuditStatusOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getAuditStatusOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetChannelOptions successfully`, func() {
 				// Construct an instance of the GetChannelOptions model
+				tenantID := "testString"
 				channel := "email"
-				getChannelOptionsModel := appIDManagementService.NewGetChannelOptions(channel)
+				getChannelOptionsModel := appIDManagementService.NewGetChannelOptions(tenantID, channel)
+				getChannelOptionsModel.SetTenantID("testString")
 				getChannelOptionsModel.SetChannel("email")
 				getChannelOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getChannelOptionsModel).ToNot(BeNil())
+				Expect(getChannelOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getChannelOptionsModel.Channel).To(Equal(core.StringPtr("email")))
 				Expect(getChannelOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectoryActionURLOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryActionURLOptions model
+				tenantID := "testString"
 				action := "on_user_verified"
-				getCloudDirectoryActionURLOptionsModel := appIDManagementService.NewGetCloudDirectoryActionURLOptions(action)
+				getCloudDirectoryActionURLOptionsModel := appIDManagementService.NewGetCloudDirectoryActionURLOptions(tenantID, action)
+				getCloudDirectoryActionURLOptionsModel.SetTenantID("testString")
 				getCloudDirectoryActionURLOptionsModel.SetAction("on_user_verified")
 				getCloudDirectoryActionURLOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryActionURLOptionsModel).ToNot(BeNil())
+				Expect(getCloudDirectoryActionURLOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getCloudDirectoryActionURLOptionsModel.Action).To(Equal(core.StringPtr("on_user_verified")))
 				Expect(getCloudDirectoryActionURLOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectoryAdvancedPasswordManagementOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryAdvancedPasswordManagementOptions model
-				getCloudDirectoryAdvancedPasswordManagementOptionsModel := appIDManagementService.NewGetCloudDirectoryAdvancedPasswordManagementOptions()
+				tenantID := "testString"
+				getCloudDirectoryAdvancedPasswordManagementOptionsModel := appIDManagementService.NewGetCloudDirectoryAdvancedPasswordManagementOptions(tenantID)
+				getCloudDirectoryAdvancedPasswordManagementOptionsModel.SetTenantID("testString")
 				getCloudDirectoryAdvancedPasswordManagementOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryAdvancedPasswordManagementOptionsModel).ToNot(BeNil())
+				Expect(getCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectoryEmailDispatcherOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryEmailDispatcherOptions model
-				getCloudDirectoryEmailDispatcherOptionsModel := appIDManagementService.NewGetCloudDirectoryEmailDispatcherOptions()
+				tenantID := "testString"
+				getCloudDirectoryEmailDispatcherOptionsModel := appIDManagementService.NewGetCloudDirectoryEmailDispatcherOptions(tenantID)
+				getCloudDirectoryEmailDispatcherOptionsModel.SetTenantID("testString")
 				getCloudDirectoryEmailDispatcherOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryEmailDispatcherOptionsModel).ToNot(BeNil())
+				Expect(getCloudDirectoryEmailDispatcherOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getCloudDirectoryEmailDispatcherOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectoryIDPOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryIDPOptions model
-				getCloudDirectoryIDPOptionsModel := appIDManagementService.NewGetCloudDirectoryIDPOptions()
+				tenantID := "testString"
+				getCloudDirectoryIDPOptionsModel := appIDManagementService.NewGetCloudDirectoryIDPOptions(tenantID)
+				getCloudDirectoryIDPOptionsModel.SetTenantID("testString")
 				getCloudDirectoryIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryIDPOptionsModel).ToNot(BeNil())
+				Expect(getCloudDirectoryIDPOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getCloudDirectoryIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectoryPasswordRegexOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryPasswordRegexOptions model
-				getCloudDirectoryPasswordRegexOptionsModel := appIDManagementService.NewGetCloudDirectoryPasswordRegexOptions()
+				tenantID := "testString"
+				getCloudDirectoryPasswordRegexOptionsModel := appIDManagementService.NewGetCloudDirectoryPasswordRegexOptions(tenantID)
+				getCloudDirectoryPasswordRegexOptionsModel.SetTenantID("testString")
 				getCloudDirectoryPasswordRegexOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryPasswordRegexOptionsModel).ToNot(BeNil())
+				Expect(getCloudDirectoryPasswordRegexOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getCloudDirectoryPasswordRegexOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectorySenderDetailsOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectorySenderDetailsOptions model
-				getCloudDirectorySenderDetailsOptionsModel := appIDManagementService.NewGetCloudDirectorySenderDetailsOptions()
+				tenantID := "testString"
+				getCloudDirectorySenderDetailsOptionsModel := appIDManagementService.NewGetCloudDirectorySenderDetailsOptions(tenantID)
+				getCloudDirectorySenderDetailsOptionsModel.SetTenantID("testString")
 				getCloudDirectorySenderDetailsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectorySenderDetailsOptionsModel).ToNot(BeNil())
+				Expect(getCloudDirectorySenderDetailsOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getCloudDirectorySenderDetailsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCloudDirectoryUserOptions successfully`, func() {
 				// Construct an instance of the GetCloudDirectoryUserOptions model
+				tenantID := "testString"
 				userID := "testString"
-				getCloudDirectoryUserOptionsModel := appIDManagementService.NewGetCloudDirectoryUserOptions(userID)
+				getCloudDirectoryUserOptionsModel := appIDManagementService.NewGetCloudDirectoryUserOptions(tenantID, userID)
+				getCloudDirectoryUserOptionsModel.SetTenantID("testString")
 				getCloudDirectoryUserOptionsModel.SetUserID("testString")
 				getCloudDirectoryUserOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCloudDirectoryUserOptionsModel).ToNot(BeNil())
+				Expect(getCloudDirectoryUserOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getCloudDirectoryUserOptionsModel.UserID).To(Equal(core.StringPtr("testString")))
 				Expect(getCloudDirectoryUserOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetCustomIDPOptions successfully`, func() {
 				// Construct an instance of the GetCustomIDPOptions model
-				getCustomIDPOptionsModel := appIDManagementService.NewGetCustomIDPOptions()
+				tenantID := "testString"
+				getCustomIDPOptionsModel := appIDManagementService.NewGetCustomIDPOptions(tenantID)
+				getCustomIDPOptionsModel.SetTenantID("testString")
 				getCustomIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getCustomIDPOptionsModel).ToNot(BeNil())
+				Expect(getCustomIDPOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getCustomIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetExtensionConfigOptions successfully`, func() {
 				// Construct an instance of the GetExtensionConfigOptions model
+				tenantID := "testString"
 				name := "premfa"
-				getExtensionConfigOptionsModel := appIDManagementService.NewGetExtensionConfigOptions(name)
+				getExtensionConfigOptionsModel := appIDManagementService.NewGetExtensionConfigOptions(tenantID, name)
+				getExtensionConfigOptionsModel.SetTenantID("testString")
 				getExtensionConfigOptionsModel.SetName("premfa")
 				getExtensionConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getExtensionConfigOptionsModel).ToNot(BeNil())
+				Expect(getExtensionConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getExtensionConfigOptionsModel.Name).To(Equal(core.StringPtr("premfa")))
 				Expect(getExtensionConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetFacebookIDPOptions successfully`, func() {
 				// Construct an instance of the GetFacebookIDPOptions model
-				getFacebookIDPOptionsModel := appIDManagementService.NewGetFacebookIDPOptions()
+				tenantID := "testString"
+				getFacebookIDPOptionsModel := appIDManagementService.NewGetFacebookIDPOptions(tenantID)
+				getFacebookIDPOptionsModel.SetTenantID("testString")
 				getFacebookIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getFacebookIDPOptionsModel).ToNot(BeNil())
+				Expect(getFacebookIDPOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getFacebookIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetGoogleIDPOptions successfully`, func() {
 				// Construct an instance of the GetGoogleIDPOptions model
-				getGoogleIDPOptionsModel := appIDManagementService.NewGetGoogleIDPOptions()
+				tenantID := "testString"
+				getGoogleIDPOptionsModel := appIDManagementService.NewGetGoogleIDPOptions(tenantID)
+				getGoogleIDPOptionsModel.SetTenantID("testString")
 				getGoogleIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getGoogleIDPOptionsModel).ToNot(BeNil())
+				Expect(getGoogleIDPOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getGoogleIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetLocalizationOptions successfully`, func() {
 				// Construct an instance of the GetLocalizationOptions model
-				getLocalizationOptionsModel := appIDManagementService.NewGetLocalizationOptions()
+				tenantID := "testString"
+				getLocalizationOptionsModel := appIDManagementService.NewGetLocalizationOptions(tenantID)
+				getLocalizationOptionsModel.SetTenantID("testString")
 				getLocalizationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getLocalizationOptionsModel).ToNot(BeNil())
+				Expect(getLocalizationOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getLocalizationOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetMFAConfigOptions successfully`, func() {
 				// Construct an instance of the GetMFAConfigOptions model
-				getMFAConfigOptionsModel := appIDManagementService.NewGetMFAConfigOptions()
+				tenantID := "testString"
+				getMFAConfigOptionsModel := appIDManagementService.NewGetMFAConfigOptions(tenantID)
+				getMFAConfigOptionsModel.SetTenantID("testString")
 				getMFAConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getMFAConfigOptionsModel).ToNot(BeNil())
+				Expect(getMFAConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getMFAConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetMediaOptions successfully`, func() {
 				// Construct an instance of the GetMediaOptions model
-				getMediaOptionsModel := appIDManagementService.NewGetMediaOptions()
+				tenantID := "testString"
+				getMediaOptionsModel := appIDManagementService.NewGetMediaOptions(tenantID)
+				getMediaOptionsModel.SetTenantID("testString")
 				getMediaOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getMediaOptionsModel).ToNot(BeNil())
+				Expect(getMediaOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getMediaOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetRateLimitConfigOptions successfully`, func() {
 				// Construct an instance of the GetRateLimitConfigOptions model
-				getRateLimitConfigOptionsModel := appIDManagementService.NewGetRateLimitConfigOptions()
+				tenantID := "testString"
+				getRateLimitConfigOptionsModel := appIDManagementService.NewGetRateLimitConfigOptions(tenantID)
+				getRateLimitConfigOptionsModel.SetTenantID("testString")
 				getRateLimitConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getRateLimitConfigOptionsModel).ToNot(BeNil())
+				Expect(getRateLimitConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getRateLimitConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetRedirectUrisOptions successfully`, func() {
 				// Construct an instance of the GetRedirectUrisOptions model
-				getRedirectUrisOptionsModel := appIDManagementService.NewGetRedirectUrisOptions()
+				tenantID := "testString"
+				getRedirectUrisOptionsModel := appIDManagementService.NewGetRedirectUrisOptions(tenantID)
+				getRedirectUrisOptionsModel.SetTenantID("testString")
 				getRedirectUrisOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getRedirectUrisOptionsModel).ToNot(BeNil())
+				Expect(getRedirectUrisOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getRedirectUrisOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetRoleOptions successfully`, func() {
 				// Construct an instance of the GetRoleOptions model
+				tenantID := "testString"
 				roleID := "testString"
-				getRoleOptionsModel := appIDManagementService.NewGetRoleOptions(roleID)
+				getRoleOptionsModel := appIDManagementService.NewGetRoleOptions(tenantID, roleID)
+				getRoleOptionsModel.SetTenantID("testString")
 				getRoleOptionsModel.SetRoleID("testString")
 				getRoleOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getRoleOptionsModel).ToNot(BeNil())
+				Expect(getRoleOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getRoleOptionsModel.RoleID).To(Equal(core.StringPtr("testString")))
 				Expect(getRoleOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetSSOConfigOptions successfully`, func() {
 				// Construct an instance of the GetSSOConfigOptions model
-				getSSOConfigOptionsModel := appIDManagementService.NewGetSSOConfigOptions()
+				tenantID := "testString"
+				getSSOConfigOptionsModel := appIDManagementService.NewGetSSOConfigOptions(tenantID)
+				getSSOConfigOptionsModel.SetTenantID("testString")
 				getSSOConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getSSOConfigOptionsModel).ToNot(BeNil())
+				Expect(getSSOConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getSSOConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetSAMLIDPOptions successfully`, func() {
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSamlidpOptionsModel := appIDManagementService.NewGetSAMLIDPOptions()
+				tenantID := "testString"
+				getSamlidpOptionsModel := appIDManagementService.NewGetSAMLIDPOptions(tenantID)
+				getSamlidpOptionsModel.SetTenantID("testString")
 				getSamlidpOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getSamlidpOptionsModel).ToNot(BeNil())
+				Expect(getSamlidpOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getSamlidpOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetSAMLMetadataOptions successfully`, func() {
 				// Construct an instance of the GetSAMLMetadataOptions model
-				getSAMLMetadataOptionsModel := appIDManagementService.NewGetSAMLMetadataOptions()
+				tenantID := "testString"
+				getSAMLMetadataOptionsModel := appIDManagementService.NewGetSAMLMetadataOptions(tenantID)
+				getSAMLMetadataOptionsModel.SetTenantID("testString")
 				getSAMLMetadataOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getSAMLMetadataOptionsModel).ToNot(BeNil())
+				Expect(getSAMLMetadataOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getSAMLMetadataOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetTemplateOptions successfully`, func() {
 				// Construct an instance of the GetTemplateOptions model
+				tenantID := "testString"
 				templateName := "USER_VERIFICATION"
 				language := "testString"
-				getTemplateOptionsModel := appIDManagementService.NewGetTemplateOptions(templateName, language)
+				getTemplateOptionsModel := appIDManagementService.NewGetTemplateOptions(tenantID, templateName, language)
+				getTemplateOptionsModel.SetTenantID("testString")
 				getTemplateOptionsModel.SetTemplateName("USER_VERIFICATION")
 				getTemplateOptionsModel.SetLanguage("testString")
 				getTemplateOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getTemplateOptionsModel).ToNot(BeNil())
+				Expect(getTemplateOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getTemplateOptionsModel.TemplateName).To(Equal(core.StringPtr("USER_VERIFICATION")))
 				Expect(getTemplateOptionsModel.Language).To(Equal(core.StringPtr("testString")))
 				Expect(getTemplateOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetThemeColorOptions successfully`, func() {
 				// Construct an instance of the GetThemeColorOptions model
-				getThemeColorOptionsModel := appIDManagementService.NewGetThemeColorOptions()
+				tenantID := "testString"
+				getThemeColorOptionsModel := appIDManagementService.NewGetThemeColorOptions(tenantID)
+				getThemeColorOptionsModel.SetTenantID("testString")
 				getThemeColorOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getThemeColorOptionsModel).ToNot(BeNil())
+				Expect(getThemeColorOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getThemeColorOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetThemeTextOptions successfully`, func() {
 				// Construct an instance of the GetThemeTextOptions model
-				getThemeTextOptionsModel := appIDManagementService.NewGetThemeTextOptions()
+				tenantID := "testString"
+				getThemeTextOptionsModel := appIDManagementService.NewGetThemeTextOptions(tenantID)
+				getThemeTextOptionsModel.SetTenantID("testString")
 				getThemeTextOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getThemeTextOptionsModel).ToNot(BeNil())
+				Expect(getThemeTextOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getThemeTextOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetTokensConfigOptions successfully`, func() {
 				// Construct an instance of the GetTokensConfigOptions model
-				getTokensConfigOptionsModel := appIDManagementService.NewGetTokensConfigOptions()
+				tenantID := "testString"
+				getTokensConfigOptionsModel := appIDManagementService.NewGetTokensConfigOptions(tenantID)
+				getTokensConfigOptionsModel.SetTenantID("testString")
 				getTokensConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getTokensConfigOptionsModel).ToNot(BeNil())
+				Expect(getTokensConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getTokensConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetUserProfilesConfigOptions successfully`, func() {
 				// Construct an instance of the GetUserProfilesConfigOptions model
-				getUserProfilesConfigOptionsModel := appIDManagementService.NewGetUserProfilesConfigOptions()
+				tenantID := "testString"
+				getUserProfilesConfigOptionsModel := appIDManagementService.NewGetUserProfilesConfigOptions(tenantID)
+				getUserProfilesConfigOptionsModel.SetTenantID("testString")
 				getUserProfilesConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getUserProfilesConfigOptionsModel).ToNot(BeNil())
+				Expect(getUserProfilesConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getUserProfilesConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetUserRolesOptions successfully`, func() {
 				// Construct an instance of the GetUserRolesOptions model
+				tenantID := "testString"
 				id := "testString"
-				getUserRolesOptionsModel := appIDManagementService.NewGetUserRolesOptions(id)
+				getUserRolesOptionsModel := appIDManagementService.NewGetUserRolesOptions(tenantID, id)
+				getUserRolesOptionsModel.SetTenantID("testString")
 				getUserRolesOptionsModel.SetID("testString")
 				getUserRolesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getUserRolesOptionsModel).ToNot(BeNil())
+				Expect(getUserRolesOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(getUserRolesOptionsModel.ID).To(Equal(core.StringPtr("testString")))
 				Expect(getUserRolesOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewInvalidateUserSSOSessionsOptions successfully`, func() {
 				// Construct an instance of the InvalidateUserSSOSessionsOptions model
+				tenantID := "testString"
 				userID := "testString"
-				invalidateUserSSOSessionsOptionsModel := appIDManagementService.NewInvalidateUserSSOSessionsOptions(userID)
+				invalidateUserSSOSessionsOptionsModel := appIDManagementService.NewInvalidateUserSSOSessionsOptions(tenantID, userID)
+				invalidateUserSSOSessionsOptionsModel.SetTenantID("testString")
 				invalidateUserSSOSessionsOptionsModel.SetUserID("testString")
 				invalidateUserSSOSessionsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(invalidateUserSSOSessionsOptionsModel).ToNot(BeNil())
+				Expect(invalidateUserSSOSessionsOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(invalidateUserSSOSessionsOptionsModel.UserID).To(Equal(core.StringPtr("testString")))
 				Expect(invalidateUserSSOSessionsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewListApplicationsOptions successfully`, func() {
 				// Construct an instance of the ListApplicationsOptions model
-				listApplicationsOptionsModel := appIDManagementService.NewListApplicationsOptions()
+				tenantID := "testString"
+				listApplicationsOptionsModel := appIDManagementService.NewListApplicationsOptions(tenantID)
+				listApplicationsOptionsModel.SetTenantID("testString")
 				listApplicationsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(listApplicationsOptionsModel).ToNot(BeNil())
+				Expect(listApplicationsOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(listApplicationsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewListChannelsOptions successfully`, func() {
 				// Construct an instance of the ListChannelsOptions model
-				listChannelsOptionsModel := appIDManagementService.NewListChannelsOptions()
+				tenantID := "testString"
+				listChannelsOptionsModel := appIDManagementService.NewListChannelsOptions(tenantID)
+				listChannelsOptionsModel.SetTenantID("testString")
 				listChannelsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(listChannelsOptionsModel).ToNot(BeNil())
+				Expect(listChannelsOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(listChannelsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewListCloudDirectoryUsersOptions successfully`, func() {
 				// Construct an instance of the ListCloudDirectoryUsersOptions model
-				listCloudDirectoryUsersOptionsModel := appIDManagementService.NewListCloudDirectoryUsersOptions()
+				tenantID := "testString"
+				listCloudDirectoryUsersOptionsModel := appIDManagementService.NewListCloudDirectoryUsersOptions(tenantID)
+				listCloudDirectoryUsersOptionsModel.SetTenantID("testString")
 				listCloudDirectoryUsersOptionsModel.SetStartIndex(int64(38))
 				listCloudDirectoryUsersOptionsModel.SetCount(int64(0))
 				listCloudDirectoryUsersOptionsModel.SetQuery("testString")
 				listCloudDirectoryUsersOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(listCloudDirectoryUsersOptionsModel).ToNot(BeNil())
+				Expect(listCloudDirectoryUsersOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(listCloudDirectoryUsersOptionsModel.StartIndex).To(Equal(core.Int64Ptr(int64(38))))
 				Expect(listCloudDirectoryUsersOptionsModel.Count).To(Equal(core.Int64Ptr(int64(0))))
 				Expect(listCloudDirectoryUsersOptionsModel.Query).To(Equal(core.StringPtr("testString")))
@@ -20060,41 +20239,53 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewListRolesOptions successfully`, func() {
 				// Construct an instance of the ListRolesOptions model
-				listRolesOptionsModel := appIDManagementService.NewListRolesOptions()
+				tenantID := "testString"
+				listRolesOptionsModel := appIDManagementService.NewListRolesOptions(tenantID)
+				listRolesOptionsModel.SetTenantID("testString")
 				listRolesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(listRolesOptionsModel).ToNot(BeNil())
+				Expect(listRolesOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(listRolesOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewPostEmailDispatcherTestOptions successfully`, func() {
 				// Construct an instance of the PostEmailDispatcherTestOptions model
+				tenantID := "testString"
 				postEmailDispatcherTestOptionsEmail := "testString"
-				postEmailDispatcherTestOptionsModel := appIDManagementService.NewPostEmailDispatcherTestOptions(postEmailDispatcherTestOptionsEmail)
+				postEmailDispatcherTestOptionsModel := appIDManagementService.NewPostEmailDispatcherTestOptions(tenantID, postEmailDispatcherTestOptionsEmail)
+				postEmailDispatcherTestOptionsModel.SetTenantID("testString")
 				postEmailDispatcherTestOptionsModel.SetEmail("testString")
 				postEmailDispatcherTestOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(postEmailDispatcherTestOptionsModel).ToNot(BeNil())
+				Expect(postEmailDispatcherTestOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(postEmailDispatcherTestOptionsModel.Email).To(Equal(core.StringPtr("testString")))
 				Expect(postEmailDispatcherTestOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewPostExtensionsTestOptions successfully`, func() {
 				// Construct an instance of the PostExtensionsTestOptions model
+				tenantID := "testString"
 				name := "premfa"
-				postExtensionsTestOptionsModel := appIDManagementService.NewPostExtensionsTestOptions(name)
+				postExtensionsTestOptionsModel := appIDManagementService.NewPostExtensionsTestOptions(tenantID, name)
+				postExtensionsTestOptionsModel.SetTenantID("testString")
 				postExtensionsTestOptionsModel.SetName("premfa")
 				postExtensionsTestOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(postExtensionsTestOptionsModel).ToNot(BeNil())
+				Expect(postExtensionsTestOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(postExtensionsTestOptionsModel.Name).To(Equal(core.StringPtr("premfa")))
 				Expect(postExtensionsTestOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewPostMediaOptions successfully`, func() {
 				// Construct an instance of the PostMediaOptions model
+				tenantID := "testString"
 				mediaType := "logo"
 				file := CreateMockReader("This is a mock file.")
-				postMediaOptionsModel := appIDManagementService.NewPostMediaOptions(mediaType, file)
+				postMediaOptionsModel := appIDManagementService.NewPostMediaOptions(tenantID, mediaType, file)
+				postMediaOptionsModel.SetTenantID("testString")
 				postMediaOptionsModel.SetMediaType("logo")
 				postMediaOptionsModel.SetFile(CreateMockReader("This is a mock file."))
 				postMediaOptionsModel.SetFileContentType("testString")
 				postMediaOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(postMediaOptionsModel).ToNot(BeNil())
+				Expect(postMediaOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(postMediaOptionsModel.MediaType).To(Equal(core.StringPtr("logo")))
 				Expect(postMediaOptionsModel.File).To(Equal(CreateMockReader("This is a mock file.")))
 				Expect(postMediaOptionsModel.FileContentType).To(Equal(core.StringPtr("testString")))
@@ -20102,30 +20293,39 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewPostSMSDispatcherTestOptions successfully`, func() {
 				// Construct an instance of the PostSMSDispatcherTestOptions model
+				tenantID := "testString"
 				postSMSDispatcherTestOptionsPhoneNumber := "+1-999-999-9999"
-				postSMSDispatcherTestOptionsModel := appIDManagementService.NewPostSMSDispatcherTestOptions(postSMSDispatcherTestOptionsPhoneNumber)
+				postSMSDispatcherTestOptionsModel := appIDManagementService.NewPostSMSDispatcherTestOptions(tenantID, postSMSDispatcherTestOptionsPhoneNumber)
+				postSMSDispatcherTestOptionsModel.SetTenantID("testString")
 				postSMSDispatcherTestOptionsModel.SetPhoneNumber("+1-999-999-9999")
 				postSMSDispatcherTestOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(postSMSDispatcherTestOptionsModel).ToNot(BeNil())
+				Expect(postSMSDispatcherTestOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(postSMSDispatcherTestOptionsModel.PhoneNumber).To(Equal(core.StringPtr("+1-999-999-9999")))
 				Expect(postSMSDispatcherTestOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewPostThemeColorOptions successfully`, func() {
 				// Construct an instance of the PostThemeColorOptions model
-				postThemeColorOptionsModel := appIDManagementService.NewPostThemeColorOptions()
+				tenantID := "testString"
+				postThemeColorOptionsModel := appIDManagementService.NewPostThemeColorOptions(tenantID)
+				postThemeColorOptionsModel.SetTenantID("testString")
 				postThemeColorOptionsModel.SetHeaderColor("#EEF2F5")
 				postThemeColorOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(postThemeColorOptionsModel).ToNot(BeNil())
+				Expect(postThemeColorOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(postThemeColorOptionsModel.HeaderColor).To(Equal(core.StringPtr("#EEF2F5")))
 				Expect(postThemeColorOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewPostThemeTextOptions successfully`, func() {
 				// Construct an instance of the PostThemeTextOptions model
-				postThemeTextOptionsModel := appIDManagementService.NewPostThemeTextOptions()
+				tenantID := "testString"
+				postThemeTextOptionsModel := appIDManagementService.NewPostThemeTextOptions(tenantID)
+				postThemeTextOptionsModel.SetTenantID("testString")
 				postThemeTextOptionsModel.SetTabTitle("Login")
 				postThemeTextOptionsModel.SetFootnote("Powered by App ID")
 				postThemeTextOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(postThemeTextOptionsModel).ToNot(BeNil())
+				Expect(postThemeTextOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(postThemeTextOptionsModel.TabTitle).To(Equal(core.StringPtr("Login")))
 				Expect(postThemeTextOptionsModel.Footnote).To(Equal(core.StringPtr("Powered by App ID")))
 				Expect(postThemeTextOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -20138,25 +20338,31 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(updateUserRolesParamsRolesModel.Ids).To(Equal([]string{"111c22c3-38ea-4de8-b5d4-338744d83b0f"}))
 
 				// Construct an instance of the PutApplicationsRolesOptions model
+				tenantID := "testString"
 				clientID := "testString"
 				var putApplicationsRolesOptionsRoles *appidmanagementv4.UpdateUserRolesParamsRoles = nil
-				putApplicationsRolesOptionsModel := appIDManagementService.NewPutApplicationsRolesOptions(clientID, putApplicationsRolesOptionsRoles)
+				putApplicationsRolesOptionsModel := appIDManagementService.NewPutApplicationsRolesOptions(tenantID, clientID, putApplicationsRolesOptionsRoles)
+				putApplicationsRolesOptionsModel.SetTenantID("testString")
 				putApplicationsRolesOptionsModel.SetClientID("testString")
 				putApplicationsRolesOptionsModel.SetRoles(updateUserRolesParamsRolesModel)
 				putApplicationsRolesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(putApplicationsRolesOptionsModel).ToNot(BeNil())
+				Expect(putApplicationsRolesOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(putApplicationsRolesOptionsModel.ClientID).To(Equal(core.StringPtr("testString")))
 				Expect(putApplicationsRolesOptionsModel.Roles).To(Equal(updateUserRolesParamsRolesModel))
 				Expect(putApplicationsRolesOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewPutApplicationsScopesOptions successfully`, func() {
 				// Construct an instance of the PutApplicationsScopesOptions model
+				tenantID := "testString"
 				clientID := "testString"
-				putApplicationsScopesOptionsModel := appIDManagementService.NewPutApplicationsScopesOptions(clientID)
+				putApplicationsScopesOptionsModel := appIDManagementService.NewPutApplicationsScopesOptions(tenantID, clientID)
+				putApplicationsScopesOptionsModel.SetTenantID("testString")
 				putApplicationsScopesOptionsModel.SetClientID("testString")
 				putApplicationsScopesOptionsModel.SetScopes([]string{"cartoons", "horror", "animated"})
 				putApplicationsScopesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(putApplicationsScopesOptionsModel).ToNot(BeNil())
+				Expect(putApplicationsScopesOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(putApplicationsScopesOptionsModel.ClientID).To(Equal(core.StringPtr("testString")))
 				Expect(putApplicationsScopesOptionsModel.Scopes).To(Equal([]string{"cartoons", "horror", "animated"}))
 				Expect(putApplicationsScopesOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -20187,7 +20393,9 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(refreshTokenConfigParamsModel.Enabled).To(Equal(core.BoolPtr(true)))
 
 				// Construct an instance of the PutTokensConfigOptions model
-				putTokensConfigOptionsModel := appIDManagementService.NewPutTokensConfigOptions()
+				tenantID := "testString"
+				putTokensConfigOptionsModel := appIDManagementService.NewPutTokensConfigOptions(tenantID)
+				putTokensConfigOptionsModel.SetTenantID("testString")
 				putTokensConfigOptionsModel.SetIDTokenClaims([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel})
 				putTokensConfigOptionsModel.SetAccessTokenClaims([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel})
 				putTokensConfigOptionsModel.SetAccess([]appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel})
@@ -20195,6 +20403,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				putTokensConfigOptionsModel.SetAnonymousAccess([]appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel})
 				putTokensConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(putTokensConfigOptionsModel).ToNot(BeNil())
+				Expect(putTokensConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(putTokensConfigOptionsModel.IDTokenClaims).To(Equal([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}))
 				Expect(putTokensConfigOptionsModel.AccessTokenClaims).To(Equal([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}))
 				Expect(putTokensConfigOptionsModel.Access).To(Equal([]appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}))
@@ -20204,26 +20413,32 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewRegisterApplicationOptions successfully`, func() {
 				// Construct an instance of the RegisterApplicationOptions model
-				registerApplicationOptionsName := "App1"
-				registerApplicationOptionsModel := appIDManagementService.NewRegisterApplicationOptions(registerApplicationOptionsName)
-				registerApplicationOptionsModel.SetName("App1")
-				registerApplicationOptionsModel.SetType("regularwebapp")
+				tenantID := "testString"
+				registerApplicationOptionsName := "testString"
+				registerApplicationOptionsModel := appIDManagementService.NewRegisterApplicationOptions(tenantID, registerApplicationOptionsName)
+				registerApplicationOptionsModel.SetTenantID("testString")
+				registerApplicationOptionsModel.SetName("testString")
+				registerApplicationOptionsModel.SetType("testString")
 				registerApplicationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(registerApplicationOptionsModel).ToNot(BeNil())
-				Expect(registerApplicationOptionsModel.Name).To(Equal(core.StringPtr("App1")))
-				Expect(registerApplicationOptionsModel.Type).To(Equal(core.StringPtr("regularwebapp")))
+				Expect(registerApplicationOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
+				Expect(registerApplicationOptionsModel.Name).To(Equal(core.StringPtr("testString")))
+				Expect(registerApplicationOptionsModel.Type).To(Equal(core.StringPtr("testString")))
 				Expect(registerApplicationOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewResendNotificationOptions successfully`, func() {
 				// Construct an instance of the ResendNotificationOptions model
+				tenantID := "testString"
 				templateName := "USER_VERIFICATION"
 				resendNotificationOptionsUUID := "testString"
-				resendNotificationOptionsModel := appIDManagementService.NewResendNotificationOptions(templateName, resendNotificationOptionsUUID)
+				resendNotificationOptionsModel := appIDManagementService.NewResendNotificationOptions(tenantID, templateName, resendNotificationOptionsUUID)
+				resendNotificationOptionsModel.SetTenantID("testString")
 				resendNotificationOptionsModel.SetTemplateName("USER_VERIFICATION")
 				resendNotificationOptionsModel.SetUUID("testString")
 				resendNotificationOptionsModel.SetLanguage("testString")
 				resendNotificationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(resendNotificationOptionsModel).ToNot(BeNil())
+				Expect(resendNotificationOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(resendNotificationOptionsModel.TemplateName).To(Equal(core.StringPtr("USER_VERIFICATION")))
 				Expect(resendNotificationOptionsModel.UUID).To(Equal(core.StringPtr("testString")))
 				Expect(resendNotificationOptionsModel.Language).To(Equal(core.StringPtr("testString")))
@@ -20231,23 +20446,29 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewSetAuditStatusOptions successfully`, func() {
 				// Construct an instance of the SetAuditStatusOptions model
+				tenantID := "testString"
 				setAuditStatusOptionsIsActive := true
-				setAuditStatusOptionsModel := appIDManagementService.NewSetAuditStatusOptions(setAuditStatusOptionsIsActive)
+				setAuditStatusOptionsModel := appIDManagementService.NewSetAuditStatusOptions(tenantID, setAuditStatusOptionsIsActive)
+				setAuditStatusOptionsModel.SetTenantID("testString")
 				setAuditStatusOptionsModel.SetIsActive(true)
 				setAuditStatusOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setAuditStatusOptionsModel).ToNot(BeNil())
+				Expect(setAuditStatusOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setAuditStatusOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(setAuditStatusOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewSetCloudDirectoryActionOptions successfully`, func() {
 				// Construct an instance of the SetCloudDirectoryActionOptions model
+				tenantID := "testString"
 				action := "on_user_verified"
 				setCloudDirectoryActionOptionsActionURL := "testString"
-				setCloudDirectoryActionOptionsModel := appIDManagementService.NewSetCloudDirectoryActionOptions(action, setCloudDirectoryActionOptionsActionURL)
+				setCloudDirectoryActionOptionsModel := appIDManagementService.NewSetCloudDirectoryActionOptions(tenantID, action, setCloudDirectoryActionOptionsActionURL)
+				setCloudDirectoryActionOptionsModel.SetTenantID("testString")
 				setCloudDirectoryActionOptionsModel.SetAction("on_user_verified")
 				setCloudDirectoryActionOptionsModel.SetActionURL("testString")
 				setCloudDirectoryActionOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setCloudDirectoryActionOptionsModel).ToNot(BeNil())
+				Expect(setCloudDirectoryActionOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setCloudDirectoryActionOptionsModel.Action).To(Equal(core.StringPtr("on_user_verified")))
 				Expect(setCloudDirectoryActionOptionsModel.ActionURL).To(Equal(core.StringPtr("testString")))
 				Expect(setCloudDirectoryActionOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -20334,11 +20555,14 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(apmSchemaAdvancedPasswordManagementModel.MinPasswordChangeInterval).To(Equal(apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel))
 
 				// Construct an instance of the SetCloudDirectoryAdvancedPasswordManagementOptions model
+				tenantID := "testString"
 				var setCloudDirectoryAdvancedPasswordManagementOptionsAdvancedPasswordManagement *appidmanagementv4.ApmSchemaAdvancedPasswordManagement = nil
-				setCloudDirectoryAdvancedPasswordManagementOptionsModel := appIDManagementService.NewSetCloudDirectoryAdvancedPasswordManagementOptions(setCloudDirectoryAdvancedPasswordManagementOptionsAdvancedPasswordManagement)
+				setCloudDirectoryAdvancedPasswordManagementOptionsModel := appIDManagementService.NewSetCloudDirectoryAdvancedPasswordManagementOptions(tenantID, setCloudDirectoryAdvancedPasswordManagementOptionsAdvancedPasswordManagement)
+				setCloudDirectoryAdvancedPasswordManagementOptionsModel.SetTenantID("testString")
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.SetAdvancedPasswordManagement(apmSchemaAdvancedPasswordManagementModel)
 				setCloudDirectoryAdvancedPasswordManagementOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setCloudDirectoryAdvancedPasswordManagementOptionsModel).ToNot(BeNil())
+				Expect(setCloudDirectoryAdvancedPasswordManagementOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setCloudDirectoryAdvancedPasswordManagementOptionsModel.AdvancedPasswordManagement).To(Equal(apmSchemaAdvancedPasswordManagementModel))
 				Expect(setCloudDirectoryAdvancedPasswordManagementOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -20370,13 +20594,16 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(emailDispatcherParamsCustomModel.Authorization).To(Equal(emailDispatcherParamsCustomAuthorizationModel))
 
 				// Construct an instance of the SetCloudDirectoryEmailDispatcherOptions model
+				tenantID := "testString"
 				setCloudDirectoryEmailDispatcherOptionsProvider := "sendgrid"
-				setCloudDirectoryEmailDispatcherOptionsModel := appIDManagementService.NewSetCloudDirectoryEmailDispatcherOptions(setCloudDirectoryEmailDispatcherOptionsProvider)
+				setCloudDirectoryEmailDispatcherOptionsModel := appIDManagementService.NewSetCloudDirectoryEmailDispatcherOptions(tenantID, setCloudDirectoryEmailDispatcherOptionsProvider)
+				setCloudDirectoryEmailDispatcherOptionsModel.SetTenantID("testString")
 				setCloudDirectoryEmailDispatcherOptionsModel.SetProvider("sendgrid")
 				setCloudDirectoryEmailDispatcherOptionsModel.SetSendgrid(emailDispatcherParamsSendgridModel)
 				setCloudDirectoryEmailDispatcherOptionsModel.SetCustom(emailDispatcherParamsCustomModel)
 				setCloudDirectoryEmailDispatcherOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setCloudDirectoryEmailDispatcherOptionsModel).ToNot(BeNil())
+				Expect(setCloudDirectoryEmailDispatcherOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setCloudDirectoryEmailDispatcherOptionsModel.Provider).To(Equal(core.StringPtr("sendgrid")))
 				Expect(setCloudDirectoryEmailDispatcherOptionsModel.Sendgrid).To(Equal(emailDispatcherParamsSendgridModel))
 				Expect(setCloudDirectoryEmailDispatcherOptionsModel.Custom).To(Equal(emailDispatcherParamsCustomModel))
@@ -20416,25 +20643,31 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(cloudDirectoryConfigParamsModel.IdentityField).To(Equal(core.StringPtr("email")))
 
 				// Construct an instance of the SetCloudDirectoryIDPOptions model
+				tenantID := "testString"
 				setCloudDirectoryIDPOptionsIsActive := true
 				var setCloudDirectoryIDPOptionsConfig *appidmanagementv4.CloudDirectoryConfigParams = nil
-				setCloudDirectoryIDPOptionsModel := appIDManagementService.NewSetCloudDirectoryIDPOptions(setCloudDirectoryIDPOptionsIsActive, setCloudDirectoryIDPOptionsConfig)
+				setCloudDirectoryIDPOptionsModel := appIDManagementService.NewSetCloudDirectoryIDPOptions(tenantID, setCloudDirectoryIDPOptionsIsActive, setCloudDirectoryIDPOptionsConfig)
+				setCloudDirectoryIDPOptionsModel.SetTenantID("testString")
 				setCloudDirectoryIDPOptionsModel.SetIsActive(true)
 				setCloudDirectoryIDPOptionsModel.SetConfig(cloudDirectoryConfigParamsModel)
 				setCloudDirectoryIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setCloudDirectoryIDPOptionsModel).ToNot(BeNil())
+				Expect(setCloudDirectoryIDPOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setCloudDirectoryIDPOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(setCloudDirectoryIDPOptionsModel.Config).To(Equal(cloudDirectoryConfigParamsModel))
 				Expect(setCloudDirectoryIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewSetCloudDirectoryPasswordRegexOptions successfully`, func() {
 				// Construct an instance of the SetCloudDirectoryPasswordRegexOptions model
-				setCloudDirectoryPasswordRegexOptionsModel := appIDManagementService.NewSetCloudDirectoryPasswordRegexOptions()
+				tenantID := "testString"
+				setCloudDirectoryPasswordRegexOptionsModel := appIDManagementService.NewSetCloudDirectoryPasswordRegexOptions(tenantID)
+				setCloudDirectoryPasswordRegexOptionsModel.SetTenantID("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.SetRegex("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.SetBase64EncodedRegex("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.SetErrorMessage("testString")
 				setCloudDirectoryPasswordRegexOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setCloudDirectoryPasswordRegexOptionsModel).ToNot(BeNil())
+				Expect(setCloudDirectoryPasswordRegexOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setCloudDirectoryPasswordRegexOptionsModel.Regex).To(Equal(core.StringPtr("testString")))
 				Expect(setCloudDirectoryPasswordRegexOptionsModel.Base64EncodedRegex).To(Equal(core.StringPtr("testString")))
 				Expect(setCloudDirectoryPasswordRegexOptionsModel.ErrorMessage).To(Equal(core.StringPtr("testString")))
@@ -20468,11 +20701,14 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(cloudDirectorySenderDetailsSenderDetailsModel.LinkExpirationSec).To(Equal(core.Float64Ptr(float64(900))))
 
 				// Construct an instance of the SetCloudDirectorySenderDetailsOptions model
+				tenantID := "testString"
 				var setCloudDirectorySenderDetailsOptionsSenderDetails *appidmanagementv4.CloudDirectorySenderDetailsSenderDetails = nil
-				setCloudDirectorySenderDetailsOptionsModel := appIDManagementService.NewSetCloudDirectorySenderDetailsOptions(setCloudDirectorySenderDetailsOptionsSenderDetails)
+				setCloudDirectorySenderDetailsOptionsModel := appIDManagementService.NewSetCloudDirectorySenderDetailsOptions(tenantID, setCloudDirectorySenderDetailsOptionsSenderDetails)
+				setCloudDirectorySenderDetailsOptionsModel.SetTenantID("testString")
 				setCloudDirectorySenderDetailsOptionsModel.SetSenderDetails(cloudDirectorySenderDetailsSenderDetailsModel)
 				setCloudDirectorySenderDetailsOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setCloudDirectorySenderDetailsOptionsModel).ToNot(BeNil())
+				Expect(setCloudDirectorySenderDetailsOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setCloudDirectorySenderDetailsOptionsModel.SenderDetails).To(Equal(cloudDirectorySenderDetailsSenderDetailsModel))
 				Expect(setCloudDirectorySenderDetailsOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -20484,12 +20720,15 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(customIDPConfigParamsConfigModel.PublicKey).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the SetCustomIDPOptions model
+				tenantID := "testString"
 				setCustomIDPOptionsIsActive := true
-				setCustomIDPOptionsModel := appIDManagementService.NewSetCustomIDPOptions(setCustomIDPOptionsIsActive)
+				setCustomIDPOptionsModel := appIDManagementService.NewSetCustomIDPOptions(tenantID, setCustomIDPOptionsIsActive)
+				setCustomIDPOptionsModel.SetTenantID("testString")
 				setCustomIDPOptionsModel.SetIsActive(true)
 				setCustomIDPOptionsModel.SetConfig(customIDPConfigParamsConfigModel)
 				setCustomIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setCustomIDPOptionsModel).ToNot(BeNil())
+				Expect(setCustomIDPOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setCustomIDPOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(setCustomIDPOptionsModel.Config).To(Equal(customIDPConfigParamsConfigModel))
 				Expect(setCustomIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -20515,11 +20754,14 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(facebookGoogleConfigParamsModel.GetProperty("foo")).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the SetFacebookIDPOptions model
+				tenantID := "testString"
 				var idp *appidmanagementv4.FacebookGoogleConfigParams = nil
-				setFacebookIDPOptionsModel := appIDManagementService.NewSetFacebookIDPOptions(idp)
+				setFacebookIDPOptionsModel := appIDManagementService.NewSetFacebookIDPOptions(tenantID, idp)
+				setFacebookIDPOptionsModel.SetTenantID("testString")
 				setFacebookIDPOptionsModel.SetIDP(facebookGoogleConfigParamsModel)
 				setFacebookIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setFacebookIDPOptionsModel).ToNot(BeNil())
+				Expect(setFacebookIDPOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setFacebookIDPOptionsModel.IDP).To(Equal(facebookGoogleConfigParamsModel))
 				Expect(setFacebookIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -20544,11 +20786,14 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(facebookGoogleConfigParamsModel.GetProperty("foo")).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the SetGoogleIDPOptions model
+				tenantID := "testString"
 				var idp *appidmanagementv4.FacebookGoogleConfigParams = nil
-				setGoogleIDPOptionsModel := appIDManagementService.NewSetGoogleIDPOptions(idp)
+				setGoogleIDPOptionsModel := appIDManagementService.NewSetGoogleIDPOptions(tenantID, idp)
+				setGoogleIDPOptionsModel.SetTenantID("testString")
 				setGoogleIDPOptionsModel.SetIDP(facebookGoogleConfigParamsModel)
 				setGoogleIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setGoogleIDPOptionsModel).ToNot(BeNil())
+				Expect(setGoogleIDPOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setGoogleIDPOptionsModel.IDP).To(Equal(facebookGoogleConfigParamsModel))
 				Expect(setGoogleIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -20585,24 +20830,30 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(samlConfigParamsModel.GetProperty("foo")).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the SetSAMLIDPOptions model
+				tenantID := "testString"
 				setSamlidpOptionsIsActive := true
-				setSamlidpOptionsModel := appIDManagementService.NewSetSAMLIDPOptions(setSamlidpOptionsIsActive)
+				setSamlidpOptionsModel := appIDManagementService.NewSetSAMLIDPOptions(tenantID, setSamlidpOptionsIsActive)
+				setSamlidpOptionsModel.SetTenantID("testString")
 				setSamlidpOptionsModel.SetIsActive(true)
 				setSamlidpOptionsModel.SetConfig(samlConfigParamsModel)
 				setSamlidpOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(setSamlidpOptionsModel).ToNot(BeNil())
+				Expect(setSamlidpOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(setSamlidpOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(setSamlidpOptionsModel.Config).To(Equal(samlConfigParamsModel))
 				Expect(setSamlidpOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewStartForgotPasswordOptions successfully`, func() {
 				// Construct an instance of the StartForgotPasswordOptions model
+				tenantID := "testString"
 				startForgotPasswordOptionsUser := "testString"
-				startForgotPasswordOptionsModel := appIDManagementService.NewStartForgotPasswordOptions(startForgotPasswordOptionsUser)
+				startForgotPasswordOptionsModel := appIDManagementService.NewStartForgotPasswordOptions(tenantID, startForgotPasswordOptionsUser)
+				startForgotPasswordOptionsModel.SetTenantID("testString")
 				startForgotPasswordOptionsModel.SetUser("testString")
 				startForgotPasswordOptionsModel.SetLanguage("testString")
 				startForgotPasswordOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(startForgotPasswordOptionsModel).ToNot(BeNil())
+				Expect(startForgotPasswordOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(startForgotPasswordOptionsModel.User).To(Equal(core.StringPtr("testString")))
 				Expect(startForgotPasswordOptionsModel.Language).To(Equal(core.StringPtr("testString")))
 				Expect(startForgotPasswordOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -20617,10 +20868,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(createNewUserEmailsItemModel.Primary).To(Equal(core.BoolPtr(true)))
 
 				// Construct an instance of the StartSignUpOptions model
+				tenantID := "testString"
 				shouldCreateProfile := true
 				startSignUpOptionsEmails := []appidmanagementv4.CreateNewUserEmailsItem{}
 				startSignUpOptionsPassword := "userPassword"
-				startSignUpOptionsModel := appIDManagementService.NewStartSignUpOptions(shouldCreateProfile, startSignUpOptionsEmails, startSignUpOptionsPassword)
+				startSignUpOptionsModel := appIDManagementService.NewStartSignUpOptions(tenantID, shouldCreateProfile, startSignUpOptionsEmails, startSignUpOptionsPassword)
+				startSignUpOptionsModel.SetTenantID("testString")
 				startSignUpOptionsModel.SetShouldCreateProfile(true)
 				startSignUpOptionsModel.SetEmails([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel})
 				startSignUpOptionsModel.SetPassword("userPassword")
@@ -20629,6 +20882,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				startSignUpOptionsModel.SetLanguage("testString")
 				startSignUpOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(startSignUpOptionsModel).ToNot(BeNil())
+				Expect(startSignUpOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(startSignUpOptionsModel.ShouldCreateProfile).To(Equal(core.BoolPtr(true)))
 				Expect(startSignUpOptionsModel.Emails).To(Equal([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}))
 				Expect(startSignUpOptionsModel.Password).To(Equal(core.StringPtr("userPassword")))
@@ -20639,27 +20893,33 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewUpdateApplicationOptions successfully`, func() {
 				// Construct an instance of the UpdateApplicationOptions model
+				tenantID := "testString"
 				clientID := "testString"
 				updateApplicationOptionsName := "testString"
-				updateApplicationOptionsModel := appIDManagementService.NewUpdateApplicationOptions(clientID, updateApplicationOptionsName)
+				updateApplicationOptionsModel := appIDManagementService.NewUpdateApplicationOptions(tenantID, clientID, updateApplicationOptionsName)
+				updateApplicationOptionsModel.SetTenantID("testString")
 				updateApplicationOptionsModel.SetClientID("testString")
 				updateApplicationOptionsModel.SetName("testString")
 				updateApplicationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateApplicationOptionsModel).ToNot(BeNil())
+				Expect(updateApplicationOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateApplicationOptionsModel.ClientID).To(Equal(core.StringPtr("testString")))
 				Expect(updateApplicationOptionsModel.Name).To(Equal(core.StringPtr("testString")))
 				Expect(updateApplicationOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUpdateChannelOptions successfully`, func() {
 				// Construct an instance of the UpdateChannelOptions model
+				tenantID := "testString"
 				channel := "email"
 				updateChannelOptionsIsActive := true
-				updateChannelOptionsModel := appIDManagementService.NewUpdateChannelOptions(channel, updateChannelOptionsIsActive)
+				updateChannelOptionsModel := appIDManagementService.NewUpdateChannelOptions(tenantID, channel, updateChannelOptionsIsActive)
+				updateChannelOptionsModel.SetTenantID("testString")
 				updateChannelOptionsModel.SetChannel("email")
 				updateChannelOptionsModel.SetIsActive(true)
 				updateChannelOptionsModel.SetConfig(map[string]interface{}{"anyKey": "anyValue"})
 				updateChannelOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateChannelOptionsModel).ToNot(BeNil())
+				Expect(updateChannelOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateChannelOptionsModel.Channel).To(Equal(core.StringPtr("email")))
 				Expect(updateChannelOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(updateChannelOptionsModel.Config).To(Equal(map[string]interface{}{"anyKey": "anyValue"}))
@@ -20675,9 +20935,11 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(createNewUserEmailsItemModel.Primary).To(Equal(core.BoolPtr(true)))
 
 				// Construct an instance of the UpdateCloudDirectoryUserOptions model
+				tenantID := "testString"
 				userID := "testString"
 				updateCloudDirectoryUserOptionsEmails := []appidmanagementv4.CreateNewUserEmailsItem{}
-				updateCloudDirectoryUserOptionsModel := appIDManagementService.NewUpdateCloudDirectoryUserOptions(userID, updateCloudDirectoryUserOptionsEmails)
+				updateCloudDirectoryUserOptionsModel := appIDManagementService.NewUpdateCloudDirectoryUserOptions(tenantID, userID, updateCloudDirectoryUserOptionsEmails)
+				updateCloudDirectoryUserOptionsModel.SetTenantID("testString")
 				updateCloudDirectoryUserOptionsModel.SetUserID("testString")
 				updateCloudDirectoryUserOptionsModel.SetEmails([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel})
 				updateCloudDirectoryUserOptionsModel.SetActive(true)
@@ -20685,6 +20947,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				updateCloudDirectoryUserOptionsModel.SetPassword("userPassword")
 				updateCloudDirectoryUserOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateCloudDirectoryUserOptionsModel).ToNot(BeNil())
+				Expect(updateCloudDirectoryUserOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateCloudDirectoryUserOptionsModel.UserID).To(Equal(core.StringPtr("testString")))
 				Expect(updateCloudDirectoryUserOptionsModel.Emails).To(Equal([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}))
 				Expect(updateCloudDirectoryUserOptionsModel.Active).To(Equal(core.BoolPtr(true)))
@@ -20694,14 +20957,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewUpdateExtensionActiveOptions successfully`, func() {
 				// Construct an instance of the UpdateExtensionActiveOptions model
+				tenantID := "testString"
 				name := "premfa"
 				updateExtensionActiveOptionsIsActive := true
-				updateExtensionActiveOptionsModel := appIDManagementService.NewUpdateExtensionActiveOptions(name, updateExtensionActiveOptionsIsActive)
+				updateExtensionActiveOptionsModel := appIDManagementService.NewUpdateExtensionActiveOptions(tenantID, name, updateExtensionActiveOptionsIsActive)
+				updateExtensionActiveOptionsModel.SetTenantID("testString")
 				updateExtensionActiveOptionsModel.SetName("premfa")
 				updateExtensionActiveOptionsModel.SetIsActive(true)
 				updateExtensionActiveOptionsModel.SetConfig(map[string]interface{}{"anyKey": "anyValue"})
 				updateExtensionActiveOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateExtensionActiveOptionsModel).ToNot(BeNil())
+				Expect(updateExtensionActiveOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateExtensionActiveOptionsModel.Name).To(Equal(core.StringPtr("premfa")))
 				Expect(updateExtensionActiveOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(updateExtensionActiveOptionsModel.Config).To(Equal(map[string]interface{}{"anyKey": "anyValue"}))
@@ -20717,14 +20983,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(updateExtensionConfigConfigModel.HeadersVar).To(Equal(map[string]interface{}{"anyKey": "anyValue"}))
 
 				// Construct an instance of the UpdateExtensionConfigOptions model
+				tenantID := "testString"
 				name := "premfa"
 				updateExtensionConfigOptionsIsActive := true
-				updateExtensionConfigOptionsModel := appIDManagementService.NewUpdateExtensionConfigOptions(name, updateExtensionConfigOptionsIsActive)
+				updateExtensionConfigOptionsModel := appIDManagementService.NewUpdateExtensionConfigOptions(tenantID, name, updateExtensionConfigOptionsIsActive)
+				updateExtensionConfigOptionsModel.SetTenantID("testString")
 				updateExtensionConfigOptionsModel.SetName("premfa")
 				updateExtensionConfigOptionsModel.SetIsActive(true)
 				updateExtensionConfigOptionsModel.SetConfig(updateExtensionConfigConfigModel)
 				updateExtensionConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateExtensionConfigOptionsModel).ToNot(BeNil())
+				Expect(updateExtensionConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateExtensionConfigOptionsModel.Name).To(Equal(core.StringPtr("premfa")))
 				Expect(updateExtensionConfigOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(updateExtensionConfigOptionsModel.Config).To(Equal(updateExtensionConfigConfigModel))
@@ -20732,34 +21001,43 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewUpdateLocalizationOptions successfully`, func() {
 				// Construct an instance of the UpdateLocalizationOptions model
-				updateLocalizationOptionsModel := appIDManagementService.NewUpdateLocalizationOptions()
+				tenantID := "testString"
+				updateLocalizationOptionsModel := appIDManagementService.NewUpdateLocalizationOptions(tenantID)
+				updateLocalizationOptionsModel.SetTenantID("testString")
 				updateLocalizationOptionsModel.SetLanguages([]string{"testString"})
 				updateLocalizationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateLocalizationOptionsModel).ToNot(BeNil())
+				Expect(updateLocalizationOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateLocalizationOptionsModel.Languages).To(Equal([]string{"testString"}))
 				Expect(updateLocalizationOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUpdateMFAConfigOptions successfully`, func() {
 				// Construct an instance of the UpdateMFAConfigOptions model
+				tenantID := "testString"
 				updateMFAConfigOptionsIsActive := true
-				updateMFAConfigOptionsModel := appIDManagementService.NewUpdateMFAConfigOptions(updateMFAConfigOptionsIsActive)
+				updateMFAConfigOptionsModel := appIDManagementService.NewUpdateMFAConfigOptions(tenantID, updateMFAConfigOptionsIsActive)
+				updateMFAConfigOptionsModel.SetTenantID("testString")
 				updateMFAConfigOptionsModel.SetIsActive(true)
 				updateMFAConfigOptionsModel.SetConfig(map[string]interface{}{"anyKey": "anyValue"})
 				updateMFAConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateMFAConfigOptionsModel).ToNot(BeNil())
+				Expect(updateMFAConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateMFAConfigOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(updateMFAConfigOptionsModel.Config).To(Equal(map[string]interface{}{"anyKey": "anyValue"}))
 				Expect(updateMFAConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUpdateRateLimitConfigOptions successfully`, func() {
 				// Construct an instance of the UpdateRateLimitConfigOptions model
+				tenantID := "testString"
 				updateRateLimitConfigOptionsSignUpLimitPerMinute := int64(50)
 				updateRateLimitConfigOptionsSignInLimitPerMinute := int64(60)
-				updateRateLimitConfigOptionsModel := appIDManagementService.NewUpdateRateLimitConfigOptions(updateRateLimitConfigOptionsSignUpLimitPerMinute, updateRateLimitConfigOptionsSignInLimitPerMinute)
+				updateRateLimitConfigOptionsModel := appIDManagementService.NewUpdateRateLimitConfigOptions(tenantID, updateRateLimitConfigOptionsSignUpLimitPerMinute, updateRateLimitConfigOptionsSignInLimitPerMinute)
+				updateRateLimitConfigOptionsModel.SetTenantID("testString")
 				updateRateLimitConfigOptionsModel.SetSignUpLimitPerMinute(int64(50))
 				updateRateLimitConfigOptionsModel.SetSignInLimitPerMinute(int64(60))
 				updateRateLimitConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateRateLimitConfigOptionsModel).ToNot(BeNil())
+				Expect(updateRateLimitConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateRateLimitConfigOptionsModel.SignUpLimitPerMinute).To(Equal(core.Int64Ptr(int64(50))))
 				Expect(updateRateLimitConfigOptionsModel.SignInLimitPerMinute).To(Equal(core.Int64Ptr(int64(60))))
 				Expect(updateRateLimitConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -20777,11 +21055,14 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(redirectURIConfigModel.GetProperty("foo")).To(Equal(core.StringPtr("testString")))
 
 				// Construct an instance of the UpdateRedirectUrisOptions model
+				tenantID := "testString"
 				var redirectUrisArray *appidmanagementv4.RedirectURIConfig = nil
-				updateRedirectUrisOptionsModel := appIDManagementService.NewUpdateRedirectUrisOptions(redirectUrisArray)
+				updateRedirectUrisOptionsModel := appIDManagementService.NewUpdateRedirectUrisOptions(tenantID, redirectUrisArray)
+				updateRedirectUrisOptionsModel.SetTenantID("testString")
 				updateRedirectUrisOptionsModel.SetRedirectUrisArray(redirectURIConfigModel)
 				updateRedirectUrisOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateRedirectUrisOptionsModel).ToNot(BeNil())
+				Expect(updateRedirectUrisOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateRedirectUrisOptionsModel.RedirectUrisArray).To(Equal(redirectURIConfigModel))
 				Expect(updateRedirectUrisOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -20795,16 +21076,19 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(updateRoleParamsAccessItemModel.Scopes).To(Equal([]string{"cartoons", "animated"}))
 
 				// Construct an instance of the UpdateRoleOptions model
+				tenantID := "testString"
 				roleID := "testString"
 				updateRoleOptionsName := "child"
 				updateRoleOptionsAccess := []appidmanagementv4.UpdateRoleParamsAccessItem{}
-				updateRoleOptionsModel := appIDManagementService.NewUpdateRoleOptions(roleID, updateRoleOptionsName, updateRoleOptionsAccess)
+				updateRoleOptionsModel := appIDManagementService.NewUpdateRoleOptions(tenantID, roleID, updateRoleOptionsName, updateRoleOptionsAccess)
+				updateRoleOptionsModel.SetTenantID("testString")
 				updateRoleOptionsModel.SetRoleID("testString")
 				updateRoleOptionsModel.SetName("child")
 				updateRoleOptionsModel.SetAccess([]appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel})
 				updateRoleOptionsModel.SetDescription("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				updateRoleOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateRoleOptionsModel).ToNot(BeNil())
+				Expect(updateRoleOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateRoleOptionsModel.RoleID).To(Equal(core.StringPtr("testString")))
 				Expect(updateRoleOptionsModel.Name).To(Equal(core.StringPtr("child")))
 				Expect(updateRoleOptionsModel.Access).To(Equal([]appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}))
@@ -20820,15 +21104,18 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewUpdateSSOConfigOptions successfully`, func() {
 				// Construct an instance of the UpdateSSOConfigOptions model
+				tenantID := "testString"
 				updateSSOConfigOptionsIsActive := true
 				updateSSOConfigOptionsInactivityTimeoutSeconds := float64(86400)
 				updateSSOConfigOptionsLogoutRedirectUris := []string{"http://localhost:3000/logout-callback"}
-				updateSSOConfigOptionsModel := appIDManagementService.NewUpdateSSOConfigOptions(updateSSOConfigOptionsIsActive, updateSSOConfigOptionsInactivityTimeoutSeconds, updateSSOConfigOptionsLogoutRedirectUris)
+				updateSSOConfigOptionsModel := appIDManagementService.NewUpdateSSOConfigOptions(tenantID, updateSSOConfigOptionsIsActive, updateSSOConfigOptionsInactivityTimeoutSeconds, updateSSOConfigOptionsLogoutRedirectUris)
+				updateSSOConfigOptionsModel.SetTenantID("testString")
 				updateSSOConfigOptionsModel.SetIsActive(true)
 				updateSSOConfigOptionsModel.SetInactivityTimeoutSeconds(float64(86400))
 				updateSSOConfigOptionsModel.SetLogoutRedirectUris([]string{"http://localhost:3000/logout-callback"})
 				updateSSOConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateSSOConfigOptionsModel).ToNot(BeNil())
+				Expect(updateSSOConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateSSOConfigOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(updateSSOConfigOptionsModel.InactivityTimeoutSeconds).To(Equal(core.Float64Ptr(float64(86400))))
 				Expect(updateSSOConfigOptionsModel.LogoutRedirectUris).To(Equal([]string{"http://localhost:3000/logout-callback"}))
@@ -20836,10 +21123,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewUpdateTemplateOptions successfully`, func() {
 				// Construct an instance of the UpdateTemplateOptions model
+				tenantID := "testString"
 				templateName := "USER_VERIFICATION"
 				language := "testString"
 				updateTemplateOptionsSubject := "testString"
-				updateTemplateOptionsModel := appIDManagementService.NewUpdateTemplateOptions(templateName, language, updateTemplateOptionsSubject)
+				updateTemplateOptionsModel := appIDManagementService.NewUpdateTemplateOptions(tenantID, templateName, language, updateTemplateOptionsSubject)
+				updateTemplateOptionsModel.SetTenantID("testString")
 				updateTemplateOptionsModel.SetTemplateName("USER_VERIFICATION")
 				updateTemplateOptionsModel.SetLanguage("testString")
 				updateTemplateOptionsModel.SetSubject("testString")
@@ -20848,6 +21137,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				updateTemplateOptionsModel.SetPlainTextBody("testString")
 				updateTemplateOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateTemplateOptionsModel).ToNot(BeNil())
+				Expect(updateTemplateOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateTemplateOptionsModel.TemplateName).To(Equal(core.StringPtr("USER_VERIFICATION")))
 				Expect(updateTemplateOptionsModel.Language).To(Equal(core.StringPtr("testString")))
 				Expect(updateTemplateOptionsModel.Subject).To(Equal(core.StringPtr("testString")))
@@ -20858,11 +21148,14 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewUpdateUserProfilesConfigOptions successfully`, func() {
 				// Construct an instance of the UpdateUserProfilesConfigOptions model
+				tenantID := "testString"
 				updateUserProfilesConfigOptionsIsActive := true
-				updateUserProfilesConfigOptionsModel := appIDManagementService.NewUpdateUserProfilesConfigOptions(updateUserProfilesConfigOptionsIsActive)
+				updateUserProfilesConfigOptionsModel := appIDManagementService.NewUpdateUserProfilesConfigOptions(tenantID, updateUserProfilesConfigOptionsIsActive)
+				updateUserProfilesConfigOptionsModel.SetTenantID("testString")
 				updateUserProfilesConfigOptionsModel.SetIsActive(true)
 				updateUserProfilesConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateUserProfilesConfigOptionsModel).ToNot(BeNil())
+				Expect(updateUserProfilesConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateUserProfilesConfigOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
 				Expect(updateUserProfilesConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -20874,24 +21167,30 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(updateUserRolesParamsRolesModel.Ids).To(Equal([]string{"111c22c3-38ea-4de8-b5d4-338744d83b0f"}))
 
 				// Construct an instance of the UpdateUserRolesOptions model
+				tenantID := "testString"
 				id := "testString"
 				var updateUserRolesOptionsRoles *appidmanagementv4.UpdateUserRolesParamsRoles = nil
-				updateUserRolesOptionsModel := appIDManagementService.NewUpdateUserRolesOptions(id, updateUserRolesOptionsRoles)
+				updateUserRolesOptionsModel := appIDManagementService.NewUpdateUserRolesOptions(tenantID, id, updateUserRolesOptionsRoles)
+				updateUserRolesOptionsModel.SetTenantID("testString")
 				updateUserRolesOptionsModel.SetID("testString")
 				updateUserRolesOptionsModel.SetRoles(updateUserRolesParamsRolesModel)
 				updateUserRolesOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateUserRolesOptionsModel).ToNot(BeNil())
+				Expect(updateUserRolesOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateUserRolesOptionsModel.ID).To(Equal(core.StringPtr("testString")))
 				Expect(updateUserRolesOptionsModel.Roles).To(Equal(updateUserRolesParamsRolesModel))
 				Expect(updateUserRolesOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUserProfilesExportOptions successfully`, func() {
 				// Construct an instance of the UserProfilesExportOptions model
-				userProfilesExportOptionsModel := appIDManagementService.NewUserProfilesExportOptions()
+				tenantID := "testString"
+				userProfilesExportOptionsModel := appIDManagementService.NewUserProfilesExportOptions(tenantID)
+				userProfilesExportOptionsModel.SetTenantID("testString")
 				userProfilesExportOptionsModel.SetStartIndex(int64(38))
 				userProfilesExportOptionsModel.SetCount(int64(0))
 				userProfilesExportOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(userProfilesExportOptionsModel).ToNot(BeNil())
+				Expect(userProfilesExportOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(userProfilesExportOptionsModel.StartIndex).To(Equal(core.Int64Ptr(int64(38))))
 				Expect(userProfilesExportOptionsModel.Count).To(Equal(core.Int64Ptr(int64(0))))
 				Expect(userProfilesExportOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
@@ -20941,41 +21240,53 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(exportUserProfileUsersItemModel.Roles).To(Equal([]string{"testString"}))
 
 				// Construct an instance of the UserProfilesImportOptions model
+				tenantID := "testString"
 				userProfilesImportOptionsUsers := []appidmanagementv4.ExportUserProfileUsersItem{}
-				userProfilesImportOptionsModel := appIDManagementService.NewUserProfilesImportOptions(userProfilesImportOptionsUsers)
+				userProfilesImportOptionsModel := appIDManagementService.NewUserProfilesImportOptions(tenantID, userProfilesImportOptionsUsers)
+				userProfilesImportOptionsModel.SetTenantID("testString")
 				userProfilesImportOptionsModel.SetUsers([]appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel})
 				userProfilesImportOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(userProfilesImportOptionsModel).ToNot(BeNil())
+				Expect(userProfilesImportOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(userProfilesImportOptionsModel.Users).To(Equal([]appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel}))
 				Expect(userProfilesImportOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUserVerificationResultOptions successfully`, func() {
 				// Construct an instance of the UserVerificationResultOptions model
+				tenantID := "testString"
 				userVerificationResultOptionsContext := "testString"
-				userVerificationResultOptionsModel := appIDManagementService.NewUserVerificationResultOptions(userVerificationResultOptionsContext)
+				userVerificationResultOptionsModel := appIDManagementService.NewUserVerificationResultOptions(tenantID, userVerificationResultOptionsContext)
+				userVerificationResultOptionsModel.SetTenantID("testString")
 				userVerificationResultOptionsModel.SetContext("testString")
 				userVerificationResultOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(userVerificationResultOptionsModel).ToNot(BeNil())
+				Expect(userVerificationResultOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(userVerificationResultOptionsModel.Context).To(Equal(core.StringPtr("testString")))
 				Expect(userVerificationResultOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUsersDeleteUserProfileOptions successfully`, func() {
 				// Construct an instance of the UsersDeleteUserProfileOptions model
+				tenantID := "testString"
 				id := "testString"
-				usersDeleteUserProfileOptionsModel := appIDManagementService.NewUsersDeleteUserProfileOptions(id)
+				usersDeleteUserProfileOptionsModel := appIDManagementService.NewUsersDeleteUserProfileOptions(tenantID, id)
+				usersDeleteUserProfileOptionsModel.SetTenantID("testString")
 				usersDeleteUserProfileOptionsModel.SetID("testString")
 				usersDeleteUserProfileOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(usersDeleteUserProfileOptionsModel).ToNot(BeNil())
+				Expect(usersDeleteUserProfileOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(usersDeleteUserProfileOptionsModel.ID).To(Equal(core.StringPtr("testString")))
 				Expect(usersDeleteUserProfileOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUsersGetUserProfileOptions successfully`, func() {
 				// Construct an instance of the UsersGetUserProfileOptions model
+				tenantID := "testString"
 				id := "testString"
-				usersGetUserProfileOptionsModel := appIDManagementService.NewUsersGetUserProfileOptions(id)
+				usersGetUserProfileOptionsModel := appIDManagementService.NewUsersGetUserProfileOptions(tenantID, id)
+				usersGetUserProfileOptionsModel.SetTenantID("testString")
 				usersGetUserProfileOptionsModel.SetID("testString")
 				usersGetUserProfileOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(usersGetUserProfileOptionsModel).ToNot(BeNil())
+				Expect(usersGetUserProfileOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(usersGetUserProfileOptionsModel.ID).To(Equal(core.StringPtr("testString")))
 				Expect(usersGetUserProfileOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -20987,14 +21298,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(usersNominateUserParamsProfileModel.Attributes).To(Equal(make(map[string]interface{})))
 
 				// Construct an instance of the UsersNominateUserOptions model
+				tenantID := "testString"
 				usersNominateUserOptionsIDP := "saml"
 				usersNominateUserOptionsIDPIdentity := "appid@ibm.com"
-				usersNominateUserOptionsModel := appIDManagementService.NewUsersNominateUserOptions(usersNominateUserOptionsIDP, usersNominateUserOptionsIDPIdentity)
+				usersNominateUserOptionsModel := appIDManagementService.NewUsersNominateUserOptions(tenantID, usersNominateUserOptionsIDP, usersNominateUserOptionsIDPIdentity)
+				usersNominateUserOptionsModel.SetTenantID("testString")
 				usersNominateUserOptionsModel.SetIDP("saml")
 				usersNominateUserOptionsModel.SetIDPIdentity("appid@ibm.com")
 				usersNominateUserOptionsModel.SetProfile(usersNominateUserParamsProfileModel)
 				usersNominateUserOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(usersNominateUserOptionsModel).ToNot(BeNil())
+				Expect(usersNominateUserOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(usersNominateUserOptionsModel.IDP).To(Equal(core.StringPtr("saml")))
 				Expect(usersNominateUserOptionsModel.IDPIdentity).To(Equal(core.StringPtr("appid@ibm.com")))
 				Expect(usersNominateUserOptionsModel.Profile).To(Equal(usersNominateUserParamsProfileModel))
@@ -21002,18 +21316,23 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewUsersRevokeRefreshTokenOptions successfully`, func() {
 				// Construct an instance of the UsersRevokeRefreshTokenOptions model
+				tenantID := "testString"
 				id := "testString"
-				usersRevokeRefreshTokenOptionsModel := appIDManagementService.NewUsersRevokeRefreshTokenOptions(id)
+				usersRevokeRefreshTokenOptionsModel := appIDManagementService.NewUsersRevokeRefreshTokenOptions(tenantID, id)
+				usersRevokeRefreshTokenOptionsModel.SetTenantID("testString")
 				usersRevokeRefreshTokenOptionsModel.SetID("testString")
 				usersRevokeRefreshTokenOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(usersRevokeRefreshTokenOptionsModel).ToNot(BeNil())
+				Expect(usersRevokeRefreshTokenOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(usersRevokeRefreshTokenOptionsModel.ID).To(Equal(core.StringPtr("testString")))
 				Expect(usersRevokeRefreshTokenOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUsersSearchUserProfileOptions successfully`, func() {
 				// Construct an instance of the UsersSearchUserProfileOptions model
+				tenantID := "testString"
 				dataScope := "index"
-				usersSearchUserProfileOptionsModel := appIDManagementService.NewUsersSearchUserProfileOptions(dataScope)
+				usersSearchUserProfileOptionsModel := appIDManagementService.NewUsersSearchUserProfileOptions(tenantID, dataScope)
+				usersSearchUserProfileOptionsModel.SetTenantID("testString")
 				usersSearchUserProfileOptionsModel.SetDataScope("index")
 				usersSearchUserProfileOptionsModel.SetEmail("testString")
 				usersSearchUserProfileOptionsModel.SetID("testString")
@@ -21021,6 +21340,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				usersSearchUserProfileOptionsModel.SetCount(int64(0))
 				usersSearchUserProfileOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(usersSearchUserProfileOptionsModel).ToNot(BeNil())
+				Expect(usersSearchUserProfileOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(usersSearchUserProfileOptionsModel.DataScope).To(Equal(core.StringPtr("index")))
 				Expect(usersSearchUserProfileOptionsModel.Email).To(Equal(core.StringPtr("testString")))
 				Expect(usersSearchUserProfileOptionsModel.ID).To(Equal(core.StringPtr("testString")))
@@ -21030,13 +21350,16 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Invoke NewUsersSetUserProfileOptions successfully`, func() {
 				// Construct an instance of the UsersSetUserProfileOptions model
+				tenantID := "testString"
 				id := "testString"
 				usersSetUserProfileOptionsAttributes := make(map[string]interface{})
-				usersSetUserProfileOptionsModel := appIDManagementService.NewUsersSetUserProfileOptions(id, usersSetUserProfileOptionsAttributes)
+				usersSetUserProfileOptionsModel := appIDManagementService.NewUsersSetUserProfileOptions(tenantID, id, usersSetUserProfileOptionsAttributes)
+				usersSetUserProfileOptionsModel.SetTenantID("testString")
 				usersSetUserProfileOptionsModel.SetID("testString")
 				usersSetUserProfileOptionsModel.SetAttributes(make(map[string]interface{}))
 				usersSetUserProfileOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(usersSetUserProfileOptionsModel).ToNot(BeNil())
+				Expect(usersSetUserProfileOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(usersSetUserProfileOptionsModel.ID).To(Equal(core.StringPtr("testString")))
 				Expect(usersSetUserProfileOptionsModel.Attributes).To(Equal(make(map[string]interface{})))
 				Expect(usersSetUserProfileOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
