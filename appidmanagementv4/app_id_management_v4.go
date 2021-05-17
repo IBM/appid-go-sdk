@@ -10336,9 +10336,9 @@ type PutTokensConfigOptions struct {
 
 	AccessTokenClaims []TokenClaimMapping
 
-	Access []TokenConfigParams
+	Access *TokenConfigParams
 
-	Refresh []RefreshTokenConfigParams
+	Refresh *RefreshTokenConfigParams
 
 	AnonymousAccess []TokenConfigParams
 
@@ -10372,13 +10372,13 @@ func (options *PutTokensConfigOptions) SetAccessTokenClaims(accessTokenClaims []
 }
 
 // SetAccess : Allow user to set Access
-func (options *PutTokensConfigOptions) SetAccess(access []TokenConfigParams) *PutTokensConfigOptions {
+func (options *PutTokensConfigOptions) SetAccess(access *TokenConfigParams) *PutTokensConfigOptions {
 	options.Access = access
 	return options
 }
 
 // SetRefresh : Allow user to set Refresh
-func (options *PutTokensConfigOptions) SetRefresh(refresh []RefreshTokenConfigParams) *PutTokensConfigOptions {
+func (options *PutTokensConfigOptions) SetRefresh(refresh *RefreshTokenConfigParams) *PutTokensConfigOptions {
 	options.Refresh = refresh
 	return options
 }
@@ -14010,9 +14010,9 @@ type TokensConfigResponse struct {
 
 	AccessTokenClaims []TokenClaimMapping `json:"accessTokenClaims,omitempty"`
 
-	Access []TokenConfigParams `json:"access,omitempty"`
+	Access *TokenConfigParams `json:"access,omitempty"`
 
-	Refresh []RefreshTokenConfigParams `json:"refresh,omitempty"`
+	Refresh *RefreshTokenConfigParams `json:"refresh,omitempty"`
 
 	AnonymousAccess []TokenConfigParams `json:"anonymousAccess,omitempty"`
 }
