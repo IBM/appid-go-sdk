@@ -6461,16 +6461,16 @@ func UnmarshalApmSchemaAdvancedPasswordManagementLockOutPolicy(m map[string]json
 
 // ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig : ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig struct
 type ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig struct {
-	LockOutTimeSec *float64 `json:"lockOutTimeSec" validate:"required"`
+	LockOutTimeSec *int64 `json:"lockOutTimeSec" validate:"required"`
 
-	NumOfAttempts *float64 `json:"numOfAttempts" validate:"required"`
+	NumOfAttempts *int64 `json:"numOfAttempts" validate:"required"`
 }
 
 // NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig : Instantiate ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig (Generic Model Constructor)
-func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig(lockOutTimeSec float64, numOfAttempts float64) (model *ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig(lockOutTimeSec int64, numOfAttempts int64) (model *ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig{
-		LockOutTimeSec: core.Float64Ptr(lockOutTimeSec),
-		NumOfAttempts:  core.Float64Ptr(numOfAttempts),
+		LockOutTimeSec: core.Int64Ptr(lockOutTimeSec),
+		NumOfAttempts:  core.Int64Ptr(numOfAttempts),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -6524,13 +6524,13 @@ func UnmarshalApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval(m map
 
 // ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig : ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig struct
 type ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig struct {
-	MinHoursToChangePassword *float64 `json:"minHoursToChangePassword" validate:"required"`
+	MinHoursToChangePassword *int64 `json:"minHoursToChangePassword" validate:"required"`
 }
 
 // NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig : Instantiate ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig (Generic Model Constructor)
-func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig(minHoursToChangePassword float64) (model *ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig(minHoursToChangePassword int64) (model *ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig{
-		MinHoursToChangePassword: core.Float64Ptr(minHoursToChangePassword),
+		MinHoursToChangePassword: core.Int64Ptr(minHoursToChangePassword),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -6580,13 +6580,13 @@ func UnmarshalApmSchemaAdvancedPasswordManagementPasswordExpiration(m map[string
 
 // ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig : ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig struct
 type ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig struct {
-	DaysToExpire *float64 `json:"daysToExpire" validate:"required"`
+	DaysToExpire *int64 `json:"daysToExpire" validate:"required"`
 }
 
 // NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig : Instantiate ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig (Generic Model Constructor)
-func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig(daysToExpire float64) (model *ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig(daysToExpire int64) (model *ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig{
-		DaysToExpire: core.Float64Ptr(daysToExpire),
+		DaysToExpire: core.Int64Ptr(daysToExpire),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -6636,13 +6636,13 @@ func UnmarshalApmSchemaAdvancedPasswordManagementPasswordReuse(m map[string]json
 
 // ApmSchemaAdvancedPasswordManagementPasswordReuseConfig : ApmSchemaAdvancedPasswordManagementPasswordReuseConfig struct
 type ApmSchemaAdvancedPasswordManagementPasswordReuseConfig struct {
-	MaxPasswordReuse *float64 `json:"maxPasswordReuse" validate:"required"`
+	MaxPasswordReuse *int64 `json:"maxPasswordReuse" validate:"required"`
 }
 
 // NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig : Instantiate ApmSchemaAdvancedPasswordManagementPasswordReuseConfig (Generic Model Constructor)
-func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig(maxPasswordReuse float64) (model *ApmSchemaAdvancedPasswordManagementPasswordReuseConfig, err error) {
+func (*AppIDManagementV4) NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig(maxPasswordReuse int64) (model *ApmSchemaAdvancedPasswordManagementPasswordReuseConfig, err error) {
 	model = &ApmSchemaAdvancedPasswordManagementPasswordReuseConfig{
-		MaxPasswordReuse: core.Float64Ptr(maxPasswordReuse),
+		MaxPasswordReuse: core.Int64Ptr(maxPasswordReuse),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -7112,7 +7112,7 @@ type CloudDirectorySenderDetailsSenderDetails struct {
 
 	ReplyTo *CloudDirectorySenderDetailsSenderDetailsReplyTo `json:"reply_to,omitempty"`
 
-	LinkExpirationSec *float64 `json:"linkExpirationSec,omitempty"`
+	LinkExpirationSec *int64 `json:"linkExpirationSec,omitempty"`
 }
 
 // NewCloudDirectorySenderDetailsSenderDetails : Instantiate CloudDirectorySenderDetailsSenderDetails (Generic Model Constructor)
@@ -10673,9 +10673,9 @@ func UnmarshalSAMLResponseWithValidationDataValidationData(m map[string]json.Raw
 
 // SAMLResponseWithValidationDataValidationDataCertificatesItem : SAMLResponseWithValidationDataValidationDataCertificatesItem struct
 type SAMLResponseWithValidationDataValidationDataCertificatesItem struct {
-	CertificateIndex *float64 `json:"certificate_index" validate:"required"`
+	CertificateIndex *int64 `json:"certificate_index" validate:"required"`
 
-	ExpirationTimestamp *float64 `json:"expiration_timestamp" validate:"required"`
+	ExpirationTimestamp *int64 `json:"expiration_timestamp" validate:"required"`
 
 	Warning *string `json:"warning,omitempty"`
 }
@@ -11939,7 +11939,7 @@ type UpdateSSOConfigOptions struct {
 
 	IsActive *bool `validate:"required"`
 
-	InactivityTimeoutSeconds *float64 `validate:"required"`
+	InactivityTimeoutSeconds *int64 `validate:"required"`
 
 	LogoutRedirectUris []string `validate:"required"`
 
@@ -11948,11 +11948,11 @@ type UpdateSSOConfigOptions struct {
 }
 
 // NewUpdateSSOConfigOptions : Instantiate UpdateSSOConfigOptions
-func (*AppIDManagementV4) NewUpdateSSOConfigOptions(tenantID string, isActive bool, inactivityTimeoutSeconds float64, logoutRedirectUris []string) *UpdateSSOConfigOptions {
+func (*AppIDManagementV4) NewUpdateSSOConfigOptions(tenantID string, isActive bool, inactivityTimeoutSeconds int64, logoutRedirectUris []string) *UpdateSSOConfigOptions {
 	return &UpdateSSOConfigOptions{
 		TenantID:                 core.StringPtr(tenantID),
 		IsActive:                 core.BoolPtr(isActive),
-		InactivityTimeoutSeconds: core.Float64Ptr(inactivityTimeoutSeconds),
+		InactivityTimeoutSeconds: core.Int64Ptr(inactivityTimeoutSeconds),
 		LogoutRedirectUris:       logoutRedirectUris,
 	}
 }
@@ -11970,8 +11970,8 @@ func (options *UpdateSSOConfigOptions) SetIsActive(isActive bool) *UpdateSSOConf
 }
 
 // SetInactivityTimeoutSeconds : Allow user to set InactivityTimeoutSeconds
-func (options *UpdateSSOConfigOptions) SetInactivityTimeoutSeconds(inactivityTimeoutSeconds float64) *UpdateSSOConfigOptions {
-	options.InactivityTimeoutSeconds = core.Float64Ptr(inactivityTimeoutSeconds)
+func (options *UpdateSSOConfigOptions) SetInactivityTimeoutSeconds(inactivityTimeoutSeconds int64) *UpdateSSOConfigOptions {
+	options.InactivityTimeoutSeconds = core.Int64Ptr(inactivityTimeoutSeconds)
 	return options
 }
 
@@ -12267,9 +12267,9 @@ func (options *UserProfilesImportOptions) SetHeaders(param map[string]string) *U
 
 // UserSearchResponseRequestOptions : UserSearchResponseRequestOptions struct
 type UserSearchResponseRequestOptions struct {
-	StartIndex *float64 `json:"startIndex,omitempty"`
+	StartIndex *int64 `json:"startIndex,omitempty"`
 
-	Count *float64 `json:"count,omitempty"`
+	Count *int64 `json:"count,omitempty"`
 }
 
 // UnmarshalUserSearchResponseRequestOptions unmarshals an instance of UserSearchResponseRequestOptions from the specified map of raw messages.
@@ -12433,9 +12433,9 @@ func (options *UsersGetUserProfileOptions) SetHeaders(param map[string]string) *
 
 // UsersList : UsersList struct
 type UsersList struct {
-	TotalResults *float64 `json:"totalResults,omitempty"`
+	TotalResults *int64 `json:"totalResults,omitempty"`
 
-	ItemsPerPage *float64 `json:"itemsPerPage,omitempty"`
+	ItemsPerPage *int64 `json:"itemsPerPage,omitempty"`
 
 	Resources []interface{} `json:"Resources" validate:"required"`
 }
@@ -12709,13 +12709,13 @@ func (options *UsersSetUserProfileOptions) SetHeaders(param map[string]string) *
 
 // AccessTokenConfigParams : AccessTokenConfigParams struct
 type AccessTokenConfigParams struct {
-	ExpiresIn *float64 `json:"expires_in" validate:"required"`
+	ExpiresIn *int64 `json:"expires_in" validate:"required"`
 }
 
 // NewAccessTokenConfigParams : Instantiate AccessTokenConfigParams (Generic Model Constructor)
-func (*AppIDManagementV4) NewAccessTokenConfigParams(expiresIn float64) (model *AccessTokenConfigParams, err error) {
+func (*AppIDManagementV4) NewAccessTokenConfigParams(expiresIn int64) (model *AccessTokenConfigParams, err error) {
 	model = &AccessTokenConfigParams{
-		ExpiresIn: core.Float64Ptr(expiresIn),
+		ExpiresIn: core.Int64Ptr(expiresIn),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -13100,7 +13100,7 @@ func UnmarshalExtensionActive(m map[string]json.RawMessage, result interface{}) 
 
 // ExtensionTest : ExtensionTest struct
 type ExtensionTest struct {
-	StatusCode *float64 `json:"statusCode,omitempty"`
+	StatusCode *int64 `json:"statusCode,omitempty"`
 
 	HeadersVar interface{} `json:"headers,omitempty"`
 }
@@ -13488,9 +13488,9 @@ func UnmarshalGoogleConfigParamsPut(m map[string]json.RawMessage, result interfa
 
 // ImportProfilesResponse : ImportProfilesResponse struct
 type ImportProfilesResponse struct {
-	Added *float64 `json:"added,omitempty"`
+	Added *int64 `json:"added,omitempty"`
 
-	Failed *float64 `json:"failed,omitempty"`
+	Failed *int64 `json:"failed,omitempty"`
 
 	FailReasons []ImportProfilesResponseFailReasonsItem `json:"failReasons,omitempty"`
 }
@@ -13516,9 +13516,9 @@ func UnmarshalImportProfilesResponse(m map[string]json.RawMessage, result interf
 
 // ImportResponse : ImportResponse struct
 type ImportResponse struct {
-	Added *float64 `json:"added,omitempty"`
+	Added *int64 `json:"added,omitempty"`
 
-	Failed *float64 `json:"failed,omitempty"`
+	Failed *int64 `json:"failed,omitempty"`
 
 	FailReasons []ImportResponseFailReasonsItem `json:"failReasons,omitempty"`
 }
@@ -13660,7 +13660,7 @@ func UnmarshalRedirectURIResponse(m map[string]json.RawMessage, result interface
 
 // RespCustomEmailDisParams : RespCustomEmailDisParams struct
 type RespCustomEmailDisParams struct {
-	StatusCode *float64 `json:"statusCode,omitempty"`
+	StatusCode *int64 `json:"statusCode,omitempty"`
 
 	HeadersVar interface{} `json:"headers,omitempty"`
 }
@@ -13684,7 +13684,7 @@ func UnmarshalRespCustomEmailDisParams(m map[string]json.RawMessage, result inte
 type RespEmailSettingsTest struct {
 	Success *bool `json:"success" validate:"required"`
 
-	DispatcherStatusCode *float64 `json:"dispatcherStatusCode" validate:"required"`
+	DispatcherStatusCode *int64 `json:"dispatcherStatusCode" validate:"required"`
 
 	DispatcherResponse interface{} `json:"dispatcherResponse,omitempty"`
 }
@@ -13710,7 +13710,7 @@ func UnmarshalRespEmailSettingsTest(m map[string]json.RawMessage, result interfa
 
 // RespSMSDisParams : RespSMSDisParams struct
 type RespSMSDisParams struct {
-	ConfirmationCode *float64 `json:"confirmationCode,omitempty"`
+	ConfirmationCode *int64 `json:"confirmationCode,omitempty"`
 
 	PhoneNumber *string `json:"phoneNumber,omitempty"`
 }
@@ -13974,15 +13974,15 @@ func UnmarshalTokenClaimMapping(m map[string]json.RawMessage, result interface{}
 
 // TokenConfigParams : TokenConfigParams struct
 type TokenConfigParams struct {
-	ExpiresIn *float64 `json:"expires_in" validate:"required"`
+	ExpiresIn *int64 `json:"expires_in" validate:"required"`
 
 	Enabled *bool `json:"enabled" validate:"required"`
 }
 
 // NewTokenConfigParams : Instantiate TokenConfigParams (Generic Model Constructor)
-func (*AppIDManagementV4) NewTokenConfigParams(expiresIn float64, enabled bool) (model *TokenConfigParams, err error) {
+func (*AppIDManagementV4) NewTokenConfigParams(expiresIn int64, enabled bool) (model *TokenConfigParams, err error) {
 	model = &TokenConfigParams{
-		ExpiresIn: core.Float64Ptr(expiresIn),
+		ExpiresIn: core.Int64Ptr(expiresIn),
 		Enabled:   core.BoolPtr(enabled),
 	}
 	err = core.ValidateStruct(model, "required parameters")
@@ -14111,9 +14111,9 @@ func UnmarshalUpdateRolesResponse(m map[string]json.RawMessage, result interface
 
 // UserSearchResponse : UserSearchResponse struct
 type UserSearchResponse struct {
-	TotalResults *float64 `json:"totalResults,omitempty"`
+	TotalResults *int64 `json:"totalResults,omitempty"`
 
-	ItemsPerPage *float64 `json:"itemsPerPage,omitempty"`
+	ItemsPerPage *int64 `json:"itemsPerPage,omitempty"`
 
 	RequestOptions *UserSearchResponseRequestOptions `json:"requestOptions,omitempty"`
 

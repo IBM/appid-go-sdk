@@ -4915,11 +4915,11 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the AccessTokenConfigParams model
 				accessTokenConfigParamsModel := new(appidmanagementv4.AccessTokenConfigParams)
-				accessTokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(3600))
+				accessTokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(3600))
 
 				// Construct an instance of the TokenConfigParams model
 				tokenConfigParamsModel := new(appidmanagementv4.TokenConfigParams)
-				tokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(2592000))
+				tokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(2592000))
 				tokenConfigParamsModel.Enabled = core.BoolPtr(true)
 
 				// Construct an instance of the PutTokensConfigOptions model
@@ -5002,11 +5002,11 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the AccessTokenConfigParams model
 				accessTokenConfigParamsModel := new(appidmanagementv4.AccessTokenConfigParams)
-				accessTokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(3600))
+				accessTokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(3600))
 
 				// Construct an instance of the TokenConfigParams model
 				tokenConfigParamsModel := new(appidmanagementv4.TokenConfigParams)
-				tokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(2592000))
+				tokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(2592000))
 				tokenConfigParamsModel.Enabled = core.BoolPtr(true)
 
 				// Construct an instance of the PutTokensConfigOptions model
@@ -5097,11 +5097,11 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the AccessTokenConfigParams model
 				accessTokenConfigParamsModel := new(appidmanagementv4.AccessTokenConfigParams)
-				accessTokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(3600))
+				accessTokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(3600))
 
 				// Construct an instance of the TokenConfigParams model
 				tokenConfigParamsModel := new(appidmanagementv4.TokenConfigParams)
-				tokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(2592000))
+				tokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(2592000))
 				tokenConfigParamsModel.Enabled = core.BoolPtr(true)
 
 				// Construct an instance of the PutTokensConfigOptions model
@@ -5137,11 +5137,11 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the AccessTokenConfigParams model
 				accessTokenConfigParamsModel := new(appidmanagementv4.AccessTokenConfigParams)
-				accessTokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(3600))
+				accessTokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(3600))
 
 				// Construct an instance of the TokenConfigParams model
 				tokenConfigParamsModel := new(appidmanagementv4.TokenConfigParams)
-				tokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(2592000))
+				tokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(2592000))
 				tokenConfigParamsModel.Enabled = core.BoolPtr(true)
 
 				// Construct an instance of the PutTokensConfigOptions model
@@ -5198,11 +5198,11 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the AccessTokenConfigParams model
 				accessTokenConfigParamsModel := new(appidmanagementv4.AccessTokenConfigParams)
-				accessTokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(3600))
+				accessTokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(3600))
 
 				// Construct an instance of the TokenConfigParams model
 				tokenConfigParamsModel := new(appidmanagementv4.TokenConfigParams)
-				tokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(2592000))
+				tokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(2592000))
 				tokenConfigParamsModel.Enabled = core.BoolPtr(true)
 
 				// Construct an instance of the PutTokensConfigOptions model
@@ -8023,7 +8023,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				cloudDirectorySenderDetailsSenderDetailsModel := new(appidmanagementv4.CloudDirectorySenderDetailsSenderDetails)
 				cloudDirectorySenderDetailsSenderDetailsModel.From = cloudDirectorySenderDetailsSenderDetailsFromModel
 				cloudDirectorySenderDetailsSenderDetailsModel.ReplyTo = cloudDirectorySenderDetailsSenderDetailsReplyToModel
-				cloudDirectorySenderDetailsSenderDetailsModel.LinkExpirationSec = core.Float64Ptr(float64(900))
+				cloudDirectorySenderDetailsSenderDetailsModel.LinkExpirationSec = core.Int64Ptr(int64(900))
 
 				// Construct an instance of the SetCloudDirectorySenderDetailsOptions model
 				setCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.SetCloudDirectorySenderDetailsOptions)
@@ -8058,7 +8058,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				cloudDirectorySenderDetailsSenderDetailsModel := new(appidmanagementv4.CloudDirectorySenderDetailsSenderDetails)
 				cloudDirectorySenderDetailsSenderDetailsModel.From = cloudDirectorySenderDetailsSenderDetailsFromModel
 				cloudDirectorySenderDetailsSenderDetailsModel.ReplyTo = cloudDirectorySenderDetailsSenderDetailsReplyToModel
-				cloudDirectorySenderDetailsSenderDetailsModel.LinkExpirationSec = core.Float64Ptr(float64(900))
+				cloudDirectorySenderDetailsSenderDetailsModel.LinkExpirationSec = core.Int64Ptr(int64(900))
 
 				// Construct an instance of the SetCloudDirectorySenderDetailsOptions model
 				setCloudDirectorySenderDetailsOptionsModel := new(appidmanagementv4.SetCloudDirectorySenderDetailsOptions)
@@ -10826,7 +10826,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuseConfig model
 				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig)
-				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuse model
 				apmSchemaAdvancedPasswordManagementPasswordReuseModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuse)
@@ -10839,7 +10839,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig)
-				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpiration model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpiration)
@@ -10848,8 +10848,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig)
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Float64Ptr(float64(60))
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Int64Ptr(int64(60))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicy model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicy)
@@ -10858,7 +10858,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig)
-				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Float64Ptr(float64(0))
+				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Int64Ptr(int64(0))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval)
@@ -10944,7 +10944,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuseConfig model
 				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig)
-				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuse model
 				apmSchemaAdvancedPasswordManagementPasswordReuseModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuse)
@@ -10957,7 +10957,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig)
-				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpiration model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpiration)
@@ -10966,8 +10966,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig)
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Float64Ptr(float64(60))
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Int64Ptr(int64(60))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicy model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicy)
@@ -10976,7 +10976,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig)
-				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Float64Ptr(float64(0))
+				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Int64Ptr(int64(0))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval)
@@ -11070,7 +11070,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuseConfig model
 				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig)
-				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuse model
 				apmSchemaAdvancedPasswordManagementPasswordReuseModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuse)
@@ -11083,7 +11083,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig)
-				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpiration model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpiration)
@@ -11092,8 +11092,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig)
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Float64Ptr(float64(60))
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Int64Ptr(int64(60))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicy model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicy)
@@ -11102,7 +11102,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig)
-				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Float64Ptr(float64(0))
+				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Int64Ptr(int64(0))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval)
@@ -11141,7 +11141,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuseConfig model
 				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig)
-				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuse model
 				apmSchemaAdvancedPasswordManagementPasswordReuseModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuse)
@@ -11154,7 +11154,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig)
-				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpiration model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpiration)
@@ -11163,8 +11163,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig)
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Float64Ptr(float64(60))
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Int64Ptr(int64(60))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicy model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicy)
@@ -11173,7 +11173,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig)
-				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Float64Ptr(float64(0))
+				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Int64Ptr(int64(0))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval)
@@ -11233,7 +11233,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuseConfig model
 				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig)
-				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuse model
 				apmSchemaAdvancedPasswordManagementPasswordReuseModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuse)
@@ -11246,7 +11246,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig)
-				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpiration model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpiration)
@@ -11255,8 +11255,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig)
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Float64Ptr(float64(60))
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Float64Ptr(float64(1))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Int64Ptr(int64(60))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Int64Ptr(int64(1))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicy model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicy)
@@ -11265,7 +11265,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig)
-				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Float64Ptr(float64(0))
+				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Int64Ptr(int64(0))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval)
@@ -13700,7 +13700,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				updateSSOConfigOptionsModel := new(appidmanagementv4.UpdateSSOConfigOptions)
 				updateSSOConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateSSOConfigOptionsModel.IsActive = core.BoolPtr(true)
-				updateSSOConfigOptionsModel.InactivityTimeoutSeconds = core.Float64Ptr(float64(86400))
+				updateSSOConfigOptionsModel.InactivityTimeoutSeconds = core.Int64Ptr(int64(86400))
 				updateSSOConfigOptionsModel.LogoutRedirectUris = []string{"http://localhost:3000/logout-callback"}
 				updateSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -13721,7 +13721,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				updateSSOConfigOptionsModel := new(appidmanagementv4.UpdateSSOConfigOptions)
 				updateSSOConfigOptionsModel.TenantID = core.StringPtr("testString")
 				updateSSOConfigOptionsModel.IsActive = core.BoolPtr(true)
-				updateSSOConfigOptionsModel.InactivityTimeoutSeconds = core.Float64Ptr(float64(86400))
+				updateSSOConfigOptionsModel.InactivityTimeoutSeconds = core.Int64Ptr(int64(86400))
 				updateSSOConfigOptionsModel.LogoutRedirectUris = []string{"http://localhost:3000/logout-callback"}
 				updateSSOConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -19354,8 +19354,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig successfully`, func() {
-				lockOutTimeSec := float64(60)
-				numOfAttempts := float64(1)
+				lockOutTimeSec := int64(60)
+				numOfAttempts := int64(1)
 				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementLockOutPolicyConfig(lockOutTimeSec, numOfAttempts)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
@@ -19367,7 +19367,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig successfully`, func() {
-				minHoursToChangePassword := float64(0)
+				minHoursToChangePassword := int64(0)
 				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig(minHoursToChangePassword)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
@@ -19379,7 +19379,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig successfully`, func() {
-				daysToExpire := float64(1)
+				daysToExpire := int64(1)
 				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementPasswordExpirationConfig(daysToExpire)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
@@ -19391,7 +19391,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig successfully`, func() {
-				maxPasswordReuse := float64(1)
+				maxPasswordReuse := int64(1)
 				model, err := appIDManagementService.NewApmSchemaAdvancedPasswordManagementPasswordReuseConfig(maxPasswordReuse)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
@@ -20378,15 +20378,15 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the AccessTokenConfigParams model
 				accessTokenConfigParamsModel := new(appidmanagementv4.AccessTokenConfigParams)
 				Expect(accessTokenConfigParamsModel).ToNot(BeNil())
-				accessTokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(3600))
-				Expect(accessTokenConfigParamsModel.ExpiresIn).To(Equal(core.Float64Ptr(float64(3600))))
+				accessTokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(3600))
+				Expect(accessTokenConfigParamsModel.ExpiresIn).To(Equal(core.Int64Ptr(int64(3600))))
 
 				// Construct an instance of the TokenConfigParams model
 				tokenConfigParamsModel := new(appidmanagementv4.TokenConfigParams)
 				Expect(tokenConfigParamsModel).ToNot(BeNil())
-				tokenConfigParamsModel.ExpiresIn = core.Float64Ptr(float64(2592000))
+				tokenConfigParamsModel.ExpiresIn = core.Int64Ptr(int64(2592000))
 				tokenConfigParamsModel.Enabled = core.BoolPtr(true)
-				Expect(tokenConfigParamsModel.ExpiresIn).To(Equal(core.Float64Ptr(float64(2592000))))
+				Expect(tokenConfigParamsModel.ExpiresIn).To(Equal(core.Int64Ptr(int64(2592000))))
 				Expect(tokenConfigParamsModel.Enabled).To(Equal(core.BoolPtr(true)))
 
 				// Construct an instance of the PutTokensConfigOptions model
@@ -20474,8 +20474,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuseConfig model
 				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig)
 				Expect(apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel).ToNot(BeNil())
-				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Float64Ptr(float64(1))
-				Expect(apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse).To(Equal(core.Float64Ptr(float64(1))))
+				apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse = core.Int64Ptr(int64(1))
+				Expect(apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel.MaxPasswordReuse).To(Equal(core.Int64Ptr(int64(1))))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordReuse model
 				apmSchemaAdvancedPasswordManagementPasswordReuseModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuse)
@@ -20494,8 +20494,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig)
 				Expect(apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel).ToNot(BeNil())
-				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Float64Ptr(float64(1))
-				Expect(apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire).To(Equal(core.Float64Ptr(float64(1))))
+				apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire = core.Int64Ptr(int64(1))
+				Expect(apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel.DaysToExpire).To(Equal(core.Int64Ptr(int64(1))))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementPasswordExpiration model
 				apmSchemaAdvancedPasswordManagementPasswordExpirationModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpiration)
@@ -20508,10 +20508,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig)
 				Expect(apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel).ToNot(BeNil())
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Float64Ptr(float64(60))
-				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Float64Ptr(float64(1))
-				Expect(apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec).To(Equal(core.Float64Ptr(float64(60))))
-				Expect(apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts).To(Equal(core.Float64Ptr(float64(1))))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec = core.Int64Ptr(int64(60))
+				apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts = core.Int64Ptr(int64(1))
+				Expect(apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.LockOutTimeSec).To(Equal(core.Int64Ptr(int64(60))))
+				Expect(apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel.NumOfAttempts).To(Equal(core.Int64Ptr(int64(1))))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementLockOutPolicy model
 				apmSchemaAdvancedPasswordManagementLockOutPolicyModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicy)
@@ -20524,8 +20524,8 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig)
 				Expect(apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel).ToNot(BeNil())
-				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Float64Ptr(float64(0))
-				Expect(apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword).To(Equal(core.Float64Ptr(float64(0))))
+				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword = core.Int64Ptr(int64(0))
+				Expect(apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel.MinHoursToChangePassword).To(Equal(core.Int64Ptr(int64(0))))
 
 				// Construct an instance of the ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval model
 				apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel := new(appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval)
@@ -20692,10 +20692,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(cloudDirectorySenderDetailsSenderDetailsModel).ToNot(BeNil())
 				cloudDirectorySenderDetailsSenderDetailsModel.From = cloudDirectorySenderDetailsSenderDetailsFromModel
 				cloudDirectorySenderDetailsSenderDetailsModel.ReplyTo = cloudDirectorySenderDetailsSenderDetailsReplyToModel
-				cloudDirectorySenderDetailsSenderDetailsModel.LinkExpirationSec = core.Float64Ptr(float64(900))
+				cloudDirectorySenderDetailsSenderDetailsModel.LinkExpirationSec = core.Int64Ptr(int64(900))
 				Expect(cloudDirectorySenderDetailsSenderDetailsModel.From).To(Equal(cloudDirectorySenderDetailsSenderDetailsFromModel))
 				Expect(cloudDirectorySenderDetailsSenderDetailsModel.ReplyTo).To(Equal(cloudDirectorySenderDetailsSenderDetailsReplyToModel))
-				Expect(cloudDirectorySenderDetailsSenderDetailsModel.LinkExpirationSec).To(Equal(core.Float64Ptr(float64(900))))
+				Expect(cloudDirectorySenderDetailsSenderDetailsModel.LinkExpirationSec).To(Equal(core.Int64Ptr(int64(900))))
 
 				// Construct an instance of the SetCloudDirectorySenderDetailsOptions model
 				tenantID := "testString"
@@ -21103,18 +21103,18 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the UpdateSSOConfigOptions model
 				tenantID := "testString"
 				updateSSOConfigOptionsIsActive := true
-				updateSSOConfigOptionsInactivityTimeoutSeconds := float64(86400)
+				updateSSOConfigOptionsInactivityTimeoutSeconds := int64(86400)
 				updateSSOConfigOptionsLogoutRedirectUris := []string{"http://localhost:3000/logout-callback"}
 				updateSSOConfigOptionsModel := appIDManagementService.NewUpdateSSOConfigOptions(tenantID, updateSSOConfigOptionsIsActive, updateSSOConfigOptionsInactivityTimeoutSeconds, updateSSOConfigOptionsLogoutRedirectUris)
 				updateSSOConfigOptionsModel.SetTenantID("testString")
 				updateSSOConfigOptionsModel.SetIsActive(true)
-				updateSSOConfigOptionsModel.SetInactivityTimeoutSeconds(float64(86400))
+				updateSSOConfigOptionsModel.SetInactivityTimeoutSeconds(int64(86400))
 				updateSSOConfigOptionsModel.SetLogoutRedirectUris([]string{"http://localhost:3000/logout-callback"})
 				updateSSOConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateSSOConfigOptionsModel).ToNot(BeNil())
 				Expect(updateSSOConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateSSOConfigOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
-				Expect(updateSSOConfigOptionsModel.InactivityTimeoutSeconds).To(Equal(core.Float64Ptr(float64(86400))))
+				Expect(updateSSOConfigOptionsModel.InactivityTimeoutSeconds).To(Equal(core.Int64Ptr(int64(86400))))
 				Expect(updateSSOConfigOptionsModel.LogoutRedirectUris).To(Equal([]string{"http://localhost:3000/logout-callback"}))
 				Expect(updateSSOConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -21362,7 +21362,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(usersSetUserProfileOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewAccessTokenConfigParams successfully`, func() {
-				expiresIn := float64(72.5)
+				expiresIn := int64(38)
 				model, err := appIDManagementService.NewAccessTokenConfigParams(expiresIn)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
@@ -21440,7 +21440,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewTokenConfigParams successfully`, func() {
-				expiresIn := float64(72.5)
+				expiresIn := int64(38)
 				enabled := true
 				model, err := appIDManagementService.NewTokenConfigParams(expiresIn, enabled)
 				Expect(model).ToNot(BeNil())

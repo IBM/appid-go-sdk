@@ -611,11 +611,11 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			}
 
 			accessTokenConfigParamsModel := &appidmanagementv4.AccessTokenConfigParams{
-				ExpiresIn: core.Float64Ptr(float64(3600)),
+				ExpiresIn: core.Int64Ptr(int64(3600)),
 			}
 
 			tokenConfigParamsModel := &appidmanagementv4.TokenConfigParams{
-				ExpiresIn: core.Float64Ptr(float64(2592000)),
+				ExpiresIn: core.Int64Ptr(int64(2592000)),
 				Enabled:   core.BoolPtr(true),
 			}
 
@@ -977,7 +977,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			cloudDirectorySenderDetailsSenderDetailsModel := &appidmanagementv4.CloudDirectorySenderDetailsSenderDetails{
 				From:              cloudDirectorySenderDetailsSenderDetailsFromModel,
 				ReplyTo:           cloudDirectorySenderDetailsSenderDetailsReplyToModel,
-				LinkExpirationSec: core.Float64Ptr(float64(900)),
+				LinkExpirationSec: core.Int64Ptr(int64(900)),
 			}
 
 			setCloudDirectorySenderDetailsOptions := &appidmanagementv4.SetCloudDirectorySenderDetailsOptions{
@@ -1257,7 +1257,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`SetCloudDirectoryAdvancedPasswordManagement(setCloudDirectoryAdvancedPasswordManagementOptions *SetCloudDirectoryAdvancedPasswordManagementOptions)`, func() {
 
 			apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuseConfig{
-				MaxPasswordReuse: core.Float64Ptr(float64(1)),
+				MaxPasswordReuse: core.Int64Ptr(int64(1)),
 			}
 
 			apmSchemaAdvancedPasswordManagementPasswordReuseModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuse{
@@ -1270,7 +1270,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			}
 
 			apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpirationConfig{
-				DaysToExpire: core.Float64Ptr(float64(1)),
+				DaysToExpire: core.Int64Ptr(int64(1)),
 			}
 
 			apmSchemaAdvancedPasswordManagementPasswordExpirationModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpiration{
@@ -1279,8 +1279,8 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			}
 
 			apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig{
-				LockOutTimeSec: core.Float64Ptr(float64(60)),
-				NumOfAttempts:  core.Float64Ptr(float64(1)),
+				LockOutTimeSec: core.Int64Ptr(int64(60)),
+				NumOfAttempts:  core.Int64Ptr(int64(1)),
 			}
 
 			apmSchemaAdvancedPasswordManagementLockOutPolicyModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicy{
@@ -1289,7 +1289,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			}
 
 			apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig{
-				MinHoursToChangePassword: core.Float64Ptr(float64(0)),
+				MinHoursToChangePassword: core.Int64Ptr(int64(0)),
 			}
 
 			apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval{
@@ -1574,7 +1574,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			updateSSOConfigOptions := &appidmanagementv4.UpdateSSOConfigOptions{
 				TenantID:                 core.StringPtr("testString"),
 				IsActive:                 core.BoolPtr(true),
-				InactivityTimeoutSeconds: core.Float64Ptr(float64(86400)),
+				InactivityTimeoutSeconds: core.Int64Ptr(int64(86400)),
 				LogoutRedirectUris:       []string{"http://localhost:3000/logout-callback"},
 			}
 
