@@ -223,7 +223,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"applications": [{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "type": "Type"}]}`)
+					fmt.Fprintf(res, "%s", `{"applications": [{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "profilesUrl": "ProfilesURL", "discoveryEndpoint": "DiscoveryEndpoint", "type": "Type"}]}`)
 				}))
 			})
 			It(`Invoke ListApplications successfully with retries`, func() {
@@ -277,7 +277,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"applications": [{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "type": "Type"}]}`)
+					fmt.Fprintf(res, "%s", `{"applications": [{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "profilesUrl": "ProfilesURL", "discoveryEndpoint": "DiscoveryEndpoint", "type": "Type"}]}`)
 				}))
 			})
 			It(`Invoke ListApplications successfully`, func() {
@@ -453,7 +453,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "type": "Type"}`)
+					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "profilesUrl": "ProfilesURL", "discoveryEndpoint": "DiscoveryEndpoint", "type": "Type"}`)
 				}))
 			})
 			It(`Invoke RegisterApplication successfully with retries`, func() {
@@ -525,7 +525,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "type": "Type"}`)
+					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "profilesUrl": "ProfilesURL", "discoveryEndpoint": "DiscoveryEndpoint", "type": "Type"}`)
 				}))
 			})
 			It(`Invoke RegisterApplication successfully`, func() {
@@ -690,7 +690,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "type": "Type"}`)
+					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "profilesUrl": "ProfilesURL", "discoveryEndpoint": "DiscoveryEndpoint", "type": "Type"}`)
 				}))
 			})
 			It(`Invoke GetApplication successfully with retries`, func() {
@@ -745,7 +745,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "type": "Type"}`)
+					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "profilesUrl": "ProfilesURL", "discoveryEndpoint": "DiscoveryEndpoint", "type": "Type"}`)
 				}))
 			})
 			It(`Invoke GetApplication successfully`, func() {
@@ -924,7 +924,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(201)
-					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "type": "Type"}`)
+					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "profilesUrl": "ProfilesURL", "discoveryEndpoint": "DiscoveryEndpoint", "type": "Type"}`)
 				}))
 			})
 			It(`Invoke UpdateApplication successfully with retries`, func() {
@@ -996,7 +996,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(201)
-					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "type": "Type"}`)
+					fmt.Fprintf(res, "%s", `{"clientId": "ClientID", "tenantId": "TenantID", "secret": "Secret", "name": "Name", "oAuthServerUrl": "OAuthServerURL", "profilesUrl": "ProfilesURL", "discoveryEndpoint": "DiscoveryEndpoint", "type": "Type"}`)
 				}))
 			})
 			It(`Invoke UpdateApplication successfully`, func() {

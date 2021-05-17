@@ -6699,6 +6699,10 @@ type Application struct {
 
 	OAuthServerURL *string `json:"oAuthServerUrl,omitempty"`
 
+	ProfilesURL *string `json:"profilesUrl,omitempty"`
+
+	DiscoveryEndpoint *string `json:"discoveryEndpoint,omitempty"`
+
 	// The type of application. Allowed types are regularwebapp and singlepageapp.
 	Type *string `json:"type,omitempty"`
 }
@@ -6723,6 +6727,14 @@ func UnmarshalApplication(m map[string]json.RawMessage, result interface{}) (err
 		return
 	}
 	err = core.UnmarshalPrimitive(m, "oAuthServerUrl", &obj.OAuthServerURL)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "profilesUrl", &obj.ProfilesURL)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "discoveryEndpoint", &obj.DiscoveryEndpoint)
 	if err != nil {
 		return
 	}
