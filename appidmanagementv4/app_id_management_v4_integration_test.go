@@ -610,11 +610,11 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 				DestinationClaim: core.StringPtr("testString"),
 			}
 
-			tokenConfigParamsModel := &appidmanagementv4.TokenConfigParams{
+			accessTokenConfigParamsModel := &appidmanagementv4.AccessTokenConfigParams{
 				ExpiresIn: core.Float64Ptr(float64(3600)),
 			}
 
-			refreshTokenConfigParamsModel := &appidmanagementv4.RefreshTokenConfigParams{
+			tokenConfigParamsModel := &appidmanagementv4.TokenConfigParams{
 				ExpiresIn: core.Float64Ptr(float64(2592000)),
 				Enabled:   core.BoolPtr(true),
 			}
@@ -623,8 +623,8 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 				TenantID:          core.StringPtr("testString"),
 				IDTokenClaims:     []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel},
 				AccessTokenClaims: []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel},
-				Access:            tokenConfigParamsModel,
-				Refresh:           refreshTokenConfigParamsModel,
+				Access:            accessTokenConfigParamsModel,
+				Refresh:           tokenConfigParamsModel,
 				AnonymousAccess:   tokenConfigParamsModel,
 			}
 

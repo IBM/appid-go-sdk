@@ -10336,9 +10336,9 @@ type PutTokensConfigOptions struct {
 
 	AccessTokenClaims []TokenClaimMapping
 
-	Access *TokenConfigParams
+	Access *AccessTokenConfigParams
 
-	Refresh *RefreshTokenConfigParams
+	Refresh *TokenConfigParams
 
 	AnonymousAccess *TokenConfigParams
 
@@ -10372,13 +10372,13 @@ func (options *PutTokensConfigOptions) SetAccessTokenClaims(accessTokenClaims []
 }
 
 // SetAccess : Allow user to set Access
-func (options *PutTokensConfigOptions) SetAccess(access *TokenConfigParams) *PutTokensConfigOptions {
+func (options *PutTokensConfigOptions) SetAccess(access *AccessTokenConfigParams) *PutTokensConfigOptions {
 	options.Access = access
 	return options
 }
 
 // SetRefresh : Allow user to set Refresh
-func (options *PutTokensConfigOptions) SetRefresh(refresh *RefreshTokenConfigParams) *PutTokensConfigOptions {
+func (options *PutTokensConfigOptions) SetRefresh(refresh *TokenConfigParams) *PutTokensConfigOptions {
 	options.Refresh = refresh
 	return options
 }
@@ -12707,6 +12707,31 @@ func (options *UsersSetUserProfileOptions) SetHeaders(param map[string]string) *
 	return options
 }
 
+// AccessTokenConfigParams : AccessTokenConfigParams struct
+type AccessTokenConfigParams struct {
+	ExpiresIn *float64 `json:"expires_in" validate:"required"`
+}
+
+// NewAccessTokenConfigParams : Instantiate AccessTokenConfigParams (Generic Model Constructor)
+func (*AppIDManagementV4) NewAccessTokenConfigParams(expiresIn float64) (model *AccessTokenConfigParams, err error) {
+	model = &AccessTokenConfigParams{
+		ExpiresIn: core.Float64Ptr(expiresIn),
+	}
+	err = core.ValidateStruct(model, "required parameters")
+	return
+}
+
+// UnmarshalAccessTokenConfigParams unmarshals an instance of AccessTokenConfigParams from the specified map of raw messages.
+func UnmarshalAccessTokenConfigParams(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(AccessTokenConfigParams)
+	err = core.UnmarshalPrimitive(m, "expires_in", &obj.ExpiresIn)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
 // ActionURLResponse : ActionURLResponse struct
 type ActionURLResponse struct {
 	ActionURL *string `json:"actionUrl" validate:"required"`
@@ -13633,38 +13658,6 @@ func UnmarshalRedirectURIResponse(m map[string]json.RawMessage, result interface
 	return
 }
 
-// RefreshTokenConfigParams : RefreshTokenConfigParams struct
-type RefreshTokenConfigParams struct {
-	ExpiresIn *float64 `json:"expires_in" validate:"required"`
-
-	Enabled *bool `json:"enabled" validate:"required"`
-}
-
-// NewRefreshTokenConfigParams : Instantiate RefreshTokenConfigParams (Generic Model Constructor)
-func (*AppIDManagementV4) NewRefreshTokenConfigParams(expiresIn float64, enabled bool) (model *RefreshTokenConfigParams, err error) {
-	model = &RefreshTokenConfigParams{
-		ExpiresIn: core.Float64Ptr(expiresIn),
-		Enabled:   core.BoolPtr(enabled),
-	}
-	err = core.ValidateStruct(model, "required parameters")
-	return
-}
-
-// UnmarshalRefreshTokenConfigParams unmarshals an instance of RefreshTokenConfigParams from the specified map of raw messages.
-func UnmarshalRefreshTokenConfigParams(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(RefreshTokenConfigParams)
-	err = core.UnmarshalPrimitive(m, "expires_in", &obj.ExpiresIn)
-	if err != nil {
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "enabled", &obj.Enabled)
-	if err != nil {
-		return
-	}
-	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
-	return
-}
-
 // RespCustomEmailDisParams : RespCustomEmailDisParams struct
 type RespCustomEmailDisParams struct {
 	StatusCode *float64 `json:"statusCode,omitempty"`
@@ -13982,12 +13975,15 @@ func UnmarshalTokenClaimMapping(m map[string]json.RawMessage, result interface{}
 // TokenConfigParams : TokenConfigParams struct
 type TokenConfigParams struct {
 	ExpiresIn *float64 `json:"expires_in" validate:"required"`
+
+	Enabled *bool `json:"enabled" validate:"required"`
 }
 
 // NewTokenConfigParams : Instantiate TokenConfigParams (Generic Model Constructor)
-func (*AppIDManagementV4) NewTokenConfigParams(expiresIn float64) (model *TokenConfigParams, err error) {
+func (*AppIDManagementV4) NewTokenConfigParams(expiresIn float64, enabled bool) (model *TokenConfigParams, err error) {
 	model = &TokenConfigParams{
 		ExpiresIn: core.Float64Ptr(expiresIn),
+		Enabled:   core.BoolPtr(enabled),
 	}
 	err = core.ValidateStruct(model, "required parameters")
 	return
@@ -13997,6 +13993,10 @@ func (*AppIDManagementV4) NewTokenConfigParams(expiresIn float64) (model *TokenC
 func UnmarshalTokenConfigParams(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(TokenConfigParams)
 	err = core.UnmarshalPrimitive(m, "expires_in", &obj.ExpiresIn)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "enabled", &obj.Enabled)
 	if err != nil {
 		return
 	}
@@ -14010,9 +14010,9 @@ type TokensConfigResponse struct {
 
 	AccessTokenClaims []TokenClaimMapping `json:"accessTokenClaims,omitempty"`
 
-	Access *TokenConfigParams `json:"access,omitempty"`
+	Access *AccessTokenConfigParams `json:"access,omitempty"`
 
-	Refresh *RefreshTokenConfigParams `json:"refresh,omitempty"`
+	Refresh *TokenConfigParams `json:"refresh,omitempty"`
 
 	AnonymousAccess *TokenConfigParams `json:"anonymousAccess,omitempty"`
 }
@@ -14028,11 +14028,11 @@ func UnmarshalTokensConfigResponse(m map[string]json.RawMessage, result interfac
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalTokenConfigParams)
+	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalAccessTokenConfigParams)
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "refresh", &obj.Refresh, UnmarshalRefreshTokenConfigParams)
+	err = core.UnmarshalModel(m, "refresh", &obj.Refresh, UnmarshalTokenConfigParams)
 	if err != nil {
 		return
 	}
