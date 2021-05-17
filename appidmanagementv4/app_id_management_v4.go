@@ -7398,28 +7398,6 @@ func UnmarshalCreateRoleParamsAccessItem(m map[string]json.RawMessage, result in
 	return
 }
 
-// CreateRolesResponseAccessItem : CreateRolesResponseAccessItem struct
-type CreateRolesResponseAccessItem struct {
-	ApplicationID *string `json:"application_id" validate:"required"`
-
-	Scopes []string `json:"scopes" validate:"required"`
-}
-
-// UnmarshalCreateRolesResponseAccessItem unmarshals an instance of CreateRolesResponseAccessItem from the specified map of raw messages.
-func UnmarshalCreateRolesResponseAccessItem(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(CreateRolesResponseAccessItem)
-	err = core.UnmarshalPrimitive(m, "application_id", &obj.ApplicationID)
-	if err != nil {
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "scopes", &obj.Scopes)
-	if err != nil {
-		return
-	}
-	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
-	return
-}
-
 // CustomIDPConfigParamsConfig : CustomIDPConfigParamsConfig struct
 type CustomIDPConfigParamsConfig struct {
 	PublicKey *string `json:"publicKey,omitempty"`
@@ -11949,28 +11927,6 @@ func UnmarshalUpdateRoleParamsAccessItem(m map[string]json.RawMessage, result in
 	return
 }
 
-// UpdateRolesResponseAccessItem : UpdateRolesResponseAccessItem struct
-type UpdateRolesResponseAccessItem struct {
-	ApplicationID *string `json:"application_id" validate:"required"`
-
-	Scopes []string `json:"scopes" validate:"required"`
-}
-
-// UnmarshalUpdateRolesResponseAccessItem unmarshals an instance of UpdateRolesResponseAccessItem from the specified map of raw messages.
-func UnmarshalUpdateRolesResponseAccessItem(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(UpdateRolesResponseAccessItem)
-	err = core.UnmarshalPrimitive(m, "application_id", &obj.ApplicationID)
-	if err != nil {
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "scopes", &obj.Scopes)
-	if err != nil {
-		return
-	}
-	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
-	return
-}
-
 // UpdateSSOConfigOptions : The UpdateSSOConfig options.
 type UpdateSSOConfigOptions struct {
 	// The service tenantId. The tenantId can be found in the service credentials.
@@ -12955,7 +12911,7 @@ type CreateRolesResponse struct {
 
 	Description *string `json:"description,omitempty"`
 
-	Access []CreateRolesResponseAccessItem `json:"access" validate:"required"`
+	Access []RoleAccessItems `json:"access" validate:"required"`
 }
 
 // UnmarshalCreateRolesResponse unmarshals an instance of CreateRolesResponse from the specified map of raw messages.
@@ -12973,7 +12929,7 @@ func UnmarshalCreateRolesResponse(m map[string]json.RawMessage, result interface
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalCreateRolesResponseAccessItem)
+	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalRoleAccessItems)
 	if err != nil {
 		return
 	}
@@ -13769,6 +13725,28 @@ func UnmarshalRespSMSDisParams(m map[string]json.RawMessage, result interface{})
 	return
 }
 
+// RoleAccessItems : RoleAccessItems struct
+type RoleAccessItems struct {
+	ApplicationID *string `json:"application_id" validate:"required"`
+
+	Scopes []string `json:"scopes" validate:"required"`
+}
+
+// UnmarshalRoleAccessItems unmarshals an instance of RoleAccessItems from the specified map of raw messages.
+func UnmarshalRoleAccessItems(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(RoleAccessItems)
+	err = core.UnmarshalPrimitive(m, "application_id", &obj.ApplicationID)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "scopes", &obj.Scopes)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
 // SAMLConfigParams : SAMLConfigParams struct
 type SAMLConfigParams struct {
 	EntityID *string `json:"entityID" validate:"required"`
@@ -14122,7 +14100,7 @@ type UpdateRolesResponse struct {
 
 	Description *string `json:"description,omitempty"`
 
-	Access []UpdateRolesResponseAccessItem `json:"access" validate:"required"`
+	Access []RoleAccessItems `json:"access" validate:"required"`
 }
 
 // UnmarshalUpdateRolesResponse unmarshals an instance of UpdateRolesResponse from the specified map of raw messages.
@@ -14140,7 +14118,7 @@ func UnmarshalUpdateRolesResponse(m map[string]json.RawMessage, result interface
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalUpdateRolesResponseAccessItem)
+	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalRoleAccessItems)
 	if err != nil {
 		return
 	}
