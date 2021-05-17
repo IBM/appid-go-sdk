@@ -12911,7 +12911,7 @@ type CreateRolesResponse struct {
 
 	Description *string `json:"description,omitempty"`
 
-	Access []RoleAccessItems `json:"access" validate:"required"`
+	Access []RoleAccessItem `json:"access" validate:"required"`
 }
 
 // UnmarshalCreateRolesResponse unmarshals an instance of CreateRolesResponse from the specified map of raw messages.
@@ -12929,7 +12929,7 @@ func UnmarshalCreateRolesResponse(m map[string]json.RawMessage, result interface
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalRoleAccessItems)
+	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalRoleAccessItem)
 	if err != nil {
 		return
 	}
@@ -13725,16 +13725,16 @@ func UnmarshalRespSMSDisParams(m map[string]json.RawMessage, result interface{})
 	return
 }
 
-// RoleAccessItems : RoleAccessItems struct
-type RoleAccessItems struct {
+// RoleAccessItem : RoleAccessItem struct
+type RoleAccessItem struct {
 	ApplicationID *string `json:"application_id" validate:"required"`
 
 	Scopes []string `json:"scopes" validate:"required"`
 }
 
-// UnmarshalRoleAccessItems unmarshals an instance of RoleAccessItems from the specified map of raw messages.
-func UnmarshalRoleAccessItems(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(RoleAccessItems)
+// UnmarshalRoleAccessItem unmarshals an instance of RoleAccessItem from the specified map of raw messages.
+func UnmarshalRoleAccessItem(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(RoleAccessItem)
 	err = core.UnmarshalPrimitive(m, "application_id", &obj.ApplicationID)
 	if err != nil {
 		return
@@ -14100,7 +14100,7 @@ type UpdateRolesResponse struct {
 
 	Description *string `json:"description,omitempty"`
 
-	Access []RoleAccessItems `json:"access" validate:"required"`
+	Access []RoleAccessItem `json:"access" validate:"required"`
 }
 
 // UnmarshalUpdateRolesResponse unmarshals an instance of UpdateRolesResponse from the specified map of raw messages.
@@ -14118,7 +14118,7 @@ func UnmarshalUpdateRolesResponse(m map[string]json.RawMessage, result interface
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalRoleAccessItems)
+	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalRoleAccessItem)
 	if err != nil {
 		return
 	}
