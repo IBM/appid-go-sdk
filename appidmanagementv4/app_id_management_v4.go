@@ -10340,7 +10340,7 @@ type PutTokensConfigOptions struct {
 
 	Refresh *RefreshTokenConfigParams
 
-	AnonymousAccess []TokenConfigParams
+	AnonymousAccess *TokenConfigParams
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
@@ -10384,7 +10384,7 @@ func (options *PutTokensConfigOptions) SetRefresh(refresh *RefreshTokenConfigPar
 }
 
 // SetAnonymousAccess : Allow user to set AnonymousAccess
-func (options *PutTokensConfigOptions) SetAnonymousAccess(anonymousAccess []TokenConfigParams) *PutTokensConfigOptions {
+func (options *PutTokensConfigOptions) SetAnonymousAccess(anonymousAccess *TokenConfigParams) *PutTokensConfigOptions {
 	options.AnonymousAccess = anonymousAccess
 	return options
 }
@@ -14014,7 +14014,7 @@ type TokensConfigResponse struct {
 
 	Refresh *RefreshTokenConfigParams `json:"refresh,omitempty"`
 
-	AnonymousAccess []TokenConfigParams `json:"anonymousAccess,omitempty"`
+	AnonymousAccess *TokenConfigParams `json:"anonymousAccess,omitempty"`
 }
 
 // UnmarshalTokensConfigResponse unmarshals an instance of TokensConfigResponse from the specified map of raw messages.

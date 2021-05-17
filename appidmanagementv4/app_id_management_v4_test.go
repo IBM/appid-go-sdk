@@ -4734,7 +4734,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"idTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "accessTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "access": {"expires_in": 9}, "refresh": {"expires_in": 9, "enabled": false}, "anonymousAccess": [{"expires_in": 9}]}`)
+					fmt.Fprintf(res, "%s", `{"idTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "accessTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "access": {"expires_in": 9}, "refresh": {"expires_in": 9, "enabled": false}, "anonymousAccess": {"expires_in": 9}}`)
 				}))
 			})
 			It(`Invoke GetTokensConfig successfully with retries`, func() {
@@ -4788,7 +4788,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"idTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "accessTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "access": {"expires_in": 9}, "refresh": {"expires_in": 9, "enabled": false}, "anonymousAccess": [{"expires_in": 9}]}`)
+					fmt.Fprintf(res, "%s", `{"idTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "accessTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "access": {"expires_in": 9}, "refresh": {"expires_in": 9, "enabled": false}, "anonymousAccess": {"expires_in": 9}}`)
 				}))
 			})
 			It(`Invoke GetTokensConfig successfully`, func() {
@@ -4929,7 +4929,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = tokenConfigParamsModel
 				putTokensConfigOptionsModel.Refresh = refreshTokenConfigParamsModel
-				putTokensConfigOptionsModel.AnonymousAccess = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
+				putTokensConfigOptionsModel.AnonymousAccess = tokenConfigParamsModel
 				putTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := appIDManagementService.PutTokensConfig(putTokensConfigOptionsModel)
@@ -4982,7 +4982,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"idTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "accessTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "access": {"expires_in": 9}, "refresh": {"expires_in": 9, "enabled": false}, "anonymousAccess": [{"expires_in": 9}]}`)
+					fmt.Fprintf(res, "%s", `{"idTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "accessTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "access": {"expires_in": 9}, "refresh": {"expires_in": 9, "enabled": false}, "anonymousAccess": {"expires_in": 9}}`)
 				}))
 			})
 			It(`Invoke PutTokensConfig successfully with retries`, func() {
@@ -5016,7 +5016,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = tokenConfigParamsModel
 				putTokensConfigOptionsModel.Refresh = refreshTokenConfigParamsModel
-				putTokensConfigOptionsModel.AnonymousAccess = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
+				putTokensConfigOptionsModel.AnonymousAccess = tokenConfigParamsModel
 				putTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -5072,7 +5072,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"idTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "accessTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "access": {"expires_in": 9}, "refresh": {"expires_in": 9, "enabled": false}, "anonymousAccess": [{"expires_in": 9}]}`)
+					fmt.Fprintf(res, "%s", `{"idTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "accessTokenClaims": [{"source": "saml", "sourceClaim": "SourceClaim", "destinationClaim": "DestinationClaim"}], "access": {"expires_in": 9}, "refresh": {"expires_in": 9, "enabled": false}, "anonymousAccess": {"expires_in": 9}}`)
 				}))
 			})
 			It(`Invoke PutTokensConfig successfully`, func() {
@@ -5111,7 +5111,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = tokenConfigParamsModel
 				putTokensConfigOptionsModel.Refresh = refreshTokenConfigParamsModel
-				putTokensConfigOptionsModel.AnonymousAccess = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
+				putTokensConfigOptionsModel.AnonymousAccess = tokenConfigParamsModel
 				putTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -5151,7 +5151,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = tokenConfigParamsModel
 				putTokensConfigOptionsModel.Refresh = refreshTokenConfigParamsModel
-				putTokensConfigOptionsModel.AnonymousAccess = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
+				putTokensConfigOptionsModel.AnonymousAccess = tokenConfigParamsModel
 				putTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
@@ -5212,7 +5212,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				putTokensConfigOptionsModel.AccessTokenClaims = []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}
 				putTokensConfigOptionsModel.Access = tokenConfigParamsModel
 				putTokensConfigOptionsModel.Refresh = refreshTokenConfigParamsModel
-				putTokensConfigOptionsModel.AnonymousAccess = []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}
+				putTokensConfigOptionsModel.AnonymousAccess = tokenConfigParamsModel
 				putTokensConfigOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -20397,7 +20397,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				putTokensConfigOptionsModel.SetAccessTokenClaims([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel})
 				putTokensConfigOptionsModel.SetAccess(tokenConfigParamsModel)
 				putTokensConfigOptionsModel.SetRefresh(refreshTokenConfigParamsModel)
-				putTokensConfigOptionsModel.SetAnonymousAccess([]appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel})
+				putTokensConfigOptionsModel.SetAnonymousAccess(tokenConfigParamsModel)
 				putTokensConfigOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(putTokensConfigOptionsModel).ToNot(BeNil())
 				Expect(putTokensConfigOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
@@ -20405,7 +20405,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(putTokensConfigOptionsModel.AccessTokenClaims).To(Equal([]appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel}))
 				Expect(putTokensConfigOptionsModel.Access).To(Equal(tokenConfigParamsModel))
 				Expect(putTokensConfigOptionsModel.Refresh).To(Equal(refreshTokenConfigParamsModel))
-				Expect(putTokensConfigOptionsModel.AnonymousAccess).To(Equal([]appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel}))
+				Expect(putTokensConfigOptionsModel.AnonymousAccess).To(Equal(tokenConfigParamsModel))
 				Expect(putTokensConfigOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewRegisterApplicationOptions successfully`, func() {

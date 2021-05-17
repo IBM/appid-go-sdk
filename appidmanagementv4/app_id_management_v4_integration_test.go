@@ -625,7 +625,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 				AccessTokenClaims: []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel},
 				Access:            tokenConfigParamsModel,
 				Refresh:           refreshTokenConfigParamsModel,
-				AnonymousAccess:   []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel},
+				AnonymousAccess:   tokenConfigParamsModel,
 			}
 
 			tokensConfigResponse, response, err := appIDManagementService.PutTokensConfig(putTokensConfigOptions)
