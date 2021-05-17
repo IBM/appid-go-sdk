@@ -3832,12 +3832,12 @@ func (appIdManagement *AppIDManagementV4) SetCloudDirectoryAdvancedPasswordManag
 
 // GetAuditStatus : Get tenant audit status
 // Returns a JSON object containing the auditing status of the tenant.
-func (appIdManagement *AppIDManagementV4) GetAuditStatus(getAuditStatusOptions *GetAuditStatusOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetAuditStatus(getAuditStatusOptions *GetAuditStatusOptions) (result *GetAuditStatusResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetAuditStatusWithContext(context.Background(), getAuditStatusOptions)
 }
 
 // GetAuditStatusWithContext is an alternate form of the GetAuditStatus method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) GetAuditStatusWithContext(ctx context.Context, getAuditStatusOptions *GetAuditStatusOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetAuditStatusWithContext(ctx context.Context, getAuditStatusOptions *GetAuditStatusOptions) (result *GetAuditStatusResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getAuditStatusOptions, "getAuditStatusOptions cannot be nil")
 	if err != nil {
 		return
@@ -3874,7 +3874,18 @@ func (appIdManagement *AppIDManagementV4) GetAuditStatusWithContext(ctx context.
 		return
 	}
 
-	response, err = appIdManagement.Service.Request(request, nil)
+	var rawResponse map[string]json.RawMessage
+	response, err = appIdManagement.Service.Request(request, &rawResponse)
+	if err != nil {
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetAuditStatusResponse)
+		if err != nil {
+			return
+		}
+		response.Result = result
+	}
 
 	return
 }
@@ -8565,6 +8576,22 @@ func (options *GetAuditStatusOptions) SetTenantID(tenantID string) *GetAuditStat
 func (options *GetAuditStatusOptions) SetHeaders(param map[string]string) *GetAuditStatusOptions {
 	options.Headers = param
 	return options
+}
+
+// GetAuditStatusResponse : GetAuditStatusResponse struct
+type GetAuditStatusResponse struct {
+	IsActive *bool `json:"isActive,omitempty"`
+}
+
+// UnmarshalGetAuditStatusResponse unmarshals an instance of GetAuditStatusResponse from the specified map of raw messages.
+func UnmarshalGetAuditStatusResponse(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(GetAuditStatusResponse)
+	err = core.UnmarshalPrimitive(m, "isActive", &obj.IsActive)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
 }
 
 // GetChannelOptions : The GetChannel options.

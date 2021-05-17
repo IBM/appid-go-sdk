@@ -11300,8 +11300,110 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 		})
 	})
+	Describe(`GetAuditStatus(getAuditStatusOptions *GetAuditStatusOptions) - Operation response error`, func() {
+		getAuditStatusPath := "/management/v4/testString/config/capture_runtime_activity"
+		Context(`Using mock server endpoint with invalid JSON response`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(getAuditStatusPath))
+					Expect(req.Method).To(Equal("GET"))
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, `} this is not valid json {`)
+				}))
+			})
+			It(`Invoke GetAuditStatus with error: Operation response processing error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the GetAuditStatusOptions model
+				getAuditStatusOptionsModel := new(appidmanagementv4.GetAuditStatusOptions)
+				getAuditStatusOptionsModel.TenantID = core.StringPtr("testString")
+				getAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Expect response parsing to fail since we are receiving a text/plain response
+				result, response, operationErr := appIDManagementService.GetAuditStatus(getAuditStatusOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+
+				// Enable retries and test again
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetAuditStatus(getAuditStatusOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+	})
 	Describe(`GetAuditStatus(getAuditStatusOptions *GetAuditStatusOptions)`, func() {
 		getAuditStatusPath := "/management/v4/testString/config/capture_runtime_activity"
+		Context(`Using mock server endpoint with timeout`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(getAuditStatusPath))
+					Expect(req.Method).To(Equal("GET"))
+
+					// Sleep a short time to support a timeout test
+					time.Sleep(100 * time.Millisecond)
+
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"isActive": true}`)
+				}))
+			})
+			It(`Invoke GetAuditStatus successfully with retries`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
+
+				// Construct an instance of the GetAuditStatusOptions model
+				getAuditStatusOptionsModel := new(appidmanagementv4.GetAuditStatusOptions)
+				getAuditStatusOptionsModel.TenantID = core.StringPtr("testString")
+				getAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation with a Context to test a timeout error
+				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc()
+				_, _, operationErr := appIDManagementService.GetAuditStatusWithContext(ctx, getAuditStatusOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+
+				// Disable retries and test again
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetAuditStatus(getAuditStatusOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
+				// Re-test the timeout error with retries disabled
+				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc2()
+				_, _, operationErr = appIDManagementService.GetAuditStatusWithContext(ctx, getAuditStatusOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
@@ -11311,7 +11413,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					Expect(req.URL.EscapedPath()).To(Equal(getAuditStatusPath))
 					Expect(req.Method).To(Equal("GET"))
 
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"isActive": true}`)
 				}))
 			})
 			It(`Invoke GetAuditStatus successfully`, func() {
@@ -11323,9 +11428,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIDManagementService.GetAuditStatus(nil)
+				result, response, operationErr := appIDManagementService.GetAuditStatus(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 
 				// Construct an instance of the GetAuditStatusOptions model
 				getAuditStatusOptionsModel := new(appidmanagementv4.GetAuditStatusOptions)
@@ -11333,9 +11439,11 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				getAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIDManagementService.GetAuditStatus(getAuditStatusOptionsModel)
+				result, response, operationErr = appIDManagementService.GetAuditStatus(getAuditStatusOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
 			})
 			It(`Invoke GetAuditStatus with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
@@ -11352,16 +11460,52 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIDManagementService.GetAuditStatus(getAuditStatusOptionsModel)
+				result, response, operationErr := appIDManagementService.GetAuditStatus(getAuditStatusOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 				// Construct a second instance of the GetAuditStatusOptions model with no property values
 				getAuditStatusOptionsModelNew := new(appidmanagementv4.GetAuditStatusOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIDManagementService.GetAuditStatus(getAuditStatusOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetAuditStatus(getAuditStatusOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+		Context(`Using mock server endpoint with missing response body`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Set success status code with no respoonse body
+					res.WriteHeader(200)
+				}))
+			})
+			It(`Invoke GetAuditStatus successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the GetAuditStatusOptions model
+				getAuditStatusOptionsModel := new(appidmanagementv4.GetAuditStatusOptions)
+				getAuditStatusOptionsModel.TenantID = core.StringPtr("testString")
+				getAuditStatusOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation
+				result, response, operationErr := appIDManagementService.GetAuditStatus(getAuditStatusOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+
+				// Verify a nil result
+				Expect(result).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()

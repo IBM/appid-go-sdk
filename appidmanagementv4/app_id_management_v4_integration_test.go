@@ -1330,10 +1330,11 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 				TenantID: core.StringPtr("testString"),
 			}
 
-			response, err := appIDManagementService.GetAuditStatus(getAuditStatusOptions)
+			getAuditStatusResponse, response, err := appIDManagementService.GetAuditStatus(getAuditStatusOptions)
 
 			Expect(err).To(BeNil())
 			Expect(response.StatusCode).To(Equal(200))
+			Expect(getAuditStatusResponse).ToNot(BeNil())
 
 		})
 	})
