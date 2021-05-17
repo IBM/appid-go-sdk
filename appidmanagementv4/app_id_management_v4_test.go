@@ -16908,16 +16908,16 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the CreateRoleParamsAccessItem model
-				createRoleParamsAccessItemModel := new(appidmanagementv4.CreateRoleParamsAccessItem)
-				createRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				createRoleParamsAccessItemModel.Scopes = []string{"cartoons"}
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
 
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsModel := new(appidmanagementv4.CreateRoleOptions)
 				createRoleOptionsModel.TenantID = core.StringPtr("testString")
 				createRoleOptionsModel.Name = core.StringPtr("child")
-				createRoleOptionsModel.Access = []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}
+				createRoleOptionsModel.Access = []appidmanagementv4.RoleAccessItem{*roleAccessItemModel}
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				createRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -16983,16 +16983,16 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 				appIDManagementService.EnableRetries(0, 0)
 
-				// Construct an instance of the CreateRoleParamsAccessItem model
-				createRoleParamsAccessItemModel := new(appidmanagementv4.CreateRoleParamsAccessItem)
-				createRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				createRoleParamsAccessItemModel.Scopes = []string{"cartoons"}
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
 
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsModel := new(appidmanagementv4.CreateRoleOptions)
 				createRoleOptionsModel.TenantID = core.StringPtr("testString")
 				createRoleOptionsModel.Name = core.StringPtr("child")
-				createRoleOptionsModel.Access = []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}
+				createRoleOptionsModel.Access = []appidmanagementv4.RoleAccessItem{*roleAccessItemModel}
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				createRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -17066,16 +17066,16 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
-				// Construct an instance of the CreateRoleParamsAccessItem model
-				createRoleParamsAccessItemModel := new(appidmanagementv4.CreateRoleParamsAccessItem)
-				createRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				createRoleParamsAccessItemModel.Scopes = []string{"cartoons"}
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
 
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsModel := new(appidmanagementv4.CreateRoleOptions)
 				createRoleOptionsModel.TenantID = core.StringPtr("testString")
 				createRoleOptionsModel.Name = core.StringPtr("child")
-				createRoleOptionsModel.Access = []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}
+				createRoleOptionsModel.Access = []appidmanagementv4.RoleAccessItem{*roleAccessItemModel}
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				createRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -17094,16 +17094,16 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the CreateRoleParamsAccessItem model
-				createRoleParamsAccessItemModel := new(appidmanagementv4.CreateRoleParamsAccessItem)
-				createRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				createRoleParamsAccessItemModel.Scopes = []string{"cartoons"}
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
 
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsModel := new(appidmanagementv4.CreateRoleOptions)
 				createRoleOptionsModel.TenantID = core.StringPtr("testString")
 				createRoleOptionsModel.Name = core.StringPtr("child")
-				createRoleOptionsModel.Access = []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}
+				createRoleOptionsModel.Access = []appidmanagementv4.RoleAccessItem{*roleAccessItemModel}
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				createRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -17143,16 +17143,16 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the CreateRoleParamsAccessItem model
-				createRoleParamsAccessItemModel := new(appidmanagementv4.CreateRoleParamsAccessItem)
-				createRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				createRoleParamsAccessItemModel.Scopes = []string{"cartoons"}
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
 
 				// Construct an instance of the CreateRoleOptions model
 				createRoleOptionsModel := new(appidmanagementv4.CreateRoleOptions)
 				createRoleOptionsModel.TenantID = core.StringPtr("testString")
 				createRoleOptionsModel.Name = core.StringPtr("child")
-				createRoleOptionsModel.Access = []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}
+				createRoleOptionsModel.Access = []appidmanagementv4.RoleAccessItem{*roleAccessItemModel}
 				createRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				createRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -17409,17 +17409,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the UpdateRoleParamsAccessItem model
-				updateRoleParamsAccessItemModel := new(appidmanagementv4.UpdateRoleParamsAccessItem)
-				updateRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				updateRoleParamsAccessItemModel.Scopes = []string{"cartoons", "animated"}
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
 
 				// Construct an instance of the UpdateRoleOptions model
 				updateRoleOptionsModel := new(appidmanagementv4.UpdateRoleOptions)
 				updateRoleOptionsModel.TenantID = core.StringPtr("testString")
 				updateRoleOptionsModel.RoleID = core.StringPtr("testString")
 				updateRoleOptionsModel.Name = core.StringPtr("child")
-				updateRoleOptionsModel.Access = []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}
+				updateRoleOptionsModel.Access = []appidmanagementv4.RoleAccessItem{*roleAccessItemModel}
 				updateRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				updateRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
@@ -17485,17 +17485,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 				appIDManagementService.EnableRetries(0, 0)
 
-				// Construct an instance of the UpdateRoleParamsAccessItem model
-				updateRoleParamsAccessItemModel := new(appidmanagementv4.UpdateRoleParamsAccessItem)
-				updateRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				updateRoleParamsAccessItemModel.Scopes = []string{"cartoons", "animated"}
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
 
 				// Construct an instance of the UpdateRoleOptions model
 				updateRoleOptionsModel := new(appidmanagementv4.UpdateRoleOptions)
 				updateRoleOptionsModel.TenantID = core.StringPtr("testString")
 				updateRoleOptionsModel.RoleID = core.StringPtr("testString")
 				updateRoleOptionsModel.Name = core.StringPtr("child")
-				updateRoleOptionsModel.Access = []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}
+				updateRoleOptionsModel.Access = []appidmanagementv4.RoleAccessItem{*roleAccessItemModel}
 				updateRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				updateRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -17569,17 +17569,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
-				// Construct an instance of the UpdateRoleParamsAccessItem model
-				updateRoleParamsAccessItemModel := new(appidmanagementv4.UpdateRoleParamsAccessItem)
-				updateRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				updateRoleParamsAccessItemModel.Scopes = []string{"cartoons", "animated"}
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
 
 				// Construct an instance of the UpdateRoleOptions model
 				updateRoleOptionsModel := new(appidmanagementv4.UpdateRoleOptions)
 				updateRoleOptionsModel.TenantID = core.StringPtr("testString")
 				updateRoleOptionsModel.RoleID = core.StringPtr("testString")
 				updateRoleOptionsModel.Name = core.StringPtr("child")
-				updateRoleOptionsModel.Access = []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}
+				updateRoleOptionsModel.Access = []appidmanagementv4.RoleAccessItem{*roleAccessItemModel}
 				updateRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				updateRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -17598,17 +17598,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the UpdateRoleParamsAccessItem model
-				updateRoleParamsAccessItemModel := new(appidmanagementv4.UpdateRoleParamsAccessItem)
-				updateRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				updateRoleParamsAccessItemModel.Scopes = []string{"cartoons", "animated"}
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
 
 				// Construct an instance of the UpdateRoleOptions model
 				updateRoleOptionsModel := new(appidmanagementv4.UpdateRoleOptions)
 				updateRoleOptionsModel.TenantID = core.StringPtr("testString")
 				updateRoleOptionsModel.RoleID = core.StringPtr("testString")
 				updateRoleOptionsModel.Name = core.StringPtr("child")
-				updateRoleOptionsModel.Access = []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}
+				updateRoleOptionsModel.Access = []appidmanagementv4.RoleAccessItem{*roleAccessItemModel}
 				updateRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				updateRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
@@ -17648,17 +17648,17 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(serviceErr).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
 
-				// Construct an instance of the UpdateRoleParamsAccessItem model
-				updateRoleParamsAccessItemModel := new(appidmanagementv4.UpdateRoleParamsAccessItem)
-				updateRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				updateRoleParamsAccessItemModel.Scopes = []string{"cartoons", "animated"}
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
 
 				// Construct an instance of the UpdateRoleOptions model
 				updateRoleOptionsModel := new(appidmanagementv4.UpdateRoleOptions)
 				updateRoleOptionsModel.TenantID = core.StringPtr("testString")
 				updateRoleOptionsModel.RoleID = core.StringPtr("testString")
 				updateRoleOptionsModel.Name = core.StringPtr("child")
-				updateRoleOptionsModel.Access = []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}
+				updateRoleOptionsModel.Access = []appidmanagementv4.RoleAccessItem{*roleAccessItemModel}
 				updateRoleOptionsModel.Description = core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				updateRoleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
@@ -19705,37 +19705,30 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewCreateRoleOptions successfully`, func() {
-				// Construct an instance of the CreateRoleParamsAccessItem model
-				createRoleParamsAccessItemModel := new(appidmanagementv4.CreateRoleParamsAccessItem)
-				Expect(createRoleParamsAccessItemModel).ToNot(BeNil())
-				createRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				createRoleParamsAccessItemModel.Scopes = []string{"cartoons"}
-				Expect(createRoleParamsAccessItemModel.ApplicationID).To(Equal(core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")))
-				Expect(createRoleParamsAccessItemModel.Scopes).To(Equal([]string{"cartoons"}))
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				Expect(roleAccessItemModel).ToNot(BeNil())
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
+				Expect(roleAccessItemModel.ApplicationID).To(Equal(core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")))
+				Expect(roleAccessItemModel.Scopes).To(Equal([]string{"cartoons", "animated"}))
 
 				// Construct an instance of the CreateRoleOptions model
 				tenantID := "testString"
 				createRoleOptionsName := "child"
-				createRoleOptionsAccess := []appidmanagementv4.CreateRoleParamsAccessItem{}
+				createRoleOptionsAccess := []appidmanagementv4.RoleAccessItem{}
 				createRoleOptionsModel := appIDManagementService.NewCreateRoleOptions(tenantID, createRoleOptionsName, createRoleOptionsAccess)
 				createRoleOptionsModel.SetTenantID("testString")
 				createRoleOptionsModel.SetName("child")
-				createRoleOptionsModel.SetAccess([]appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel})
+				createRoleOptionsModel.SetAccess([]appidmanagementv4.RoleAccessItem{*roleAccessItemModel})
 				createRoleOptionsModel.SetDescription("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				createRoleOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(createRoleOptionsModel).ToNot(BeNil())
 				Expect(createRoleOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(createRoleOptionsModel.Name).To(Equal(core.StringPtr("child")))
-				Expect(createRoleOptionsModel.Access).To(Equal([]appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel}))
+				Expect(createRoleOptionsModel.Access).To(Equal([]appidmanagementv4.RoleAccessItem{*roleAccessItemModel}))
 				Expect(createRoleOptionsModel.Description).To(Equal(core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")))
 				Expect(createRoleOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
-			})
-			It(`Invoke NewCreateRoleParamsAccessItem successfully`, func() {
-				applicationID := "de33d272-f8a7-4406-8fe8-ab28fd457be5"
-				scopes := []string{"cartoons"}
-				model, err := appIDManagementService.NewCreateRoleParamsAccessItem(applicationID, scopes)
-				Expect(model).ToNot(BeNil())
-				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewDeleteActionURLOptions successfully`, func() {
 				// Construct an instance of the DeleteActionURLOptions model
@@ -21208,40 +21201,33 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(updateRedirectUrisOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUpdateRoleOptions successfully`, func() {
-				// Construct an instance of the UpdateRoleParamsAccessItem model
-				updateRoleParamsAccessItemModel := new(appidmanagementv4.UpdateRoleParamsAccessItem)
-				Expect(updateRoleParamsAccessItemModel).ToNot(BeNil())
-				updateRoleParamsAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
-				updateRoleParamsAccessItemModel.Scopes = []string{"cartoons", "animated"}
-				Expect(updateRoleParamsAccessItemModel.ApplicationID).To(Equal(core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")))
-				Expect(updateRoleParamsAccessItemModel.Scopes).To(Equal([]string{"cartoons", "animated"}))
+				// Construct an instance of the RoleAccessItem model
+				roleAccessItemModel := new(appidmanagementv4.RoleAccessItem)
+				Expect(roleAccessItemModel).ToNot(BeNil())
+				roleAccessItemModel.ApplicationID = core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")
+				roleAccessItemModel.Scopes = []string{"cartoons", "animated"}
+				Expect(roleAccessItemModel.ApplicationID).To(Equal(core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5")))
+				Expect(roleAccessItemModel.Scopes).To(Equal([]string{"cartoons", "animated"}))
 
 				// Construct an instance of the UpdateRoleOptions model
 				tenantID := "testString"
 				roleID := "testString"
 				updateRoleOptionsName := "child"
-				updateRoleOptionsAccess := []appidmanagementv4.UpdateRoleParamsAccessItem{}
+				updateRoleOptionsAccess := []appidmanagementv4.RoleAccessItem{}
 				updateRoleOptionsModel := appIDManagementService.NewUpdateRoleOptions(tenantID, roleID, updateRoleOptionsName, updateRoleOptionsAccess)
 				updateRoleOptionsModel.SetTenantID("testString")
 				updateRoleOptionsModel.SetRoleID("testString")
 				updateRoleOptionsModel.SetName("child")
-				updateRoleOptionsModel.SetAccess([]appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel})
+				updateRoleOptionsModel.SetAccess([]appidmanagementv4.RoleAccessItem{*roleAccessItemModel})
 				updateRoleOptionsModel.SetDescription("Limits the available movie options to those that might be more appropriate for younger viewers.")
 				updateRoleOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateRoleOptionsModel).ToNot(BeNil())
 				Expect(updateRoleOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateRoleOptionsModel.RoleID).To(Equal(core.StringPtr("testString")))
 				Expect(updateRoleOptionsModel.Name).To(Equal(core.StringPtr("child")))
-				Expect(updateRoleOptionsModel.Access).To(Equal([]appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel}))
+				Expect(updateRoleOptionsModel.Access).To(Equal([]appidmanagementv4.RoleAccessItem{*roleAccessItemModel}))
 				Expect(updateRoleOptionsModel.Description).To(Equal(core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers.")))
 				Expect(updateRoleOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
-			})
-			It(`Invoke NewUpdateRoleParamsAccessItem successfully`, func() {
-				applicationID := "de33d272-f8a7-4406-8fe8-ab28fd457be5"
-				scopes := []string{"cartoons", "animated"}
-				model, err := appIDManagementService.NewUpdateRoleParamsAccessItem(applicationID, scopes)
-				Expect(model).ToNot(BeNil())
-				Expect(err).To(BeNil())
 			})
 			It(`Invoke NewUpdateSSOConfigOptions successfully`, func() {
 				// Construct an instance of the UpdateSSOConfigOptions model
@@ -21566,6 +21552,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			It(`Invoke NewGetLanguages successfully`, func() {
 				languages := []string{"testString"}
 				model, err := appIDManagementService.NewGetLanguages(languages)
+				Expect(model).ToNot(BeNil())
+				Expect(err).To(BeNil())
+			})
+			It(`Invoke NewRoleAccessItem successfully`, func() {
+				applicationID := "de33d272-f8a7-4406-8fe8-ab28fd457be5"
+				scopes := []string{"cartoons", "animated"}
+				model, err := appIDManagementService.NewRoleAccessItem(applicationID, scopes)
 				Expect(model).ToNot(BeNil())
 				Expect(err).To(BeNil())
 			})

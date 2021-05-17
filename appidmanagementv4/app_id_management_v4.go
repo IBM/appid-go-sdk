@@ -5498,12 +5498,12 @@ func (appIdManagement *AppIDManagementV4) ListRolesWithContext(ctx context.Conte
 
 // CreateRole : Create a role
 // Create a new role for a registered application.
-func (appIdManagement *AppIDManagementV4) CreateRole(createRoleOptions *CreateRoleOptions) (result *CreateRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CreateRole(createRoleOptions *CreateRoleOptions) (result *CreateRoleResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.CreateRoleWithContext(context.Background(), createRoleOptions)
 }
 
 // CreateRoleWithContext is an alternate form of the CreateRole method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) CreateRoleWithContext(ctx context.Context, createRoleOptions *CreateRoleOptions) (result *CreateRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CreateRoleWithContext(ctx context.Context, createRoleOptions *CreateRoleOptions) (result *CreateRoleResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(createRoleOptions, "createRoleOptions cannot be nil")
 	if err != nil {
 		return
@@ -5562,7 +5562,7 @@ func (appIdManagement *AppIDManagementV4) CreateRoleWithContext(ctx context.Cont
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCreateRolesResponse)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalCreateRoleResponse)
 		if err != nil {
 			return
 		}
@@ -5635,12 +5635,12 @@ func (appIdManagement *AppIDManagementV4) GetRoleWithContext(ctx context.Context
 
 // UpdateRole : Update a role
 // Update an existing role.
-func (appIdManagement *AppIDManagementV4) UpdateRole(updateRoleOptions *UpdateRoleOptions) (result *UpdateRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateRole(updateRoleOptions *UpdateRoleOptions) (result *UpdateRoleResponse, response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateRoleWithContext(context.Background(), updateRoleOptions)
 }
 
 // UpdateRoleWithContext is an alternate form of the UpdateRole method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) UpdateRoleWithContext(ctx context.Context, updateRoleOptions *UpdateRoleOptions) (result *UpdateRolesResponse, response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateRoleWithContext(ctx context.Context, updateRoleOptions *UpdateRoleOptions) (result *UpdateRoleResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateRoleOptions, "updateRoleOptions cannot be nil")
 	if err != nil {
 		return
@@ -5700,7 +5700,7 @@ func (appIdManagement *AppIDManagementV4) UpdateRoleWithContext(ctx context.Cont
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUpdateRolesResponse)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalUpdateRoleResponse)
 		if err != nil {
 			return
 		}
@@ -7319,7 +7319,7 @@ type CreateRoleOptions struct {
 
 	Name *string `validate:"required"`
 
-	Access []CreateRoleParamsAccessItem `validate:"required"`
+	Access []RoleAccessItem `validate:"required"`
 
 	Description *string
 
@@ -7328,7 +7328,7 @@ type CreateRoleOptions struct {
 }
 
 // NewCreateRoleOptions : Instantiate CreateRoleOptions
-func (*AppIDManagementV4) NewCreateRoleOptions(tenantID string, name string, access []CreateRoleParamsAccessItem) *CreateRoleOptions {
+func (*AppIDManagementV4) NewCreateRoleOptions(tenantID string, name string, access []RoleAccessItem) *CreateRoleOptions {
 	return &CreateRoleOptions{
 		TenantID: core.StringPtr(tenantID),
 		Name:     core.StringPtr(name),
@@ -7349,7 +7349,7 @@ func (options *CreateRoleOptions) SetName(name string) *CreateRoleOptions {
 }
 
 // SetAccess : Allow user to set Access
-func (options *CreateRoleOptions) SetAccess(access []CreateRoleParamsAccessItem) *CreateRoleOptions {
+func (options *CreateRoleOptions) SetAccess(access []RoleAccessItem) *CreateRoleOptions {
 	options.Access = access
 	return options
 }
@@ -7364,38 +7364,6 @@ func (options *CreateRoleOptions) SetDescription(description string) *CreateRole
 func (options *CreateRoleOptions) SetHeaders(param map[string]string) *CreateRoleOptions {
 	options.Headers = param
 	return options
-}
-
-// CreateRoleParamsAccessItem : CreateRoleParamsAccessItem struct
-type CreateRoleParamsAccessItem struct {
-	ApplicationID *string `json:"application_id" validate:"required"`
-
-	Scopes []string `json:"scopes" validate:"required"`
-}
-
-// NewCreateRoleParamsAccessItem : Instantiate CreateRoleParamsAccessItem (Generic Model Constructor)
-func (*AppIDManagementV4) NewCreateRoleParamsAccessItem(applicationID string, scopes []string) (model *CreateRoleParamsAccessItem, err error) {
-	model = &CreateRoleParamsAccessItem{
-		ApplicationID: core.StringPtr(applicationID),
-		Scopes:        scopes,
-	}
-	err = core.ValidateStruct(model, "required parameters")
-	return
-}
-
-// UnmarshalCreateRoleParamsAccessItem unmarshals an instance of CreateRoleParamsAccessItem from the specified map of raw messages.
-func UnmarshalCreateRoleParamsAccessItem(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(CreateRoleParamsAccessItem)
-	err = core.UnmarshalPrimitive(m, "application_id", &obj.ApplicationID)
-	if err != nil {
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "scopes", &obj.Scopes)
-	if err != nil {
-		return
-	}
-	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
-	return
 }
 
 // CustomIDPConfigParamsConfig : CustomIDPConfigParamsConfig struct
@@ -11841,7 +11809,7 @@ type UpdateRoleOptions struct {
 
 	Name *string `validate:"required"`
 
-	Access []UpdateRoleParamsAccessItem `validate:"required"`
+	Access []RoleAccessItem `validate:"required"`
 
 	Description *string
 
@@ -11850,7 +11818,7 @@ type UpdateRoleOptions struct {
 }
 
 // NewUpdateRoleOptions : Instantiate UpdateRoleOptions
-func (*AppIDManagementV4) NewUpdateRoleOptions(tenantID string, roleID string, name string, access []UpdateRoleParamsAccessItem) *UpdateRoleOptions {
+func (*AppIDManagementV4) NewUpdateRoleOptions(tenantID string, roleID string, name string, access []RoleAccessItem) *UpdateRoleOptions {
 	return &UpdateRoleOptions{
 		TenantID: core.StringPtr(tenantID),
 		RoleID:   core.StringPtr(roleID),
@@ -11878,7 +11846,7 @@ func (options *UpdateRoleOptions) SetName(name string) *UpdateRoleOptions {
 }
 
 // SetAccess : Allow user to set Access
-func (options *UpdateRoleOptions) SetAccess(access []UpdateRoleParamsAccessItem) *UpdateRoleOptions {
+func (options *UpdateRoleOptions) SetAccess(access []RoleAccessItem) *UpdateRoleOptions {
 	options.Access = access
 	return options
 }
@@ -11893,38 +11861,6 @@ func (options *UpdateRoleOptions) SetDescription(description string) *UpdateRole
 func (options *UpdateRoleOptions) SetHeaders(param map[string]string) *UpdateRoleOptions {
 	options.Headers = param
 	return options
-}
-
-// UpdateRoleParamsAccessItem : UpdateRoleParamsAccessItem struct
-type UpdateRoleParamsAccessItem struct {
-	ApplicationID *string `json:"application_id" validate:"required"`
-
-	Scopes []string `json:"scopes" validate:"required"`
-}
-
-// NewUpdateRoleParamsAccessItem : Instantiate UpdateRoleParamsAccessItem (Generic Model Constructor)
-func (*AppIDManagementV4) NewUpdateRoleParamsAccessItem(applicationID string, scopes []string) (model *UpdateRoleParamsAccessItem, err error) {
-	model = &UpdateRoleParamsAccessItem{
-		ApplicationID: core.StringPtr(applicationID),
-		Scopes:        scopes,
-	}
-	err = core.ValidateStruct(model, "required parameters")
-	return
-}
-
-// UnmarshalUpdateRoleParamsAccessItem unmarshals an instance of UpdateRoleParamsAccessItem from the specified map of raw messages.
-func UnmarshalUpdateRoleParamsAccessItem(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(UpdateRoleParamsAccessItem)
-	err = core.UnmarshalPrimitive(m, "application_id", &obj.ApplicationID)
-	if err != nil {
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "scopes", &obj.Scopes)
-	if err != nil {
-		return
-	}
-	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
-	return
 }
 
 // UpdateSSOConfigOptions : The UpdateSSOConfig options.
@@ -12903,8 +12839,8 @@ func UnmarshalConfirmationResultOk(m map[string]json.RawMessage, result interfac
 	return
 }
 
-// CreateRolesResponse : CreateRolesResponse struct
-type CreateRolesResponse struct {
+// CreateRoleResponse : CreateRoleResponse struct
+type CreateRoleResponse struct {
 	ID *string `json:"id" validate:"required"`
 
 	Name *string `json:"name" validate:"required"`
@@ -12914,9 +12850,9 @@ type CreateRolesResponse struct {
 	Access []RoleAccessItem `json:"access" validate:"required"`
 }
 
-// UnmarshalCreateRolesResponse unmarshals an instance of CreateRolesResponse from the specified map of raw messages.
-func UnmarshalCreateRolesResponse(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(CreateRolesResponse)
+// UnmarshalCreateRoleResponse unmarshals an instance of CreateRoleResponse from the specified map of raw messages.
+func UnmarshalCreateRoleResponse(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(CreateRoleResponse)
 	err = core.UnmarshalPrimitive(m, "id", &obj.ID)
 	if err != nil {
 		return
@@ -13732,6 +13668,16 @@ type RoleAccessItem struct {
 	Scopes []string `json:"scopes" validate:"required"`
 }
 
+// NewRoleAccessItem : Instantiate RoleAccessItem (Generic Model Constructor)
+func (*AppIDManagementV4) NewRoleAccessItem(applicationID string, scopes []string) (model *RoleAccessItem, err error) {
+	model = &RoleAccessItem{
+		ApplicationID: core.StringPtr(applicationID),
+		Scopes:        scopes,
+	}
+	err = core.ValidateStruct(model, "required parameters")
+	return
+}
+
 // UnmarshalRoleAccessItem unmarshals an instance of RoleAccessItem from the specified map of raw messages.
 func UnmarshalRoleAccessItem(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(RoleAccessItem)
@@ -14092,8 +14038,8 @@ func UnmarshalUpdateExtensionConfig(m map[string]json.RawMessage, result interfa
 	return
 }
 
-// UpdateRolesResponse : UpdateRolesResponse struct
-type UpdateRolesResponse struct {
+// UpdateRoleResponse : UpdateRoleResponse struct
+type UpdateRoleResponse struct {
 	ID *string `json:"id" validate:"required"`
 
 	Name *string `json:"name" validate:"required"`
@@ -14103,9 +14049,9 @@ type UpdateRolesResponse struct {
 	Access []RoleAccessItem `json:"access" validate:"required"`
 }
 
-// UnmarshalUpdateRolesResponse unmarshals an instance of UpdateRolesResponse from the specified map of raw messages.
-func UnmarshalUpdateRolesResponse(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(UpdateRolesResponse)
+// UnmarshalUpdateRoleResponse unmarshals an instance of UpdateRoleResponse from the specified map of raw messages.
+func UnmarshalUpdateRoleResponse(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(UpdateRoleResponse)
 	err = core.UnmarshalPrimitive(m, "id", &obj.ID)
 	if err != nil {
 		return

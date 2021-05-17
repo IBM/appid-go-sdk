@@ -1910,23 +1910,23 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		})
 		It(`CreateRole(createRoleOptions *CreateRoleOptions)`, func() {
 
-			createRoleParamsAccessItemModel := &appidmanagementv4.CreateRoleParamsAccessItem{
+			roleAccessItemModel := &appidmanagementv4.RoleAccessItem{
 				ApplicationID: core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5"),
-				Scopes:        []string{"cartoons"},
+				Scopes:        []string{"cartoons", "animated"},
 			}
 
 			createRoleOptions := &appidmanagementv4.CreateRoleOptions{
 				TenantID:    core.StringPtr("testString"),
 				Name:        core.StringPtr("child"),
-				Access:      []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel},
+				Access:      []appidmanagementv4.RoleAccessItem{*roleAccessItemModel},
 				Description: core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers."),
 			}
 
-			createRolesResponse, response, err := appIDManagementService.CreateRole(createRoleOptions)
+			createRoleResponse, response, err := appIDManagementService.CreateRole(createRoleOptions)
 
 			Expect(err).To(BeNil())
 			Expect(response.StatusCode).To(Equal(201))
-			Expect(createRolesResponse).ToNot(BeNil())
+			Expect(createRoleResponse).ToNot(BeNil())
 
 		})
 	})
@@ -1957,7 +1957,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		})
 		It(`UpdateRole(updateRoleOptions *UpdateRoleOptions)`, func() {
 
-			updateRoleParamsAccessItemModel := &appidmanagementv4.UpdateRoleParamsAccessItem{
+			roleAccessItemModel := &appidmanagementv4.RoleAccessItem{
 				ApplicationID: core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5"),
 				Scopes:        []string{"cartoons", "animated"},
 			}
@@ -1966,15 +1966,15 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 				TenantID:    core.StringPtr("testString"),
 				RoleID:      core.StringPtr("testString"),
 				Name:        core.StringPtr("child"),
-				Access:      []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel},
+				Access:      []appidmanagementv4.RoleAccessItem{*roleAccessItemModel},
 				Description: core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers."),
 			}
 
-			updateRolesResponse, response, err := appIDManagementService.UpdateRole(updateRoleOptions)
+			updateRoleResponse, response, err := appIDManagementService.UpdateRole(updateRoleOptions)
 
 			Expect(err).To(BeNil())
 			Expect(response.StatusCode).To(Equal(200))
-			Expect(updateRolesResponse).ToNot(BeNil())
+			Expect(updateRoleResponse).ToNot(BeNil())
 
 		})
 	})
