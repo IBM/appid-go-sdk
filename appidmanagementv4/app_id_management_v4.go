@@ -15,7 +15,7 @@
  */
 
 /*
- * IBM OpenAPI SDK Code Generator Version: 99-SNAPSHOT-a675267a-20210510-153046
+ * IBM OpenAPI SDK Code Generator Version: 3.32.0-4c6a3129-20210514-210323
  */
 
 // Package appidmanagementv4 : Operations and models for the AppIDManagementV4 service
@@ -5290,15 +5290,15 @@ func (appIdManagement *AppIDManagementV4) SetCloudDirectoryIDPWithContext(ctx co
 	return
 }
 
-// GetSamlidp : Get SAML IDP configuration
+// GetSAMLIDP : Get SAML IDP configuration
 // Returns the SAML identity provider configuration, including status and credentials. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-enterprise" target="_blank">Learn more</a>.
-func (appIdManagement *AppIDManagementV4) GetSamlidp(getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
-	return appIdManagement.GetSamlidpWithContext(context.Background(), getSAMLIDPOptions)
+func (appIdManagement *AppIDManagementV4) GetSAMLIDP(getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
+	return appIdManagement.GetSAMLIDPWithContext(context.Background(), getSAMLIDPOptions)
 }
 
-// GetSamlidpWithContext is an alternate form of the GetSamlidp method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) GetSamlidpWithContext(ctx context.Context, getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
+// GetSAMLIDPWithContext is an alternate form of the GetSAMLIDP method which supports a Context parameter
+func (appIdManagement *AppIDManagementV4) GetSAMLIDPWithContext(ctx context.Context, getSAMLIDPOptions *GetSAMLIDPOptions) (result *SAMLResponse, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getSAMLIDPOptions, "getSAMLIDPOptions cannot be nil")
 	if err != nil {
 		return
@@ -5351,15 +5351,15 @@ func (appIdManagement *AppIDManagementV4) GetSamlidpWithContext(ctx context.Cont
 	return
 }
 
-// SetSamlidp : Update SAML IDP configuration
+// SetSAMLIDP : Update SAML IDP configuration
 // Configure SAML to set up a single sign-on experience for your users. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-enterprise" target="_blank">Learn more</a>.
-func (appIdManagement *AppIDManagementV4) SetSamlidp(setSAMLIDPOptions *SetSAMLIDPOptions) (result *SAMLResponseWithValidationData, response *core.DetailedResponse, err error) {
-	return appIdManagement.SetSamlidpWithContext(context.Background(), setSAMLIDPOptions)
+func (appIdManagement *AppIDManagementV4) SetSAMLIDP(setSAMLIDPOptions *SetSAMLIDPOptions) (result *SAMLResponseWithValidationData, response *core.DetailedResponse, err error) {
+	return appIdManagement.SetSAMLIDPWithContext(context.Background(), setSAMLIDPOptions)
 }
 
-// SetSamlidpWithContext is an alternate form of the SetSamlidp method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) SetSamlidpWithContext(ctx context.Context, setSAMLIDPOptions *SetSAMLIDPOptions) (result *SAMLResponseWithValidationData, response *core.DetailedResponse, err error) {
+// SetSAMLIDPWithContext is an alternate form of the SetSAMLIDP method which supports a Context parameter
+func (appIdManagement *AppIDManagementV4) SetSAMLIDPWithContext(ctx context.Context, setSAMLIDPOptions *SetSAMLIDPOptions) (result *SAMLResponseWithValidationData, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(setSAMLIDPOptions, "setSAMLIDPOptions cannot be nil")
 	if err != nil {
 		return

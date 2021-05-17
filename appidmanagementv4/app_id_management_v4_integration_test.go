@@ -41,10 +41,10 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 	const externalConfigFile = "../app_id_management_v4.env"
 
 	var (
-		err          error
+		err                    error
 		appIDManagementService *appidmanagementv4.AppIDManagementV4
-		serviceURL   string
-		config       map[string]string
+		serviceURL             string
+		config                 map[string]string
 	)
 
 	var shouldSkipTest = func() {
@@ -116,8 +116,8 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			registerApplicationOptions := &appidmanagementv4.RegisterApplicationOptions{
 				TenantID: core.StringPtr("testString"),
-				Name: core.StringPtr("testString"),
-				Type: core.StringPtr("testString"),
+				Name:     core.StringPtr("testString"),
+				Type:     core.StringPtr("testString"),
 			}
 
 			application, response, err := appIDManagementService.RegisterApplication(registerApplicationOptions)
@@ -158,7 +158,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			updateApplicationOptions := &appidmanagementv4.UpdateApplicationOptions{
 				TenantID: core.StringPtr("testString"),
 				ClientID: core.StringPtr("testString"),
-				Name: core.StringPtr("testString"),
+				Name:     core.StringPtr("testString"),
 			}
 
 			application, response, err := appIDManagementService.UpdateApplication(updateApplicationOptions)
@@ -199,7 +199,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			putApplicationsScopesOptions := &appidmanagementv4.PutApplicationsScopesOptions{
 				TenantID: core.StringPtr("testString"),
 				ClientID: core.StringPtr("testString"),
-				Scopes: []string{"cartoons", "horror", "animated"},
+				Scopes:   []string{"cartoons", "horror", "animated"},
 			}
 
 			getScopesForApplication, response, err := appIDManagementService.PutApplicationsScopes(putApplicationsScopesOptions)
@@ -244,7 +244,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			putApplicationsRolesOptions := &appidmanagementv4.PutApplicationsRolesOptions{
 				TenantID: core.StringPtr("testString"),
 				ClientID: core.StringPtr("testString"),
-				Roles: updateUserRolesParamsRolesModel,
+				Roles:    updateUserRolesParamsRolesModel,
 			}
 
 			assignRoleToUser, response, err := appIDManagementService.PutApplicationsRoles(putApplicationsRolesOptions)
@@ -263,10 +263,10 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`ListCloudDirectoryUsers(listCloudDirectoryUsersOptions *ListCloudDirectoryUsersOptions)`, func() {
 
 			listCloudDirectoryUsersOptions := &appidmanagementv4.ListCloudDirectoryUsersOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:   core.StringPtr("testString"),
 				StartIndex: core.Int64Ptr(int64(38)),
-				Count: core.Int64Ptr(int64(0)),
-				Query: core.StringPtr("testString"),
+				Count:      core.Int64Ptr(int64(0)),
+				Query:      core.StringPtr("testString"),
 			}
 
 			usersList, response, err := appIDManagementService.ListCloudDirectoryUsers(listCloudDirectoryUsersOptions)
@@ -285,15 +285,15 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`CreateCloudDirectoryUser(createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions)`, func() {
 
 			createNewUserEmailsItemModel := &appidmanagementv4.CreateNewUserEmailsItem{
-				Value: core.StringPtr("user@mail.com"),
+				Value:   core.StringPtr("user@mail.com"),
 				Primary: core.BoolPtr(true),
 			}
 
 			createCloudDirectoryUserOptions := &appidmanagementv4.CreateCloudDirectoryUserOptions{
 				TenantID: core.StringPtr("testString"),
-				Emails: []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel},
+				Emails:   []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel},
 				Password: core.StringPtr("userPassword"),
-				Active: core.BoolPtr(true),
+				Active:   core.BoolPtr(true),
 				UserName: core.StringPtr("myUserName"),
 			}
 
@@ -313,7 +313,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			getCloudDirectoryUserOptions := &appidmanagementv4.GetCloudDirectoryUserOptions{
 				TenantID: core.StringPtr("testString"),
-				UserID: core.StringPtr("testString"),
+				UserID:   core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptions)
@@ -331,15 +331,15 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UpdateCloudDirectoryUser(updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions)`, func() {
 
 			createNewUserEmailsItemModel := &appidmanagementv4.CreateNewUserEmailsItem{
-				Value: core.StringPtr("user@mail.com"),
+				Value:   core.StringPtr("user@mail.com"),
 				Primary: core.BoolPtr(true),
 			}
 
 			updateCloudDirectoryUserOptions := &appidmanagementv4.UpdateCloudDirectoryUserOptions{
 				TenantID: core.StringPtr("testString"),
-				UserID: core.StringPtr("testString"),
-				Emails: []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel},
-				Active: core.BoolPtr(true),
+				UserID:   core.StringPtr("testString"),
+				Emails:   []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel},
+				Active:   core.BoolPtr(true),
 				UserName: core.StringPtr("myUserName"),
 				Password: core.StringPtr("userPassword"),
 			}
@@ -360,7 +360,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			invalidateUserSSOSessionsOptions := &appidmanagementv4.InvalidateUserSSOSessionsOptions{
 				TenantID: core.StringPtr("testString"),
-				UserID: core.StringPtr("testString"),
+				UserID:   core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.InvalidateUserSSOSessions(invalidateUserSSOSessionsOptions)
@@ -379,9 +379,9 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			cloudDirectoryExportOptions := &appidmanagementv4.CloudDirectoryExportOptions{
 				EncryptionSecret: core.StringPtr("testString"),
-				TenantID: core.StringPtr("testString"),
-				StartIndex: core.Int64Ptr(int64(38)),
-				Count: core.Int64Ptr(int64(0)),
+				TenantID:         core.StringPtr("testString"),
+				StartIndex:       core.Int64Ptr(int64(38)),
+				Count:            core.Int64Ptr(int64(0)),
 			}
 
 			exportUser, response, err := appIDManagementService.CloudDirectoryExport(cloudDirectoryExportOptions)
@@ -404,17 +404,17 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			}
 
 			exportUserUsersItemModel := &appidmanagementv4.ExportUserUsersItem{
-				ScimUser: map[string]interface{}{"anyKey": "anyValue"},
-				PasswordHash: core.StringPtr("testString"),
+				ScimUser:        map[string]interface{}{"anyKey": "anyValue"},
+				PasswordHash:    core.StringPtr("testString"),
 				PasswordHashAlg: core.StringPtr("testString"),
-				Profile: exportUserUsersItemProfileModel,
-				Roles: []string{"testString"},
+				Profile:         exportUserUsersItemProfileModel,
+				Roles:           []string{"testString"},
 			}
 
 			cloudDirectoryImportOptions := &appidmanagementv4.CloudDirectoryImportOptions{
 				EncryptionSecret: core.StringPtr("testString"),
-				TenantID: core.StringPtr("testString"),
-				Users: []appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel},
+				TenantID:         core.StringPtr("testString"),
+				Users:            []appidmanagementv4.ExportUserUsersItem{*exportUserUsersItemModel},
 			}
 
 			importResponse, response, err := appIDManagementService.CloudDirectoryImport(cloudDirectoryImportOptions)
@@ -434,7 +434,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			cloudDirectoryGetUserinfoOptions := &appidmanagementv4.CloudDirectoryGetUserinfoOptions{
 				TenantID: core.StringPtr("testString"),
-				UserID: core.StringPtr("testString"),
+				UserID:   core.StringPtr("testString"),
 			}
 
 			getUserAndProfile, response, err := appIDManagementService.CloudDirectoryGetUserinfo(cloudDirectoryGetUserinfoOptions)
@@ -453,18 +453,18 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`StartSignUp(startSignUpOptions *StartSignUpOptions)`, func() {
 
 			createNewUserEmailsItemModel := &appidmanagementv4.CreateNewUserEmailsItem{
-				Value: core.StringPtr("user@mail.com"),
+				Value:   core.StringPtr("user@mail.com"),
 				Primary: core.BoolPtr(true),
 			}
 
 			startSignUpOptions := &appidmanagementv4.StartSignUpOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:            core.StringPtr("testString"),
 				ShouldCreateProfile: core.BoolPtr(true),
-				Emails: []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel},
-				Password: core.StringPtr("userPassword"),
-				Active: core.BoolPtr(true),
-				UserName: core.StringPtr("myUserName"),
-				Language: core.StringPtr("testString"),
+				Emails:              []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel},
+				Password:            core.StringPtr("userPassword"),
+				Active:              core.BoolPtr(true),
+				UserName:            core.StringPtr("myUserName"),
+				Language:            core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.StartSignUp(startSignUpOptions)
@@ -483,7 +483,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			userVerificationResultOptions := &appidmanagementv4.UserVerificationResultOptions{
 				TenantID: core.StringPtr("testString"),
-				Context: core.StringPtr("testString"),
+				Context:  core.StringPtr("testString"),
 			}
 
 			confirmationResultOk, response, err := appIDManagementService.UserVerificationResult(userVerificationResultOptions)
@@ -503,7 +503,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			startForgotPasswordOptions := &appidmanagementv4.StartForgotPasswordOptions{
 				TenantID: core.StringPtr("testString"),
-				User: core.StringPtr("testString"),
+				User:     core.StringPtr("testString"),
 				Language: core.StringPtr("testString"),
 			}
 
@@ -523,7 +523,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			forgotPasswordResultOptions := &appidmanagementv4.ForgotPasswordResultOptions{
 				TenantID: core.StringPtr("testString"),
-				Context: core.StringPtr("testString"),
+				Context:  core.StringPtr("testString"),
 			}
 
 			confirmationResultOk, response, err := appIDManagementService.ForgotPasswordResult(forgotPasswordResultOptions)
@@ -542,11 +542,11 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`ChangePassword(changePasswordOptions *ChangePasswordOptions)`, func() {
 
 			changePasswordOptions := &appidmanagementv4.ChangePasswordOptions{
-				TenantID: core.StringPtr("testString"),
-				NewPassword: core.StringPtr("testString"),
-				UUID: core.StringPtr("testString"),
+				TenantID:         core.StringPtr("testString"),
+				NewPassword:      core.StringPtr("testString"),
+				UUID:             core.StringPtr("testString"),
 				ChangedIPAddress: core.StringPtr("testString"),
-				Language: core.StringPtr("testString"),
+				Language:         core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.ChangePassword(changePasswordOptions)
@@ -564,10 +564,10 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`ResendNotification(resendNotificationOptions *ResendNotificationOptions)`, func() {
 
 			resendNotificationOptions := &appidmanagementv4.ResendNotificationOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:     core.StringPtr("testString"),
 				TemplateName: core.StringPtr("USER_VERIFICATION"),
-				UUID: core.StringPtr("testString"),
-				Language: core.StringPtr("testString"),
+				UUID:         core.StringPtr("testString"),
+				Language:     core.StringPtr("testString"),
 			}
 
 			resendNotificationResponse, response, err := appIDManagementService.ResendNotification(resendNotificationOptions)
@@ -605,8 +605,8 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`PutTokensConfig(putTokensConfigOptions *PutTokensConfigOptions)`, func() {
 
 			tokenClaimMappingModel := &appidmanagementv4.TokenClaimMapping{
-				Source: core.StringPtr("saml"),
-				SourceClaim: core.StringPtr("testString"),
+				Source:           core.StringPtr("saml"),
+				SourceClaim:      core.StringPtr("testString"),
 				DestinationClaim: core.StringPtr("testString"),
 			}
 
@@ -616,16 +616,16 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			refreshTokenConfigParamsModel := &appidmanagementv4.RefreshTokenConfigParams{
 				ExpiresIn: core.Float64Ptr(float64(72.5)),
-				Enabled: core.BoolPtr(true),
+				Enabled:   core.BoolPtr(true),
 			}
 
 			putTokensConfigOptions := &appidmanagementv4.PutTokensConfigOptions{
-				TenantID: core.StringPtr("testString"),
-				IDTokenClaims: []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel},
+				TenantID:          core.StringPtr("testString"),
+				IDTokenClaims:     []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel},
 				AccessTokenClaims: []appidmanagementv4.TokenClaimMapping{*tokenClaimMappingModel},
-				Access: []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel},
-				Refresh: []appidmanagementv4.RefreshTokenConfigParams{*refreshTokenConfigParamsModel},
-				AnonymousAccess: []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel},
+				Access:            []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel},
+				Refresh:           []appidmanagementv4.RefreshTokenConfigParams{*refreshTokenConfigParamsModel},
+				AnonymousAccess:   []appidmanagementv4.TokenConfigParams{*tokenConfigParamsModel},
 			}
 
 			tokensConfigResponse, response, err := appIDManagementService.PutTokensConfig(putTokensConfigOptions)
@@ -663,13 +663,13 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UpdateRedirectUris(updateRedirectUrisOptions *UpdateRedirectUrisOptions)`, func() {
 
 			redirectURIConfigModel := &appidmanagementv4.RedirectURIConfig{
-				RedirectUris: []string{"http://localhost:3000/oauth-callback"},
+				RedirectUris:              []string{"http://localhost:3000/oauth-callback"},
 				TrustCloudIAMRedirectUris: core.BoolPtr(true),
 			}
 			redirectURIConfigModel.SetProperty("foo", core.StringPtr("testString"))
 
 			updateRedirectUrisOptions := &appidmanagementv4.UpdateRedirectUrisOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:          core.StringPtr("testString"),
 				RedirectUrisArray: redirectURIConfigModel,
 			}
 
@@ -784,7 +784,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`PostThemeColor(postThemeColorOptions *PostThemeColorOptions)`, func() {
 
 			postThemeColorOptions := &appidmanagementv4.PostThemeColorOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:    core.StringPtr("testString"),
 				HeaderColor: core.StringPtr("#EEF2F5"),
 			}
 
@@ -822,9 +822,9 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`PostMedia(postMediaOptions *PostMediaOptions)`, func() {
 
 			postMediaOptions := &appidmanagementv4.PostMediaOptions{
-				TenantID: core.StringPtr("testString"),
-				MediaType: core.StringPtr("logo"),
-				File: CreateMockReader("This is a mock file."),
+				TenantID:        core.StringPtr("testString"),
+				MediaType:       core.StringPtr("logo"),
+				File:            CreateMockReader("This is a mock file."),
 				FileContentType: core.StringPtr("testString"),
 			}
 
@@ -862,9 +862,9 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`GetTemplate(getTemplateOptions *GetTemplateOptions)`, func() {
 
 			getTemplateOptions := &appidmanagementv4.GetTemplateOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:     core.StringPtr("testString"),
 				TemplateName: core.StringPtr("USER_VERIFICATION"),
-				Language: core.StringPtr("testString"),
+				Language:     core.StringPtr("testString"),
 			}
 
 			getTemplate, response, err := appIDManagementService.GetTemplate(getTemplateOptions)
@@ -883,13 +883,13 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UpdateTemplate(updateTemplateOptions *UpdateTemplateOptions)`, func() {
 
 			updateTemplateOptions := &appidmanagementv4.UpdateTemplateOptions{
-				TenantID: core.StringPtr("testString"),
-				TemplateName: core.StringPtr("USER_VERIFICATION"),
-				Language: core.StringPtr("testString"),
-				Subject: core.StringPtr("testString"),
-				HTMLBody: core.StringPtr("testString"),
+				TenantID:              core.StringPtr("testString"),
+				TemplateName:          core.StringPtr("USER_VERIFICATION"),
+				Language:              core.StringPtr("testString"),
+				Subject:               core.StringPtr("testString"),
+				HTMLBody:              core.StringPtr("testString"),
 				Base64EncodedHTMLBody: core.StringPtr("testString"),
-				PlainTextBody: core.StringPtr("testString"),
+				PlainTextBody:         core.StringPtr("testString"),
 			}
 
 			getTemplate, response, err := appIDManagementService.UpdateTemplate(updateTemplateOptions)
@@ -927,7 +927,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UpdateLocalization(updateLocalizationOptions *UpdateLocalizationOptions)`, func() {
 
 			updateLocalizationOptions := &appidmanagementv4.UpdateLocalizationOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:  core.StringPtr("testString"),
 				Languages: []string{"testString"},
 			}
 
@@ -965,23 +965,23 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`SetCloudDirectorySenderDetails(setCloudDirectorySenderDetailsOptions *SetCloudDirectorySenderDetailsOptions)`, func() {
 
 			cloudDirectorySenderDetailsSenderDetailsFromModel := &appidmanagementv4.CloudDirectorySenderDetailsSenderDetailsFrom{
-				Name: core.StringPtr("testString"),
+				Name:  core.StringPtr("testString"),
 				Email: core.StringPtr("testString"),
 			}
 
 			cloudDirectorySenderDetailsSenderDetailsReplyToModel := &appidmanagementv4.CloudDirectorySenderDetailsSenderDetailsReplyTo{
-				Name: core.StringPtr("testString"),
+				Name:  core.StringPtr("testString"),
 				Email: core.StringPtr("testString"),
 			}
 
 			cloudDirectorySenderDetailsSenderDetailsModel := &appidmanagementv4.CloudDirectorySenderDetailsSenderDetails{
-				From: cloudDirectorySenderDetailsSenderDetailsFromModel,
-				ReplyTo: cloudDirectorySenderDetailsSenderDetailsReplyToModel,
+				From:              cloudDirectorySenderDetailsSenderDetailsFromModel,
+				ReplyTo:           cloudDirectorySenderDetailsSenderDetailsReplyToModel,
 				LinkExpirationSec: core.Float64Ptr(float64(900)),
 			}
 
 			setCloudDirectorySenderDetailsOptions := &appidmanagementv4.SetCloudDirectorySenderDetailsOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:      core.StringPtr("testString"),
 				SenderDetails: cloudDirectorySenderDetailsSenderDetailsModel,
 			}
 
@@ -1001,7 +1001,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			getCloudDirectoryActionURLOptions := &appidmanagementv4.GetCloudDirectoryActionURLOptions{
 				TenantID: core.StringPtr("testString"),
-				Action: core.StringPtr("on_user_verified"),
+				Action:   core.StringPtr("on_user_verified"),
 			}
 
 			actionURLResponse, response, err := appIDManagementService.GetCloudDirectoryActionURL(getCloudDirectoryActionURLOptions)
@@ -1020,8 +1020,8 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`SetCloudDirectoryAction(setCloudDirectoryActionOptions *SetCloudDirectoryActionOptions)`, func() {
 
 			setCloudDirectoryActionOptions := &appidmanagementv4.SetCloudDirectoryActionOptions{
-				TenantID: core.StringPtr("testString"),
-				Action: core.StringPtr("on_user_verified"),
+				TenantID:  core.StringPtr("testString"),
+				Action:    core.StringPtr("on_user_verified"),
 				ActionURL: core.StringPtr("testString"),
 			}
 
@@ -1060,10 +1060,10 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptions *SetCloudDirectoryPasswordRegexOptions)`, func() {
 
 			setCloudDirectoryPasswordRegexOptions := &appidmanagementv4.SetCloudDirectoryPasswordRegexOptions{
-				TenantID: core.StringPtr("testString"),
-				Regex: core.StringPtr("testString"),
+				TenantID:           core.StringPtr("testString"),
+				Regex:              core.StringPtr("testString"),
 				Base64EncodedRegex: core.StringPtr("testString"),
-				ErrorMessage: core.StringPtr("testString"),
+				ErrorMessage:       core.StringPtr("testString"),
 			}
 
 			passwordRegexConfigParamsGet, response, err := appIDManagementService.SetCloudDirectoryPasswordRegex(setCloudDirectoryPasswordRegexOptions)
@@ -1105,14 +1105,14 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			}
 
 			emailDispatcherParamsCustomAuthorizationModel := &appidmanagementv4.EmailDispatcherParamsCustomAuthorization{
-				Type: core.StringPtr("value"),
-				Value: core.StringPtr("testString"),
+				Type:     core.StringPtr("value"),
+				Value:    core.StringPtr("testString"),
 				Username: core.StringPtr("testString"),
 				Password: core.StringPtr("testString"),
 			}
 
 			emailDispatcherParamsCustomModel := &appidmanagementv4.EmailDispatcherParamsCustom{
-				URL: core.StringPtr("testString"),
+				URL:           core.StringPtr("testString"),
 				Authorization: emailDispatcherParamsCustomAuthorizationModel,
 			}
 
@@ -1120,7 +1120,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 				TenantID: core.StringPtr("testString"),
 				Provider: core.StringPtr("sendgrid"),
 				Sendgrid: emailDispatcherParamsSendgridModel,
-				Custom: emailDispatcherParamsCustomModel,
+				Custom:   emailDispatcherParamsCustomModel,
 			}
 
 			emailDispatcherParams, response, err := appIDManagementService.SetCloudDirectoryEmailDispatcher(setCloudDirectoryEmailDispatcherOptions)
@@ -1143,41 +1143,41 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			}
 
 			emailSettingsTestParamsEmailSettingsCustomAuthorizationModel := &appidmanagementv4.EmailSettingsTestParamsEmailSettingsCustomAuthorization{
-				Type: core.StringPtr("value"),
-				Value: core.StringPtr("testString"),
+				Type:     core.StringPtr("value"),
+				Value:    core.StringPtr("testString"),
 				Username: core.StringPtr("testString"),
 				Password: core.StringPtr("testString"),
 			}
 
 			emailSettingsTestParamsEmailSettingsCustomModel := &appidmanagementv4.EmailSettingsTestParamsEmailSettingsCustom{
-				URL: core.StringPtr("testString"),
+				URL:           core.StringPtr("testString"),
 				Authorization: emailSettingsTestParamsEmailSettingsCustomAuthorizationModel,
 			}
 
 			emailSettingsTestParamsEmailSettingsModel := &appidmanagementv4.EmailSettingsTestParamsEmailSettings{
 				Provider: core.StringPtr("sendgrid"),
 				Sendgrid: emailSettingsTestParamsEmailSettingsSendgridModel,
-				Custom: emailSettingsTestParamsEmailSettingsCustomModel,
+				Custom:   emailSettingsTestParamsEmailSettingsCustomModel,
 			}
 
 			emailSettingsTestParamsSenderDetailsFromModel := &appidmanagementv4.EmailSettingsTestParamsSenderDetailsFrom{
 				Email: core.StringPtr("testString"),
-				Name: core.StringPtr("testString"),
+				Name:  core.StringPtr("testString"),
 			}
 
 			emailSettingsTestParamsSenderDetailsReplyToModel := &appidmanagementv4.EmailSettingsTestParamsSenderDetailsReplyTo{
 				Email: core.StringPtr("testString"),
-				Name: core.StringPtr("testString"),
+				Name:  core.StringPtr("testString"),
 			}
 
 			emailSettingsTestParamsSenderDetailsModel := &appidmanagementv4.EmailSettingsTestParamsSenderDetails{
-				From: emailSettingsTestParamsSenderDetailsFromModel,
+				From:    emailSettingsTestParamsSenderDetailsFromModel,
 				ReplyTo: emailSettingsTestParamsSenderDetailsReplyToModel,
 			}
 
 			emailSettingTestOptions := &appidmanagementv4.EmailSettingTestOptions{
-				TenantID: core.StringPtr("testString"),
-				EmailTo: core.StringPtr("testString"),
+				TenantID:      core.StringPtr("testString"),
+				EmailTo:       core.StringPtr("testString"),
 				EmailSettings: emailSettingsTestParamsEmailSettingsModel,
 				SenderDetails: emailSettingsTestParamsSenderDetailsModel,
 			}
@@ -1199,7 +1199,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			postEmailDispatcherTestOptions := &appidmanagementv4.PostEmailDispatcherTestOptions{
 				TenantID: core.StringPtr("testString"),
-				Email: core.StringPtr("testString"),
+				Email:    core.StringPtr("testString"),
 			}
 
 			respCustomEmailDisParams, response, err := appIDManagementService.PostEmailDispatcherTest(postEmailDispatcherTestOptions)
@@ -1218,7 +1218,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`PostSMSDispatcherTest(postSMSDispatcherTestOptions *PostSMSDispatcherTestOptions)`, func() {
 
 			postSMSDispatcherTestOptions := &appidmanagementv4.PostSMSDispatcherTestOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:    core.StringPtr("testString"),
 				PhoneNumber: core.StringPtr("+1-999-999-9999"),
 			}
 
@@ -1262,7 +1262,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			apmSchemaAdvancedPasswordManagementPasswordReuseModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordReuse{
 				Enabled: core.BoolPtr(true),
-				Config: apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel,
+				Config:  apmSchemaAdvancedPasswordManagementPasswordReuseConfigModel,
 			}
 
 			apmSchemaAdvancedPasswordManagementPreventPasswordWithUsernameModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementPreventPasswordWithUsername{
@@ -1275,17 +1275,17 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			apmSchemaAdvancedPasswordManagementPasswordExpirationModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementPasswordExpiration{
 				Enabled: core.BoolPtr(true),
-				Config: apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel,
+				Config:  apmSchemaAdvancedPasswordManagementPasswordExpirationConfigModel,
 			}
 
 			apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicyConfig{
 				LockOutTimeSec: core.Float64Ptr(float64(60)),
-				NumOfAttempts: core.Float64Ptr(float64(1)),
+				NumOfAttempts:  core.Float64Ptr(float64(1)),
 			}
 
 			apmSchemaAdvancedPasswordManagementLockOutPolicyModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementLockOutPolicy{
 				Enabled: core.BoolPtr(true),
-				Config: apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel,
+				Config:  apmSchemaAdvancedPasswordManagementLockOutPolicyConfigModel,
 			}
 
 			apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfig{
@@ -1294,20 +1294,20 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagementMinPasswordChangeInterval{
 				Enabled: core.BoolPtr(true),
-				Config: apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel,
+				Config:  apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalConfigModel,
 			}
 
 			apmSchemaAdvancedPasswordManagementModel := &appidmanagementv4.ApmSchemaAdvancedPasswordManagement{
-				Enabled: core.BoolPtr(true),
-				PasswordReuse: apmSchemaAdvancedPasswordManagementPasswordReuseModel,
+				Enabled:                     core.BoolPtr(true),
+				PasswordReuse:               apmSchemaAdvancedPasswordManagementPasswordReuseModel,
 				PreventPasswordWithUsername: apmSchemaAdvancedPasswordManagementPreventPasswordWithUsernameModel,
-				PasswordExpiration: apmSchemaAdvancedPasswordManagementPasswordExpirationModel,
-				LockOutPolicy: apmSchemaAdvancedPasswordManagementLockOutPolicyModel,
-				MinPasswordChangeInterval: apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel,
+				PasswordExpiration:          apmSchemaAdvancedPasswordManagementPasswordExpirationModel,
+				LockOutPolicy:               apmSchemaAdvancedPasswordManagementLockOutPolicyModel,
+				MinPasswordChangeInterval:   apmSchemaAdvancedPasswordManagementMinPasswordChangeIntervalModel,
 			}
 
 			setCloudDirectoryAdvancedPasswordManagementOptions := &appidmanagementv4.SetCloudDirectoryAdvancedPasswordManagementOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:                   core.StringPtr("testString"),
 				AdvancedPasswordManagement: apmSchemaAdvancedPasswordManagementModel,
 			}
 
@@ -1384,7 +1384,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			getChannelOptions := &appidmanagementv4.GetChannelOptions{
 				TenantID: core.StringPtr("testString"),
-				Channel: core.StringPtr("email"),
+				Channel:  core.StringPtr("email"),
 			}
 
 			getSMSChannel, response, err := appIDManagementService.GetChannel(getChannelOptions)
@@ -1404,9 +1404,9 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			updateChannelOptions := &appidmanagementv4.UpdateChannelOptions{
 				TenantID: core.StringPtr("testString"),
-				Channel: core.StringPtr("email"),
+				Channel:  core.StringPtr("email"),
 				IsActive: core.BoolPtr(true),
-				Config: map[string]interface{}{"anyKey": "anyValue"},
+				Config:   map[string]interface{}{"anyKey": "anyValue"},
 			}
 
 			getSMSChannel, response, err := appIDManagementService.UpdateChannel(updateChannelOptions)
@@ -1426,7 +1426,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			getExtensionConfigOptions := &appidmanagementv4.GetExtensionConfigOptions{
 				TenantID: core.StringPtr("testString"),
-				Name: core.StringPtr("premfa"),
+				Name:     core.StringPtr("premfa"),
 			}
 
 			updateExtensionConfig, response, err := appIDManagementService.GetExtensionConfig(getExtensionConfigOptions)
@@ -1445,15 +1445,15 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UpdateExtensionConfig(updateExtensionConfigOptions *UpdateExtensionConfigOptions)`, func() {
 
 			updateExtensionConfigConfigModel := &appidmanagementv4.UpdateExtensionConfigConfig{
-				URL: core.StringPtr("testString"),
+				URL:        core.StringPtr("testString"),
 				HeadersVar: map[string]interface{}{"anyKey": "anyValue"},
 			}
 
 			updateExtensionConfigOptions := &appidmanagementv4.UpdateExtensionConfigOptions{
 				TenantID: core.StringPtr("testString"),
-				Name: core.StringPtr("premfa"),
+				Name:     core.StringPtr("premfa"),
 				IsActive: core.BoolPtr(true),
-				Config: updateExtensionConfigConfigModel,
+				Config:   updateExtensionConfigConfigModel,
 			}
 
 			updateExtensionConfig, response, err := appIDManagementService.UpdateExtensionConfig(updateExtensionConfigOptions)
@@ -1473,9 +1473,9 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			updateExtensionActiveOptions := &appidmanagementv4.UpdateExtensionActiveOptions{
 				TenantID: core.StringPtr("testString"),
-				Name: core.StringPtr("premfa"),
+				Name:     core.StringPtr("premfa"),
 				IsActive: core.BoolPtr(true),
-				Config: map[string]interface{}{"anyKey": "anyValue"},
+				Config:   map[string]interface{}{"anyKey": "anyValue"},
 			}
 
 			extensionActive, response, err := appIDManagementService.UpdateExtensionActive(updateExtensionActiveOptions)
@@ -1495,7 +1495,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			postExtensionsTestOptions := &appidmanagementv4.PostExtensionsTestOptions{
 				TenantID: core.StringPtr("testString"),
-				Name: core.StringPtr("premfa"),
+				Name:     core.StringPtr("premfa"),
 			}
 
 			extensionTest, response, err := appIDManagementService.PostExtensionsTest(postExtensionsTestOptions)
@@ -1535,7 +1535,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			updateMFAConfigOptions := &appidmanagementv4.UpdateMFAConfigOptions{
 				TenantID: core.StringPtr("testString"),
 				IsActive: core.BoolPtr(true),
-				Config: map[string]interface{}{"anyKey": "anyValue"},
+				Config:   map[string]interface{}{"anyKey": "anyValue"},
 			}
 
 			getMFAConfiguration, response, err := appIDManagementService.UpdateMFAConfig(updateMFAConfigOptions)
@@ -1572,10 +1572,10 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UpdateSSOConfig(updateSSOConfigOptions *UpdateSSOConfigOptions)`, func() {
 
 			updateSSOConfigOptions := &appidmanagementv4.UpdateSSOConfigOptions{
-				TenantID: core.StringPtr("testString"),
-				IsActive: core.BoolPtr(true),
+				TenantID:                 core.StringPtr("testString"),
+				IsActive:                 core.BoolPtr(true),
 				InactivityTimeoutSeconds: core.Float64Ptr(float64(86400)),
-				LogoutRedirectUris: []string{"http://localhost:3000/logout-callback"},
+				LogoutRedirectUris:       []string{"http://localhost:3000/logout-callback"},
 			}
 
 			response, err := appIDManagementService.UpdateSSOConfig(updateSSOConfigOptions)
@@ -1611,7 +1611,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UpdateRateLimitConfig(updateRateLimitConfigOptions *UpdateRateLimitConfigOptions)`, func() {
 
 			updateRateLimitConfigOptions := &appidmanagementv4.UpdateRateLimitConfigOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:             core.StringPtr("testString"),
 				SignUpLimitPerMinute: core.Int64Ptr(int64(50)),
 				SignInLimitPerMinute: core.Int64Ptr(int64(60)),
 			}
@@ -1650,19 +1650,19 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`SetFacebookIDP(setFacebookIDPOptions *SetFacebookIDPOptions)`, func() {
 
 			facebookGoogleConfigParamsConfigModel := &appidmanagementv4.FacebookGoogleConfigParamsConfig{
-				IDPID: core.StringPtr("appID"),
+				IDPID:  core.StringPtr("appID"),
 				Secret: core.StringPtr("appsecret"),
 			}
 
 			facebookGoogleConfigParamsModel := &appidmanagementv4.FacebookGoogleConfigParams{
 				IsActive: core.BoolPtr(true),
-				Config: facebookGoogleConfigParamsConfigModel,
+				Config:   facebookGoogleConfigParamsConfigModel,
 			}
 			facebookGoogleConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 			setFacebookIDPOptions := &appidmanagementv4.SetFacebookIDPOptions{
 				TenantID: core.StringPtr("testString"),
-				IDP: facebookGoogleConfigParamsModel,
+				IDP:      facebookGoogleConfigParamsModel,
 			}
 
 			facebookConfigParamsPut, response, err := appIDManagementService.SetFacebookIDP(setFacebookIDPOptions)
@@ -1700,19 +1700,19 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`SetGoogleIDP(setGoogleIDPOptions *SetGoogleIDPOptions)`, func() {
 
 			facebookGoogleConfigParamsConfigModel := &appidmanagementv4.FacebookGoogleConfigParamsConfig{
-				IDPID: core.StringPtr("appID"),
+				IDPID:  core.StringPtr("appID"),
 				Secret: core.StringPtr("appsecret"),
 			}
 
 			facebookGoogleConfigParamsModel := &appidmanagementv4.FacebookGoogleConfigParams{
 				IsActive: core.BoolPtr(true),
-				Config: facebookGoogleConfigParamsConfigModel,
+				Config:   facebookGoogleConfigParamsConfigModel,
 			}
 			facebookGoogleConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 			setGoogleIDPOptions := &appidmanagementv4.SetGoogleIDPOptions{
 				TenantID: core.StringPtr("testString"),
-				IDP: facebookGoogleConfigParamsModel,
+				IDP:      facebookGoogleConfigParamsModel,
 			}
 
 			googleConfigParamsPut, response, err := appIDManagementService.SetGoogleIDP(setGoogleIDPOptions)
@@ -1756,7 +1756,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			setCustomIDPOptions := &appidmanagementv4.SetCustomIDPOptions{
 				TenantID: core.StringPtr("testString"),
 				IsActive: core.BoolPtr(true),
-				Config: customIDPConfigParamsConfigModel,
+				Config:   customIDPConfigParamsConfigModel,
 			}
 
 			customIDPConfigParams, response, err := appIDManagementService.SetCustomIDP(setCustomIDPOptions)
@@ -1795,27 +1795,27 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			cloudDirectoryConfigParamsInteractionsIdentityConfirmationModel := &appidmanagementv4.CloudDirectoryConfigParamsInteractionsIdentityConfirmation{
 				AccessMode: core.StringPtr("FULL"),
-				Methods: []string{"email"},
+				Methods:    []string{"email"},
 			}
 
 			cloudDirectoryConfigParamsInteractionsModel := &appidmanagementv4.CloudDirectoryConfigParamsInteractions{
-				IdentityConfirmation: cloudDirectoryConfigParamsInteractionsIdentityConfirmationModel,
-				WelcomeEnabled: core.BoolPtr(false),
-				ResetPasswordEnabled: core.BoolPtr(false),
+				IdentityConfirmation:            cloudDirectoryConfigParamsInteractionsIdentityConfirmationModel,
+				WelcomeEnabled:                  core.BoolPtr(false),
+				ResetPasswordEnabled:            core.BoolPtr(false),
 				ResetPasswordNotificationEnable: core.BoolPtr(true),
 			}
 
 			cloudDirectoryConfigParamsModel := &appidmanagementv4.CloudDirectoryConfigParams{
 				SelfServiceEnabled: core.BoolPtr(true),
-				SignupEnabled: core.BoolPtr(true),
-				Interactions: cloudDirectoryConfigParamsInteractionsModel,
-				IdentityField: core.StringPtr("email"),
+				SignupEnabled:      core.BoolPtr(true),
+				Interactions:       cloudDirectoryConfigParamsInteractionsModel,
+				IdentityField:      core.StringPtr("email"),
 			}
 
 			setCloudDirectoryIDPOptions := &appidmanagementv4.SetCloudDirectoryIDPOptions{
 				TenantID: core.StringPtr("testString"),
 				IsActive: core.BoolPtr(true),
-				Config: cloudDirectoryConfigParamsModel,
+				Config:   cloudDirectoryConfigParamsModel,
 			}
 
 			cloudDirectoryResponse, response, err := appIDManagementService.SetCloudDirectoryIDP(setCloudDirectoryIDPOptions)
@@ -1827,11 +1827,11 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		})
 	})
 
-	Describe(`GetSamlidp - Get SAML IDP configuration`, func() {
+	Describe(`GetSAMLIDP - Get SAML IDP configuration`, func() {
 		BeforeEach(func() {
 			shouldSkipTest()
 		})
-		It(`GetSamlidp(getSAMLIDPOptions *GetSAMLIDPOptions)`, func() {
+		It(`GetSAMLIDP(getSAMLIDPOptions *GetSAMLIDPOptions)`, func() {
 
 			getSamlidpOptions := &appidmanagementv4.GetSAMLIDPOptions{
 				TenantID: core.StringPtr("testString"),
@@ -1846,33 +1846,33 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		})
 	})
 
-	Describe(`SetSamlidp - Update SAML IDP configuration`, func() {
+	Describe(`SetSAMLIDP - Update SAML IDP configuration`, func() {
 		BeforeEach(func() {
 			shouldSkipTest()
 		})
-		It(`SetSamlidp(setSAMLIDPOptions *SetSAMLIDPOptions)`, func() {
+		It(`SetSAMLIDP(setSAMLIDPOptions *SetSAMLIDPOptions)`, func() {
 
 			samlConfigParamsAuthnContextModel := &appidmanagementv4.SAMLConfigParamsAuthnContext{
-				Class: []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"},
+				Class:      []string{"urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"},
 				Comparison: core.StringPtr("exact"),
 			}
 
 			samlConfigParamsModel := &appidmanagementv4.SAMLConfigParams{
-				EntityID: core.StringPtr("testString"),
-				SignInURL: core.StringPtr("testString"),
-				Certificates: []string{"testString"},
-				DisplayName: core.StringPtr("testString"),
-				AuthnContext: samlConfigParamsAuthnContextModel,
-				SignRequest: core.BoolPtr(false),
+				EntityID:        core.StringPtr("testString"),
+				SignInURL:       core.StringPtr("testString"),
+				Certificates:    []string{"testString"},
+				DisplayName:     core.StringPtr("testString"),
+				AuthnContext:    samlConfigParamsAuthnContextModel,
+				SignRequest:     core.BoolPtr(false),
 				EncryptResponse: core.BoolPtr(false),
-				IncludeScoping: core.BoolPtr(false),
+				IncludeScoping:  core.BoolPtr(false),
 			}
 			samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 			setSamlidpOptions := &appidmanagementv4.SetSAMLIDPOptions{
 				TenantID: core.StringPtr("testString"),
 				IsActive: core.BoolPtr(true),
-				Config: samlConfigParamsModel,
+				Config:   samlConfigParamsModel,
 			}
 
 			samlResponseWithValidationData, response, err := appIDManagementService.SetSAMLIDP(setSamlidpOptions)
@@ -1911,13 +1911,13 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			createRoleParamsAccessItemModel := &appidmanagementv4.CreateRoleParamsAccessItem{
 				ApplicationID: core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5"),
-				Scopes: []string{"cartoons"},
+				Scopes:        []string{"cartoons"},
 			}
 
 			createRoleOptions := &appidmanagementv4.CreateRoleOptions{
-				TenantID: core.StringPtr("testString"),
-				Name: core.StringPtr("child"),
-				Access: []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel},
+				TenantID:    core.StringPtr("testString"),
+				Name:        core.StringPtr("child"),
+				Access:      []appidmanagementv4.CreateRoleParamsAccessItem{*createRoleParamsAccessItemModel},
 				Description: core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers."),
 			}
 
@@ -1938,7 +1938,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			getRoleOptions := &appidmanagementv4.GetRoleOptions{
 				TenantID: core.StringPtr("testString"),
-				RoleID: core.StringPtr("testString"),
+				RoleID:   core.StringPtr("testString"),
 			}
 
 			getRoleResponse, response, err := appIDManagementService.GetRole(getRoleOptions)
@@ -1958,14 +1958,14 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			updateRoleParamsAccessItemModel := &appidmanagementv4.UpdateRoleParamsAccessItem{
 				ApplicationID: core.StringPtr("de33d272-f8a7-4406-8fe8-ab28fd457be5"),
-				Scopes: []string{"cartoons", "animated"},
+				Scopes:        []string{"cartoons", "animated"},
 			}
 
 			updateRoleOptions := &appidmanagementv4.UpdateRoleOptions{
-				TenantID: core.StringPtr("testString"),
-				RoleID: core.StringPtr("testString"),
-				Name: core.StringPtr("child"),
-				Access: []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel},
+				TenantID:    core.StringPtr("testString"),
+				RoleID:      core.StringPtr("testString"),
+				Name:        core.StringPtr("child"),
+				Access:      []appidmanagementv4.UpdateRoleParamsAccessItem{*updateRoleParamsAccessItemModel},
 				Description: core.StringPtr("Limits the available movie options to those that might be more appropriate for younger viewers."),
 			}
 
@@ -1985,12 +1985,12 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UsersSearchUserProfile(usersSearchUserProfileOptions *UsersSearchUserProfileOptions)`, func() {
 
 			usersSearchUserProfileOptions := &appidmanagementv4.UsersSearchUserProfileOptions{
-				TenantID: core.StringPtr("testString"),
-				DataScope: core.StringPtr("index"),
-				Email: core.StringPtr("testString"),
-				ID: core.StringPtr("testString"),
+				TenantID:   core.StringPtr("testString"),
+				DataScope:  core.StringPtr("index"),
+				Email:      core.StringPtr("testString"),
+				ID:         core.StringPtr("testString"),
 				StartIndex: core.Int64Ptr(int64(38)),
-				Count: core.Int64Ptr(int64(0)),
+				Count:      core.Int64Ptr(int64(0)),
 			}
 
 			userSearchResponse, response, err := appIDManagementService.UsersSearchUserProfile(usersSearchUserProfileOptions)
@@ -2013,10 +2013,10 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 			}
 
 			usersNominateUserOptions := &appidmanagementv4.UsersNominateUserOptions{
-				TenantID: core.StringPtr("testString"),
-				IDP: core.StringPtr("saml"),
+				TenantID:    core.StringPtr("testString"),
+				IDP:         core.StringPtr("saml"),
 				IDPIdentity: core.StringPtr("appid@ibm.com"),
-				Profile: usersNominateUserParamsProfileModel,
+				Profile:     usersNominateUserParamsProfileModel,
 			}
 
 			response, err := appIDManagementService.UsersNominateUser(usersNominateUserOptions)
@@ -2034,9 +2034,9 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UserProfilesExport(userProfilesExportOptions *UserProfilesExportOptions)`, func() {
 
 			userProfilesExportOptions := &appidmanagementv4.UserProfilesExportOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:   core.StringPtr("testString"),
 				StartIndex: core.Int64Ptr(int64(38)),
-				Count: core.Int64Ptr(int64(0)),
+				Count:      core.Int64Ptr(int64(0)),
 			}
 
 			exportUserProfile, response, err := appIDManagementService.UserProfilesExport(userProfilesExportOptions)
@@ -2055,31 +2055,31 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UserProfilesImport(userProfilesImportOptions *UserProfilesImportOptions)`, func() {
 
 			exportUserProfileUsersItemIdentitiesItemModel := &appidmanagementv4.ExportUserProfileUsersItemIdentitiesItem{
-				Provider: core.StringPtr("testString"),
-				ID: core.StringPtr("testString"),
+				Provider:    core.StringPtr("testString"),
+				ID:          core.StringPtr("testString"),
 				IDPUserInfo: map[string]interface{}{"anyKey": "anyValue"},
 			}
 			exportUserProfileUsersItemIdentitiesItemModel.SetProperty("foo", core.StringPtr("testString"))
 
 			exportUserProfileUsersItemModel := &appidmanagementv4.ExportUserProfileUsersItem{
-				ID: core.StringPtr("testString"),
-				Identities: []appidmanagementv4.ExportUserProfileUsersItemIdentitiesItem{*exportUserProfileUsersItemIdentitiesItemModel},
-				Attributes: map[string]interface{}{"anyKey": "anyValue"},
-				Name: core.StringPtr("testString"),
-				Email: core.StringPtr("testString"),
-				Picture: core.StringPtr("testString"),
-				Gender: core.StringPtr("testString"),
-				Locale: core.StringPtr("testString"),
+				ID:                core.StringPtr("testString"),
+				Identities:        []appidmanagementv4.ExportUserProfileUsersItemIdentitiesItem{*exportUserProfileUsersItemIdentitiesItemModel},
+				Attributes:        map[string]interface{}{"anyKey": "anyValue"},
+				Name:              core.StringPtr("testString"),
+				Email:             core.StringPtr("testString"),
+				Picture:           core.StringPtr("testString"),
+				Gender:            core.StringPtr("testString"),
+				Locale:            core.StringPtr("testString"),
 				PreferredUsername: core.StringPtr("testString"),
-				IDP: core.StringPtr("testString"),
-				HashedIDPID: core.StringPtr("testString"),
-				HashedEmail: core.StringPtr("testString"),
-				Roles: []string{"testString"},
+				IDP:               core.StringPtr("testString"),
+				HashedIDPID:       core.StringPtr("testString"),
+				HashedEmail:       core.StringPtr("testString"),
+				Roles:             []string{"testString"},
 			}
 
 			userProfilesImportOptions := &appidmanagementv4.UserProfilesImportOptions{
 				TenantID: core.StringPtr("testString"),
-				Users: []appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel},
+				Users:    []appidmanagementv4.ExportUserProfileUsersItem{*exportUserProfileUsersItemModel},
 			}
 
 			importProfilesResponse, response, err := appIDManagementService.UserProfilesImport(userProfilesImportOptions)
@@ -2099,7 +2099,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			usersRevokeRefreshTokenOptions := &appidmanagementv4.UsersRevokeRefreshTokenOptions{
 				TenantID: core.StringPtr("testString"),
-				ID: core.StringPtr("testString"),
+				ID:       core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.UsersRevokeRefreshToken(usersRevokeRefreshTokenOptions)
@@ -2118,7 +2118,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			usersGetUserProfileOptions := &appidmanagementv4.UsersGetUserProfileOptions{
 				TenantID: core.StringPtr("testString"),
-				ID: core.StringPtr("testString"),
+				ID:       core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.UsersGetUserProfile(usersGetUserProfileOptions)
@@ -2136,8 +2136,8 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`UsersSetUserProfile(usersSetUserProfileOptions *UsersSetUserProfileOptions)`, func() {
 
 			usersSetUserProfileOptions := &appidmanagementv4.UsersSetUserProfileOptions{
-				TenantID: core.StringPtr("testString"),
-				ID: core.StringPtr("testString"),
+				TenantID:   core.StringPtr("testString"),
+				ID:         core.StringPtr("testString"),
 				Attributes: make(map[string]interface{}),
 			}
 
@@ -2157,7 +2157,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			getUserRolesOptions := &appidmanagementv4.GetUserRolesOptions{
 				TenantID: core.StringPtr("testString"),
-				ID: core.StringPtr("testString"),
+				ID:       core.StringPtr("testString"),
 			}
 
 			getUserRolesResponse, response, err := appIDManagementService.GetUserRoles(getUserRolesOptions)
@@ -2181,8 +2181,8 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			updateUserRolesOptions := &appidmanagementv4.UpdateUserRolesOptions{
 				TenantID: core.StringPtr("testString"),
-				ID: core.StringPtr("testString"),
-				Roles: updateUserRolesParamsRolesModel,
+				ID:       core.StringPtr("testString"),
+				Roles:    updateUserRolesParamsRolesModel,
 			}
 
 			assignRoleToUser, response, err := appIDManagementService.UpdateUserRoles(updateUserRolesOptions)
@@ -2202,7 +2202,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			usersDeleteUserProfileOptions := &appidmanagementv4.UsersDeleteUserProfileOptions{
 				TenantID: core.StringPtr("testString"),
-				ID: core.StringPtr("testString"),
+				ID:       core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.UsersDeleteUserProfile(usersDeleteUserProfileOptions)
@@ -2220,9 +2220,9 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 		It(`DeleteTemplate(deleteTemplateOptions *DeleteTemplateOptions)`, func() {
 
 			deleteTemplateOptions := &appidmanagementv4.DeleteTemplateOptions{
-				TenantID: core.StringPtr("testString"),
+				TenantID:     core.StringPtr("testString"),
 				TemplateName: core.StringPtr("USER_VERIFICATION"),
-				Language: core.StringPtr("testString"),
+				Language:     core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.DeleteTemplate(deleteTemplateOptions)
@@ -2241,7 +2241,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			deleteRoleOptions := &appidmanagementv4.DeleteRoleOptions{
 				TenantID: core.StringPtr("testString"),
-				RoleID: core.StringPtr("testString"),
+				RoleID:   core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.DeleteRole(deleteRoleOptions)
@@ -2260,7 +2260,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			deleteCloudDirectoryUserOptions := &appidmanagementv4.DeleteCloudDirectoryUserOptions{
 				TenantID: core.StringPtr("testString"),
-				UserID: core.StringPtr("testString"),
+				UserID:   core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.DeleteCloudDirectoryUser(deleteCloudDirectoryUserOptions)
@@ -2298,7 +2298,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			deleteActionURLOptions := &appidmanagementv4.DeleteActionURLOptions{
 				TenantID: core.StringPtr("testString"),
-				Action: core.StringPtr("on_user_verified"),
+				Action:   core.StringPtr("on_user_verified"),
 			}
 
 			response, err := appIDManagementService.DeleteActionURL(deleteActionURLOptions)
@@ -2317,7 +2317,7 @@ var _ = Describe(`AppIDManagementV4 Integration Tests`, func() {
 
 			cloudDirectoryRemoveOptions := &appidmanagementv4.CloudDirectoryRemoveOptions{
 				TenantID: core.StringPtr("testString"),
-				UserID: core.StringPtr("testString"),
+				UserID:   core.StringPtr("testString"),
 			}
 
 			response, err := appIDManagementService.CloudDirectoryRemove(cloudDirectoryRemoveOptions)

@@ -67,14 +67,13 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		Context(`Using external config, construct service client instances`, func() {
 			// Map containing environment variables used in testing.
 			var testEnvironment = map[string]string{
-				"APP_ID_MANAGEMENT_URL": "https://appidmanagementv4/api",
+				"APP_ID_MANAGEMENT_URL":       "https://appidmanagementv4/api",
 				"APP_ID_MANAGEMENT_AUTH_TYPE": "noauth",
 			}
 
 			It(`Create service client using external config successfully`, func() {
 				SetTestEnvironment(testEnvironment)
-				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
-				})
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{})
 				Expect(appIDManagementService).ToNot(BeNil())
 				Expect(serviceErr).To(BeNil())
 				ClearTestEnvironment(testEnvironment)
@@ -103,8 +102,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 			It(`Create service client using external config and set url programatically successfully`, func() {
 				SetTestEnvironment(testEnvironment)
-				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
-				})
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{})
 				err := appIDManagementService.SetServiceURL("https://testService/api")
 				Expect(err).To(BeNil())
 				Expect(appIDManagementService).ToNot(BeNil())
@@ -122,13 +120,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		Context(`Using external config, construct service client instances with error: Invalid Auth`, func() {
 			// Map containing environment variables used in testing.
 			var testEnvironment = map[string]string{
-				"APP_ID_MANAGEMENT_URL": "https://appidmanagementv4/api",
+				"APP_ID_MANAGEMENT_URL":       "https://appidmanagementv4/api",
 				"APP_ID_MANAGEMENT_AUTH_TYPE": "someOtherAuth",
 			}
 
 			SetTestEnvironment(testEnvironment)
-			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{
-			})
+			appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4UsingExternalConfig(&appidmanagementv4.AppIDManagementV4Options{})
 
 			It(`Instantiate service client with error`, func() {
 				Expect(appIDManagementService).To(BeNil())
@@ -139,7 +136,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 		Context(`Using external config, construct service client instances with error: Invalid URL`, func() {
 			// Map containing environment variables used in testing.
 			var testEnvironment = map[string]string{
-				"APP_ID_MANAGEMENT_AUTH_TYPE":   "NOAuth",
+				"APP_ID_MANAGEMENT_AUTH_TYPE": "NOAuth",
 			}
 
 			SetTestEnvironment(testEnvironment)
@@ -15981,22 +15978,22 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`GetSamlidp(getSAMLIDPOptions *GetSAMLIDPOptions) - Operation response error`, func() {
-		getSamlidpPath := "/management/v4/testString/config/idps/saml"
+	Describe(`GetSAMLIDP(getSAMLIDPOptions *GetSAMLIDPOptions) - Operation response error`, func() {
+		getSAMLIDPPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(getSamlidpPath))
+					Expect(req.URL.EscapedPath()).To(Equal(getSAMLIDPPath))
 					Expect(req.Method).To(Equal("GET"))
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
 					fmt.Fprintf(res, `} this is not valid json {`)
 				}))
 			})
-			It(`Invoke GetSamlidp with error: Operation response processing error`, func() {
+			It(`Invoke GetSAMLIDP with error: Operation response processing error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -16005,18 +16002,18 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
-				getSamlidpOptionsModel.TenantID = core.StringPtr("testString")
-				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSAMLIDPOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSAMLIDPOptionsModel.TenantID = core.StringPtr("testString")
+				getSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
+				result, response, operationErr := appIDManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
 				appIDManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
+				result, response, operationErr = appIDManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -16026,15 +16023,15 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`GetSamlidp(getSAMLIDPOptions *GetSAMLIDPOptions)`, func() {
-		getSamlidpPath := "/management/v4/testString/config/idps/saml"
+	Describe(`GetSAMLIDP(getSAMLIDPOptions *GetSAMLIDPOptions)`, func() {
+		getSAMLIDPPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(getSamlidpPath))
+					Expect(req.URL.EscapedPath()).To(Equal(getSAMLIDPPath))
 					Expect(req.Method).To(Equal("GET"))
 
 					// Sleep a short time to support a timeout test
@@ -16046,7 +16043,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"entityID": "EntityID", "signInUrl": "SignInURL", "certificates": ["Certificates"], "displayName": "DisplayName", "authnContext": {"class": ["urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"], "comparison": "exact"}, "signRequest": false, "encryptResponse": false, "includeScoping": false}}`)
 				}))
 			})
-			It(`Invoke GetSamlidp successfully with retries`, func() {
+			It(`Invoke GetSAMLIDP successfully with retries`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -16056,20 +16053,20 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				appIDManagementService.EnableRetries(0, 0)
 
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
-				getSamlidpOptionsModel.TenantID = core.StringPtr("testString")
-				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSAMLIDPOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSAMLIDPOptionsModel.TenantID = core.StringPtr("testString")
+				getSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIDManagementService.GetSamlidpWithContext(ctx, getSamlidpOptionsModel)
+				_, _, operationErr := appIDManagementService.GetSAMLIDPWithContext(ctx, getSAMLIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
 				appIDManagementService.DisableRetries()
-				result, response, operationErr := appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
+				result, response, operationErr := appIDManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -16077,7 +16074,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIDManagementService.GetSamlidpWithContext(ctx, getSamlidpOptionsModel)
+				_, _, operationErr = appIDManagementService.GetSAMLIDPWithContext(ctx, getSAMLIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -16091,7 +16088,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(getSamlidpPath))
+					Expect(req.URL.EscapedPath()).To(Equal(getSAMLIDPPath))
 					Expect(req.Method).To(Equal("GET"))
 
 					// Set mock response
@@ -16100,7 +16097,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"entityID": "EntityID", "signInUrl": "SignInURL", "certificates": ["Certificates"], "displayName": "DisplayName", "authnContext": {"class": ["urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"], "comparison": "exact"}, "signRequest": false, "encryptResponse": false, "includeScoping": false}}`)
 				}))
 			})
-			It(`Invoke GetSamlidp successfully`, func() {
+			It(`Invoke GetSAMLIDP successfully`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -16109,24 +16106,24 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIDManagementService.GetSamlidp(nil)
+				result, response, operationErr := appIDManagementService.GetSAMLIDP(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
-				getSamlidpOptionsModel.TenantID = core.StringPtr("testString")
-				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSAMLIDPOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSAMLIDPOptionsModel.TenantID = core.StringPtr("testString")
+				getSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
+				result, response, operationErr = appIDManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke GetSamlidp with error: Operation validation and request error`, func() {
+			It(`Invoke GetSAMLIDP with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -16135,21 +16132,21 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
-				getSamlidpOptionsModel.TenantID = core.StringPtr("testString")
-				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSAMLIDPOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSAMLIDPOptionsModel.TenantID = core.StringPtr("testString")
+				getSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
+				result, response, operationErr := appIDManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 				// Construct a second instance of the GetSAMLIDPOptions model with no property values
-				getSamlidpOptionsModelNew := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSAMLIDPOptionsModelNew := new(appidmanagementv4.GetSAMLIDPOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIDManagementService.GetSamlidp(getSamlidpOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetSAMLIDP(getSAMLIDPOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -16167,7 +16164,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					res.WriteHeader(200)
 				}))
 			})
-			It(`Invoke GetSamlidp successfully`, func() {
+			It(`Invoke GetSAMLIDP successfully`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -16176,12 +16173,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Construct an instance of the GetSAMLIDPOptions model
-				getSamlidpOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
-				getSamlidpOptionsModel.TenantID = core.StringPtr("testString")
-				getSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				getSAMLIDPOptionsModel := new(appidmanagementv4.GetSAMLIDPOptions)
+				getSAMLIDPOptionsModel.TenantID = core.StringPtr("testString")
+				getSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIDManagementService.GetSamlidp(getSamlidpOptionsModel)
+				result, response, operationErr := appIDManagementService.GetSAMLIDP(getSAMLIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -16193,22 +16190,22 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`SetSamlidp(setSAMLIDPOptions *SetSAMLIDPOptions) - Operation response error`, func() {
-		setSamlidpPath := "/management/v4/testString/config/idps/saml"
+	Describe(`SetSAMLIDP(setSAMLIDPOptions *SetSAMLIDPOptions) - Operation response error`, func() {
+		setSAMLIDPPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with invalid JSON response`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(setSamlidpPath))
+					Expect(req.URL.EscapedPath()).To(Equal(setSAMLIDPPath))
 					Expect(req.Method).To(Equal("PUT"))
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
 					fmt.Fprintf(res, `} this is not valid json {`)
 				}))
 			})
-			It(`Invoke SetSamlidp with error: Operation response processing error`, func() {
+			It(`Invoke SetSAMLIDP with error: Operation response processing error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -16234,20 +16231,20 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
-				setSamlidpOptionsModel.TenantID = core.StringPtr("testString")
-				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
-				setSamlidpOptionsModel.Config = samlConfigParamsModel
-				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				setSAMLIDPOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSAMLIDPOptionsModel.TenantID = core.StringPtr("testString")
+				setSAMLIDPOptionsModel.IsActive = core.BoolPtr(true)
+				setSAMLIDPOptionsModel.Config = samlConfigParamsModel
+				setSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
-				result, response, operationErr := appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
+				result, response, operationErr := appIDManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
 
 				// Enable retries and test again
 				appIDManagementService.EnableRetries(0, 0)
-				result, response, operationErr = appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
+				result, response, operationErr = appIDManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).To(BeNil())
@@ -16257,15 +16254,15 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 		})
 	})
-	Describe(`SetSamlidp(setSAMLIDPOptions *SetSAMLIDPOptions)`, func() {
-		setSamlidpPath := "/management/v4/testString/config/idps/saml"
+	Describe(`SetSAMLIDP(setSAMLIDPOptions *SetSAMLIDPOptions)`, func() {
+		setSAMLIDPPath := "/management/v4/testString/config/idps/saml"
 		Context(`Using mock server endpoint with timeout`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(setSamlidpPath))
+					Expect(req.URL.EscapedPath()).To(Equal(setSAMLIDPPath))
 					Expect(req.Method).To(Equal("PUT"))
 
 					// For gzip-disabled operation, verify Content-Encoding is not set.
@@ -16293,7 +16290,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"entityID": "EntityID", "signInUrl": "SignInURL", "certificates": ["Certificates"], "displayName": "DisplayName", "authnContext": {"class": ["urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"], "comparison": "exact"}, "signRequest": false, "encryptResponse": false, "includeScoping": false}, "validation_data": {"certificates": [{"certificate_index": 16, "expiration_timestamp": 19, "warning": "Warning"}]}}`)
 				}))
 			})
-			It(`Invoke SetSamlidp successfully with retries`, func() {
+			It(`Invoke SetSAMLIDP successfully with retries`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -16320,22 +16317,22 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
-				setSamlidpOptionsModel.TenantID = core.StringPtr("testString")
-				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
-				setSamlidpOptionsModel.Config = samlConfigParamsModel
-				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				setSAMLIDPOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSAMLIDPOptionsModel.TenantID = core.StringPtr("testString")
+				setSAMLIDPOptionsModel.IsActive = core.BoolPtr(true)
+				setSAMLIDPOptionsModel.Config = samlConfigParamsModel
+				setSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
 				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc()
-				_, _, operationErr := appIDManagementService.SetSamlidpWithContext(ctx, setSamlidpOptionsModel)
+				_, _, operationErr := appIDManagementService.SetSAMLIDPWithContext(ctx, setSAMLIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 
 				// Disable retries and test again
 				appIDManagementService.DisableRetries()
-				result, response, operationErr := appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
+				result, response, operationErr := appIDManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
@@ -16343,7 +16340,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Re-test the timeout error with retries disabled
 				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
 				defer cancelFunc2()
-				_, _, operationErr = appIDManagementService.SetSamlidpWithContext(ctx, setSamlidpOptionsModel)
+				_, _, operationErr = appIDManagementService.SetSAMLIDPWithContext(ctx, setSAMLIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
 			})
@@ -16357,7 +16354,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					defer GinkgoRecover()
 
 					// Verify the contents of the request
-					Expect(req.URL.EscapedPath()).To(Equal(setSamlidpPath))
+					Expect(req.URL.EscapedPath()).To(Equal(setSAMLIDPPath))
 					Expect(req.Method).To(Equal("PUT"))
 
 					// For gzip-disabled operation, verify Content-Encoding is not set.
@@ -16382,7 +16379,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"entityID": "EntityID", "signInUrl": "SignInURL", "certificates": ["Certificates"], "displayName": "DisplayName", "authnContext": {"class": ["urn:oasis:names:tc:SAML:2.0:ac:classes:InternetProtocol"], "comparison": "exact"}, "signRequest": false, "encryptResponse": false, "includeScoping": false}, "validation_data": {"certificates": [{"certificate_index": 16, "expiration_timestamp": 19, "warning": "Warning"}]}}`)
 				}))
 			})
-			It(`Invoke SetSamlidp successfully`, func() {
+			It(`Invoke SetSAMLIDP successfully`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -16391,7 +16388,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				result, response, operationErr := appIDManagementService.SetSamlidp(nil)
+				result, response, operationErr := appIDManagementService.SetSAMLIDP(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -16414,20 +16411,20 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
-				setSamlidpOptionsModel.TenantID = core.StringPtr("testString")
-				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
-				setSamlidpOptionsModel.Config = samlConfigParamsModel
-				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				setSAMLIDPOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSAMLIDPOptionsModel.TenantID = core.StringPtr("testString")
+				setSAMLIDPOptionsModel.IsActive = core.BoolPtr(true)
+				setSAMLIDPOptionsModel.Config = samlConfigParamsModel
+				setSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				result, response, operationErr = appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
+				result, response, operationErr = appIDManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 				Expect(result).ToNot(BeNil())
 
 			})
-			It(`Invoke SetSamlidp with error: Operation validation and request error`, func() {
+			It(`Invoke SetSAMLIDP with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -16453,23 +16450,23 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
-				setSamlidpOptionsModel.TenantID = core.StringPtr("testString")
-				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
-				setSamlidpOptionsModel.Config = samlConfigParamsModel
-				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				setSAMLIDPOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSAMLIDPOptionsModel.TenantID = core.StringPtr("testString")
+				setSAMLIDPOptionsModel.IsActive = core.BoolPtr(true)
+				setSAMLIDPOptionsModel.Config = samlConfigParamsModel
+				setSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				result, response, operationErr := appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
+				result, response, operationErr := appIDManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
 				// Construct a second instance of the SetSAMLIDPOptions model with no property values
-				setSamlidpOptionsModelNew := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSAMLIDPOptionsModelNew := new(appidmanagementv4.SetSAMLIDPOptions)
 				// Invoke operation with invalid model (negative test)
-				result, response, operationErr = appIDManagementService.SetSamlidp(setSamlidpOptionsModelNew)
+				result, response, operationErr = appIDManagementService.SetSAMLIDP(setSAMLIDPOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
 				Expect(result).To(BeNil())
@@ -16487,7 +16484,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					res.WriteHeader(200)
 				}))
 			})
-			It(`Invoke SetSamlidp successfully`, func() {
+			It(`Invoke SetSAMLIDP successfully`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
 					URL:           testServer.URL,
 					Authenticator: &core.NoAuthAuthenticator{},
@@ -16513,14 +16510,14 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				samlConfigParamsModel.SetProperty("foo", core.StringPtr("testString"))
 
 				// Construct an instance of the SetSAMLIDPOptions model
-				setSamlidpOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
-				setSamlidpOptionsModel.TenantID = core.StringPtr("testString")
-				setSamlidpOptionsModel.IsActive = core.BoolPtr(true)
-				setSamlidpOptionsModel.Config = samlConfigParamsModel
-				setSamlidpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				setSAMLIDPOptionsModel := new(appidmanagementv4.SetSAMLIDPOptions)
+				setSAMLIDPOptionsModel.TenantID = core.StringPtr("testString")
+				setSAMLIDPOptionsModel.IsActive = core.BoolPtr(true)
+				setSAMLIDPOptionsModel.Config = samlConfigParamsModel
+				setSAMLIDPOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
-				result, response, operationErr := appIDManagementService.SetSamlidp(setSamlidpOptionsModel)
+				result, response, operationErr := appIDManagementService.SetSAMLIDP(setSAMLIDPOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
 
@@ -20102,12 +20099,12 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			It(`Invoke NewGetSAMLIDPOptions successfully`, func() {
 				// Construct an instance of the GetSAMLIDPOptions model
 				tenantID := "testString"
-				getSamlidpOptionsModel := appIDManagementService.NewGetSAMLIDPOptions(tenantID)
-				getSamlidpOptionsModel.SetTenantID("testString")
-				getSamlidpOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(getSamlidpOptionsModel).ToNot(BeNil())
-				Expect(getSamlidpOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
-				Expect(getSamlidpOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+				getSAMLIDPOptionsModel := appIDManagementService.NewGetSAMLIDPOptions(tenantID)
+				getSAMLIDPOptionsModel.SetTenantID("testString")
+				getSAMLIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(getSAMLIDPOptionsModel).ToNot(BeNil())
+				Expect(getSAMLIDPOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
+				Expect(getSAMLIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetSAMLMetadataOptions successfully`, func() {
 				// Construct an instance of the GetSAMLMetadataOptions model
@@ -20832,16 +20829,16 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Construct an instance of the SetSAMLIDPOptions model
 				tenantID := "testString"
 				setSamlidpOptionsIsActive := true
-				setSamlidpOptionsModel := appIDManagementService.NewSetSAMLIDPOptions(tenantID, setSamlidpOptionsIsActive)
-				setSamlidpOptionsModel.SetTenantID("testString")
-				setSamlidpOptionsModel.SetIsActive(true)
-				setSamlidpOptionsModel.SetConfig(samlConfigParamsModel)
-				setSamlidpOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
-				Expect(setSamlidpOptionsModel).ToNot(BeNil())
-				Expect(setSamlidpOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
-				Expect(setSamlidpOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
-				Expect(setSamlidpOptionsModel.Config).To(Equal(samlConfigParamsModel))
-				Expect(setSamlidpOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
+				setSAMLIDPOptionsModel := appIDManagementService.NewSetSAMLIDPOptions(tenantID, setSamlidpOptionsIsActive)
+				setSAMLIDPOptionsModel.SetTenantID("testString")
+				setSAMLIDPOptionsModel.SetIsActive(true)
+				setSAMLIDPOptionsModel.SetConfig(samlConfigParamsModel)
+				setSAMLIDPOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
+				Expect(setSAMLIDPOptionsModel).ToNot(BeNil())
+				Expect(setSAMLIDPOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
+				Expect(setSAMLIDPOptionsModel.IsActive).To(Equal(core.BoolPtr(true)))
+				Expect(setSAMLIDPOptionsModel.Config).To(Equal(samlConfigParamsModel))
+				Expect(setSAMLIDPOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewStartForgotPasswordOptions successfully`, func() {
 				// Construct an instance of the StartForgotPasswordOptions model
