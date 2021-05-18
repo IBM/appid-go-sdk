@@ -14621,7 +14621,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"idpId": "IDPID", "secret": "Secret"}}`)
+					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"idpId": "IDPID", "secret": "Secret"}, "redirectURL": "RedirectURL"}`)
 				}))
 			})
 			It(`Invoke GetGoogleIDP successfully with retries`, func() {
@@ -14675,7 +14675,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"idpId": "IDPID", "secret": "Secret"}}`)
+					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"idpId": "IDPID", "secret": "Secret"}, "redirectURL": "RedirectURL"}`)
 				}))
 			})
 			It(`Invoke GetGoogleIDP successfully`, func() {
@@ -14861,7 +14861,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"idpId": "IDPID", "secret": "Secret"}}`)
+					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"idpId": "IDPID", "secret": "Secret"}, "redirectURL": "RedirectURL"}`)
 				}))
 			})
 			It(`Invoke SetGoogleIDP successfully with retries`, func() {
@@ -14943,7 +14943,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"idpId": "IDPID", "secret": "Secret"}}`)
+					fmt.Fprintf(res, "%s", `{"isActive": true, "config": {"idpId": "IDPID", "secret": "Secret"}, "redirectURL": "RedirectURL"}`)
 				}))
 			})
 			It(`Invoke SetGoogleIDP successfully`, func() {

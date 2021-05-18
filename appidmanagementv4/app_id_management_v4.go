@@ -13390,6 +13390,8 @@ type GoogleConfigParams struct {
 	IsActive *bool `json:"isActive" validate:"required"`
 
 	Config *GoogleConfigParamsConfig `json:"config,omitempty"`
+
+	RedirectURL *string `json:"redirectURL,omitempty"`
 }
 
 // UnmarshalGoogleConfigParams unmarshals an instance of GoogleConfigParams from the specified map of raw messages.
@@ -13403,6 +13405,10 @@ func UnmarshalGoogleConfigParams(m map[string]json.RawMessage, result interface{
 	if err != nil {
 		return
 	}
+	err = core.UnmarshalPrimitive(m, "redirectURL", &obj.RedirectURL)
+	if err != nil {
+		return
+	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
 	return
 }
@@ -13412,6 +13418,8 @@ type GoogleConfigParamsPut struct {
 	IsActive *bool `json:"isActive" validate:"required"`
 
 	Config *GoogleConfigParamsPutConfig `json:"config,omitempty"`
+
+	RedirectURL *string `json:"redirectURL,omitempty"`
 }
 
 // UnmarshalGoogleConfigParamsPut unmarshals an instance of GoogleConfigParamsPut from the specified map of raw messages.
@@ -13422,6 +13430,10 @@ func UnmarshalGoogleConfigParamsPut(m map[string]json.RawMessage, result interfa
 		return
 	}
 	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalGoogleConfigParamsPutConfig)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "redirectURL", &obj.RedirectURL)
 	if err != nil {
 		return
 	}
