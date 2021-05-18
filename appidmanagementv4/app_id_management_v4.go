@@ -13056,6 +13056,8 @@ type FacebookConfigParams struct {
 	IsActive *bool `json:"isActive" validate:"required"`
 
 	Config *FacebookConfigParamsConfig `json:"config,omitempty"`
+
+	RedirectURL *string `json:"redirectURL,omitempty"`
 }
 
 // UnmarshalFacebookConfigParams unmarshals an instance of FacebookConfigParams from the specified map of raw messages.
@@ -13069,6 +13071,10 @@ func UnmarshalFacebookConfigParams(m map[string]json.RawMessage, result interfac
 	if err != nil {
 		return
 	}
+	err = core.UnmarshalPrimitive(m, "redirectURL", &obj.RedirectURL)
+	if err != nil {
+		return
+	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
 	return
 }
@@ -13078,6 +13084,8 @@ type FacebookConfigParamsPut struct {
 	IsActive *bool `json:"isActive" validate:"required"`
 
 	Config *FacebookConfigParamsPutConfig `json:"config,omitempty"`
+
+	RedirectURL *string `json:"redirectURL,omitempty"`
 }
 
 // UnmarshalFacebookConfigParamsPut unmarshals an instance of FacebookConfigParamsPut from the specified map of raw messages.
@@ -13088,6 +13096,10 @@ func UnmarshalFacebookConfigParamsPut(m map[string]json.RawMessage, result inter
 		return
 	}
 	err = core.UnmarshalModel(m, "config", &obj.Config, UnmarshalFacebookConfigParamsPutConfig)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "redirectURL", &obj.RedirectURL)
 	if err != nil {
 		return
 	}
