@@ -9133,28 +9133,6 @@ func (options *GetRoleOptions) SetHeaders(param map[string]string) *GetRoleOptio
 	return options
 }
 
-// GetRoleResponseAccessItem : GetRoleResponseAccessItem struct
-type GetRoleResponseAccessItem struct {
-	ApplicationID *string `json:"application_id,omitempty"`
-
-	Scopes []string `json:"scopes,omitempty"`
-}
-
-// UnmarshalGetRoleResponseAccessItem unmarshals an instance of GetRoleResponseAccessItem from the specified map of raw messages.
-func UnmarshalGetRoleResponseAccessItem(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(GetRoleResponseAccessItem)
-	err = core.UnmarshalPrimitive(m, "application_id", &obj.ApplicationID)
-	if err != nil {
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "scopes", &obj.Scopes)
-	if err != nil {
-		return
-	}
-	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
-	return
-}
-
 // GetSMSChannelConfig : GetSMSChannelConfig struct
 type GetSMSChannelConfig struct {
 	Key *string `json:"key,omitempty"`
@@ -10533,7 +10511,7 @@ type RolesListRolesItem struct {
 
 	Description *string `json:"description,omitempty"`
 
-	Access []RolesListRolesItemAccessItem `json:"access,omitempty"`
+	Access []RoleAccessItem `json:"access,omitempty"`
 }
 
 // UnmarshalRolesListRolesItem unmarshals an instance of RolesListRolesItem from the specified map of raw messages.
@@ -10551,29 +10529,7 @@ func UnmarshalRolesListRolesItem(m map[string]json.RawMessage, result interface{
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalRolesListRolesItemAccessItem)
-	if err != nil {
-		return
-	}
-	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
-	return
-}
-
-// RolesListRolesItemAccessItem : RolesListRolesItemAccessItem struct
-type RolesListRolesItemAccessItem struct {
-	ApplicationID *string `json:"application_id,omitempty"`
-
-	Scopes []string `json:"scopes,omitempty"`
-}
-
-// UnmarshalRolesListRolesItemAccessItem unmarshals an instance of RolesListRolesItemAccessItem from the specified map of raw messages.
-func UnmarshalRolesListRolesItemAccessItem(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(RolesListRolesItemAccessItem)
-	err = core.UnmarshalPrimitive(m, "application_id", &obj.ApplicationID)
-	if err != nil {
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "scopes", &obj.Scopes)
+	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalRoleAccessItem)
 	if err != nil {
 		return
 	}
@@ -13237,7 +13193,7 @@ type GetRoleResponse struct {
 
 	Description *string `json:"description,omitempty"`
 
-	Access []GetRoleResponseAccessItem `json:"access,omitempty"`
+	Access []RoleAccessItem `json:"access,omitempty"`
 }
 
 // UnmarshalGetRoleResponse unmarshals an instance of GetRoleResponse from the specified map of raw messages.
@@ -13255,7 +13211,7 @@ func UnmarshalGetRoleResponse(m map[string]json.RawMessage, result interface{}) 
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalGetRoleResponseAccessItem)
+	err = core.UnmarshalModel(m, "access", &obj.Access, UnmarshalRoleAccessItem)
 	if err != nil {
 		return
 	}
