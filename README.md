@@ -1,2 +1,2 @@
-# appid-go-sdk
-Go SDk for App-ID
+# appid-management-go-sdk
+GO SDK for appid-management
