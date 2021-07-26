@@ -30,7 +30,7 @@ import (
 	"reflect"
 	"time"
 
-	common "github.com/IBM/appid-go-sdk/common"
+	common "github.com/IBM/appid-management-go-sdk/common"
 	"github.com/IBM/go-sdk-core/v5/core"
 )
 

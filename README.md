@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/IBM/appid-go-sdk.git.svg?token=eW5FVD71iyte6tTby8gr&branch=main)](https://travis.ibm.com/IBM/appid-go-sdk.git.svg?token=eW5FVD71iyte6tTby8gr&branch=main)
+[![Build Status](https://travis-ci.com/IBM/appid-management-go-sdk.git.svg?token=eW5FVD71iyte6tTby8gr&branch=main)](https://travis.ibm.com/IBM/appid-management-go-sdk.git.svg?token=eW5FVD71iyte6tTby8gr&branch=main)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 # IBM Cloud App ID Go SDK 0.0.1
@@ -62,7 +62,7 @@ Here is an example:
 
 ```go
 import (
-	"github.com/IBM/appid-go-sdk/appidmanagementv4"
+	"github.com/IBM/appid-management-go-sdk/appidmanagementv4"
 )
 ```
 Next, run `go build` or `go mod tidy` to download and install the new dependencies and update your application's
@@ -75,7 +75,7 @@ See the service table above to find the approprate package name for the services
 ### `go get` command  
 Alternatively, you can use the `go get` command to download and install the appropriate packages needed by your application:
 ```
-go get -u github.com/IBM/appid-go-sdk
+go get -u github.com/IBM/appid-management-go-sdk
 ```
 Be sure to use the appropriate package name from the service table above for the services used by your application.
 
@@ -90,7 +90,7 @@ please ask a question at
 
 ## Issues
 If you encounter an issue with the project, you are welcome to submit a
-[bug report](https://github.com/IBM/appid-go-sdk/issues).
+[bug report](https://github.com/IBM/appid-management-go-sdk/issues).
 Before that, please search for similar issues. It's possible that someone has already reported the problem.
 
 ## Open source @ IBM
