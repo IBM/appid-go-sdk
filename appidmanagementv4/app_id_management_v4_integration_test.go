@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/IBM/appid-go-sdk/appidmanagementv4"
+	"github.com/IBM/appid-management-go-sdk/appidmanagementv4"
 	"github.com/IBM/go-sdk-core/v5/core"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
