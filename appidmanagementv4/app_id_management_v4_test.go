@@ -2366,8 +2366,150 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 		})
 	})
+	Describe(`CreateCloudDirectoryUser(createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions) - Operation response error`, func() {
+		createCloudDirectoryUserPath := "/management/v4/testString/cloud_directory/Users"
+		Context(`Using mock server endpoint with invalid JSON response`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(createCloudDirectoryUserPath))
+					Expect(req.Method).To(Equal("POST"))
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(201)
+					fmt.Fprintf(res, `} this is not valid json {`)
+				}))
+			})
+			It(`Invoke CreateCloudDirectoryUser with error: Operation response processing error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the CreateNewUserEmailsItem model
+				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
+				createNewUserEmailsItemModel.Value = core.StringPtr("user@mail.com")
+				createNewUserEmailsItemModel.Primary = core.BoolPtr(true)
+
+				// Construct an instance of the CreateCloudDirectoryUserOptions model
+				createCloudDirectoryUserOptionsModel := new(appidmanagementv4.CreateCloudDirectoryUserOptions)
+				createCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
+				createCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
+				createCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
+				createCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
+				createCloudDirectoryUserOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				createCloudDirectoryUserOptionsModel.DisplayName = core.StringPtr("testString")
+				createCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
+				createCloudDirectoryUserOptionsModel.Status = core.StringPtr("PENDING")
+				createCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Expect response parsing to fail since we are receiving a text/plain response
+				result, response, operationErr := appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+
+				// Enable retries and test again
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+	})
 	Describe(`CreateCloudDirectoryUser(createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions)`, func() {
 		createCloudDirectoryUserPath := "/management/v4/testString/cloud_directory/Users"
+		Context(`Using mock server endpoint with timeout`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(createCloudDirectoryUserPath))
+					Expect(req.Method).To(Equal("POST"))
+
+					// For gzip-disabled operation, verify Content-Encoding is not set.
+					Expect(req.Header.Get("Content-Encoding")).To(BeEmpty())
+
+					// If there is a body, then make sure we can read it
+					bodyBuf := new(bytes.Buffer)
+					if req.Header.Get("Content-Encoding") == "gzip" {
+						body, err := core.NewGzipDecompressionReader(req.Body)
+						Expect(err).To(BeNil())
+						_, err = bodyBuf.ReadFrom(body)
+						Expect(err).To(BeNil())
+					} else {
+						_, err := bodyBuf.ReadFrom(req.Body)
+						Expect(err).To(BeNil())
+					}
+					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
+
+					// Sleep a short time to support a timeout test
+					time.Sleep(100 * time.Millisecond)
+
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(201)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
+				}))
+			})
+			It(`Invoke CreateCloudDirectoryUser successfully with retries`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
+
+				// Construct an instance of the CreateNewUserEmailsItem model
+				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
+				createNewUserEmailsItemModel.Value = core.StringPtr("user@mail.com")
+				createNewUserEmailsItemModel.Primary = core.BoolPtr(true)
+
+				// Construct an instance of the CreateCloudDirectoryUserOptions model
+				createCloudDirectoryUserOptionsModel := new(appidmanagementv4.CreateCloudDirectoryUserOptions)
+				createCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
+				createCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
+				createCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
+				createCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
+				createCloudDirectoryUserOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				createCloudDirectoryUserOptionsModel.DisplayName = core.StringPtr("testString")
+				createCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
+				createCloudDirectoryUserOptionsModel.Status = core.StringPtr("PENDING")
+				createCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation with a Context to test a timeout error
+				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc()
+				_, _, operationErr := appIDManagementService.CreateCloudDirectoryUserWithContext(ctx, createCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+
+				// Disable retries and test again
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
+				// Re-test the timeout error with retries disabled
+				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc2()
+				_, _, operationErr = appIDManagementService.CreateCloudDirectoryUserWithContext(ctx, createCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
@@ -2393,7 +2535,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					}
 					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
 
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(201)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
 				}))
 			})
 			It(`Invoke CreateCloudDirectoryUser successfully`, func() {
@@ -2405,9 +2550,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIDManagementService.CreateCloudDirectoryUser(nil)
+				result, response, operationErr := appIDManagementService.CreateCloudDirectoryUser(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 
 				// Construct an instance of the CreateNewUserEmailsItem model
 				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
@@ -2420,13 +2566,18 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				createCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
 				createCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
 				createCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
+				createCloudDirectoryUserOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				createCloudDirectoryUserOptionsModel.DisplayName = core.StringPtr("testString")
 				createCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
+				createCloudDirectoryUserOptionsModel.Status = core.StringPtr("PENDING")
 				createCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
+				result, response, operationErr = appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
 			})
 			It(`Invoke CreateCloudDirectoryUser with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
@@ -2447,21 +2598,118 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				createCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
 				createCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
 				createCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
+				createCloudDirectoryUserOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				createCloudDirectoryUserOptionsModel.DisplayName = core.StringPtr("testString")
 				createCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
+				createCloudDirectoryUserOptionsModel.Status = core.StringPtr("PENDING")
 				createCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
+				result, response, operationErr := appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 				// Construct a second instance of the CreateCloudDirectoryUserOptions model with no property values
 				createCloudDirectoryUserOptionsModelNew := new(appidmanagementv4.CreateCloudDirectoryUserOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModelNew)
+				result, response, operationErr = appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+		Context(`Using mock server endpoint with missing response body`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Set success status code with no respoonse body
+					res.WriteHeader(201)
+				}))
+			})
+			It(`Invoke CreateCloudDirectoryUser successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the CreateNewUserEmailsItem model
+				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
+				createNewUserEmailsItemModel.Value = core.StringPtr("user@mail.com")
+				createNewUserEmailsItemModel.Primary = core.BoolPtr(true)
+
+				// Construct an instance of the CreateCloudDirectoryUserOptions model
+				createCloudDirectoryUserOptionsModel := new(appidmanagementv4.CreateCloudDirectoryUserOptions)
+				createCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
+				createCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
+				createCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
+				createCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
+				createCloudDirectoryUserOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				createCloudDirectoryUserOptionsModel.DisplayName = core.StringPtr("testString")
+				createCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
+				createCloudDirectoryUserOptionsModel.Status = core.StringPtr("PENDING")
+				createCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation
+				result, response, operationErr := appIDManagementService.CreateCloudDirectoryUser(createCloudDirectoryUserOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+
+				// Verify a nil result
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+	})
+	Describe(`GetCloudDirectoryUser(getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions) - Operation response error`, func() {
+		getCloudDirectoryUserPath := "/management/v4/testString/cloud_directory/Users/testString"
+		Context(`Using mock server endpoint with invalid JSON response`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(getCloudDirectoryUserPath))
+					Expect(req.Method).To(Equal("GET"))
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, `} this is not valid json {`)
+				}))
+			})
+			It(`Invoke GetCloudDirectoryUser with error: Operation response processing error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the GetCloudDirectoryUserOptions model
+				getCloudDirectoryUserOptionsModel := new(appidmanagementv4.GetCloudDirectoryUserOptions)
+				getCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
+				getCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
+				getCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Expect response parsing to fail since we are receiving a text/plain response
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+
+				// Enable retries and test again
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -2470,6 +2718,64 @@ var _ = Describe(`AppIDManagementV4`, func() {
 	})
 	Describe(`GetCloudDirectoryUser(getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions)`, func() {
 		getCloudDirectoryUserPath := "/management/v4/testString/cloud_directory/Users/testString"
+		Context(`Using mock server endpoint with timeout`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(getCloudDirectoryUserPath))
+					Expect(req.Method).To(Equal("GET"))
+
+					// Sleep a short time to support a timeout test
+					time.Sleep(100 * time.Millisecond)
+
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
+				}))
+			})
+			It(`Invoke GetCloudDirectoryUser successfully with retries`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
+
+				// Construct an instance of the GetCloudDirectoryUserOptions model
+				getCloudDirectoryUserOptionsModel := new(appidmanagementv4.GetCloudDirectoryUserOptions)
+				getCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
+				getCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
+				getCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation with a Context to test a timeout error
+				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc()
+				_, _, operationErr := appIDManagementService.GetCloudDirectoryUserWithContext(ctx, getCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+
+				// Disable retries and test again
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
+				// Re-test the timeout error with retries disabled
+				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc2()
+				_, _, operationErr = appIDManagementService.GetCloudDirectoryUserWithContext(ctx, getCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
@@ -2479,7 +2785,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					Expect(req.URL.EscapedPath()).To(Equal(getCloudDirectoryUserPath))
 					Expect(req.Method).To(Equal("GET"))
 
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
 				}))
 			})
 			It(`Invoke GetCloudDirectoryUser successfully`, func() {
@@ -2491,9 +2800,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIDManagementService.GetCloudDirectoryUser(nil)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryUser(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 
 				// Construct an instance of the GetCloudDirectoryUserOptions model
 				getCloudDirectoryUserOptionsModel := new(appidmanagementv4.GetCloudDirectoryUserOptions)
@@ -2502,9 +2812,11 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				getCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
 			})
 			It(`Invoke GetCloudDirectoryUser with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
@@ -2522,16 +2834,111 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 				// Construct a second instance of the GetCloudDirectoryUserOptions model with no property values
 				getCloudDirectoryUserOptionsModelNew := new(appidmanagementv4.GetCloudDirectoryUserOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModelNew)
+				result, response, operationErr = appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+		Context(`Using mock server endpoint with missing response body`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Set success status code with no respoonse body
+					res.WriteHeader(200)
+				}))
+			})
+			It(`Invoke GetCloudDirectoryUser successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the GetCloudDirectoryUserOptions model
+				getCloudDirectoryUserOptionsModel := new(appidmanagementv4.GetCloudDirectoryUserOptions)
+				getCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
+				getCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
+				getCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation
+				result, response, operationErr := appIDManagementService.GetCloudDirectoryUser(getCloudDirectoryUserOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+
+				// Verify a nil result
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+	})
+	Describe(`UpdateCloudDirectoryUser(updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions) - Operation response error`, func() {
+		updateCloudDirectoryUserPath := "/management/v4/testString/cloud_directory/Users/testString"
+		Context(`Using mock server endpoint with invalid JSON response`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(updateCloudDirectoryUserPath))
+					Expect(req.Method).To(Equal("PUT"))
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, `} this is not valid json {`)
+				}))
+			})
+			It(`Invoke UpdateCloudDirectoryUser with error: Operation response processing error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the CreateNewUserEmailsItem model
+				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
+				createNewUserEmailsItemModel.Value = core.StringPtr("user@mail.com")
+				createNewUserEmailsItemModel.Primary = core.BoolPtr(true)
+
+				// Construct an instance of the UpdateCloudDirectoryUserOptions model
+				updateCloudDirectoryUserOptionsModel := new(appidmanagementv4.UpdateCloudDirectoryUserOptions)
+				updateCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
+				updateCloudDirectoryUserOptionsModel.Status = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.DisplayName = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
+				updateCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
+				updateCloudDirectoryUserOptionsModel.Active = core.BoolPtr(false)
+				updateCloudDirectoryUserOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				updateCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Expect response parsing to fail since we are receiving a text/plain response
+				result, response, operationErr := appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+
+				// Enable retries and test again
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -2540,6 +2947,92 @@ var _ = Describe(`AppIDManagementV4`, func() {
 	})
 	Describe(`UpdateCloudDirectoryUser(updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions)`, func() {
 		updateCloudDirectoryUserPath := "/management/v4/testString/cloud_directory/Users/testString"
+		Context(`Using mock server endpoint with timeout`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(updateCloudDirectoryUserPath))
+					Expect(req.Method).To(Equal("PUT"))
+
+					// For gzip-disabled operation, verify Content-Encoding is not set.
+					Expect(req.Header.Get("Content-Encoding")).To(BeEmpty())
+
+					// If there is a body, then make sure we can read it
+					bodyBuf := new(bytes.Buffer)
+					if req.Header.Get("Content-Encoding") == "gzip" {
+						body, err := core.NewGzipDecompressionReader(req.Body)
+						Expect(err).To(BeNil())
+						_, err = bodyBuf.ReadFrom(body)
+						Expect(err).To(BeNil())
+					} else {
+						_, err := bodyBuf.ReadFrom(req.Body)
+						Expect(err).To(BeNil())
+					}
+					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
+
+					// Sleep a short time to support a timeout test
+					time.Sleep(100 * time.Millisecond)
+
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
+				}))
+			})
+			It(`Invoke UpdateCloudDirectoryUser successfully with retries`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
+
+				// Construct an instance of the CreateNewUserEmailsItem model
+				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
+				createNewUserEmailsItemModel.Value = core.StringPtr("user@mail.com")
+				createNewUserEmailsItemModel.Primary = core.BoolPtr(true)
+
+				// Construct an instance of the UpdateCloudDirectoryUserOptions model
+				updateCloudDirectoryUserOptionsModel := new(appidmanagementv4.UpdateCloudDirectoryUserOptions)
+				updateCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
+				updateCloudDirectoryUserOptionsModel.Status = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.DisplayName = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
+				updateCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
+				updateCloudDirectoryUserOptionsModel.Active = core.BoolPtr(false)
+				updateCloudDirectoryUserOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				updateCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation with a Context to test a timeout error
+				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc()
+				_, _, operationErr := appIDManagementService.UpdateCloudDirectoryUserWithContext(ctx, updateCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+
+				// Disable retries and test again
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
+				// Re-test the timeout error with retries disabled
+				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc2()
+				_, _, operationErr = appIDManagementService.UpdateCloudDirectoryUserWithContext(ctx, updateCloudDirectoryUserOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
@@ -2565,7 +3058,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					}
 					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
 
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
 				}))
 			})
 			It(`Invoke UpdateCloudDirectoryUser successfully`, func() {
@@ -2577,9 +3073,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIDManagementService.UpdateCloudDirectoryUser(nil)
+				result, response, operationErr := appIDManagementService.UpdateCloudDirectoryUser(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 
 				// Construct an instance of the CreateNewUserEmailsItem model
 				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
@@ -2591,15 +3088,20 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				updateCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
 				updateCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
 				updateCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
-				updateCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
+				updateCloudDirectoryUserOptionsModel.Status = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.DisplayName = core.StringPtr("testString")
 				updateCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
 				updateCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
+				updateCloudDirectoryUserOptionsModel.Active = core.BoolPtr(false)
+				updateCloudDirectoryUserOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
 				updateCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
+				result, response, operationErr = appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
 			})
 			It(`Invoke UpdateCloudDirectoryUser with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
@@ -2619,23 +3121,75 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				updateCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
 				updateCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
 				updateCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
-				updateCloudDirectoryUserOptionsModel.Active = core.BoolPtr(true)
+				updateCloudDirectoryUserOptionsModel.Status = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.DisplayName = core.StringPtr("testString")
 				updateCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
 				updateCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
+				updateCloudDirectoryUserOptionsModel.Active = core.BoolPtr(false)
+				updateCloudDirectoryUserOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
 				updateCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
+				result, response, operationErr := appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 				// Construct a second instance of the UpdateCloudDirectoryUserOptions model with no property values
 				updateCloudDirectoryUserOptionsModelNew := new(appidmanagementv4.UpdateCloudDirectoryUserOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModelNew)
+				result, response, operationErr = appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+		Context(`Using mock server endpoint with missing response body`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Set success status code with no respoonse body
+					res.WriteHeader(200)
+				}))
+			})
+			It(`Invoke UpdateCloudDirectoryUser successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the CreateNewUserEmailsItem model
+				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
+				createNewUserEmailsItemModel.Value = core.StringPtr("user@mail.com")
+				createNewUserEmailsItemModel.Primary = core.BoolPtr(true)
+
+				// Construct an instance of the UpdateCloudDirectoryUserOptions model
+				updateCloudDirectoryUserOptionsModel := new(appidmanagementv4.UpdateCloudDirectoryUserOptions)
+				updateCloudDirectoryUserOptionsModel.TenantID = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.UserID = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
+				updateCloudDirectoryUserOptionsModel.Status = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.DisplayName = core.StringPtr("testString")
+				updateCloudDirectoryUserOptionsModel.UserName = core.StringPtr("myUserName")
+				updateCloudDirectoryUserOptionsModel.Password = core.StringPtr("userPassword")
+				updateCloudDirectoryUserOptionsModel.Active = core.BoolPtr(false)
+				updateCloudDirectoryUserOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				updateCloudDirectoryUserOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation
+				result, response, operationErr := appIDManagementService.UpdateCloudDirectoryUser(updateCloudDirectoryUserOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+
+				// Verify a nil result
+				Expect(result).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -3398,7 +3952,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"sub": "Sub", "identities": [{"provider": "Provider", "id": "ID", "idpUserInfo": {"anyKey": "anyValue"}}], "attributes": {"anyKey": "anyValue"}}`)
+					fmt.Fprintf(res, "%s", `{"sub": "Sub", "identities": [{"provider": "Provider", "id": "ID", "idpUserInfo": {"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}}], "attributes": {"anyKey": "anyValue"}}`)
 				}))
 			})
 			It(`Invoke CloudDirectoryGetUserinfo successfully with retries`, func() {
@@ -3453,7 +4007,7 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"sub": "Sub", "identities": [{"provider": "Provider", "id": "ID", "idpUserInfo": {"anyKey": "anyValue"}}], "attributes": {"anyKey": "anyValue"}}`)
+					fmt.Fprintf(res, "%s", `{"sub": "Sub", "identities": [{"provider": "Provider", "id": "ID", "idpUserInfo": {"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}}], "attributes": {"anyKey": "anyValue"}}`)
 				}))
 			})
 			It(`Invoke CloudDirectoryGetUserinfo successfully`, func() {
@@ -3552,8 +4106,158 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 		})
 	})
+	Describe(`StartSignUp(startSignUpOptions *StartSignUpOptions) - Operation response error`, func() {
+		startSignUpPath := "/management/v4/testString/cloud_directory/sign_up"
+		Context(`Using mock server endpoint with invalid JSON response`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(startSignUpPath))
+					Expect(req.Method).To(Equal("POST"))
+					// TODO: Add check for shouldCreateProfile query parameter
+					Expect(req.URL.Query()["language"]).To(Equal([]string{"testString"}))
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(201)
+					fmt.Fprintf(res, `} this is not valid json {`)
+				}))
+			})
+			It(`Invoke StartSignUp with error: Operation response processing error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the CreateNewUserEmailsItem model
+				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
+				createNewUserEmailsItemModel.Value = core.StringPtr("user@mail.com")
+				createNewUserEmailsItemModel.Primary = core.BoolPtr(true)
+
+				// Construct an instance of the StartSignUpOptions model
+				startSignUpOptionsModel := new(appidmanagementv4.StartSignUpOptions)
+				startSignUpOptionsModel.TenantID = core.StringPtr("testString")
+				startSignUpOptionsModel.ShouldCreateProfile = core.BoolPtr(true)
+				startSignUpOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
+				startSignUpOptionsModel.Password = core.StringPtr("userPassword")
+				startSignUpOptionsModel.Active = core.BoolPtr(true)
+				startSignUpOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				startSignUpOptionsModel.DisplayName = core.StringPtr("testString")
+				startSignUpOptionsModel.UserName = core.StringPtr("myUserName")
+				startSignUpOptionsModel.Status = core.StringPtr("PENDING")
+				startSignUpOptionsModel.Language = core.StringPtr("testString")
+				startSignUpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Expect response parsing to fail since we are receiving a text/plain response
+				result, response, operationErr := appIDManagementService.StartSignUp(startSignUpOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+
+				// Enable retries and test again
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.StartSignUp(startSignUpOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+	})
 	Describe(`StartSignUp(startSignUpOptions *StartSignUpOptions)`, func() {
 		startSignUpPath := "/management/v4/testString/cloud_directory/sign_up"
+		Context(`Using mock server endpoint with timeout`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(startSignUpPath))
+					Expect(req.Method).To(Equal("POST"))
+
+					// For gzip-disabled operation, verify Content-Encoding is not set.
+					Expect(req.Header.Get("Content-Encoding")).To(BeEmpty())
+
+					// If there is a body, then make sure we can read it
+					bodyBuf := new(bytes.Buffer)
+					if req.Header.Get("Content-Encoding") == "gzip" {
+						body, err := core.NewGzipDecompressionReader(req.Body)
+						Expect(err).To(BeNil())
+						_, err = bodyBuf.ReadFrom(body)
+						Expect(err).To(BeNil())
+					} else {
+						_, err := bodyBuf.ReadFrom(req.Body)
+						Expect(err).To(BeNil())
+					}
+					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
+
+					// TODO: Add check for shouldCreateProfile query parameter
+					Expect(req.URL.Query()["language"]).To(Equal([]string{"testString"}))
+					// Sleep a short time to support a timeout test
+					time.Sleep(100 * time.Millisecond)
+
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(201)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
+				}))
+			})
+			It(`Invoke StartSignUp successfully with retries`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
+
+				// Construct an instance of the CreateNewUserEmailsItem model
+				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
+				createNewUserEmailsItemModel.Value = core.StringPtr("user@mail.com")
+				createNewUserEmailsItemModel.Primary = core.BoolPtr(true)
+
+				// Construct an instance of the StartSignUpOptions model
+				startSignUpOptionsModel := new(appidmanagementv4.StartSignUpOptions)
+				startSignUpOptionsModel.TenantID = core.StringPtr("testString")
+				startSignUpOptionsModel.ShouldCreateProfile = core.BoolPtr(true)
+				startSignUpOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
+				startSignUpOptionsModel.Password = core.StringPtr("userPassword")
+				startSignUpOptionsModel.Active = core.BoolPtr(true)
+				startSignUpOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				startSignUpOptionsModel.DisplayName = core.StringPtr("testString")
+				startSignUpOptionsModel.UserName = core.StringPtr("myUserName")
+				startSignUpOptionsModel.Status = core.StringPtr("PENDING")
+				startSignUpOptionsModel.Language = core.StringPtr("testString")
+				startSignUpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation with a Context to test a timeout error
+				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc()
+				_, _, operationErr := appIDManagementService.StartSignUpWithContext(ctx, startSignUpOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+
+				// Disable retries and test again
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.StartSignUp(startSignUpOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
+				// Re-test the timeout error with retries disabled
+				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc2()
+				_, _, operationErr = appIDManagementService.StartSignUpWithContext(ctx, startSignUpOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
@@ -3581,7 +4285,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 
 					// TODO: Add check for shouldCreateProfile query parameter
 					Expect(req.URL.Query()["language"]).To(Equal([]string{"testString"}))
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(201)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
 				}))
 			})
 			It(`Invoke StartSignUp successfully`, func() {
@@ -3593,9 +4300,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIDManagementService.StartSignUp(nil)
+				result, response, operationErr := appIDManagementService.StartSignUp(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 
 				// Construct an instance of the CreateNewUserEmailsItem model
 				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
@@ -3609,14 +4317,19 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				startSignUpOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
 				startSignUpOptionsModel.Password = core.StringPtr("userPassword")
 				startSignUpOptionsModel.Active = core.BoolPtr(true)
+				startSignUpOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				startSignUpOptionsModel.DisplayName = core.StringPtr("testString")
 				startSignUpOptionsModel.UserName = core.StringPtr("myUserName")
+				startSignUpOptionsModel.Status = core.StringPtr("PENDING")
 				startSignUpOptionsModel.Language = core.StringPtr("testString")
 				startSignUpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIDManagementService.StartSignUp(startSignUpOptionsModel)
+				result, response, operationErr = appIDManagementService.StartSignUp(startSignUpOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
 			})
 			It(`Invoke StartSignUp with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
@@ -3638,22 +4351,75 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				startSignUpOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
 				startSignUpOptionsModel.Password = core.StringPtr("userPassword")
 				startSignUpOptionsModel.Active = core.BoolPtr(true)
+				startSignUpOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				startSignUpOptionsModel.DisplayName = core.StringPtr("testString")
 				startSignUpOptionsModel.UserName = core.StringPtr("myUserName")
+				startSignUpOptionsModel.Status = core.StringPtr("PENDING")
 				startSignUpOptionsModel.Language = core.StringPtr("testString")
 				startSignUpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIDManagementService.StartSignUp(startSignUpOptionsModel)
+				result, response, operationErr := appIDManagementService.StartSignUp(startSignUpOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 				// Construct a second instance of the StartSignUpOptions model with no property values
 				startSignUpOptionsModelNew := new(appidmanagementv4.StartSignUpOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIDManagementService.StartSignUp(startSignUpOptionsModelNew)
+				result, response, operationErr = appIDManagementService.StartSignUp(startSignUpOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+		Context(`Using mock server endpoint with missing response body`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Set success status code with no respoonse body
+					res.WriteHeader(201)
+				}))
+			})
+			It(`Invoke StartSignUp successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the CreateNewUserEmailsItem model
+				createNewUserEmailsItemModel := new(appidmanagementv4.CreateNewUserEmailsItem)
+				createNewUserEmailsItemModel.Value = core.StringPtr("user@mail.com")
+				createNewUserEmailsItemModel.Primary = core.BoolPtr(true)
+
+				// Construct an instance of the StartSignUpOptions model
+				startSignUpOptionsModel := new(appidmanagementv4.StartSignUpOptions)
+				startSignUpOptionsModel.TenantID = core.StringPtr("testString")
+				startSignUpOptionsModel.ShouldCreateProfile = core.BoolPtr(true)
+				startSignUpOptionsModel.Emails = []appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}
+				startSignUpOptionsModel.Password = core.StringPtr("userPassword")
+				startSignUpOptionsModel.Active = core.BoolPtr(true)
+				startSignUpOptionsModel.LockedUntil = core.Int64Ptr(int64(1834879417592))
+				startSignUpOptionsModel.DisplayName = core.StringPtr("testString")
+				startSignUpOptionsModel.UserName = core.StringPtr("myUserName")
+				startSignUpOptionsModel.Status = core.StringPtr("PENDING")
+				startSignUpOptionsModel.Language = core.StringPtr("testString")
+				startSignUpOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation
+				result, response, operationErr := appIDManagementService.StartSignUp(startSignUpOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+
+				// Verify a nil result
+				Expect(result).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -3909,8 +4675,132 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 		})
 	})
+	Describe(`StartForgotPassword(startForgotPasswordOptions *StartForgotPasswordOptions) - Operation response error`, func() {
+		startForgotPasswordPath := "/management/v4/testString/cloud_directory/forgot_password"
+		Context(`Using mock server endpoint with invalid JSON response`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(startForgotPasswordPath))
+					Expect(req.Method).To(Equal("POST"))
+					Expect(req.URL.Query()["language"]).To(Equal([]string{"testString"}))
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, `} this is not valid json {`)
+				}))
+			})
+			It(`Invoke StartForgotPassword with error: Operation response processing error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the StartForgotPasswordOptions model
+				startForgotPasswordOptionsModel := new(appidmanagementv4.StartForgotPasswordOptions)
+				startForgotPasswordOptionsModel.TenantID = core.StringPtr("testString")
+				startForgotPasswordOptionsModel.User = core.StringPtr("testString")
+				startForgotPasswordOptionsModel.Language = core.StringPtr("testString")
+				startForgotPasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Expect response parsing to fail since we are receiving a text/plain response
+				result, response, operationErr := appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+
+				// Enable retries and test again
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+	})
 	Describe(`StartForgotPassword(startForgotPasswordOptions *StartForgotPasswordOptions)`, func() {
 		startForgotPasswordPath := "/management/v4/testString/cloud_directory/forgot_password"
+		Context(`Using mock server endpoint with timeout`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(startForgotPasswordPath))
+					Expect(req.Method).To(Equal("POST"))
+
+					// For gzip-disabled operation, verify Content-Encoding is not set.
+					Expect(req.Header.Get("Content-Encoding")).To(BeEmpty())
+
+					// If there is a body, then make sure we can read it
+					bodyBuf := new(bytes.Buffer)
+					if req.Header.Get("Content-Encoding") == "gzip" {
+						body, err := core.NewGzipDecompressionReader(req.Body)
+						Expect(err).To(BeNil())
+						_, err = bodyBuf.ReadFrom(body)
+						Expect(err).To(BeNil())
+					} else {
+						_, err := bodyBuf.ReadFrom(req.Body)
+						Expect(err).To(BeNil())
+					}
+					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
+
+					Expect(req.URL.Query()["language"]).To(Equal([]string{"testString"}))
+					// Sleep a short time to support a timeout test
+					time.Sleep(100 * time.Millisecond)
+
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
+				}))
+			})
+			It(`Invoke StartForgotPassword successfully with retries`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
+
+				// Construct an instance of the StartForgotPasswordOptions model
+				startForgotPasswordOptionsModel := new(appidmanagementv4.StartForgotPasswordOptions)
+				startForgotPasswordOptionsModel.TenantID = core.StringPtr("testString")
+				startForgotPasswordOptionsModel.User = core.StringPtr("testString")
+				startForgotPasswordOptionsModel.Language = core.StringPtr("testString")
+				startForgotPasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation with a Context to test a timeout error
+				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc()
+				_, _, operationErr := appIDManagementService.StartForgotPasswordWithContext(ctx, startForgotPasswordOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+
+				// Disable retries and test again
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
+				// Re-test the timeout error with retries disabled
+				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc2()
+				_, _, operationErr = appIDManagementService.StartForgotPasswordWithContext(ctx, startForgotPasswordOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
@@ -3937,7 +4827,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
 
 					Expect(req.URL.Query()["language"]).To(Equal([]string{"testString"}))
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
 				}))
 			})
 			It(`Invoke StartForgotPassword successfully`, func() {
@@ -3949,9 +4842,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIDManagementService.StartForgotPassword(nil)
+				result, response, operationErr := appIDManagementService.StartForgotPassword(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 
 				// Construct an instance of the StartForgotPasswordOptions model
 				startForgotPasswordOptionsModel := new(appidmanagementv4.StartForgotPasswordOptions)
@@ -3961,9 +4855,11 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				startForgotPasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
+				result, response, operationErr = appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
 			})
 			It(`Invoke StartForgotPassword with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
@@ -3982,16 +4878,54 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
+				result, response, operationErr := appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 				// Construct a second instance of the StartForgotPasswordOptions model with no property values
 				startForgotPasswordOptionsModelNew := new(appidmanagementv4.StartForgotPasswordOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModelNew)
+				result, response, operationErr = appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+		Context(`Using mock server endpoint with missing response body`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Set success status code with no respoonse body
+					res.WriteHeader(200)
+				}))
+			})
+			It(`Invoke StartForgotPassword successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the StartForgotPasswordOptions model
+				startForgotPasswordOptionsModel := new(appidmanagementv4.StartForgotPasswordOptions)
+				startForgotPasswordOptionsModel.TenantID = core.StringPtr("testString")
+				startForgotPasswordOptionsModel.User = core.StringPtr("testString")
+				startForgotPasswordOptionsModel.Language = core.StringPtr("testString")
+				startForgotPasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation
+				result, response, operationErr := appIDManagementService.StartForgotPassword(startForgotPasswordOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+
+				// Verify a nil result
+				Expect(result).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -4247,8 +5181,136 @@ var _ = Describe(`AppIDManagementV4`, func() {
 			})
 		})
 	})
+	Describe(`ChangePassword(changePasswordOptions *ChangePasswordOptions) - Operation response error`, func() {
+		changePasswordPath := "/management/v4/testString/cloud_directory/change_password"
+		Context(`Using mock server endpoint with invalid JSON response`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(changePasswordPath))
+					Expect(req.Method).To(Equal("POST"))
+					Expect(req.URL.Query()["language"]).To(Equal([]string{"testString"}))
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, `} this is not valid json {`)
+				}))
+			})
+			It(`Invoke ChangePassword with error: Operation response processing error`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the ChangePasswordOptions model
+				changePasswordOptionsModel := new(appidmanagementv4.ChangePasswordOptions)
+				changePasswordOptionsModel.TenantID = core.StringPtr("testString")
+				changePasswordOptionsModel.NewPassword = core.StringPtr("testString")
+				changePasswordOptionsModel.UUID = core.StringPtr("testString")
+				changePasswordOptionsModel.ChangedIPAddress = core.StringPtr("testString")
+				changePasswordOptionsModel.Language = core.StringPtr("testString")
+				changePasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+				// Expect response parsing to fail since we are receiving a text/plain response
+				result, response, operationErr := appIDManagementService.ChangePassword(changePasswordOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+
+				// Enable retries and test again
+				appIDManagementService.EnableRetries(0, 0)
+				result, response, operationErr = appIDManagementService.ChangePassword(changePasswordOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+	})
 	Describe(`ChangePassword(changePasswordOptions *ChangePasswordOptions)`, func() {
 		changePasswordPath := "/management/v4/testString/cloud_directory/change_password"
+		Context(`Using mock server endpoint with timeout`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Verify the contents of the request
+					Expect(req.URL.EscapedPath()).To(Equal(changePasswordPath))
+					Expect(req.Method).To(Equal("POST"))
+
+					// For gzip-disabled operation, verify Content-Encoding is not set.
+					Expect(req.Header.Get("Content-Encoding")).To(BeEmpty())
+
+					// If there is a body, then make sure we can read it
+					bodyBuf := new(bytes.Buffer)
+					if req.Header.Get("Content-Encoding") == "gzip" {
+						body, err := core.NewGzipDecompressionReader(req.Body)
+						Expect(err).To(BeNil())
+						_, err = bodyBuf.ReadFrom(body)
+						Expect(err).To(BeNil())
+					} else {
+						_, err := bodyBuf.ReadFrom(req.Body)
+						Expect(err).To(BeNil())
+					}
+					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
+
+					Expect(req.URL.Query()["language"]).To(Equal([]string{"testString"}))
+					// Sleep a short time to support a timeout test
+					time.Sleep(100 * time.Millisecond)
+
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
+					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
+				}))
+			})
+			It(`Invoke ChangePassword successfully with retries`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+				appIDManagementService.EnableRetries(0, 0)
+
+				// Construct an instance of the ChangePasswordOptions model
+				changePasswordOptionsModel := new(appidmanagementv4.ChangePasswordOptions)
+				changePasswordOptionsModel.TenantID = core.StringPtr("testString")
+				changePasswordOptionsModel.NewPassword = core.StringPtr("testString")
+				changePasswordOptionsModel.UUID = core.StringPtr("testString")
+				changePasswordOptionsModel.ChangedIPAddress = core.StringPtr("testString")
+				changePasswordOptionsModel.Language = core.StringPtr("testString")
+				changePasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation with a Context to test a timeout error
+				ctx, cancelFunc := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc()
+				_, _, operationErr := appIDManagementService.ChangePasswordWithContext(ctx, changePasswordOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+
+				// Disable retries and test again
+				appIDManagementService.DisableRetries()
+				result, response, operationErr := appIDManagementService.ChangePassword(changePasswordOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
+				// Re-test the timeout error with retries disabled
+				ctx, cancelFunc2 := context.WithTimeout(context.Background(), 80*time.Millisecond)
+				defer cancelFunc2()
+				_, _, operationErr = appIDManagementService.ChangePasswordWithContext(ctx, changePasswordOptionsModel)
+				Expect(operationErr).ToNot(BeNil())
+				Expect(operationErr.Error()).To(ContainSubstring("deadline exceeded"))
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
 		Context(`Using mock server endpoint`, func() {
 			BeforeEach(func() {
 				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
@@ -4275,7 +5337,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
 
 					Expect(req.URL.Query()["language"]).To(Equal([]string{"testString"}))
+					// Set mock response
+					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
+					fmt.Fprintf(res, "%s", `{"displayName": "DisplayName", "active": true, "lockedUntil": 11, "emails": [{"value": "Value", "primary": false}], "meta": {"created": "2019-01-01T12:00:00.000Z", "lastModified": "2019-01-01T12:00:00.000Z", "resourceType": "ResourceType"}, "schemas": ["Schemas"], "name": {"givenName": "GivenName", "familyName": "FamilyName", "formatted": "Formatted"}, "userName": "UserName", "id": "ID", "status": "Status"}`)
 				}))
 			})
 			It(`Invoke ChangePassword successfully`, func() {
@@ -4287,9 +5352,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(appIDManagementService).ToNot(BeNil())
 
 				// Invoke operation with nil options model (negative test)
-				response, operationErr := appIDManagementService.ChangePassword(nil)
+				result, response, operationErr := appIDManagementService.ChangePassword(nil)
 				Expect(operationErr).NotTo(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 
 				// Construct an instance of the ChangePasswordOptions model
 				changePasswordOptionsModel := new(appidmanagementv4.ChangePasswordOptions)
@@ -4301,9 +5367,11 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				changePasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
-				response, operationErr = appIDManagementService.ChangePassword(changePasswordOptionsModel)
+				result, response, operationErr = appIDManagementService.ChangePassword(changePasswordOptionsModel)
 				Expect(operationErr).To(BeNil())
 				Expect(response).ToNot(BeNil())
+				Expect(result).ToNot(BeNil())
+
 			})
 			It(`Invoke ChangePassword with error: Operation validation and request error`, func() {
 				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
@@ -4324,16 +5392,56 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				// Invoke operation with empty URL (negative test)
 				err := appIDManagementService.SetServiceURL("")
 				Expect(err).To(BeNil())
-				response, operationErr := appIDManagementService.ChangePassword(changePasswordOptionsModel)
+				result, response, operationErr := appIDManagementService.ChangePassword(changePasswordOptionsModel)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
 				// Construct a second instance of the ChangePasswordOptions model with no property values
 				changePasswordOptionsModelNew := new(appidmanagementv4.ChangePasswordOptions)
 				// Invoke operation with invalid model (negative test)
-				response, operationErr = appIDManagementService.ChangePassword(changePasswordOptionsModelNew)
+				result, response, operationErr = appIDManagementService.ChangePassword(changePasswordOptionsModelNew)
 				Expect(operationErr).ToNot(BeNil())
 				Expect(response).To(BeNil())
+				Expect(result).To(BeNil())
+			})
+			AfterEach(func() {
+				testServer.Close()
+			})
+		})
+		Context(`Using mock server endpoint with missing response body`, func() {
+			BeforeEach(func() {
+				testServer = httptest.NewServer(http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
+					defer GinkgoRecover()
+
+					// Set success status code with no respoonse body
+					res.WriteHeader(200)
+				}))
+			})
+			It(`Invoke ChangePassword successfully`, func() {
+				appIDManagementService, serviceErr := appidmanagementv4.NewAppIDManagementV4(&appidmanagementv4.AppIDManagementV4Options{
+					URL:           testServer.URL,
+					Authenticator: &core.NoAuthAuthenticator{},
+				})
+				Expect(serviceErr).To(BeNil())
+				Expect(appIDManagementService).ToNot(BeNil())
+
+				// Construct an instance of the ChangePasswordOptions model
+				changePasswordOptionsModel := new(appidmanagementv4.ChangePasswordOptions)
+				changePasswordOptionsModel.TenantID = core.StringPtr("testString")
+				changePasswordOptionsModel.NewPassword = core.StringPtr("testString")
+				changePasswordOptionsModel.UUID = core.StringPtr("testString")
+				changePasswordOptionsModel.ChangedIPAddress = core.StringPtr("testString")
+				changePasswordOptionsModel.Language = core.StringPtr("testString")
+				changePasswordOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
+
+				// Invoke operation
+				result, response, operationErr := appIDManagementService.ChangePassword(changePasswordOptionsModel)
+				Expect(operationErr).To(BeNil())
+				Expect(response).ToNot(BeNil())
+
+				// Verify a nil result
+				Expect(result).To(BeNil())
 			})
 			AfterEach(func() {
 				testServer.Close()
@@ -19688,14 +20796,20 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				createCloudDirectoryUserOptionsModel.SetEmails([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel})
 				createCloudDirectoryUserOptionsModel.SetPassword("userPassword")
 				createCloudDirectoryUserOptionsModel.SetActive(true)
+				createCloudDirectoryUserOptionsModel.SetLockedUntil(int64(1834879417592))
+				createCloudDirectoryUserOptionsModel.SetDisplayName("testString")
 				createCloudDirectoryUserOptionsModel.SetUserName("myUserName")
+				createCloudDirectoryUserOptionsModel.SetStatus("PENDING")
 				createCloudDirectoryUserOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(createCloudDirectoryUserOptionsModel).ToNot(BeNil())
 				Expect(createCloudDirectoryUserOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(createCloudDirectoryUserOptionsModel.Emails).To(Equal([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}))
 				Expect(createCloudDirectoryUserOptionsModel.Password).To(Equal(core.StringPtr("userPassword")))
 				Expect(createCloudDirectoryUserOptionsModel.Active).To(Equal(core.BoolPtr(true)))
+				Expect(createCloudDirectoryUserOptionsModel.LockedUntil).To(Equal(core.Int64Ptr(int64(1834879417592))))
+				Expect(createCloudDirectoryUserOptionsModel.DisplayName).To(Equal(core.StringPtr("testString")))
 				Expect(createCloudDirectoryUserOptionsModel.UserName).To(Equal(core.StringPtr("myUserName")))
+				Expect(createCloudDirectoryUserOptionsModel.Status).To(Equal(core.StringPtr("PENDING")))
 				Expect(createCloudDirectoryUserOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewCreateNewUserEmailsItem successfully`, func() {
@@ -21012,7 +22126,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				startSignUpOptionsModel.SetEmails([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel})
 				startSignUpOptionsModel.SetPassword("userPassword")
 				startSignUpOptionsModel.SetActive(true)
+				startSignUpOptionsModel.SetLockedUntil(int64(1834879417592))
+				startSignUpOptionsModel.SetDisplayName("testString")
 				startSignUpOptionsModel.SetUserName("myUserName")
+				startSignUpOptionsModel.SetStatus("PENDING")
 				startSignUpOptionsModel.SetLanguage("testString")
 				startSignUpOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(startSignUpOptionsModel).ToNot(BeNil())
@@ -21021,7 +22138,10 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				Expect(startSignUpOptionsModel.Emails).To(Equal([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}))
 				Expect(startSignUpOptionsModel.Password).To(Equal(core.StringPtr("userPassword")))
 				Expect(startSignUpOptionsModel.Active).To(Equal(core.BoolPtr(true)))
+				Expect(startSignUpOptionsModel.LockedUntil).To(Equal(core.Int64Ptr(int64(1834879417592))))
+				Expect(startSignUpOptionsModel.DisplayName).To(Equal(core.StringPtr("testString")))
 				Expect(startSignUpOptionsModel.UserName).To(Equal(core.StringPtr("myUserName")))
+				Expect(startSignUpOptionsModel.Status).To(Equal(core.StringPtr("PENDING")))
 				Expect(startSignUpOptionsModel.Language).To(Equal(core.StringPtr("testString")))
 				Expect(startSignUpOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
@@ -21076,17 +22196,23 @@ var _ = Describe(`AppIDManagementV4`, func() {
 				updateCloudDirectoryUserOptionsModel.SetTenantID("testString")
 				updateCloudDirectoryUserOptionsModel.SetUserID("testString")
 				updateCloudDirectoryUserOptionsModel.SetEmails([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel})
-				updateCloudDirectoryUserOptionsModel.SetActive(true)
+				updateCloudDirectoryUserOptionsModel.SetStatus("testString")
+				updateCloudDirectoryUserOptionsModel.SetDisplayName("testString")
 				updateCloudDirectoryUserOptionsModel.SetUserName("myUserName")
 				updateCloudDirectoryUserOptionsModel.SetPassword("userPassword")
+				updateCloudDirectoryUserOptionsModel.SetActive(false)
+				updateCloudDirectoryUserOptionsModel.SetLockedUntil(int64(1834879417592))
 				updateCloudDirectoryUserOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(updateCloudDirectoryUserOptionsModel).ToNot(BeNil())
 				Expect(updateCloudDirectoryUserOptionsModel.TenantID).To(Equal(core.StringPtr("testString")))
 				Expect(updateCloudDirectoryUserOptionsModel.UserID).To(Equal(core.StringPtr("testString")))
 				Expect(updateCloudDirectoryUserOptionsModel.Emails).To(Equal([]appidmanagementv4.CreateNewUserEmailsItem{*createNewUserEmailsItemModel}))
-				Expect(updateCloudDirectoryUserOptionsModel.Active).To(Equal(core.BoolPtr(true)))
+				Expect(updateCloudDirectoryUserOptionsModel.Status).To(Equal(core.StringPtr("testString")))
+				Expect(updateCloudDirectoryUserOptionsModel.DisplayName).To(Equal(core.StringPtr("testString")))
 				Expect(updateCloudDirectoryUserOptionsModel.UserName).To(Equal(core.StringPtr("myUserName")))
 				Expect(updateCloudDirectoryUserOptionsModel.Password).To(Equal(core.StringPtr("userPassword")))
+				Expect(updateCloudDirectoryUserOptionsModel.Active).To(Equal(core.BoolPtr(false)))
+				Expect(updateCloudDirectoryUserOptionsModel.LockedUntil).To(Equal(core.Int64Ptr(int64(1834879417592))))
 				Expect(updateCloudDirectoryUserOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewUpdateExtensionActiveOptions successfully`, func() {

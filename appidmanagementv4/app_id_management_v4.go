@@ -32,6 +32,7 @@ import (
 
 	common "github.com/IBM/appid-management-go-sdk/common"
 	"github.com/IBM/go-sdk-core/v5/core"
+	"github.com/go-openapi/strfmt"
 )
 
 // AppIDManagementV4 : You can use the following APIs to configure your instances of IBM Cloud App ID. To define fine
@@ -822,12 +823,12 @@ func (appIdManagement *AppIDManagementV4) ListCloudDirectoryUsersWithContext(ctx
 // new Cloud Directory user use the  <a href="/swagger-ui/#/Management API - Cloud Directory Workflows/mgmt.startSignUp"
 // target="_blank">sign_up</a> API. <a href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIDManagementV4) CreateCloudDirectoryUser(createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CreateCloudDirectoryUser(createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	return appIdManagement.CreateCloudDirectoryUserWithContext(context.Background(), createCloudDirectoryUserOptions)
 }
 
 // CreateCloudDirectoryUserWithContext is an alternate form of the CreateCloudDirectoryUser method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) CreateCloudDirectoryUserWithContext(ctx context.Context, createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) CreateCloudDirectoryUserWithContext(ctx context.Context, createCloudDirectoryUserOptions *CreateCloudDirectoryUserOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(createCloudDirectoryUserOptions, "createCloudDirectoryUserOptions cannot be nil")
 	if err != nil {
 		return
@@ -870,8 +871,17 @@ func (appIdManagement *AppIDManagementV4) CreateCloudDirectoryUserWithContext(ct
 	if createCloudDirectoryUserOptions.Active != nil {
 		body["active"] = createCloudDirectoryUserOptions.Active
 	}
+	if createCloudDirectoryUserOptions.LockedUntil != nil {
+		body["lockedUntil"] = createCloudDirectoryUserOptions.LockedUntil
+	}
+	if createCloudDirectoryUserOptions.DisplayName != nil {
+		body["displayName"] = createCloudDirectoryUserOptions.DisplayName
+	}
 	if createCloudDirectoryUserOptions.UserName != nil {
 		body["userName"] = createCloudDirectoryUserOptions.UserName
+	}
+	if createCloudDirectoryUserOptions.Status != nil {
+		body["status"] = createCloudDirectoryUserOptions.Status
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -883,7 +893,18 @@ func (appIdManagement *AppIDManagementV4) CreateCloudDirectoryUserWithContext(ct
 		return
 	}
 
-	response, err = appIdManagement.Service.Request(request, nil)
+	var rawResponse map[string]json.RawMessage
+	response, err = appIdManagement.Service.Request(request, &rawResponse)
+	if err != nil {
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUser)
+		if err != nil {
+			return
+		}
+		response.Result = result
+	}
 
 	return
 }
@@ -891,12 +912,12 @@ func (appIdManagement *AppIDManagementV4) CreateCloudDirectoryUserWithContext(ct
 // GetCloudDirectoryUser : Get a Cloud Directory user
 // Returns the requested Cloud Directory user object. <a
 // href="https://cloud.ibm.com/docs/appid?topic=appid-cloud-directory" target="_blank">Learn more</a>.
-func (appIdManagement *AppIDManagementV4) GetCloudDirectoryUser(getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryUser(getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	return appIdManagement.GetCloudDirectoryUserWithContext(context.Background(), getCloudDirectoryUserOptions)
 }
 
 // GetCloudDirectoryUserWithContext is an alternate form of the GetCloudDirectoryUser method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) GetCloudDirectoryUserWithContext(ctx context.Context, getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) GetCloudDirectoryUserWithContext(ctx context.Context, getCloudDirectoryUserOptions *GetCloudDirectoryUserOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(getCloudDirectoryUserOptions, "getCloudDirectoryUserOptions cannot be nil")
 	if err != nil {
 		return
@@ -934,7 +955,18 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectoryUserWithContext(ctx c
 		return
 	}
 
-	response, err = appIdManagement.Service.Request(request, nil)
+	var rawResponse map[string]json.RawMessage
+	response, err = appIdManagement.Service.Request(request, &rawResponse)
+	if err != nil {
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUser)
+		if err != nil {
+			return
+		}
+		response.Result = result
+	}
 
 	return
 }
@@ -942,12 +974,12 @@ func (appIdManagement *AppIDManagementV4) GetCloudDirectoryUserWithContext(ctx c
 // UpdateCloudDirectoryUser : Update a Cloud Directory user
 // Updates an existing Cloud Directory user. <a href="https://cloud.ibm.com/docs/appid?topic=appid-cd-users"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIDManagementV4) UpdateCloudDirectoryUser(updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateCloudDirectoryUser(updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	return appIdManagement.UpdateCloudDirectoryUserWithContext(context.Background(), updateCloudDirectoryUserOptions)
 }
 
 // UpdateCloudDirectoryUserWithContext is an alternate form of the UpdateCloudDirectoryUser method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) UpdateCloudDirectoryUserWithContext(ctx context.Context, updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) UpdateCloudDirectoryUserWithContext(ctx context.Context, updateCloudDirectoryUserOptions *UpdateCloudDirectoryUserOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(updateCloudDirectoryUserOptions, "updateCloudDirectoryUserOptions cannot be nil")
 	if err != nil {
 		return
@@ -985,14 +1017,23 @@ func (appIdManagement *AppIDManagementV4) UpdateCloudDirectoryUserWithContext(ct
 	if updateCloudDirectoryUserOptions.Emails != nil {
 		body["emails"] = updateCloudDirectoryUserOptions.Emails
 	}
-	if updateCloudDirectoryUserOptions.Active != nil {
-		body["active"] = updateCloudDirectoryUserOptions.Active
+	if updateCloudDirectoryUserOptions.Status != nil {
+		body["status"] = updateCloudDirectoryUserOptions.Status
+	}
+	if updateCloudDirectoryUserOptions.DisplayName != nil {
+		body["displayName"] = updateCloudDirectoryUserOptions.DisplayName
 	}
 	if updateCloudDirectoryUserOptions.UserName != nil {
 		body["userName"] = updateCloudDirectoryUserOptions.UserName
 	}
 	if updateCloudDirectoryUserOptions.Password != nil {
 		body["password"] = updateCloudDirectoryUserOptions.Password
+	}
+	if updateCloudDirectoryUserOptions.Active != nil {
+		body["active"] = updateCloudDirectoryUserOptions.Active
+	}
+	if updateCloudDirectoryUserOptions.LockedUntil != nil {
+		body["lockedUntil"] = updateCloudDirectoryUserOptions.LockedUntil
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -1004,7 +1045,18 @@ func (appIdManagement *AppIDManagementV4) UpdateCloudDirectoryUserWithContext(ct
 		return
 	}
 
-	response, err = appIdManagement.Service.Request(request, nil)
+	var rawResponse map[string]json.RawMessage
+	response, err = appIdManagement.Service.Request(request, &rawResponse)
+	if err != nil {
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUser)
+		if err != nil {
+			return
+		}
+		response.Result = result
+	}
 
 	return
 }
@@ -1319,12 +1371,12 @@ func (appIdManagement *AppIDManagementV4) CloudDirectoryGetUserinfoWithContext(c
 // StartSignUp : Sign up
 // Start the sign up process <a href="https://cloud.ibm.com/docs/appid?topic=appid-branded" target="_blank">Learn
 // more</a>.
-func (appIdManagement *AppIDManagementV4) StartSignUp(startSignUpOptions *StartSignUpOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) StartSignUp(startSignUpOptions *StartSignUpOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	return appIdManagement.StartSignUpWithContext(context.Background(), startSignUpOptions)
 }
 
 // StartSignUpWithContext is an alternate form of the StartSignUp method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) StartSignUpWithContext(ctx context.Context, startSignUpOptions *StartSignUpOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) StartSignUpWithContext(ctx context.Context, startSignUpOptions *StartSignUpOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(startSignUpOptions, "startSignUpOptions cannot be nil")
 	if err != nil {
 		return
@@ -1372,8 +1424,17 @@ func (appIdManagement *AppIDManagementV4) StartSignUpWithContext(ctx context.Con
 	if startSignUpOptions.Active != nil {
 		body["active"] = startSignUpOptions.Active
 	}
+	if startSignUpOptions.LockedUntil != nil {
+		body["lockedUntil"] = startSignUpOptions.LockedUntil
+	}
+	if startSignUpOptions.DisplayName != nil {
+		body["displayName"] = startSignUpOptions.DisplayName
+	}
 	if startSignUpOptions.UserName != nil {
 		body["userName"] = startSignUpOptions.UserName
+	}
+	if startSignUpOptions.Status != nil {
+		body["status"] = startSignUpOptions.Status
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -1385,7 +1446,18 @@ func (appIdManagement *AppIDManagementV4) StartSignUpWithContext(ctx context.Con
 		return
 	}
 
-	response, err = appIdManagement.Service.Request(request, nil)
+	var rawResponse map[string]json.RawMessage
+	response, err = appIdManagement.Service.Request(request, &rawResponse)
+	if err != nil {
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUser)
+		if err != nil {
+			return
+		}
+		response.Result = result
+	}
 
 	return
 }
@@ -1464,12 +1536,12 @@ func (appIdManagement *AppIDManagementV4) UserVerificationResultWithContext(ctx 
 // StartForgotPassword : Forgot password
 // Starts the forgot password process. <a href="https://cloud.ibm.com/docs/appid?topic=appid-branded"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIDManagementV4) StartForgotPassword(startForgotPasswordOptions *StartForgotPasswordOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) StartForgotPassword(startForgotPasswordOptions *StartForgotPasswordOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	return appIdManagement.StartForgotPasswordWithContext(context.Background(), startForgotPasswordOptions)
 }
 
 // StartForgotPasswordWithContext is an alternate form of the StartForgotPassword method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) StartForgotPasswordWithContext(ctx context.Context, startForgotPasswordOptions *StartForgotPasswordOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) StartForgotPasswordWithContext(ctx context.Context, startForgotPasswordOptions *StartForgotPasswordOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(startForgotPasswordOptions, "startForgotPasswordOptions cannot be nil")
 	if err != nil {
 		return
@@ -1520,7 +1592,18 @@ func (appIdManagement *AppIDManagementV4) StartForgotPasswordWithContext(ctx con
 		return
 	}
 
-	response, err = appIdManagement.Service.Request(request, nil)
+	var rawResponse map[string]json.RawMessage
+	response, err = appIdManagement.Service.Request(request, &rawResponse)
+	if err != nil {
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUser)
+		if err != nil {
+			return
+		}
+		response.Result = result
+	}
 
 	return
 }
@@ -1599,12 +1682,12 @@ func (appIdManagement *AppIDManagementV4) ForgotPasswordResultWithContext(ctx co
 // ChangePassword : Change password
 // Changes the Cloud Directory user password. <a href="https://cloud.ibm.com/docs/appid?topic=appid-branded"
 // target="_blank">Learn more</a>.
-func (appIdManagement *AppIDManagementV4) ChangePassword(changePasswordOptions *ChangePasswordOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ChangePassword(changePasswordOptions *ChangePasswordOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	return appIdManagement.ChangePasswordWithContext(context.Background(), changePasswordOptions)
 }
 
 // ChangePasswordWithContext is an alternate form of the ChangePassword method which supports a Context parameter
-func (appIdManagement *AppIDManagementV4) ChangePasswordWithContext(ctx context.Context, changePasswordOptions *ChangePasswordOptions) (response *core.DetailedResponse, err error) {
+func (appIdManagement *AppIDManagementV4) ChangePasswordWithContext(ctx context.Context, changePasswordOptions *ChangePasswordOptions) (result *GetUser, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(changePasswordOptions, "changePasswordOptions cannot be nil")
 	if err != nil {
 		return
@@ -1661,7 +1744,18 @@ func (appIdManagement *AppIDManagementV4) ChangePasswordWithContext(ctx context.
 		return
 	}
 
-	response, err = appIdManagement.Service.Request(request, nil)
+	var rawResponse map[string]json.RawMessage
+	response, err = appIdManagement.Service.Request(request, &rawResponse)
+	if err != nil {
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalGetUser)
+		if err != nil {
+			return
+		}
+		response.Result = result
+	}
 
 	return
 }
@@ -7230,7 +7324,14 @@ type CreateCloudDirectoryUserOptions struct {
 
 	Active *bool
 
+	LockedUntil *int64
+
+	DisplayName *string
+
 	UserName *string
+
+	// Accepted values "PENDING" or "CONFIRMED".
+	Status *string
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
@@ -7269,9 +7370,27 @@ func (options *CreateCloudDirectoryUserOptions) SetActive(active bool) *CreateCl
 	return options
 }
 
+// SetLockedUntil : Allow user to set LockedUntil
+func (options *CreateCloudDirectoryUserOptions) SetLockedUntil(lockedUntil int64) *CreateCloudDirectoryUserOptions {
+	options.LockedUntil = core.Int64Ptr(lockedUntil)
+	return options
+}
+
+// SetDisplayName : Allow user to set DisplayName
+func (options *CreateCloudDirectoryUserOptions) SetDisplayName(displayName string) *CreateCloudDirectoryUserOptions {
+	options.DisplayName = core.StringPtr(displayName)
+	return options
+}
+
 // SetUserName : Allow user to set UserName
 func (options *CreateCloudDirectoryUserOptions) SetUserName(userName string) *CreateCloudDirectoryUserOptions {
 	options.UserName = core.StringPtr(userName)
+	return options
+}
+
+// SetStatus : Allow user to set Status
+func (options *CreateCloudDirectoryUserOptions) SetStatus(status string) *CreateCloudDirectoryUserOptions {
+	options.Status = core.StringPtr(status)
 	return options
 }
 
@@ -9440,7 +9559,7 @@ type GetUserAndProfileIdentitiesItem struct {
 
 	ID *string `json:"id,omitempty"`
 
-	IDPUserInfo interface{} `json:"idpUserInfo,omitempty"`
+	IDPUserInfo *GetUserAndProfileIdentitiesItemIDPUserInfo `json:"idpUserInfo,omitempty"`
 }
 
 // UnmarshalGetUserAndProfileIdentitiesItem unmarshals an instance of GetUserAndProfileIdentitiesItem from the specified map of raw messages.
@@ -9454,7 +9573,155 @@ func UnmarshalGetUserAndProfileIdentitiesItem(m map[string]json.RawMessage, resu
 	if err != nil {
 		return
 	}
-	err = core.UnmarshalPrimitive(m, "idpUserInfo", &obj.IDPUserInfo)
+	err = core.UnmarshalModel(m, "idpUserInfo", &obj.IDPUserInfo, UnmarshalGetUserAndProfileIdentitiesItemIDPUserInfo)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// GetUserAndProfileIdentitiesItemIDPUserInfo : GetUserAndProfileIdentitiesItemIDPUserInfo struct
+type GetUserAndProfileIdentitiesItemIDPUserInfo struct {
+	DisplayName *string `json:"displayName,omitempty"`
+
+	Active *bool `json:"active" validate:"required"`
+
+	LockedUntil *int64 `json:"lockedUntil,omitempty"`
+
+	Emails []GetUserEmailsItem `json:"emails" validate:"required"`
+
+	Meta *GetUserMeta `json:"meta" validate:"required"`
+
+	Schemas []string `json:"schemas,omitempty"`
+
+	Name *GetUserName `json:"name,omitempty"`
+
+	UserName *string `json:"userName,omitempty"`
+
+	ID *string `json:"id" validate:"required"`
+
+	Status *string `json:"status" validate:"required"`
+}
+
+// UnmarshalGetUserAndProfileIdentitiesItemIDPUserInfo unmarshals an instance of GetUserAndProfileIdentitiesItemIDPUserInfo from the specified map of raw messages.
+func UnmarshalGetUserAndProfileIdentitiesItemIDPUserInfo(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(GetUserAndProfileIdentitiesItemIDPUserInfo)
+	err = core.UnmarshalPrimitive(m, "displayName", &obj.DisplayName)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "active", &obj.Active)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "lockedUntil", &obj.LockedUntil)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalModel(m, "emails", &obj.Emails, UnmarshalGetUserEmailsItem)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalModel(m, "meta", &obj.Meta, UnmarshalGetUserMeta)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "schemas", &obj.Schemas)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalModel(m, "name", &obj.Name, UnmarshalGetUserName)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "userName", &obj.UserName)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "id", &obj.ID)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "status", &obj.Status)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// GetUserEmailsItem : GetUserEmailsItem struct
+type GetUserEmailsItem struct {
+	Value *string `json:"value" validate:"required"`
+
+	Primary *bool `json:"primary,omitempty"`
+}
+
+// UnmarshalGetUserEmailsItem unmarshals an instance of GetUserEmailsItem from the specified map of raw messages.
+func UnmarshalGetUserEmailsItem(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(GetUserEmailsItem)
+	err = core.UnmarshalPrimitive(m, "value", &obj.Value)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "primary", &obj.Primary)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// GetUserMeta : GetUserMeta struct
+type GetUserMeta struct {
+	Created *strfmt.DateTime `json:"created,omitempty"`
+
+	LastModified *strfmt.DateTime `json:"lastModified,omitempty"`
+
+	ResourceType *string `json:"resourceType,omitempty"`
+}
+
+// UnmarshalGetUserMeta unmarshals an instance of GetUserMeta from the specified map of raw messages.
+func UnmarshalGetUserMeta(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(GetUserMeta)
+	err = core.UnmarshalPrimitive(m, "created", &obj.Created)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "lastModified", &obj.LastModified)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "resourceType", &obj.ResourceType)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// GetUserName : GetUserName struct
+type GetUserName struct {
+	GivenName *string `json:"givenName,omitempty"`
+
+	FamilyName *string `json:"familyName,omitempty"`
+
+	Formatted *string `json:"formatted,omitempty"`
+}
+
+// UnmarshalGetUserName unmarshals an instance of GetUserName from the specified map of raw messages.
+func UnmarshalGetUserName(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(GetUserName)
+	err = core.UnmarshalPrimitive(m, "givenName", &obj.GivenName)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "familyName", &obj.FamilyName)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "formatted", &obj.Formatted)
 	if err != nil {
 		return
 	}
@@ -11196,7 +11463,14 @@ type StartSignUpOptions struct {
 
 	Active *bool
 
+	LockedUntil *int64
+
+	DisplayName *string
+
 	UserName *string
+
+	// Accepted values "PENDING" or "CONFIRMED".
+	Status *string
 
 	// Preferred language for resource. Format as described at RFC5646.
 	Language *string
@@ -11245,9 +11519,27 @@ func (options *StartSignUpOptions) SetActive(active bool) *StartSignUpOptions {
 	return options
 }
 
+// SetLockedUntil : Allow user to set LockedUntil
+func (options *StartSignUpOptions) SetLockedUntil(lockedUntil int64) *StartSignUpOptions {
+	options.LockedUntil = core.Int64Ptr(lockedUntil)
+	return options
+}
+
+// SetDisplayName : Allow user to set DisplayName
+func (options *StartSignUpOptions) SetDisplayName(displayName string) *StartSignUpOptions {
+	options.DisplayName = core.StringPtr(displayName)
+	return options
+}
+
 // SetUserName : Allow user to set UserName
 func (options *StartSignUpOptions) SetUserName(userName string) *StartSignUpOptions {
 	options.UserName = core.StringPtr(userName)
+	return options
+}
+
+// SetStatus : Allow user to set Status
+func (options *StartSignUpOptions) SetStatus(status string) *StartSignUpOptions {
+	options.Status = core.StringPtr(status)
 	return options
 }
 
@@ -11383,11 +11675,17 @@ type UpdateCloudDirectoryUserOptions struct {
 
 	Emails []CreateNewUserEmailsItem `validate:"required"`
 
-	Active *bool
+	Status *string
+
+	DisplayName *string
 
 	UserName *string
 
 	Password *string
+
+	Active *bool
+
+	LockedUntil *int64
 
 	// Allows users to set headers on API requests
 	Headers map[string]string
@@ -11420,9 +11718,15 @@ func (options *UpdateCloudDirectoryUserOptions) SetEmails(emails []CreateNewUser
 	return options
 }
 
-// SetActive : Allow user to set Active
-func (options *UpdateCloudDirectoryUserOptions) SetActive(active bool) *UpdateCloudDirectoryUserOptions {
-	options.Active = core.BoolPtr(active)
+// SetStatus : Allow user to set Status
+func (options *UpdateCloudDirectoryUserOptions) SetStatus(status string) *UpdateCloudDirectoryUserOptions {
+	options.Status = core.StringPtr(status)
+	return options
+}
+
+// SetDisplayName : Allow user to set DisplayName
+func (options *UpdateCloudDirectoryUserOptions) SetDisplayName(displayName string) *UpdateCloudDirectoryUserOptions {
+	options.DisplayName = core.StringPtr(displayName)
 	return options
 }
 
@@ -11435,6 +11739,18 @@ func (options *UpdateCloudDirectoryUserOptions) SetUserName(userName string) *Up
 // SetPassword : Allow user to set Password
 func (options *UpdateCloudDirectoryUserOptions) SetPassword(password string) *UpdateCloudDirectoryUserOptions {
 	options.Password = core.StringPtr(password)
+	return options
+}
+
+// SetActive : Allow user to set Active
+func (options *UpdateCloudDirectoryUserOptions) SetActive(active bool) *UpdateCloudDirectoryUserOptions {
+	options.Active = core.BoolPtr(active)
+	return options
+}
+
+// SetLockedUntil : Allow user to set LockedUntil
+func (options *UpdateCloudDirectoryUserOptions) SetLockedUntil(lockedUntil int64) *UpdateCloudDirectoryUserOptions {
+	options.LockedUntil = core.Int64Ptr(lockedUntil)
 	return options
 }
 
@@ -13290,6 +13606,76 @@ func UnmarshalGetTemplate(m map[string]json.RawMessage, result interface{}) (err
 		return
 	}
 	err = core.UnmarshalPrimitive(m, "plain_text_body", &obj.PlainTextBody)
+	if err != nil {
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// GetUser : GetUser struct
+type GetUser struct {
+	DisplayName *string `json:"displayName,omitempty"`
+
+	Active *bool `json:"active" validate:"required"`
+
+	LockedUntil *int64 `json:"lockedUntil,omitempty"`
+
+	Emails []GetUserEmailsItem `json:"emails" validate:"required"`
+
+	Meta *GetUserMeta `json:"meta" validate:"required"`
+
+	Schemas []string `json:"schemas,omitempty"`
+
+	Name *GetUserName `json:"name,omitempty"`
+
+	UserName *string `json:"userName,omitempty"`
+
+	ID *string `json:"id" validate:"required"`
+
+	Status *string `json:"status" validate:"required"`
+}
+
+// UnmarshalGetUser unmarshals an instance of GetUser from the specified map of raw messages.
+func UnmarshalGetUser(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(GetUser)
+	err = core.UnmarshalPrimitive(m, "displayName", &obj.DisplayName)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "active", &obj.Active)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "lockedUntil", &obj.LockedUntil)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalModel(m, "emails", &obj.Emails, UnmarshalGetUserEmailsItem)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalModel(m, "meta", &obj.Meta, UnmarshalGetUserMeta)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "schemas", &obj.Schemas)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalModel(m, "name", &obj.Name, UnmarshalGetUserName)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "userName", &obj.UserName)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "id", &obj.ID)
+	if err != nil {
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "status", &obj.Status)
 	if err != nil {
 		return
 	}
